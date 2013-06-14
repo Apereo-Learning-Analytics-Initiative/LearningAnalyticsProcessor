@@ -14,26 +14,37 @@
  */
 package org.apereo.oaa.services;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * Handles the merging of the data inputs and processing in kettle with the selected PMML
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
-@Service
+@Component
 public class ProcessorService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProcessorService.class);
 
+    @PostConstruct
     public void init() {
+        logger.info("INIT");
         // TODO load up config
         // TODO init kettle
     }
 
+    @PreDestroy
+    public void destroy() {
+        logger.info("DESTROY");
+    }
+
     public void process() {
+        logger.info("PROCESS");
         // TODO execute the processor
     }
 
