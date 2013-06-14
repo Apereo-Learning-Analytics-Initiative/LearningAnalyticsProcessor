@@ -304,6 +304,7 @@
             <exclude>**/*.md</exclude>
             <exclude>**/*.sql</exclude>
             <exclude>**/javascript/jquery/**</exclude>
+            <exclude>**/pmml/**</exclude>
           </excludes>
           <mapping>
             <tag>DYNASCRIPT_STYLE</tag>
@@ -313,7 +314,7 @@
         <executions>
           <execution>
             <goals>
-              <!--  goal>check</goal -->
+              <goal>check</goal>
             </goals>
           </execution>
         </executions>
