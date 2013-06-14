@@ -286,6 +286,7 @@
           Run mvn license:format to fix up licenses on all files in the project -->
         <groupId>com.mycila.maven-license-plugin</groupId>
         <artifactId>maven-license-plugin</artifactId>
+        <version>1.10.b1</version>
         <configuration>
           <strictCheck>true</strictCheck>
           <header>${basedir}/LICENSE_HEADER</header>
@@ -322,4 +323,33 @@
 
     </plugins>
   </build>
+
+  <developers>
+    <developer>
+      <id>azeckoski</id>
+      <name>Aaron Zeckoski</name>
+      <email>azeckoski@vt.edu</email>
+      <url>http://tinyurl.com/azprofile</url>
+      <roles>
+        <role>Architect</role>
+        <role>Developer</role>
+      </roles>
+      <timezone>-5</timezone>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>ECL 2.0</name>
+      <distribution>repo</distribution>
+      <url>http://www.osedu.org/licenses/ECL-2.0/</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git://github.com/Unicon/OpenAcademicAnalytics.git</connection>
+    <developerConnection>scm:git:git@github.com:Unicon/OpenAcademicAnalytics.git</developerConnection>
+    <url>https://github.com/Unicon/OpenAcademicAnalytics</url>
+  </scm>
+
 </project>
