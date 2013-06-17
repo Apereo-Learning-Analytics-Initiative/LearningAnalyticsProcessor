@@ -19,9 +19,9 @@ RACE                    The race of the student (self-reported)
 GENDER                  The gender of the student (self-reported)
 STATUS                  Code for full-time or part-time student based on the number of credit hours currently enrolled.
 SEMESTERS               The current academic standing of the student as expressed by the number of semesters of completed coursework
-EARNED_CREDIT_HOURS     The total number of hours earned by each of the student
-GPA_CUMULATIVE          Cumulative university grade point average (four point scale).
-GPA_SEMESTER            Semester university grade point average (four point scale).
+EARNED_CREDIT_HOURS     The total number of credit hours earned by each of the student (int - [0-1000])
+GPA_CUMULATIVE          Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
+GPA_SEMESTER            Semester university grade point average (float - four point scale - [0.00 - 4.00])
 STANDING                Current university standing such as probation, dean’s list, or semester honors.
 
 

@@ -21,6 +21,7 @@ import javax.annotation.PreDestroy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import weka.classifiers.Classifier;
@@ -38,11 +39,14 @@ public class ProcessorService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProcessorService.class);
 
+    @Autowired
+    PreProcessorService preProcessorService;
+
     Classifier classifier;
 
     @PostConstruct
     public void init() {
-        logger.info("INIT");
+        logger.info("INIT started");
         // TODO load up config
         // TOOD init weka PMML
         try {
@@ -63,8 +67,8 @@ public class ProcessorService {
             throw new RuntimeException("Failed to load pmml file and init the classifier: "+e, e);
         }
 
-
         // TODO init kettle
+        logger.info("INIT completed");
     }
 
     @PreDestroy
