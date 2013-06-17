@@ -14,12 +14,19 @@
  */
 package org.apereo.oaa.services;
 
+import java.io.InputStream;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import weka.classifiers.Classifier;
+import weka.classifiers.pmml.consumer.PMMLClassifier;
+import weka.core.pmml.PMMLFactory;
+import weka.core.pmml.PMMLModel;
 
 /**
  * Handles the merging of the data inputs and processing in kettle with the selected PMML
@@ -31,10 +38,32 @@ public class ProcessorService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProcessorService.class);
 
+    Classifier classifier;
+
     @PostConstruct
     public void init() {
         logger.info("INIT");
         // TODO load up config
+        // TOOD init weka PMML
+        try {
+            InputStream pmml = ProcessorService.class.getClassLoader().getResourceAsStream("pmml/oaai.marist.pmml.xml");
+            // TODO - allow pmml file path override / config
+            PMMLModel model = PMMLFactory.getPMMLModel(pmml);
+            logger.info("Loaded PMML: "+model);
+            if (model instanceof PMMLClassifier) {
+                classifier = (PMMLClassifier) model;
+
+                /* Since PMMLClassifier is a subclass of weka.classifiers.Classifier,
+                 * you can use it just like any other Weka Classifier. The only
+                 * exception is that calling buildClassifier() will raise an
+                 * Exception because PMML models are pre-built.
+                 */
+             }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to load pmml file and init the classifier: "+e, e);
+        }
+
+
         // TODO init kettle
     }
 

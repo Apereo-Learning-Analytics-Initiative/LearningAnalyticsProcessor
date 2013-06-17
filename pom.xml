@@ -37,6 +37,13 @@
       <version>${pentaho.version}</version>
     </dependency>
 
+    <!-- weka -->
+    <dependency>
+      <groupId>nz.ac.waikato.cms.weka</groupId>
+      <artifactId>weka-stable</artifactId>
+      <version>3.6.9</version>
+    </dependency>
+
     <!-- more pentaho deps 
     <dependency>
       <groupId>commons-beanutils</groupId>
