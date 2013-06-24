@@ -291,6 +291,7 @@
             <exclude>bin/**</exclude>
             <exclude>LICENSE*</exclude>
             <exclude>**/*.properties</exclude>
+            <exclude>**/*.csv</exclude>
             <exclude>**/*.txt</exclude>
             <exclude>**/*.md</exclude>
             <exclude>**/*.sql</exclude>
