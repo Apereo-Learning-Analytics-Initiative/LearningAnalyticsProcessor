@@ -15,18 +15,18 @@ COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
 ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
 PERCENTILE              | Float[0-100.0]    | The high school ranking of the students.
-SAT_VERBAL              |  | The numeric SAT verbal score.
-SAT_MATH                |  | The numeric SAT mathematics score.
-ACL_COMPOSITE           |  | The ACT score of the Student (Either of the scores will be reported by the students)
-DOB                     |  | The birth date of the student
-RACE                    |  | The race of the student (self-reported)
-GENDER                  |  | The gender of the student (self-reported)
-STATUS                  |  | Code for full-time or part-time student based on the number of credit hours currently enrolled.
-SEMESTERS               |  | The current academic standing of the student as expressed by the number of semesters of completed coursework
-EARNED_CREDIT_HOURS     |  | The total number of credit hours earned by each of the student (int - [0-1000])
-GPA_CUMULATIVE          |  | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
-GPA_SEMESTER            |  | Semester university grade point average (float - four point scale - [0.00 - 4.00])
-STANDING                |  | Current university standing such as probation, dean’s list, or semester honors.
+SAT_VERBAL              | Integer[200-800]  | The numeric SAT verbal score (or 0/blank to indicate no score).
+SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score (or 0/blank to indicate no score).
+ACL_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Student (or 0/blank to indicate no score)
+DOB                     | ISO-8601          | The birth date of the student
+RACE                    | [1-8] -See Below- | The race of the student (self-reported)
+GENDER                  | [1,2] -See Below- | The gender of the student (self-reported)
+STATUS                  | [1,2] -See Below- | Code for full-time or part-time student based on the number of credit hours currently enrolled.
+SEMESTERS               | Integer[1-20]     | The current academic standing of the student as expressed by the number of semesters of completed coursework
+EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours earned by each of the student
+GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
+GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
+STANDING                | [0-3] -See Below- | Current university standing such as probation, dean’s list, or semester honors.
 
 
 2) COURSES (Course Data) - courses.csv
@@ -83,7 +83,7 @@ NOTES
     * Race {1=B, 2=H, 3=I, 4=N, 5=O, 6=P, 7=W, 8=X}
     * Gender {1 = Female, 2 = Male}
     * Full-time or Part-time Status {1 = Full-time student, 2 = Part-time student}
-    * Class Code {1= FR (Freshman), 2= SO (Sophomore),3= JR (Junior),4=SR(Senior),5=GR(Graduate)}
+    * Class Code {1 = FR(Freshman), 2 = SO(Sophomore), 3 = JR (Junior), 4 = SR(Senior), 5 = GR(Graduate)}
     * University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors, 3 = Semester honors and dean list}
     * Enrollment {-1 and 0 changed to 1}
     * Letter Grade
