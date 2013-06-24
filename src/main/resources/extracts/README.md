@@ -14,7 +14,7 @@ The personal data had all the demographic details of the student namely,
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
 ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
-PERCENTILE              | Float[0-100.0]    | The high school ranking of the students.
+PERCENTILE              | Float[0-100.0]    | The high school ranking of the students (e.g. 85 means 85th percentile).
 SAT_VERBAL              | Integer[200-800]  | The numeric SAT verbal score (or 0/blank to indicate no score).
 SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score (or 0/blank to indicate no score).
 ACL_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Student (or 0/blank to indicate no score)
@@ -40,6 +40,7 @@ COURSE_ID               | String(40)        | The course number of the course.
 ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section
 FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Student. Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null). If the student drops the course within the official drop/add window, the course grade field will be null.
+WITHDRAWL_DATE          | [ISO-8601,""]     | The date the student opted out from the course (blank if they did not drop the course).
 
 
 3) GRADES (LMS Gradebook Data) - grades.csv
@@ -48,14 +49,14 @@ The CMS Gradebook data is extracted from the LMS and it provides the information
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
-COURSE_ID               |  | The course number of the course.
-GRADABLE_OBJECT         |  | Different gradable objects and the course
-CATEGORY                |  | The gradable objects are categorized here. For example grouping of a bunch of related assignments, forum posting, projects etc
-MAX_POINTS              |  | Maximum allocated points for each Gradable Object
-EARNED_POINTS           |  | Points earned by the students for a particular gradable object
-WEIGHT                  |  | Overall weight of that particular assignment towards final grading.
-GRADE_DATE              |  | To facilitate chronological division of gradebook. Helpful in breaking down the gradebook like 4 weeks or 8 weeks into the course during testing phases.
+ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
+COURSE_ID               | String(40)        | The course number of the course.
+GRADABLE_OBJECT         | String(250)       | Different gradable objects and the course
+CATEGORY                | String(250)       | The gradable objects are categorized here. For example grouping of a bunch of related assignments, forum posting, projects etc
+MAX_POINTS              | Integer[0-1000]   | Maximum allocated points for each Gradable Object
+EARNED_POINTS           | Integer[0-1000]   | Points earned by the students for a particular gradable object
+WEIGHT                  | Float[0-100.0]    | Overall percent weight of that particular assignment towards final grading (e.g. 50.0 means 50% of the overall grade).
+GRADE_DATE              | ISO-8601          | To facilitate chronological division of gradebook. Helpful in breaking down the gradebook like 4 weeks or 8 weeks into the course during testing phases.
 
 
 4) EVENTS (LMS Usage Data) - usage.csv
@@ -64,10 +65,10 @@ The LMS Events table has details of the events generated for each of the tool us
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
-COURSE_ID               |  | The course number of the course.
-EVENT                   |  | The name of the event that was generated
-EVENT_DATE              |  | The date when the event occurred
+ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
+COURSE_ID               | String(40)        | The course number of the course.
+EVENT                   | String(250)       | The name of the event that was generated
+EVENT_DATE              | ISO-8601          | The date when the event occurred
 
 
 *******************************************************************************
