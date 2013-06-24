@@ -30,7 +30,8 @@ STANDING                |  | Current university standing such as probation, dean
 
 
 2) COURSES (Course Data) - courses.csv
-   The course data has all the details of the course that the students are enrolled in
+--------------------------------------
+The course data has all the details of the course that the students are enrolled in
 
 COLUMN                  | FORMAT    | DESCRIPTION
 ----------------------- |:---------:|------------------------------------------
@@ -43,7 +44,8 @@ FINAL_GRADE             |  | The final course grade of the Student.
 
 
 3) GRADES (LMS Gradebook Data) - grades.csv
-   The CMS Gradebook data is extracted from the LMS and it provides the information involving 
+-------------------------------------------
+The CMS Gradebook data is extracted from the LMS and it provides the information involving 
 
 COLUMN                  | FORMAT    | DESCRIPTION
 ----------------------- |:---------:|------------------------------------------
@@ -58,7 +60,8 @@ GRADE_DATE              |  | To facilitate chronological division of gradebook. 
 
 
 4) EVENTS (LMS Usage Data) - usage.csv
-   The LMS Events table has details of the events generated for each of the tool usage by the students
+--------------------------------------
+The LMS Events table has details of the events generated for each of the tool usage by the students
 
 COLUMN                  | FORMAT    | DESCRIPTION
 ----------------------- |:---------:|------------------------------------------
@@ -69,42 +72,44 @@ EVENT_DATE              |  | The date when the event occurred
 
 
 *******************************************************************************
-** NOTES
 
-A) Recoding Required to work with Weka
-Certain Variables in each of these data sets have to be recoded to replace numeric values as Weka works only with numeric values.
-Alternative ID - ???
-Course ID - ???
-Race {1=B, 2=H, 3=I, 4=N, 5=O, 6=P, 7=W, 8=X}
-Gender {1 = Female, 2 = Male}
-Full-time or Part-time Status {1 = Full-time student, 2 = Part-time student}
-Class Code {1= FR (Freshman), 2= SO (Sophomore),3= JR (Junior),4=SR(Senior),5=GR(Graduate)}
-University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors, 3 = Semester honors and dean list}
-Enrollment {-1 and 0 changed to 1}
-Letter Grade
-4 = A 
-3.7=A-
-3.3=B+
-3 = B 
-2.7=B-
-2.3=C+
-2 = C 
-1.7=C-
-1 = D 
-0 = F 
-null = I or W
+NOTES
+=====
 
-B) Aptitude score
-Defined as the SAT composite score or the converted ACT to SAT score.  In  the cases in which students have  both SAT and ACT scores, the  SAT score will remain
+1. Recoding Required to work with Weka
+   Certain Variables in each of these data sets have to be recoded to replace numeric values as Weka works only with numeric values.
+    * Alternative ID - ???
+    * Course ID - ???
+    * Race {1=B, 2=H, 3=I, 4=N, 5=O, 6=P, 7=W, 8=X}
+    * Gender {1 = Female, 2 = Male}
+    * Full-time or Part-time Status {1 = Full-time student, 2 = Part-time student}
+    * Class Code {1= FR (Freshman), 2= SO (Sophomore),3= JR (Junior),4=SR(Senior),5=GR(Graduate)}
+    * University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors, 3 = Semester honors and dean list}
+    * Enrollment {-1 and 0 changed to 1}
+    * Letter Grade
+        4 = A 
+        3.7=A-
+        3.3=B+
+        3 = B 
+        2.7=B-
+        2.3=C+
+        2 = C 
+        1.7=C-
+        1 = D 
+        0 = F 
+        null = I or W
 
-C) Age
-Converted from the birth date, expressed in years.
+2. Aptitude score
+   Defined as the SAT composite score or the converted ACT to SAT score.  In  the cases in which students have  both SAT and ACT scores, the  SAT score will remain
 
-D) Tool_Usage
-The count of number of times each of the tool are accessed in the course site
-Missing values recoded to 0.
+3. Age
+   Converted from the birth date, expressed in years.
 
-E) Academic Success
-Defined as students completing the course within the normal timeframe and receiving a grade of C or better.
- 1 = Grade Below C 
- 2 = Grade of C or better
+4. Tool_Usage
+   The count of number of times each of the tool are accessed in the course site
+   Missing values recoded to 0.
+
+5. Academic Success
+   Defined as students completing the course within the normal timeframe and receiving a grade of C or better.
+   1 = Grade Below C 
+   2 = Grade of C or better
