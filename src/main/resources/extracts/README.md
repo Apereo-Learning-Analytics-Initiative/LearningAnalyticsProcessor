@@ -4,16 +4,15 @@ There are 4 data extracts used as inputs to the student data processing.
 All files are CSV files and the columns must be in the order shown.
 See the sample files for examples.
 
-*******************************************************************************
-** FORMATS
+FORMATS
+=======
 
 1) PERSONAL (Student Demographics Data) - students.csv
 ------------------------------------------------------
+The personal data had all the demographic details of the student namely,
 
-   The personal data had all the demographic details of the student namely,
-
-COLUMN                  |FORMAT|DESCRIPTION
------------------------ |:--:|-----
+COLUMN                  | FORMAT    | DESCRIPTION
+----------------------- |:---------:|------------------------------------------
 ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
 PERCENTILE              |  | The high school ranking of the students.
 SAT_VERBAL              |  | The numeric SAT verbal score.
@@ -33,34 +32,40 @@ STANDING                |  | Current university standing such as probation, dean
 2) COURSES (Course Data) - courses.csv
    The course data has all the details of the course that the students are enrolled in
 
-| COURSE_ID               |  | The course number of the course.
-| ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
-| ENROLLMENT              |  | The number of students in the course / section
-| FINAL_GRADE             |  | The final course grade of the Student.
-                               Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null).
-                               If the student drops the course within the official drop/add window, the course grade field will be null.
+COLUMN                  | FORMAT    | DESCRIPTION
+----------------------- |:---------:|------------------------------------------
+COURSE_ID               |  | The course number of the course.
+ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
+ENROLLMENT              |  | The number of students in the course / section
+FINAL_GRADE             |  | The final course grade of the Student.
+                             Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null).
+                             If the student drops the course within the official drop/add window, the course grade field will be null.
 
 
 3) GRADES (LMS Gradebook Data) - grades.csv
    The CMS Gradebook data is extracted from the LMS and it provides the information involving 
 
-| ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
-| COURSE_ID               |  | The course number of the course.
-| GRADABLE_OBJECT         |  | Different gradable objects and the course
-| CATEGORY                |  | The gradable objects are categorized here. For example grouping of a bunch of related assignments, forum posting, projects etc
-| MAX_POINTS              |  | Maximum allocated points for each Gradable Object
-| EARNED_POINTS           |  | Points earned by the students for a particular gradable object
-| WEIGHT                  |  | Overall weight of that particular assignment towards final grading.
-| GRADE_DATE              |  | To facilitate chronological division of gradebook. Helpful in breaking down the gradebook like 4 weeks or 8 weeks into the course during testing phases.
+COLUMN                  | FORMAT    | DESCRIPTION
+----------------------- |:---------:|------------------------------------------
+ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
+COURSE_ID               |  | The course number of the course.
+GRADABLE_OBJECT         |  | Different gradable objects and the course
+CATEGORY                |  | The gradable objects are categorized here. For example grouping of a bunch of related assignments, forum posting, projects etc
+MAX_POINTS              |  | Maximum allocated points for each Gradable Object
+EARNED_POINTS           |  | Points earned by the students for a particular gradable object
+WEIGHT                  |  | Overall weight of that particular assignment towards final grading.
+GRADE_DATE              |  | To facilitate chronological division of gradebook. Helpful in breaking down the gradebook like 4 weeks or 8 weeks into the course during testing phases.
 
 
 4) EVENTS (LMS Usage Data) - usage.csv
    The LMS Events table has details of the events generated for each of the tool usage by the students
 
-| ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
-| COURSE_ID               |  | The course number of the course.
-| EVENT                   |  | The name of the event that was generated
-| EVENT_DATE              |  | The date when the event occurred
+COLUMN                  | FORMAT    | DESCRIPTION
+----------------------- |:---------:|------------------------------------------
+ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
+COURSE_ID               |  | The course number of the course.
+EVENT                   |  | The name of the event that was generated
+EVENT_DATE              |  | The date when the event occurred
 
 
 *******************************************************************************
