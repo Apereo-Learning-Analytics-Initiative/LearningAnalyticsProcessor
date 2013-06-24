@@ -286,6 +286,7 @@
             <holder>Unicon (R)</holder>
           </properties>
           <excludes>
+            <exclude>.gitignore</exclude>
             <exclude>target/**</exclude>
             <exclude>m2-target/**</exclude>
             <exclude>bin/**</exclude>
