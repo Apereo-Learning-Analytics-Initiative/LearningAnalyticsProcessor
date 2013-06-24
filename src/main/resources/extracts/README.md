@@ -9,7 +9,7 @@ FORMATS
 
 1) PERSONAL (Student Demographics Data) - students.csv
 ------------------------------------------------------
-The personal data had all the demographic details of the student namely,
+The personal data includes all students and their demographic details.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
@@ -32,7 +32,7 @@ PELL_STATUS             | [Yes,No]          | If a student is a Pell grant recip
 
 2) COURSES (Course Data) - courses.csv
 --------------------------------------
-The course data has all the details of the course that the students are enrolled in
+The course data has all the details of the courses that the students are enrolled in.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
@@ -45,7 +45,7 @@ WITHDRAWL_DATE          | [ISO-8601,""]     | The date the student opted out fro
 
 3) GRADES (LMS Gradebook Data) - grades.csv
 -------------------------------------------
-The CMS Gradebook data is extracted from the LMS and it provides the information involving 
+The gradebook data is extracted from the LMS and it provides the information about all graded items in the course.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
@@ -61,7 +61,7 @@ GRADE_DATE              | ISO-8601          | To facilitate chronological divisi
 
 4) EVENTS (LMS Usage Data) - usage.csv
 --------------------------------------
-The LMS Events table has details of the events generated for each of the tool usage by the students
+The LMS Events table has details of the events generated for each of the tools used by the students.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
