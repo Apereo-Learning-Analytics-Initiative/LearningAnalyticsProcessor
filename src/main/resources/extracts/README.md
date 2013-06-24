@@ -19,14 +19,15 @@ SAT_VERBAL              | Integer[200-800]  | The numeric SAT verbal score (or 0
 SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score (or 0/blank to indicate no score).
 ACL_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Student (or 0/blank to indicate no score)
 DOB                     | ISO-8601          | The birth date of the student
-RACE                    | [1-8] -See Below- | The race of the student (self-reported)
-GENDER                  | [1,2] -See Below- | The gender of the student (self-reported)
-STATUS                  | [1,2] -See Below- | Code for full-time or part-time student based on the number of credit hours currently enrolled.
+RACE                    | [1-8] *See Notes* | The race of the student (self-reported)
+GENDER                  | [1,2] *See Notes* | The gender of the student (self-reported)
+STATUS                  | [1,2] *See Notes* | Code for full-time or part-time student based on the number of credit hours currently enrolled.
 SEMESTERS               | Integer[1-20]     | The current academic standing of the student as expressed by the number of semesters of completed coursework
 EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours earned by each of the student
 GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
-STANDING                | [0-3] -See Below- | Current university standing such as probation, dean’s list, or semester honors.
+STANDING                | [0-3] *See Notes* | Current university standing such as probation, dean’s list, or semester honors.
+PELL_STATUS             | [Yes,No]          | If a student is a Pell grant recipient (Yes/No).
 
 
 2) COURSES (Course Data) - courses.csv
@@ -35,12 +36,12 @@ The course data has all the details of the course that the students are enrolled
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-COURSE_ID               |  | The course number of the course.
-ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
-ENROLLMENT              |  | The number of students in the course / section
-FINAL_GRADE             |  | The final course grade of the Student.
-                             Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null).
-                             If the student drops the course within the official drop/add window, the course grade field will be null.
+COURSE_ID               | String(40)        | The course number of the course.
+ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
+ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section
+FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Student. Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null).
+                                            | If the student drops the course within the official drop/add window, the course grade field will be null.
+
 
 
 3) GRADES (LMS Gradebook Data) - grades.csv
