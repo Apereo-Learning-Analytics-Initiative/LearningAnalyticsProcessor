@@ -627,7 +627,7 @@ drop table ${GRADES_NTNULL};</sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/Grades10F_convertor.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/Grades10F_convertor.ktr.xml</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

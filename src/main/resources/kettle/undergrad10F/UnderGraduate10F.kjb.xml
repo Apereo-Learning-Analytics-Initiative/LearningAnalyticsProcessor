@@ -1329,7 +1329,7 @@ select * into OAAIDBEitel.dbo.${NTNULLPCSMa} from OAAIDBtest.dbo.${NTNULLPCSMa};
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/UnGradBio10F_Conv.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/UnGradBio10F_Conv.ktr.xml</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -1363,7 +1363,7 @@ select * into OAAIDBEitel.dbo.${NTNULLPCSMa} from OAAIDBtest.dbo.${NTNULLPCSMa};
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/UnGradCourse10F_conv.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/UnGradCourse10F_conv.ktr.xml</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
