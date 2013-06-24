@@ -11,10 +11,10 @@ FORMATS
 ------------------------------------------------------
 The personal data had all the demographic details of the student namely,
 
-COLUMN                  | FORMAT    | DESCRIPTION
------------------------ |:---------:|------------------------------------------
-ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
-PERCENTILE              |  | The high school ranking of the students.
+COLUMN                  | FORMAT            | DESCRIPTION
+----------------------- |:-----------------:|------------------------------------------
+ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
+PERCENTILE              | Float[0-100.0]    | The high school ranking of the students.
 SAT_VERBAL              |  | The numeric SAT verbal score.
 SAT_MATH                |  | The numeric SAT mathematics score.
 ACL_COMPOSITE           |  | The ACT score of the Student (Either of the scores will be reported by the students)
@@ -33,8 +33,8 @@ STANDING                |  | Current university standing such as probation, dean
 --------------------------------------
 The course data has all the details of the course that the students are enrolled in
 
-COLUMN                  | FORMAT    | DESCRIPTION
------------------------ |:---------:|------------------------------------------
+COLUMN                  | FORMAT            | DESCRIPTION
+----------------------- |:-----------------:|------------------------------------------
 COURSE_ID               |  | The course number of the course.
 ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
 ENROLLMENT              |  | The number of students in the course / section
@@ -47,8 +47,8 @@ FINAL_GRADE             |  | The final course grade of the Student.
 -------------------------------------------
 The CMS Gradebook data is extracted from the LMS and it provides the information involving 
 
-COLUMN                  | FORMAT    | DESCRIPTION
------------------------ |:---------:|------------------------------------------
+COLUMN                  | FORMAT            | DESCRIPTION
+----------------------- |:-----------------:|------------------------------------------
 ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
 COURSE_ID               |  | The course number of the course.
 GRADABLE_OBJECT         |  | Different gradable objects and the course
@@ -63,8 +63,8 @@ GRADE_DATE              |  | To facilitate chronological division of gradebook. 
 --------------------------------------
 The LMS Events table has details of the events generated for each of the tool usage by the students
 
-COLUMN                  | FORMAT    | DESCRIPTION
------------------------ |:---------:|------------------------------------------
+COLUMN                  | FORMAT            | DESCRIPTION
+----------------------- |:-----------------:|------------------------------------------
 ALTERNATIVE_ID          |  | The CWID of the student replaced with some unique identifiers for security reasons.
 COURSE_ID               |  | The course number of the course.
 EVENT                   |  | The name of the event that was generated
@@ -76,7 +76,7 @@ EVENT_DATE              |  | The date when the event occurred
 NOTES
 =====
 
-1. Recoding Required to work with Weka
+1. Recoding Required to work with Weka  
    Certain Variables in each of these data sets have to be recoded to replace numeric values as Weka works only with numeric values.
     * Alternative ID - ???
     * Course ID - ???
@@ -87,29 +87,30 @@ NOTES
     * University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors, 3 = Semester honors and dean list}
     * Enrollment {-1 and 0 changed to 1}
     * Letter Grade
-        4 = A 
-        3.7=A-
-        3.3=B+
-        3 = B 
-        2.7=B-
-        2.3=C+
-        2 = C 
-        1.7=C-
-        1 = D 
-        0 = F 
-        null = I or W
 
-2. Aptitude score
+            4.0 = A 
+            3.7 = A-
+            3.3 = B+
+            3.0 = B 
+            2.7 = B-
+            2.3 = C+
+            2.0 = C 
+            1.7 = C-
+            1.0 = D 
+            0.0 = F 
+            null = I or W
+
+2. Aptitude score  
    Defined as the SAT composite score or the converted ACT to SAT score.  In  the cases in which students have  both SAT and ACT scores, the  SAT score will remain
 
-3. Age
+3. Age  
    Converted from the birth date, expressed in years.
 
-4. Tool_Usage
+4. Tool_Usage  
    The count of number of times each of the tool are accessed in the course site
    Missing values recoded to 0.
 
-5. Academic Success
-   Defined as students completing the course within the normal timeframe and receiving a grade of C or better.
-   1 = Grade Below C 
-   2 = Grade of C or better
+5. Academic Success  
+   Defined as students completing the course within the normal timeframe and receiving a grade of C or better.  
+   1 = Grade Below C  
+   2 = Grade of C or better  
