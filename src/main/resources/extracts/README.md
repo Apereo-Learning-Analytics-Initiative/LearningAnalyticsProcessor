@@ -39,9 +39,7 @@ COLUMN                  | FORMAT            | DESCRIPTION
 COURSE_ID               | String(40)        | The course number of the course.
 ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section
-FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Student. Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null).
-                                            | If the student drops the course within the official drop/add window, the course grade field will be null.
-
+FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Student. Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null). If the student drops the course within the official drop/add window, the course grade field will be null.
 
 
 3) GRADES (LMS Gradebook Data) - grades.csv
