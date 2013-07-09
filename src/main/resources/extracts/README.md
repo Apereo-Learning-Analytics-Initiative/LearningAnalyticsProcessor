@@ -13,7 +13,7 @@ The personal data includes all students and their demographic details.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          | String(40)        | The CWID(College Wide ID) of the student replaced with some unique identifiers for security reasons.
+ALTERNATIVE_ID          | String(100)        | The CWID(College Wide ID) of the student replaced with some unique identifiers for security reasons.
 PERCENTILE              | Float[0-100.0]    | The high school ranking of the students (e.g. 85 means 85th percentile).
 SAT_VERBAL              | Integer[200-800]  | The numeric SAT verbal score (or 0/blank to indicate no score).
 SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score (or 0/blank to indicate no score).
@@ -36,11 +36,11 @@ The course data has all the details of the courses that the students are enrolle
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-COURSE_ID               | String(100)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
-ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
-SUBJECT                 | String(25)        | The subject of the course. 
-COURSE_NUMBER           | String(25)        | The course number of the course.
-SECTION                 | String(25)        | The Section ID of the course. 
+COURSE_ID               | String(200)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
+ALTERNATIVE_ID          | String(100)        | The CWID of the student replaced with some unique identifiers for security reasons.
+SUBJECT                 | String(50)        | The subject of the course. 
+COURSE_NUMBER           | String(50)        | The course number of the course.
+SECTION                 | String(50)        | The Section ID of the course. 
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
 FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Student. Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null). If the student drops the course within the official drop/add window, the course grade field will be null.
 WITHDRAWL_DATE          | [ISO-8601,""]     | The date the student opted out from the course (null if they did not drop the course).
@@ -52,8 +52,8 @@ The gradebook data is extracted from the LMS and it provides the information abo
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
-COURSE_ID               | String(100)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
+ALTERNATIVE_ID          | String(100)        | The CWID of the student replaced with some unique identifiers for security reasons.
+COURSE_ID               | String(200)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
 GRADABLE_OBJECT         | String(250)       | Different gradable objects and the course
 CATEGORY                | String(250)       | The gradable objects are categorized here. For example grouping of a bunch of related assignments, forum posting, projects etc
 MAX_POINTS              | Integer[0-1000]   | Maximum allocated points for each Gradable Object
@@ -68,8 +68,8 @@ The LMS Events table has details of the events generated for each of the tools u
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          | String(40)        | The CWID of the student replaced with some unique identifiers for security reasons.
-COURSE_ID               | String(100)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
+ALTERNATIVE_ID          | String(100)        | The CWID of the student replaced with some unique identifiers for security reasons.
+COURSE_ID               | String(200)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
 EVENT                   | String(250)       | The name of the event that was generated
 EVENT_DATE              | ISO-8601          | The date when the event occurred
 
@@ -81,14 +81,13 @@ NOTES
 
 1. Recoding Required to work with Weka  
    Certain Variables in each of these data sets have to be recoded to replace numeric values as Weka works only with numeric values.
-    * Alternative ID - ???
-    * Course ID - ???
-    * Race {1=B, 2=H, 3=I, 4=N, 5=O, 6=P, 7=W, 8=X}
+    * Alternative ID - no recoding necessary
+    * Course ID - no recoding necessary
+    * Race {1= White, 2= American Indian or Alaska Native, 3=Asian, 4=Black or African American, 5=Hispanic, 6=Native Hawaiian or Other Pacific Islander, 7= Two or More Races}
     * Gender {1 = Female, 2 = Male}
     * Full-time or Part-time Status {1 = Full-time student, 2 = Part-time student}
     * Class Code {1 = FR(Freshman), 2 = SO(Sophomore), 3 = JR (Junior), 4 = SR(Senior), 5 = GR(Graduate)}
     * University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors, 3 = Semester honors and dean list}
-    * Enrollment {-1 and 0 changed to 1}
     * Letter Grade
 
             4.0 = A 
@@ -109,11 +108,8 @@ NOTES
 3. Age  
    Converted from the birth date, expressed in years.
 
-4. Tool_Usage  
-   The count of number of times each of the tool are accessed in the course site
-   Missing values recoded to 0.
 
-5. Academic Success  
+4. Academic_Risk  
    Defined as students completing the course within the normal timeframe and receiving a grade of C or better.  
    1 = Grade Below C  
    2 = Grade of C or better  
