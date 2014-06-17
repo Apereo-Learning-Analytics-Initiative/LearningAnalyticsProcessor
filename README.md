@@ -8,6 +8,7 @@ Important links
 ---------------
 
 [Project Wiki](https://confluence.sakaiproject.org/display/LAI/Apereo+Learning+Analytics+Processor)
+
 [Issue Tracker (JIRA)](https://jira.sakaiproject.org/browse/LAI)
 
 Build
