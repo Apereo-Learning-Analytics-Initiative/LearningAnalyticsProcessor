@@ -16,4 +16,9 @@ Build
 Build and execute for testing purposes:
 mvn clean install jetty:run
 
+Contacts
+--------
+- Sandeep Jayaprakash (sandeep.jayaprakash1 @ marist.edu)
+- Aaron Zeckoski (http://tinyurl.com/azprofile)
+
 Part of the [Apereo Learning Analytics Initiative (LAI)](https://confluence.sakaiproject.org/display/LAI)
