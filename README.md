@@ -1,11 +1,10 @@
-OpenAcademicAnalytics
-=====================
-
-A Java based packaging of the Open Academic Analytics Initiative (Marist) for supporting automatic execution
+LearningAnalyticsProcessor
+==========================
+An Open source Java based Learning Analytics Processor which initially automates the Marist OAAI Student Risk Assessment model
 
 [Marist OAAI Homepage](https://confluence.sakaiproject.org/x/8aWCB)
 
-https://confluence.sakaiproject.org/display/LAI
-
 Build and execute for testing purposes:
 mvn clean install jetty:run
+
+Part of the [Apereo Learning Analytics Initiative](https://confluence.sakaiproject.org/display/LAI)
