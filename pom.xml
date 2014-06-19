@@ -3,10 +3,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.apereo</groupId>
-  <artifactId>oaa</artifactId>
+  <artifactId>lap</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>Open Academic Analytics</name>
+  <name>Learning Analytics Processor</name>
   <inceptionYear>2013</inceptionYear>
 
   <properties>
@@ -224,7 +224,7 @@
   </repositories>
 
   <build>
-    <finalName>oaa</finalName>
+    <finalName>lap</finalName>
     <plugins>
 
       <!-- Facilitates downloading source and javadoc in Eclipse -->
@@ -339,9 +339,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/Unicon/OpenAcademicAnalytics.git</connection>
-    <developerConnection>scm:git:git@github.com:Unicon/OpenAcademicAnalytics.git</developerConnection>
-    <url>https://github.com/Unicon/OpenAcademicAnalytics</url>
+    <connection>scm:git:ssh://github.com/Apereo-Learning-Analytics-Initiative/LearningAnalyticsProcessor.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:Apereo-Learning-Analytics-Initiative/LearningAnalyticsProcessor.git</developerConnection>
+    <url>https://github.com/Apereo-Learning-Analytics-Initiative/LearningAnalyticsProcessor</url>
   </scm>
 
 </project>
