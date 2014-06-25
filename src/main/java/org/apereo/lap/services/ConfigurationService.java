@@ -41,6 +41,9 @@ public class ConfigurationService {
 
     Configuration config;
     File applicationHomeDirectory;
+    File pipelinesDirectory;
+    File inputDirectory;
+    File outputDirectory;
 
     @javax.annotation.Resource
     ResourceLoader resourceLoader;
@@ -80,9 +83,11 @@ public class ConfigurationService {
         this.config = config;
 
         // verify the existence of the various dirs
-        verifyDir("dir.pipelines", "piplines");
-        verifyDir("dir.inputs", "inputs");
-        verifyDir("dir.outputs", "outputs");
+        pipelinesDirectory = verifyDir("dir.pipelines", "piplines");
+        inputDirectory = verifyDir("dir.inputs", "inputs");
+        outputDirectory = verifyDir("dir.outputs", "outputs");
+
+        // TODO load up the pipeline config files
 
         logger.info("INIT complete: "+config.getString("app.name")+", home="+applicationHomeDirectory.getAbsolutePath());
     }
@@ -95,16 +100,26 @@ public class ConfigurationService {
      */
     private File verifyDir(String configKey, String defaultPath) {
         String dirStr = this.config.getString(configKey);
-        // TODO check if relative or absolute path
+        File fileDir;
         if (StringUtils.isBlank(dirStr)) {
             dirStr = defaultPath;
+            fileDir = new File(appHome(), dirStr);
+        } else {
+            // check if relative or absolute path
+            dirStr = StringUtils.trim(dirStr);
+            if (StringUtils.startsWith(dirStr, "/")) {
+                fileDir = new File(dirStr);
+            } else {
+                // this is a relative path
+                fileDir = new File(appHome(), dirStr);
+            }
         }
-        File fileDir = new File(dirStr);
         if (!fileDir.exists()) {
             // try to create it
             try {
                 //noinspection ResultOfMethodCallIgnored
                 fileDir.mkdirs();
+                logger.info("Config created "+configKey+" dir: "+fileDir.getAbsolutePath());
             } catch (Exception e) {
                 throw new RuntimeException("Could not create dir at: "+fileDir.getAbsolutePath());
             }
@@ -173,6 +188,27 @@ public class ConfigurationService {
      */
     Configuration get() {
         return config;
+    }
+
+    /**
+     * @return the directory used for storing pipeline processor config files
+     */
+    public File getPipelinesDirectory() {
+        return pipelinesDirectory;
+    }
+
+    /**
+     * @return the directory used for storing default pipeline inputs
+     */
+    public File getInputDirectory() {
+        return inputDirectory;
+    }
+
+    /**
+     * @return the directory used for storing default pipeline outputs
+     */
+    public File getOutputDirectory() {
+        return outputDirectory;
     }
 
 }
