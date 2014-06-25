@@ -24,7 +24,7 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
   <!-- Scans within the base package of the application for @Components to configure as beans -->
-  <context:component-scan base-package="org.apereo.oaa.controllers" />
+  <context:component-scan base-package="org.apereo.lap.controllers" />
 
   <tx:annotation-driven />
   <mvc:annotation-driven />

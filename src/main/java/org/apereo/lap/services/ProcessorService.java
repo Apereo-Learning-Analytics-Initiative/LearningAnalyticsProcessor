@@ -12,22 +12,20 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.oaa.services;
-
-import java.io.InputStream;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+package org.apereo.lap.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import weka.classifiers.Classifier;
 import weka.classifiers.pmml.consumer.PMMLClassifier;
 import weka.core.pmml.PMMLFactory;
 import weka.core.pmml.PMMLModel;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.io.InputStream;
 
 /**
  * Handles the merging of the data inputs and processing in kettle with the selected PMML

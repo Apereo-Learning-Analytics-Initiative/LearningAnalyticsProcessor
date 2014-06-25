@@ -12,11 +12,9 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.oaa.controllers;
+package org.apereo.lap.controllers;
 
 import junit.framework.Assert;
-
-import org.apereo.oaa.controllers.HomeController;
 import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;

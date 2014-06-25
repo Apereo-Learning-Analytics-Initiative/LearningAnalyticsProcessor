@@ -27,7 +27,7 @@
   </appender>
 
   <!-- Application Loggers -->
-  <logger name="org.apereo.oaa">
+  <logger name="org.apereo.lap">
     <level value="debug" />
   </logger>
 

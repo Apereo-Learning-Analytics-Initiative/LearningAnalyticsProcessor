@@ -12,43 +12,54 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.oaa.services;
+package org.apereo.lap.services;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
+import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import au.com.bytecode.opencsv.CSVReader;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
- * Handles the merging of the CSV data inputs and pre-processing in kettle,
- * the results of this will feed into the weka PMML processing
+ * Handles the inputs by reading the data into the temporary data storage
+ * Validates the inputs and ensures the data is available to the pipeline processor
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
 @Component
-public class PreProcessorService {
+public class InputHandlerService {
 
-    private static final Logger logger = LoggerFactory.getLogger(PreProcessorService.class);
+    private static final Logger logger = LoggerFactory.getLogger(InputHandlerService.class);
 
     @PostConstruct
     public void init() {
         logger.info("INIT started");
         // TODO load up config
+
+        // TODO init kettle
+        logger.info("INIT complete");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        logger.info("DESTROY");
+    }
+
+    public void process() {
+        logger.info("PROCESS");
+        // TODO execute the processor
         // TOOD init CSV files
         try {
             // TODO - allow csv file path override / config
-            InputStream studentsCSV_IS = PreProcessorService.class.getClassLoader().getResourceAsStream("extracts/students.csv");
-            InputStream coursesCSV_IS = PreProcessorService.class.getClassLoader().getResourceAsStream("extracts/courses.csv");
-            InputStream gradesCSV_IS = PreProcessorService.class.getClassLoader().getResourceAsStream("extracts/grades.csv");
-            InputStream usageCSV_IS = PreProcessorService.class.getClassLoader().getResourceAsStream("extracts/usage.csv");
+            InputStream studentsCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/students.csv");
+            InputStream coursesCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/courses.csv");
+            InputStream gradesCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/grades.csv");
+            InputStream usageCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/usage.csv");
             // now check the files by trying to read the header line from each one
             CSVReader studentsCSV = new CSVReader(new InputStreamReader(studentsCSV_IS));
             String[] check = studentsCSV.readNext();
@@ -84,20 +95,6 @@ public class PreProcessorService {
             logger.error(msg);
             throw new RuntimeException(msg, e);
         }
-
-
-        // TODO init kettle
-        logger.info("INIT complete");
-    }
-
-    @PreDestroy
-    public void destroy() {
-        logger.info("DESTROY");
-    }
-
-    public void process() {
-        logger.info("PROCESS");
-        // TODO execute the processor
     }
 
 }
