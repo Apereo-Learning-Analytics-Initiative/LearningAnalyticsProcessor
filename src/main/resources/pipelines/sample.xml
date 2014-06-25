@@ -8,6 +8,7 @@
     <accuracy>85%</accuracy>
     <confidence>5</confidence>
   </stats>
+
   <inputs>
     <!--
      All inputs are defined in the resources/extracts/README.md file
@@ -33,6 +34,7 @@
       </field>
     </fields>
   </inputs>
+
   <processors>
     <!--
      Processors actually do the work to prepare data or otherwise setup and build and execute the model
@@ -42,6 +44,7 @@
       <TODO />
     </processor>
   </processors>
+
   <outputs>
     <!--
      Outputs do not have to be predefined.
