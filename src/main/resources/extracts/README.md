@@ -18,7 +18,7 @@ PERCENTILE              | Float[0-100.0]    | The high school ranking of the stu
 SAT_VERBAL              | Integer[200-800]  | The numeric SAT verbal score (or 0/blank to indicate no score).
 SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score (or 0/blank to indicate no score).
 ACL_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Student (or 0/blank to indicate no score)
-DOB                     | ISO-8601          | The birth date of the student
+AGE                     | Integer[1-150]    | The age of the student (in years)
 RACE                    | [1-8] *See Notes* | The race of the student (self-reported)
 GENDER                  | [1,2] *See Notes* | The gender of the student (self-reported)
 STATUS                  | [1,2] *See Notes* | Code for full-time or part-time student based on the number of credit hours currently enrolled.
