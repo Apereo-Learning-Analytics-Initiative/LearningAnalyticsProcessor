@@ -1,6 +1,6 @@
-OAA Data Extracts
-=================
-There are 4 data extracts used as inputs to the student data processing.
+LAP Data Formats
+================
+There are 4 data extracts formats used as inputs to the student data processing.
 All files are CSV files and the columns must be in the order shown.
 See the sample files for examples.
 
@@ -13,7 +13,7 @@ The personal data includes all students and their demographic details.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          | String(100)        | The CWID(College Wide ID) of the student replaced with some unique identifiers for security reasons.
+ALTERNATIVE_ID          | String(100)       | The CWID(College Wide ID) of the student replaced with some unique identifiers for security reasons.
 PERCENTILE              | Float[0-100.0]    | The high school ranking of the students (e.g. 85 means 85th percentile).
 SAT_VERBAL              | Integer[200-800]  | The numeric SAT verbal score (or 0/blank to indicate no score).
 SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score (or 0/blank to indicate no score).
@@ -30,8 +30,8 @@ STANDING                | [0-3] *See Notes* | Current university standing such a
 PELL_STATUS             | [Yes,No]          | If a student is a Pell grant recipient (Yes/No).
 
 
-2) COURSES (Course Data) - courses.csv
---------------------------------------
+2) COURSE (Courses Data) - courses.csv
+-------------------------------------
 The course data has all the relevant details of the courses.
 
 COLUMN                  | FORMAT            | DESCRIPTION
@@ -43,8 +43,8 @@ SECTION                 | String(50)        | The Section ID of the course.
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
 COURSE_TYPE             | String(20)        | Online / On-ground course
 
-3) ENROLLMENTS (Student enrollments) - enrollments.csv
-------------------------------------------------------
+3) ENROLLMENT (Student enrollments) - enrollments.csv
+-----------------------------------------------------
 The enrollments data has all the details of the courses that the students are enrolled in.
 
 COLUMN                  | FORMAT            | DESCRIPTION
@@ -55,8 +55,8 @@ FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Stud
 WITHDRAWL_DATE          | [ISO-8601,""]     | The date the student opted out from the course (null if they did not drop the course).
 
 
-4) GRADES (LMS Gradebook Data) - grades.csv
--------------------------------------------
+4) GRADE (LMS Gradebook Data) - grades.csv
+------------------------------------------
 The gradebook data is extracted from the LMS and it provides the information about all graded items in the course.
 
 COLUMN                  | FORMAT            | DESCRIPTION
@@ -71,9 +71,9 @@ WEIGHT                  | Float[0-100.0]    | Overall percent weight of that par
 GRADE_DATE              | ISO-8601          | To facilitate chronological division of gradebook. Helpful in breaking down the gradebook like 4 weeks or 8 weeks into the course during testing phases.
 
 
-5) EVENTS (LMS Usage Data) - usage.csv
---------------------------------------
-The LMS Events table has details of the events generated for each of the tools used by the students.
+5) ACTIVITY (LMS Usage Data) - activity.csv
+-------------------------------------------
+Includes information about student activity (typically events related to learning tools in the LMS).
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------

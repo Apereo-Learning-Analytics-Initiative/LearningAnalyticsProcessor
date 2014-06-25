@@ -16,6 +16,7 @@ package org.apereo.lap.services;
 
 import org.apache.commons.configuration.*;
 import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.model.PipelineConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -26,6 +27,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Loads the application configuration from a series of files
@@ -39,7 +41,11 @@ public class ConfigurationService {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationService.class);
 
+    // Configuration objects
     Configuration config;
+    ConcurrentHashMap<String, PipelineConfig> pipelineConfigs;
+
+    // working directories
     File applicationHomeDirectory;
     File pipelinesDirectory;
     File inputDirectory;
@@ -52,6 +58,7 @@ public class ConfigurationService {
     public void init() throws IOException {
         logger.info("INIT started");
         logger.info("App Home: " + appHome().getAbsolutePath());
+
         CompositeConfiguration config = new CompositeConfiguration();
         // load internal config defaults first
         config.setProperty("app.name","LAP");
@@ -88,6 +95,18 @@ public class ConfigurationService {
         outputDirectory = verifyDir("dir.outputs", "outputs");
 
         // TODO load up the pipeline config files
+        pipelineConfigs = new ConcurrentHashMap<String, PipelineConfig>();
+        // first load the internal ones (must be listed explicitly)
+        resourceLoader.getResource("");
+        // then try to load the external ones
+        File[] pipelineFiles = pipelinesDirectory.listFiles();
+        if (pipelineFiles != null && pipelineFiles.length > 0) {
+            for (final File fileEntry : pipelineFiles) {
+                if (fileEntry.isFile()) {
+                    // TODO try to process the file
+                }
+            }
+        }
 
         logger.info("INIT complete: "+config.getString("app.name")+", home="+applicationHomeDirectory.getAbsolutePath());
     }

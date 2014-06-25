@@ -49,7 +49,7 @@ public class OutputHandlerService {
             InputStream studentsCSV_IS = OutputHandlerService.class.getClassLoader().getResourceAsStream("extracts/students.csv");
             InputStream coursesCSV_IS = OutputHandlerService.class.getClassLoader().getResourceAsStream("extracts/courses.csv");
             InputStream gradesCSV_IS = OutputHandlerService.class.getClassLoader().getResourceAsStream("extracts/grades.csv");
-            InputStream usageCSV_IS = OutputHandlerService.class.getClassLoader().getResourceAsStream("extracts/usage.csv");
+            InputStream usageCSV_IS = OutputHandlerService.class.getClassLoader().getResourceAsStream("extracts/activity.csv");
             // now check the files by trying to read the header line from each one
             CSVReader studentsCSV = new CSVReader(new InputStreamReader(studentsCSV_IS));
             String[] check = studentsCSV.readNext();

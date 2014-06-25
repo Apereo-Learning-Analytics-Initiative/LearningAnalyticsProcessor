@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is a sample file to explain the format for a pipeline processor configuration file -->
+<!-- This file defines an analytics model (or more technically a series of models) including the inputs and outputs -->
+<pipeline>
+  <name>Sample</name>
+  <description>This is a sample pipeline</description>
+  <stats>
+    <accuracy>85%</accuracy>
+    <confidence>5</confidence>
+  </stats>
+  <inputs>
+    <!--
+     All inputs are defined in the resources/extracts/README.md file
+     There are 5 inputs types: PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY
+     A field is specified using a combination of the type and the name, for example: COURSE.COURSE_ID or PERSONAL.AGE
+    -->
+    <fields>
+      <!--
+       Required fields must be populated (they cannot be blank or null) as accurately as possible
+       Optional fields can be blank or null without causing severe inaccuracies in the results
+      -->
+      <field>
+        <name>PERSONAL.AGE</name>
+        <required>true</required>
+      </field>
+      <field>
+        <name>COURSE.COURSE_ID</name>
+        <required>true</required>
+      </field>
+      <field>
+        <name>COURSE.SUBJECT</name>
+        <required>false</required>
+      </field>
+    </fields>
+  </inputs>
+  <processors>
+    <!--
+     Processors actually do the work to prepare data or otherwise setup and build and execute the model
+     They will execute in the order they are included
+    -->
+    <processor>
+      <TODO />
+    </processor>
+  </processors>
+  <outputs>
+    <!--
+     Outputs do not have to be predefined.
+     The pipeline processor will basically extract a field from the temporary storage by name and write it to the indicated location
+     Example shown: RISK.SCORE -> a table in persistent storage called RESULTS with a field called RISK_PERCENTAGE
+     NOTE: the storage must already have the table/collection defined, this will only attempt to write into it
+    -->
+    <output>
+      <type>STORAGE</type>
+      <from>TEMPORARY_STORAGE</from>
+      <to>PERSISTENT_STORAGE</to>
+      <fields>
+        <field>
+          <source>PERSONAL.ALTERNATIVE_ID</source>
+          <target>RESULTS.USER_ID_ALT</target>
+        </field>
+        <field>
+          <source>RISK.SCORE</source>
+          <target>RESULTS.RISK_PERCENTAGE</target>
+        </field>
+      </fields>
+    </output>
+    <output>
+      <type>CSV</type>
+      <filename>students_at_risk.csv</filename>
+      <fields>
+        <field>
+          <header>USER_ID_ALT</header>
+          <source>PERSONAL.ALTERNATIVE_ID</source>
+        </field>
+        <field>
+          <header>RISK_PERCENTAGE</header>
+          <source>RISK.SCORE</source>
+        </field>
+      </fields>
+    </output>
+  </outputs>
+</pipeline>
