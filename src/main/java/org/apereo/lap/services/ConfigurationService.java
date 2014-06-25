@@ -15,6 +15,7 @@
 package org.apereo.lap.services;
 
 import org.apache.commons.configuration.*;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -47,7 +48,7 @@ public class ConfigurationService {
     @PostConstruct
     public void init() throws IOException {
         logger.info("INIT started");
-        logger.info("App Home: "+appHome().getAbsolutePath());
+        logger.info("App Home: " + appHome().getAbsolutePath());
         CompositeConfiguration config = new CompositeConfiguration();
         // load internal config defaults first
         config.setProperty("app.name","LAP");
@@ -66,13 +67,55 @@ public class ConfigurationService {
 
         // now try to load external config settings
         config.addConfiguration(new SystemConfiguration());
-        try {
-            config.addConfiguration(new PropertiesConfiguration(new File(appHome(),"lap.properties")));
-        } catch (ConfigurationException e) {
-            logger.warn("Unable to load lap.properties file");
+        File lapConfigProps = new File(appHome(),"lap.properties");
+        if (lapConfigProps.exists() && lapConfigProps.canRead()) {
+            try {
+                config.addConfiguration(new PropertiesConfiguration(lapConfigProps));
+            } catch (ConfigurationException e) {
+                logger.warn("Unable to load lap.properties file");
+            }
+        } else {
+            logger.info("No external LAP config found: "+lapConfigProps.getAbsolutePath());
         }
         this.config = config;
+
+        // verify the existence of the various dirs
+        verifyDir("dir.pipelines", "piplines");
+        verifyDir("dir.inputs", "inputs");
+        verifyDir("dir.outputs", "outputs");
+
         logger.info("INIT complete: "+config.getString("app.name")+", home="+applicationHomeDirectory.getAbsolutePath());
+    }
+
+    /**
+     * Verifies and creates the dir if needed (OR dies if impossible)
+     * @param configKey the configured path
+     * @param defaultPath the default path if the configured path is bad
+     * @return the directory
+     */
+    private File verifyDir(String configKey, String defaultPath) {
+        String dirStr = this.config.getString(configKey);
+        // TODO check if relative or absolute path
+        if (StringUtils.isBlank(dirStr)) {
+            dirStr = defaultPath;
+        }
+        File fileDir = new File(dirStr);
+        if (!fileDir.exists()) {
+            // try to create it
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                fileDir.mkdirs();
+            } catch (Exception e) {
+                throw new RuntimeException("Could not create dir at: "+fileDir.getAbsolutePath());
+            }
+        } else if (!fileDir.isDirectory()) {
+            throw new RuntimeException("Configured pipeline path is not a directory: "+fileDir.getAbsolutePath());
+        } else if (!fileDir.canRead()) {
+            throw new RuntimeException("Configured pipeline path is not readable: "+fileDir.getAbsolutePath());
+        }
+        // update config with absolute path
+        this.config.setProperty(configKey, fileDir.getAbsolutePath());
+        return fileDir;
     }
 
     @PreDestroy
@@ -94,7 +137,7 @@ public class ConfigurationService {
                 if (lapHome != null) {
                     // check if the directory is valid
                     File lapHomeDir = new File(lapHome);
-                    if (lapHomeDir.exists() || lapHomeDir.canRead() || lapHomeDir.isDirectory()) {
+                    if (lapHomeDir.exists() && lapHomeDir.canRead() && lapHomeDir.isDirectory()) {
                         applicationHomeDirectory = lapHomeDir;
                     } else {
                         logger.warn("Unable to read the configured LAP_HOME dir: "+lapHomeDir.getAbsolutePath()+", it is probably not readable or not a directory, using the default instead (the classpath)");
