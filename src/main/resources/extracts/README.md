@@ -32,21 +32,30 @@ PELL_STATUS             | [Yes,No]          | If a student is a Pell grant recip
 
 2) COURSES (Course Data) - courses.csv
 --------------------------------------
-The course data has all the details of the courses that the students are enrolled in.
+The course data has all the details of the courses.
+
+COLUMN                  | FORMAT            | DESCRIPTION
+----------------------- |:-----------------:|------------------------------------------
+COURSE_ID               | String(200)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
+SUBJECT                 | String(50)        | The subject of the course. 
+COURSE_NUMBER           | String(50)        | The course number of the course.
+SECTION                 | String(50)        | The Section ID of the course. 
+ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
+
+
+3) ENROLLMENTS (Course enrollment Data) - enrollments.csv
+---------------------------------------------------------
+The enrollments data has all the details of the courses that the students are enrolled in.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
 COURSE_ID               | String(200)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
 ALTERNATIVE_ID          | String(100)        | The CWID of the student replaced with some unique identifiers for security reasons.
-SUBJECT                 | String(50)        | The subject of the course. 
-COURSE_NUMBER           | String(50)        | The course number of the course.
-SECTION                 | String(50)        | The Section ID of the course. 
-ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
 FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Student. Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null). If the student drops the course within the official drop/add window, the course grade field will be null.
 WITHDRAWL_DATE          | [ISO-8601,""]     | The date the student opted out from the course (null if they did not drop the course).
 
 
-3) GRADES (LMS Gradebook Data) - grades.csv
+4) GRADES (LMS Gradebook Data) - grades.csv
 -------------------------------------------
 The gradebook data is extracted from the LMS and it provides the information about all graded items in the course.
 
@@ -62,7 +71,7 @@ WEIGHT                  | Float[0-100.0]    | Overall percent weight of that par
 GRADE_DATE              | ISO-8601          | To facilitate chronological division of gradebook. Helpful in breaking down the gradebook like 4 weeks or 8 weeks into the course during testing phases.
 
 
-4) EVENTS (LMS Usage Data) - usage.csv
+5) EVENTS (LMS Usage Data) - usage.csv
 --------------------------------------
 The LMS Events table has details of the events generated for each of the tools used by the students.
 
