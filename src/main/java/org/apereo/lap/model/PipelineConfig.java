@@ -31,11 +31,19 @@ public class PipelineConfig {
 
     /**
      * the type of pipeline (e.g. marist_student_risk) this is the config for
+     * (should be unique and should only use lowercase alphanums)
      */
-    public String pipelineType;
+    String type;
+    String name;
+    String description;
 
     // TODO inputs
     // TODO pipeline
     // TODO outputs
+
+
+    public String getType() {
+        return type;
+    }
 
 }

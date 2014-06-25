@@ -94,21 +94,34 @@ public class ConfigurationService {
         inputDirectory = verifyDir("dir.inputs", "inputs");
         outputDirectory = verifyDir("dir.outputs", "outputs");
 
-        // TODO load up the pipeline config files
         pipelineConfigs = new ConcurrentHashMap<String, PipelineConfig>();
-        // first load the internal ones (must be listed explicitly)
-        resourceLoader.getResource("");
+        // first load the internal ones (must be listed explicitly for now)
+        Resource pipelineSample = resourceLoader.getResource("classpath:pipelines/sample.xml");
+        PipelineConfig plcfg = processPipelineConfigFile(pipelineSample.getFile());
+        if (plcfg != null) {
+            pipelineConfigs.put(plcfg.getType(), plcfg);
+        }
         // then try to load the external ones
         File[] pipelineFiles = pipelinesDirectory.listFiles();
         if (pipelineFiles != null && pipelineFiles.length > 0) {
             for (final File fileEntry : pipelineFiles) {
                 if (fileEntry.isFile()) {
-                    // TODO try to process the file
+                    PipelineConfig filePLC = processPipelineConfigFile(pipelineSample.getFile());
+                    if (filePLC != null) {
+                        pipelineConfigs.put(filePLC.getType(), filePLC);
+                    }
                 }
             }
         }
 
         logger.info("INIT complete: "+config.getString("app.name")+", home="+applicationHomeDirectory.getAbsolutePath());
+    }
+
+    PipelineConfig processPipelineConfigFile(File pipelineConfigFile) {
+        PipelineConfig plcfg = new PipelineConfig();
+        // TODO process the file into a pipeline config
+        plcfg = null; // TODO trash this
+        return plcfg;
     }
 
     /**
@@ -136,16 +149,20 @@ public class ConfigurationService {
         if (!fileDir.exists()) {
             // try to create it
             try {
-                //noinspection ResultOfMethodCallIgnored
-                fileDir.mkdirs();
-                logger.info("Config created "+configKey+" dir: "+fileDir.getAbsolutePath());
+                if (fileDir.mkdirs()) {
+                    logger.info("Config created "+configKey+" dir: "+fileDir.getAbsolutePath());
+                } else {
+                    throw new RuntimeException("Could not create dir at: "+fileDir.getAbsolutePath());
+                }
             } catch (Exception e) {
-                throw new RuntimeException("Could not create dir at: "+fileDir.getAbsolutePath());
+                throw new RuntimeException("Failure trying to create dir at: "+fileDir.getAbsolutePath()+": "+e);
             }
         } else if (!fileDir.isDirectory()) {
             throw new RuntimeException("Configured pipeline path is not a directory: "+fileDir.getAbsolutePath());
         } else if (!fileDir.canRead()) {
             throw new RuntimeException("Configured pipeline path is not readable: "+fileDir.getAbsolutePath());
+        } else {
+            logger.info("Config using existing "+configKey+" dir: "+fileDir.getAbsolutePath());
         }
         // update config with absolute path
         this.config.setProperty(configKey, fileDir.getAbsolutePath());
