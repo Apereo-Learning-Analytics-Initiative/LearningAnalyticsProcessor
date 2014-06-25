@@ -41,7 +41,7 @@ SUBJECT                 | String(50)        | The subject of the course.
 COURSE_NUMBER           | String(50)        | The course number of the course.
 SECTION                 | String(50)        | The Section ID of the course. 
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
-
+COURSE_TYPE             | String(20)        | Online / On-ground course
 
 3) ENROLLMENTS (Student enrollments) - enrollments.csv
 ------------------------------------------------------
