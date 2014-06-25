@@ -16,7 +16,6 @@ package org.apereo.lap.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import weka.classifiers.Classifier;
 import weka.classifiers.pmml.consumer.PMMLClassifier;
@@ -25,6 +24,7 @@ import weka.core.pmml.PMMLModel;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import java.io.InputStream;
 
 /**
@@ -37,8 +37,8 @@ public class ProcessorService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProcessorService.class);
 
-    @Autowired
-    PreProcessorService preProcessorService;
+    @Resource
+    ConfigurationService configuration;
 
     Classifier classifier;
 

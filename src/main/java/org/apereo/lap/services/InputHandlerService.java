@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -35,6 +36,9 @@ import java.io.InputStreamReader;
 public class InputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(InputHandlerService.class);
+
+    @Resource
+    ConfigurationService configuration;
 
     @PostConstruct
     public void init() {

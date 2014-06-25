@@ -12,7 +12,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jetty.version>6.1.4</jetty.version>
-    <spring.version>3.0.5.RELEASE</spring.version>
+    <spring.version>3.0.5.RELEASE</spring.version><!-- 4.0.5.RELEASE -->
     <slf4j.version>1.5.10</slf4j.version>
     <java.version>1.6</java.version>
     <junit.version>4.8.2</junit.version>
@@ -20,6 +20,13 @@
   </properties>
 
   <dependencies>
+    <!-- application -->
+    <dependency>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+      <version>1.10</version>
+    </dependency>
+
     <!-- pentaho -->
     <dependency>
       <groupId>pentaho-kettle</groupId>
@@ -290,6 +297,8 @@
             <exclude>target/**</exclude>
             <exclude>m2-target/**</exclude>
             <exclude>bin/**</exclude>
+            <exclude>.idea/**</exclude>
+            <exclude>**/*.iml</exclude>
             <exclude>LICENSE*</exclude>
             <exclude>**/*.properties</exclude>
             <exclude>**/*.csv</exclude>

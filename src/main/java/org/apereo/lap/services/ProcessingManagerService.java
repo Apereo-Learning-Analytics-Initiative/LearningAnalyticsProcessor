@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 
 /**
  * This is the trigger and general management point for the entire processing of a pipeline.
@@ -39,6 +40,16 @@ public class ProcessingManagerService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProcessingManagerService.class);
 
+    @Resource
+    ConfigurationService configuration;
+    @Resource
+    InputHandlerService inputHandler;
+    @Resource
+    ProcessorService processor;
+    @Resource
+    OutputHandlerService outputHandler;
+
+
     @PostConstruct
     public void init() {
         logger.info("Processing Initialized");
@@ -52,7 +63,7 @@ public class ProcessingManagerService {
         logger.info("DESTROY");
     }
 
-    public void process(int pipelineId) {
+    public void process(String pipelineId) {
         logger.info("Processing Initialized");
         // TODO load up pipeline config (by id)
         // TODO handle the inputs

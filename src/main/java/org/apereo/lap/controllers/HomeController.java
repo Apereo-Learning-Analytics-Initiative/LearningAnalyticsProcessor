@@ -14,12 +14,15 @@
  */
 package org.apereo.lap.controllers;
 
+import org.apereo.lap.services.ConfigurationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.annotation.Resource;
 
 /**
  * Sample controller for going to the home page with a message
@@ -28,6 +31,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+    @Resource
+    ConfigurationService configuration;
 
     /**
      * Selects the home page and populates the model with a message
