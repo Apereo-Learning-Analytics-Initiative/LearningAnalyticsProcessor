@@ -32,7 +32,7 @@ PELL_STATUS             | [Yes,No]          | If a student is a Pell grant recip
 
 2) COURSES (Course Data) - courses.csv
 --------------------------------------
-The course data has all the details of the courses.
+The course data has all the relevant details of the courses.
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
@@ -43,8 +43,8 @@ SECTION                 | String(50)        | The Section ID of the course.
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
 
 
-3) ENROLLMENTS (Course enrollment Data) - enrollments.csv
----------------------------------------------------------
+3) ENROLLMENTS (Student enrollments) - enrollments.csv
+------------------------------------------------------
 The enrollments data has all the details of the courses that the students are enrolled in.
 
 COLUMN                  | FORMAT            | DESCRIPTION
