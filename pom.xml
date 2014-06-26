@@ -12,7 +12,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jetty.version>6.1.4</jetty.version>
-    <spring.version>3.0.5.RELEASE</spring.version><!-- 4.0.5.RELEASE -->
+    <spring.version>3.2.9.RELEASE</spring.version><!-- 4.0.5.RELEASE -->
     <slf4j.version>1.5.10</slf4j.version>
     <java.version>1.6</java.version>
     <junit.version>4.8.2</junit.version>
@@ -78,6 +78,11 @@
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
       <version>${spring.version}</version>
       <type>jar</type>
@@ -136,6 +141,27 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!-- DATABASES -->
+    <!-- H2 instead of HSQLDB -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.178</version>
+    </dependency>
+    <!-- MySQL support -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.31</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- hsqldb - REMOVE THIS -->
+    <dependency>
+      <groupId>hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>1.8.0.10</version>
+    </dependency>
+
 
     <!-- below added by maven template -->
 
@@ -160,12 +186,6 @@
       <artifactId>hibernate-entitymanager</artifactId>
       <version>3.6.0.Final</version>
       <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>hsqldb</groupId>
-      <artifactId>hsqldb</artifactId>
-      <version>1.8.0.10</version>
     </dependency>
 
     <dependency>
