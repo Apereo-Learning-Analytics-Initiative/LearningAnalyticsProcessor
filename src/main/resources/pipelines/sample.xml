@@ -28,9 +28,10 @@
 
   <inputs>
     <!--
-     All inputs are defined in the resources/extracts/README.md file
-     There are 5 inputs types: PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY
-     A field is specified using a combination of the type and the name, for example: COURSE.COURSE_ID or PERSONAL.AGE
+    There is currently only 1 type of input allowed (temporary storage)
+    All input types and fields are defined in the resources/extracts/README.md file
+    There are 5 inputs types: PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY
+    A field is specified using a combination of the type and the name, for example: COURSE.COURSE_ID or PERSONAL.AGE
     -->
     <fields>
       <!--
@@ -58,7 +59,12 @@
      They will execute in the order they are included
     -->
     <processor>
-      <TODO />
+      <type>kettle</type>
+      <file>kettle-sample/sample.ktr</file>
+    </processor>
+    <processor>
+      <type>kettle</type>
+      <file>kettle-sample/sample.kjb</file>
     </processor>
   </processors>
 
@@ -70,31 +76,32 @@
      NOTE: the storage must already have the table/collection defined, this will only attempt to write into it
     -->
     <output>
-      <type>STORAGE</type>
-      <from>TEMPORARY_STORAGE</from>
-      <to>PERSISTENT_STORAGE</to>
+      <type>STORAGE</type><!-- from Temp to Persistent Storage -->
+      <from>RISK</from><!-- the temporary storage collection/table -->
+      <to>RESULTS</to><!-- the persistent storage collection/table -->
       <fields>
         <field>
-          <source>PERSONAL.ALTERNATIVE_ID</source>
-          <target>RESULTS.USER_ID_ALT</target>
+          <source>ALTERNATIVE_ID</source>
+          <target>USER_ID_ALT</target>
         </field>
         <field>
-          <source>RISK.SCORE</source>
-          <target>RESULTS.RISK_PERCENTAGE</target>
+          <source>SCORE</source>
+          <target>RISK_PERCENTAGE</target>
         </field>
       </fields>
     </output>
     <output>
       <type>CSV</type>
+      <from>RISK</from><!-- the temporary storage collection/table -->
       <filename>students_at_risk.csv</filename>
       <fields>
         <field>
           <header>USER_ID_ALT</header>
-          <source>PERSONAL.ALTERNATIVE_ID</source>
+          <source>ALTERNATIVE_ID</source>
         </field>
         <field>
           <header>RISK_PERCENTAGE</header>
-          <source>RISK.SCORE</source>
+          <source>SCORE</source>
         </field>
       </fields>
     </output>
