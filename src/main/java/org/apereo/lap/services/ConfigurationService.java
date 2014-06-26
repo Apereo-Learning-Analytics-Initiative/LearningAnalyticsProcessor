@@ -71,6 +71,7 @@ public class ConfigurationService {
         File appDefaults = resourceLoader.getResource("classpath:app.properties").getFile();
         try {
             config.addConfiguration(new PropertiesConfiguration(appDefaults));
+            logger.info("Default app configuration loaded from: "+appDefaults.getAbsolutePath());
         } catch (ConfigurationException e) {
             logger.error("Unable to load default app.properties file");
         }
@@ -129,7 +130,9 @@ public class ConfigurationService {
             logger.error("Invalid XML in pipeline config file ("+pipelineConfigFile.getAbsolutePath()+") (cannot process file): "+e);
         }
         PipelineConfig plcfg = PipelineConfig.makeConfigFromXML(xmlcfg);
-        if (!plcfg.isValid()) {
+        if (plcfg.isValid()) {
+            logger.info("Pipeline config ("+plcfg.getType()+") loaded from: "+pipelineConfigFile.getAbsolutePath());
+        } else {
             logger.warn("Invalid pipeline config file ("+pipelineConfigFile.getAbsolutePath()+"): "+plcfg.getInvalidReasons());
             plcfg = null;
         }

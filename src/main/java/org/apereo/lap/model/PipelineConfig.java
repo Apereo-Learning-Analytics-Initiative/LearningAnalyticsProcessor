@@ -14,13 +14,14 @@
  */
 package org.apereo.lap.model;
 
+import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This is an object that represents all configuration settings for a specific pipeline
@@ -37,6 +38,8 @@ import java.util.Map;
  */
 public class PipelineConfig {
 
+    private static final Logger logger = LoggerFactory.getLogger(PipelineConfig.class);
+
     /**
      * The pipeline XML file which was loaded to create this config
      */
@@ -52,7 +55,7 @@ public class PipelineConfig {
     String name;
     String description;
 
-    Map<String, ?> stats;
+    Map<String, Float> stats;
 
     List<InputField> inputs;
     List<Processor> processors;
@@ -63,7 +66,9 @@ public class PipelineConfig {
      */
     List<String> invalidReasons;
 
-    private PipelineConfig() {}
+    private PipelineConfig() {
+        stats = new ConcurrentHashMap<String, Float>();
+    }
 
     /**
      * Add an InputField to this config
@@ -104,6 +109,9 @@ public class PipelineConfig {
     public List<Output> addOutput(Output output) {
         if (this.outputs == null) {
             this.outputs = new ArrayList<Output>();
+        }
+        if (output.fields == null || output.fields.isEmpty()) {
+            throw new IllegalArgumentException("Output must contain at LEAST 1 field (is empty or null currently) before it can be added");
         }
         this.outputs.add(output);
         return this.outputs;
@@ -186,6 +194,76 @@ public class PipelineConfig {
     public static PipelineConfig makeConfigFromXML(XMLConfiguration xmlConfig) {
         PipelineConfig pc = new PipelineConfig();
         pc.filename = xmlConfig.getFileName();
+        pc.name = xmlConfig.getString("name");
+        pc.type = xmlConfig.getString("type");
+        pc.description = xmlConfig.getString("description");
+        // special handling for stats metadata
+        HierarchicalConfiguration stats = xmlConfig.configurationAt("stats");
+        Iterator<String> statsKeys = stats.getKeys();
+        while (statsKeys.hasNext()) {
+            String next =  statsKeys.next();
+            try {
+                Float f = stats.getFloat(next);
+                pc.stats.put(next, f);
+            } catch (Exception e) {
+                // skip this float and warn
+                logger.warn("Unable to get float from "+next+" <stats> field (skipping it): "+e);
+            }
+        }
+        // load the lists
+        // inputs
+        List<HierarchicalConfiguration> inputFields = xmlConfig.configurationsAt("inputs.fields.field");
+        for (HierarchicalConfiguration field : inputFields) {
+            try {
+                pc.addInputField(InputField.make(field.getString("name"), field.getBoolean("required", false)));
+            } catch (Exception e) {
+                // skip this input and warn
+                logger.warn("Unable to load input field ("+field.toString()+") (skipping it): "+e);
+            }
+        }
+        // processors
+        List<HierarchicalConfiguration> processors = xmlConfig.configurationsAt("processors.processor");
+        for (HierarchicalConfiguration processor : processors) {
+            try {
+                String pType = processor.getString("type");
+                ProcessorType pt =  ProcessorType.fromString(pType); // IllegalArgumentException if invalid
+                if (pt == ProcessorType.KETTLE) {
+                    pc.addProcessor(Processor.makeKettle(processor.getString("name"), processor.getString("file")));
+                } // Add other types here as needed
+            } catch (Exception e) {
+                // skip this processor and warn
+                logger.warn("Unable to load processor ("+processor.toString()+") (skipping it): "+e);
+            }
+        }
+        // outputs
+        List<HierarchicalConfiguration> outputs = xmlConfig.configurationsAt("outputs.output");
+        for (HierarchicalConfiguration output : outputs) {
+            try {
+                String oType = output.getString("type");
+                OutputType ot =  OutputType.fromString(oType); // IllegalArgumentException if invalid
+                if (ot == OutputType.CSV) {
+                    Output o = Output.makeCSV(output.getString("from"), output.getString("filename"));
+                    // load the output fields
+                    List<HierarchicalConfiguration> outputFields = output.configurationsAt("fields.field");
+                    for (HierarchicalConfiguration outputField : outputFields) {
+                        o.addFieldCSV(outputField.getString("source"), outputField.getString("header"));
+                    }
+                    pc.addOutput(o);
+                } else if (ot == OutputType.STORAGE) {
+                    Output o = Output.makeStorage(output.getString("from"), output.getString("to"));
+                    // load the output fields
+                    List<HierarchicalConfiguration> outputFields = output.configurationsAt("fields.field");
+                    for (HierarchicalConfiguration outputField : outputFields) {
+                        o.addFieldStorage(outputField.getString("source"), outputField.getString("target"));
+                    }
+                    pc.addOutput(o);
+                } // Add other types here as needed
+            } catch (Exception e) {
+                // skip this processor and warn
+                logger.warn("Unable to load output ("+output.toString()+") (skipping it): "+e);
+            }
+        }
+
         // TODO build the config from the XML data
         return pc;
     }
@@ -200,22 +278,44 @@ public class PipelineConfig {
      * A field is specified using a combination of the type and the name, for example: COURSE.COURSE_ID or PERSONAL.AGE
      */
     public static class InputField {
+        public String collection;
         public String name;
         public boolean required = false;
 
         private InputField() {}
         /**
          * For making input fields
-         * @param name the name of the temp storage field (e.g. PERSONAL.AGE)
+         * @param collectionAndName the collection and name (period separated) of the temp storage field (e.g. PERSONAL.AGE)
          * @param required true if this field is required input
          * @return the input field object
          */
-        public static InputField make(String name, boolean required) {
-            assert StringUtils.isNotBlank(name);
+        public static InputField make(String collectionAndName, boolean required) {
+            assert StringUtils.isNotBlank(collectionAndName);
+            String[] parts = StringUtils.split(StringUtils.trim(collectionAndName),'.');
+            if (parts == null || parts.length != 2) {
+                throw new IllegalArgumentException("Cannot extract collection and name from input field (must follow format {COLL}.{NAME}): "+collectionAndName);
+            }
+            assert StringUtils.isNotBlank(parts[0]) : "InputField Collection part is blank: "+collectionAndName;
+            assert StringUtils.isNotBlank(parts[1]) : "InputField Name part is blank: "+collectionAndName;
             InputField field = new InputField();
-            field.name = name;
+            field.collection = parts[0];
+            field.name = parts[1];
             field.required = required;
             return field;
+        }
+
+        /**
+         * @return the collection for this field (e.g. PERSONAL from PERSONAL.AGE)
+         */
+        public String getCollection() {
+            return collection;
+        }
+
+        /**
+         * @return the collection for this field (e.g. PERSONAL from PERSONAL.AGE)
+         */
+        public String getName() {
+            return name;
         }
     }
 

@@ -22,8 +22,8 @@
   <name>Sample</name><!-- display/print friendly name -->
   <description>This is a sample pipeline</description>
   <stats>
-    <accuracy>85%</accuracy>
-    <confidence>5</confidence>
+    <accuracy>0.85</accuracy>
+    <confidence>0.05</confidence>
   </stats>
 
   <inputs>
@@ -60,10 +60,12 @@
     -->
     <processor>
       <type>kettle</type>
+      <name>kettle_sample_1</name>
       <file>kettle-sample/sample.ktr</file>
     </processor>
     <processor>
       <type>kettle</type>
+      <name>kettle_sample_2</name>
       <file>kettle-sample/sample.kjb</file>
     </processor>
   </processors>
