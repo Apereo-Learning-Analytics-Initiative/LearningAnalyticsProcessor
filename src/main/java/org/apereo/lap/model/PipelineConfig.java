@@ -14,8 +14,10 @@
  */
 package org.apereo.lap.model;
 
+import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -36,19 +38,76 @@ import java.util.Map;
 public class PipelineConfig {
 
     /**
+     * The pipeline XML file which was loaded to create this config
+     */
+    String filename;
+    /**
      * the type of pipeline (e.g. marist_student_risk) this is the config for
      * (should be unique and should only use lowercase alphanums)
      */
     String type;
+    /**
+     * the display name for this pipeline (used in logging as well)
+     */
     String name;
     String description;
 
     Map<String, ?> stats;
 
     List<InputField> inputs;
-    // TODO pipeline
+    List<Processor> processors;
     List<Output> outputs;
 
+    /**
+     * The list of reasons why the loaded pipeline config is not valid
+     */
+    List<String> invalidReasons;
+
+    private PipelineConfig() {}
+
+    /**
+     * Add an InputField to this config
+     * @param inputField the InputField
+     * @return the list of all current InputField
+     */
+    public List<InputField> addInputField(InputField inputField) {
+        if (this.inputs == null) {
+            this.inputs = new ArrayList<InputField>();
+        }
+        for (InputField input : this.inputs) {
+            if (inputField.name.equals(input.name)) {
+                throw new IllegalArgumentException("Duplicate input field ("+inputField.name+"), input field can only be defined once");
+            }
+        }
+        this.inputs.add(inputField);
+        return this.inputs;
+    }
+
+    /**
+     * Add a Processor to this config
+     * @param processor the Processor
+     * @return the list of all current Output
+     */
+    public List<Processor> addProcessor(Processor processor) {
+        if (this.processors == null) {
+            this.processors = new ArrayList<Processor>();
+        }
+        this.processors.add(processor);
+        return this.processors;
+    }
+
+    /**
+     * Add an Output to this config
+     * @param output the Output
+     * @return the list of all current Output
+     */
+    public List<Output> addOutput(Output output) {
+        if (this.outputs == null) {
+            this.outputs = new ArrayList<Output>();
+        }
+        this.outputs.add(output);
+        return this.outputs;
+    }
 
     // GETTERS
     public String getType() {
@@ -71,11 +130,65 @@ public class PipelineConfig {
         return inputs;
     }
 
+    public List<Processor> getProcessors() {
+        return processors;
+    }
+
     public List<Output> getOutputs() {
         return outputs;
     }
 
+    /**
+     * @return true if the pipeline config is valid, false otherwise
+     * If not valid, the reasons are indicated in the #invalidReasons variable
+     */
+    public boolean isValid() {
+        boolean valid = true;
+        invalidReasons = new ArrayList<String>();
+        if (StringUtils.isBlank(type)) {
+            invalidReasons.add("Missing <type> (must not be blank)");
+            valid = false;
+        }
+        if (StringUtils.isBlank(name)) {
+            invalidReasons.add("Missing <name> (must not be blank)");
+            valid = false;
+        }
+        if (inputs == null) {
+            invalidReasons.add("Missing <inputs> (must be included and at least one input defined)");
+            valid = false;
+        } else if (inputs.isEmpty()) {
+            invalidReasons.add("No <input> in <inputs> (must have at least 1 input defined)");
+            valid = false;
+        }
+        if (processors == null) {
+            invalidReasons.add("Missing <processors> (must be included and at least one processor defined)");
+            valid = false;
+        } else if (processors.isEmpty()) {
+            invalidReasons.add("No <processor> in <processors> (must have at least 1 processor defined)");
+            valid = false;
+        }
+        if (outputs == null) {
+            invalidReasons.add("Missing <outputs> (must be included and at least one output defined)");
+            valid = false;
+        } else if (outputs.isEmpty()) {
+            invalidReasons.add("No <output> in <outputs> (must have at least 1 output defined)");
+            valid = false;
+        }
+        return valid;
+    }
 
+    public List<String> getInvalidReasons() {
+        return invalidReasons;
+    }
+
+    // BUILDER
+
+    public static PipelineConfig makeConfigFromXML(XMLConfiguration xmlConfig) {
+        PipelineConfig pc = new PipelineConfig();
+        pc.filename = xmlConfig.getFileName();
+        // TODO build the config from the XML data
+        return pc;
+    }
 
     // Objects to hold specialized data
 
@@ -98,6 +211,7 @@ public class PipelineConfig {
          * @return the input field object
          */
         public static InputField make(String name, boolean required) {
+            assert StringUtils.isNotBlank(name);
             InputField field = new InputField();
             field.name = name;
             field.required = required;
@@ -123,6 +237,8 @@ public class PipelineConfig {
          * @return the processor object
          */
         public static Processor makeKettle(String name, String filename) {
+            assert StringUtils.isNotBlank(name);
+            assert StringUtils.isNotBlank(filename);
             Processor obj = new Processor();
             obj.name = name;
             obj.filename = filename;
@@ -171,6 +287,8 @@ public class PipelineConfig {
          * @return the output object
          */
         public static Output makeStorage(String from, String to) {
+            assert StringUtils.isNotBlank(from);
+            assert StringUtils.isNotBlank(to);
             Output obj = new Output();
             obj.type = OutputType.STORAGE;
             obj.from = from;
@@ -185,6 +303,8 @@ public class PipelineConfig {
          * @return the output object
          */
         public static Output makeCSV(String from, String filename) {
+            assert StringUtils.isNotBlank(from);
+            assert StringUtils.isNotBlank(filename);
             Output obj = new Output();
             obj.type = OutputType.CSV;
             obj.from = from;

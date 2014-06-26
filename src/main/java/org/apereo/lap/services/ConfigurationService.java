@@ -117,10 +117,22 @@ public class ConfigurationService {
         logger.info("INIT complete: "+config.getString("app.name")+", home="+applicationHomeDirectory.getAbsolutePath());
     }
 
+    /**
+     * @param pipelineConfigFile a File for the XML for a pipeline config
+     * @return the pipeline config OR null if the config cannot be loaded
+     */
     PipelineConfig processPipelineConfigFile(File pipelineConfigFile) {
-        PipelineConfig plcfg = new PipelineConfig();
-        // TODO process the file into a pipeline config
-        plcfg = null; // TODO trash this
+        XMLConfiguration xmlcfg = null;
+        try {
+            xmlcfg = new XMLConfiguration(pipelineConfigFile);
+        } catch (ConfigurationException e) {
+            logger.error("Invalid XML in pipeline config file ("+pipelineConfigFile.getAbsolutePath()+") (cannot process file): "+e);
+        }
+        PipelineConfig plcfg = PipelineConfig.makeConfigFromXML(xmlcfg);
+        if (!plcfg.isValid()) {
+            logger.warn("Invalid pipeline config file ("+pipelineConfigFile.getAbsolutePath()+"): "+plcfg.getInvalidReasons());
+            plcfg = null;
+        }
         return plcfg;
     }
 
