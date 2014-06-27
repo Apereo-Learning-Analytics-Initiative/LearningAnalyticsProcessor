@@ -68,7 +68,7 @@ GRADABLE_OBJECT         | String(250)       | Different gradable objects and the
 CATEGORY                | String(250)       | The gradable objects are categorized here. For example grouping of a bunch of related assignments, forum posting, projects etc
 MAX_POINTS              | Integer[0-1000]   | Maximum allocated points for each Gradable Object
 EARNED_POINTS           | Integer[0-1000]   | Points earned by the students for a particular gradable object
-WEIGHT                  | Float[0-100.0]    | Overall percent weight of that particular assignment towards final grading (e.g. 50.0 means 50% of the overall grade).
+WEIGHT                  | Float[0.0-1.0]    | Overall percent weight of that particular assignment towards final grading (e.g. 0.5 means 50% of the overall grade).
 GRADE_DATE              | ISO-8601          | To facilitate chronological division of gradebook. Helpful in breaking down the gradebook like 4 weeks or 8 weeks into the course during testing phases.
 
 
