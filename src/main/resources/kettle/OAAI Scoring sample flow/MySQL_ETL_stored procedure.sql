@@ -77,7 +77,7 @@ BEGIN
 	
 	set @query1  = CONCAT('IF EXISTS (\nSELECT * FROM  information_schema.COLUMNS WHERE TABLE_NAME = \'', tableName,'\' AND COLUMN_NAME = \'', columnName, '\'\n) THEN \n ALTER TABLE ',tableName, '\n DROP COLUMN ', columnName,'; \nEND IF;');
 	
-	select @query1;
+	--select @query1;
 	PREPARE statement from  @query1;
 	EXECUTE statement;
 	DEALLOCATE PREPARE statement;
@@ -86,7 +86,7 @@ END;
 // DELIMITER ';' 
 
 /* testing the stored procedure*/
-call sp_DeleteCoulumnsIfExists('distbiotable' , 'PERCENTILE' );
+call sp_DeleteCoulumnsIfExists('table' , 'GENDER' );
 
 
 
