@@ -40,6 +40,7 @@ COURSE_ID               | String(200)       | The unique identifier standard acr
 SUBJECT                 | String(50)        | The subject of the course. 
 COURSE_NUMBER           | String(50)        | The course number of the course.
 SECTION                 | String(50)        | The Section ID of the course. 
+TERM                    | String(20)        | The semester details
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
 COURSE_TYPE             | String(20)        | Online / On-ground course
 
