@@ -26,7 +26,7 @@ SEMESTERS               | Integer[1-20]     | The current academic standing of t
 EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours earned by each of the student
 GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
-STANDING                | [0-3] *See Notes* | Current university standing such as probation, dean’s list, or semester honors.
+STANDING                | [0-2] *See Notes* | Current university standing such as probation, regular standing or dean’s list/semester honors.
 PELL_STATUS             | [Yes,No]          | If a student is a Pell grant recipient (Yes/No).
 
 
@@ -42,7 +42,7 @@ COURSE_NUMBER           | String(50)        | The course number of the course.
 SECTION                 | String(50)        | The Section ID of the course. 
 TERM                    | String(20)        | The semester details
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
-COURSE_TYPE             | String(20)        | Online / On-ground course
+COURSE_TYPE             | Integer(0-1)      | 1= Online, 0 = On-ground course
 
 3) ENROLLMENT (Student enrollments) - enrollments.csv
 -----------------------------------------------------
@@ -78,7 +78,7 @@ Includes information about student activity (typically events related to learnin
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          | String(100)        | The CWID of the student replaced with some unique identifiers for security reasons.
+ALTERNATIVE_ID          | String(100)       | The CWID of the student replaced with some unique identifiers for security reasons.
 COURSE_ID               | String(200)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
 EVENT                   | String(250)       | The name of the event that was generated
 EVENT_DATE              | ISO-8601          | The date when the event occurred
@@ -97,7 +97,7 @@ NOTES
     * Gender {1 = Female, 2 = Male}
     * Full-time or Part-time Status {1 = Full-time student, 2 = Part-time student}
     * Class Code {1 = FR(Freshman), 2 = SO(Sophomore), 3 = JR (Junior), 4 = SR(Senior), 5 = GR(Graduate)}
-    * University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors, 3 = Semester honors and dean list}
+    * University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors / dean list}
     * Letter Grade
 
             4.0 = A 
