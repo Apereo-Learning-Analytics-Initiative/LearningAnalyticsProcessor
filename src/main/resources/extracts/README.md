@@ -27,7 +27,7 @@ EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours e
 GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
 STANDING                | [0-2] *See Notes* | Current university standing such as probation, regular standing or dean’s list/semester honors.
-PELL_STATUS             | [0,1]          | If a student is a Pell grant recipient (Yes/No).
+PELL_STATUS             | Integer[0,1]      | If a student is a Pell grant recipient: 1=Yes, 0=No
 
 
 2) COURSE (Courses Data) - course.csv
