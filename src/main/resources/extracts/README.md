@@ -17,7 +17,7 @@ ALTERNATIVE_ID          | String(100)       | The CWID(College Wide ID) of the s
 PERCENTILE              | Float[0-100.0]    | The high school ranking of the students (e.g. 85 means 85th percentile).
 SAT_VERBAL              | Integer[200-800]  | The numeric SAT verbal score (or 0/blank to indicate no score).
 SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score (or 0/blank to indicate no score).
-ACL_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Student (or 0/blank to indicate no score)
+ACT_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Student (or 0/blank to indicate no score)
 AGE                     | Integer[1-150]    | The age of the student (in years)
 RACE                    | [1-8] *See Notes* | The race of the student (self-reported)
 GENDER                  | [1,2] *See Notes* | The gender of the student (self-reported)
