@@ -20,15 +20,23 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.test.jdbc.JdbcTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import java.util.List;
+import java.util.Map;
 
+import static org.junit.Assert.*;
+
+/**
+ * Integration services test for Storage
+ */
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:test-context.xml" })
 @Transactional
@@ -42,6 +50,9 @@ public class StorageServiceTest {
     @Autowired
     StorageService storage;
 
+    @javax.annotation.Resource
+    ResourceLoader resourceLoader;
+
     @Before
     @BeforeTransaction
     public void before() {
@@ -50,15 +61,33 @@ public class StorageServiceTest {
     }
 
     @Test
-    public void testService() {
+    public void testServiceLoad() {
         assertNotNull(storage);
         assertNotNull(storage.getConfiguration());
         assertNotNull(storage.getTempDataSource());
         assertNotNull(storage.getPersistentDataSource());
         assertNotNull(storage.getTempJdbcTemplate());
         assertNotNull(storage.getPersistentJdbcTemplate());
-
-
-        // TODO add real tests
     }
+
+    @Test
+    public void testServiceSQL() {
+        List<Map<String, Object>> results;
+        assertNotNull(storage);
+
+        // check for empty tables
+        results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM PERSONAL");
+        assertNotNull(results);
+        assertTrue( results.isEmpty() );
+
+        Resource sample = resourceLoader.getResource("sample.sql");
+        JdbcTestUtils.executeSqlScript(storage.getTempJdbcTemplate(), sample, true);
+        logger.info("Loaded sample SQL script: "+sample.getFilename());
+
+        results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM PERSONAL");
+        assertNotNull(results);
+        assertTrue(!results.isEmpty());
+        assertEquals(2, results.size());
+    }
+
 }
