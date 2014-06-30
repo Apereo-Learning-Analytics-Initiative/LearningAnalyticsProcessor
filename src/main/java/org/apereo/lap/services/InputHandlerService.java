@@ -62,7 +62,7 @@ public class InputHandlerService {
             // TODO - allow csv file path override / config
             InputStream studentsCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/students.csv");
             InputStream coursesCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/courses.csv");
-            InputStream gradesCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/grades.csv");
+            InputStream gradesCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/grade.csv");
             InputStream usageCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/activity.csv");
             // now check the files by trying to read the header line from each one
             CSVReader studentsCSV = new CSVReader(new InputStreamReader(studentsCSV_IS));
