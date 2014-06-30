@@ -46,6 +46,17 @@ public class ProcessorService {
     public void init() {
         logger.info("INIT started");
         // TODO load up config
+
+        // TODO init kettle
+        logger.info("INIT completed");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        logger.info("DESTROY");
+    }
+
+    public void loadPMML() {
         // TOOD init weka PMML
         try {
             InputStream pmml = ProcessorService.class.getClassLoader().getResourceAsStream("pmml/oaai.marist.pmml.xml");
@@ -60,18 +71,10 @@ public class ProcessorService {
                  * exception is that calling buildClassifier() will raise an
                  * Exception because PMML models are pre-built.
                  */
-             }
+            }
         } catch (Exception e) {
             throw new RuntimeException("Failed to load pmml file and init the classifier: "+e, e);
         }
-
-        // TODO init kettle
-        logger.info("INIT completed");
-    }
-
-    @PreDestroy
-    public void destroy() {
-        logger.info("DESTROY");
     }
 
     public void process() {

@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -30,11 +31,10 @@ import javax.sql.DataSource;
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
 @Component
+@Transactional
 public class StorageService {
 
     private static final Logger logger = LoggerFactory.getLogger(StorageService.class);
-
-    final static String STANDARD_DDL_COURSES = "CREATE TABLE IF NOT EXISTS COURSES (COURSE_ID varchar(255), SUBJECT varchar(55), COURSE_NUMBER varchar(55), SECTION varchar(55), ENROLLMENT int, COURSE_TYPE varchar(55), PRIMARY KEY (COURSE_ID))";
 
     @Resource(name="tempDataSource")
     DataSource tempDataSource;
@@ -52,6 +52,8 @@ public class StorageService {
 
         // Initialize the temp database connection
         tempJdbcTemplate = new JdbcTemplate(tempDataSource);
+        // JdbcTestUtils.executeSqlScript(JdbcTemplate jdbcTemplate, Resource resource, boolean continueOnError)
+
         /*
         tempJdbcTemplate.queryForList("SELECT * FROM COURSES");
         tempJdbcTemplate.update(
@@ -68,12 +70,34 @@ public class StorageService {
         );
         */
 
-        logger.info("INIT completed");
+        logger.info("INIT completed: "+this);
     }
 
     @PreDestroy
     public void destroy() {
         logger.info("DESTROY");
+    }
+
+
+
+    public ConfigurationService getConfiguration() {
+        return configuration;
+    }
+
+    public DataSource getTempDataSource() {
+        return tempDataSource;
+    }
+
+    public DataSource getPersistentDataSource() {
+        return persistentDataSource;
+    }
+
+    public JdbcTemplate getTempJdbcTemplate() {
+        return tempJdbcTemplate;
+    }
+
+    public JdbcTemplate getPersistentJdbcTemplate() {
+        return persistentJdbcTemplate;
     }
 
 }
