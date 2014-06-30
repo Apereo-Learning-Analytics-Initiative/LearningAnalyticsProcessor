@@ -79,6 +79,9 @@ public class StorageServiceTest {
         results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM PERSONAL");
         assertNotNull(results);
         assertTrue( results.isEmpty() );
+        results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM COURSE");
+        assertNotNull(results);
+        assertTrue( results.isEmpty() );
 
         Resource sample = resourceLoader.getResource("sample.sql");
         JdbcTestUtils.executeSqlScript(storage.getTempJdbcTemplate(), sample, true);
@@ -88,6 +91,11 @@ public class StorageServiceTest {
         assertNotNull(results);
         assertTrue(!results.isEmpty());
         assertEquals(2, results.size());
+
+        results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM COURSE");
+        assertNotNull(results);
+        assertTrue(!results.isEmpty());
+        assertEquals(3, results.size());
     }
 
 }
