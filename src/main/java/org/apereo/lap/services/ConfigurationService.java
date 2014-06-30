@@ -237,8 +237,45 @@ public class ConfigurationService {
     /**
      * @return the full set of configuration data loaded for the application
      */
-    Configuration get() {
+    Configuration config() {
         return config;
+    }
+
+    /**
+     * @param key the config key
+     * @return the value for this config OR null if none exists
+     */
+    <T> T get(String key, T defaultValue) {
+        Object result = defaultValue;
+        if (StringUtils.isNotBlank(key) && config.containsKey(key)) {
+            if (defaultValue == null) {
+                result = config.getProperty(key);
+            } else {
+                if (defaultValue instanceof Boolean) {
+                    result = config.getBoolean(key);
+                } else if (defaultValue instanceof Integer) {
+                    result = config.getInt(key);
+                } else if (defaultValue instanceof Long) {
+                    result = config.getLong(key);
+                } else if (defaultValue instanceof String) {
+                    result = config.getString(key);
+                }
+            }
+        }
+        //noinspection unchecked
+        return (T) result;
+    }
+
+    /**
+     * @param key the config key
+     * @return the value for this config OR null if none exists
+     */
+    boolean is(String key) {
+        boolean result = false;
+        if (StringUtils.isNotBlank(key)) {
+            result = config.getBoolean(key);
+        }
+        return result;
     }
 
     /**

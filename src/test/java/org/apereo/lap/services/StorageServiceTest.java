@@ -14,6 +14,7 @@
  */
 package org.apereo.lap.services;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -21,10 +22,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:test-context.xml" })
@@ -34,16 +37,27 @@ public class StorageServiceTest {
     private static final Logger logger = LoggerFactory.getLogger(StorageService.class);
 
     @Autowired
-    StorageService storageService;
+    ConfigurationService configuration;
+
+    @Autowired
+    StorageService storage;
+
+    @Before
+    @BeforeTransaction
+    public void before() {
+        configuration.config().setProperty("test", true);
+        assertTrue( configuration.is("test") );
+    }
 
     @Test
     public void testService() {
-        assertNotNull(storageService);
-        assertNotNull(storageService.getConfiguration());
-        assertNotNull(storageService.getTempDataSource());
-        assertNotNull(storageService.getPersistentDataSource());
-        assertNotNull(storageService.getTempJdbcTemplate());
-        assertNotNull(storageService.getPersistentJdbcTemplate());
+        assertNotNull(storage);
+        assertNotNull(storage.getConfiguration());
+        assertNotNull(storage.getTempDataSource());
+        assertNotNull(storage.getPersistentDataSource());
+        assertNotNull(storage.getTempJdbcTemplate());
+        assertNotNull(storage.getPersistentJdbcTemplate());
+
 
         // TODO add real tests
     }
