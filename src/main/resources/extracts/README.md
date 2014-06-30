@@ -7,7 +7,7 @@ See the sample files for examples.
 FORMATS
 =======
 
-1) PERSONAL (Student Demographics Data) - students.csv
+1) PERSONAL (Student Demographics Data) - personal.csv
 ------------------------------------------------------
 The personal data includes all students and their demographic details.
 
@@ -27,10 +27,10 @@ EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours e
 GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
 STANDING                | [0-2] *See Notes* | Current university standing such as probation, regular standing or dean’s list/semester honors.
-PELL_STATUS             | [Yes,No]          | If a student is a Pell grant recipient (Yes/No).
+PELL_STATUS             | [0,1]          | If a student is a Pell grant recipient (Yes/No).
 
 
-2) COURSE (Courses Data) - courses.csv
+2) COURSE (Courses Data) - course.csv
 -------------------------------------
 The course data has all the relevant details of the courses.
 
@@ -42,10 +42,11 @@ COURSE_NUMBER           | String(50)        | The course number of the course.
 SECTION                 | String(50)        | The Section ID of the course. 
 TERM                    | String(20)        | The semester details (Eg: 08F = 2008 Fall semester, 08S = 2008 Spring semester, 08U = 2008 Summer semester etc)  
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
-COURSE_TYPE             | Integer(0-1)      | 1= Online, 0 = On-ground course
+COURSE_TYPE             | Integer[0,1]      | 1 = Online, 0 = Classroom
 
-3) ENROLLMENT (Student enrollments) - enrollments.csv
------------------------------------------------------
+
+3) ENROLLMENT (Student enrollments) - enrollment.csv
+----------------------------------------------------
 The enrollments data has all the details of the courses that the students are enrolled in.
 
 COLUMN                  | FORMAT            | DESCRIPTION
@@ -56,8 +57,8 @@ FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Stud
 WITHDRAWL_DATE          | [ISO-8601,""]     | The date the student opted out from the course (null if they did not drop the course).
 
 
-4) GRADE (LMS Gradebook Data) - grades.csv
-------------------------------------------
+4) GRADE (LMS Gradebook Data) - grade.csv
+-----------------------------------------
 The gradebook data is extracted from the LMS and it provides the information about all graded items in the course.
 
 COLUMN                  | FORMAT            | DESCRIPTION
