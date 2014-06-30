@@ -1,1 +1,2409 @@
-ALTERNATIVE_ID, COURSE_ID, GRADABLE_OBJECT, CATEGORY, MAX_POINTS, EARNED_POINTS, WEIGHT, GRADE_DATE
+COURSE,Alternative_ID,Weight,Category,Gradable_object,Max_Points,Earned_Points
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT25,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 1,5,3.5
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 1,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 1,5,3.9
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 2,5,3.5
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 2 Elements of Rept,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 4 Ex 10 E,5,4.2
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT25,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 2 Elements of Rept,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 4 Ex 10 E,5,4.2
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Present 1 ,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Presentation 2,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Presentation 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 1,5,4.9
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Present 1 ,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT27,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT13,0.25,Final Exam,Final Exam,100,79
+MNG_333N_222_08F,STUDENT24,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT11,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT9,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT19,0.25,Final Exam,Final Exam,100,90
+MNG_333N_222_08F,STUDENT15,0.25,Final Exam,Final Exam,100,77
+MNG_333N_222_08F,STUDENT14,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT7,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT26,0.25,Final Exam,Final Exam,100,89
+MNG_333N_222_08F,STUDENT5,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT3,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT12,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT29,0.25,Final Exam,Final Exam,100,92
+MNG_333N_222_08F,STUDENT6,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT22,0.25,Final Exam,Final Exam,100,70
+MNG_333N_222_08F,STUDENT1,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT16,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT18,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT21,0.25,Final Exam,Final Exam,100,91
+MNG_333N_222_08F,STUDENT10,0.25,Final Exam,Final Exam,100,87
+MNG_333N_222_08F,STUDENT20,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT23,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT2,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT8,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT17,0.25,Final Exam,Final Exam,100,86
+MNG_333N_222_08F,STUDENT28,0.25,Final Exam,Final Exam,100,68
+MNG_333N_222_08F,STUDENT4,0.25,Final Exam,Final Exam,100,73
+MNG_333N_222_08F,STUDENT27,0.1,Exam1,Exam 1,100,65
+MNG_333N_222_08F,STUDENT13,0.1,Exam1,Exam 1,100,87
+MNG_333N_222_08F,STUDENT24,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT11,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT9,0.1,Exam1,Exam 1,100,93
+MNG_333N_222_08F,STUDENT19,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT15,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT14,0.1,Exam1,Exam 1,100,78
+MNG_333N_222_08F,STUDENT7,0.1,Exam1,Exam 1,100,76
+MNG_333N_222_08F,STUDENT26,0.1,Exam1,Exam 1,100,71
+MNG_333N_222_08F,STUDENT5,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT3,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT12,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT29,0.1,Exam1,Exam 1,100,88
+MNG_333N_222_08F,STUDENT6,0.1,Exam1,Exam 1,100,96
+MNG_333N_222_08F,STUDENT22,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT1,0.1,Exam1,Exam 1,100,79
+MNG_333N_222_08F,STUDENT16,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT18,0.1,Exam1,Exam 1,100,70
+MNG_333N_222_08F,STUDENT21,0.1,Exam1,Exam 1,100,73
+MNG_333N_222_08F,STUDENT10,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT20,0.1,Exam1,Exam 1,100,80
+MNG_333N_222_08F,STUDENT23,0.1,Exam1,Exam 1,100,94
+MNG_333N_222_08F,STUDENT2,0.1,Exam1,Exam 1,100,64
+MNG_333N_222_08F,STUDENT8,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT17,0.1,Exam1,Exam 1,100,83
+MNG_333N_222_08F,STUDENT28,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT4,0.1,Exam1,Exam 1,100,66
+MNG_333N_222_08F,STUDENT27,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 3,5,0
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 1,5,3.5
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 4,10,7
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 4,10,8
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 1,10,6
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 1,10,5
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 1,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 1,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 1,5,3.9
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 2,5,3.5
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 3,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Presentation 2,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Presentation 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 1,5,4.9
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT27,0.1,Exam1,Exam 1,100,65
+MNG_333N_222_08F,STUDENT13,0.1,Exam1,Exam 1,100,87
+MNG_333N_222_08F,STUDENT24,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT11,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT9,0.1,Exam1,Exam 1,100,93
+MNG_333N_222_08F,STUDENT19,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT15,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT14,0.1,Exam1,Exam 1,100,78
+MNG_333N_222_08F,STUDENT7,0.1,Exam1,Exam 1,100,76
+MNG_333N_222_08F,STUDENT26,0.1,Exam1,Exam 1,100,71
+MNG_333N_222_08F,STUDENT5,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT3,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT12,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT29,0.1,Exam1,Exam 1,100,88
+MNG_333N_222_08F,STUDENT6,0.1,Exam1,Exam 1,100,96
+MNG_333N_222_08F,STUDENT22,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT1,0.1,Exam1,Exam 1,100,79
+MNG_333N_222_08F,STUDENT16,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT18,0.1,Exam1,Exam 1,100,70
+MNG_333N_222_08F,STUDENT21,0.1,Exam1,Exam 1,100,73
+MNG_333N_222_08F,STUDENT10,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT20,0.1,Exam1,Exam 1,100,80
+MNG_333N_222_08F,STUDENT23,0.1,Exam1,Exam 1,100,94
+MNG_333N_222_08F,STUDENT2,0.1,Exam1,Exam 1,100,64
+MNG_333N_222_08F,STUDENT8,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT17,0.1,Exam1,Exam 1,100,83
+MNG_333N_222_08F,STUDENT28,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT4,0.1,Exam1,Exam 1,100,66
+MNG_333N_222_08F,STUDENT27,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT13,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT24,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT11,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT9,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT19,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT15,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT14,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT7,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT26,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT5,0.2,Exam 2,Exam 2,100,96
+MNG_333N_222_08F,STUDENT3,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT12,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT29,0.2,Exam 2,Exam 2,100,73
+MNG_333N_222_08F,STUDENT6,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT22,0.2,Exam 2,Exam 2,100,85
+MNG_333N_222_08F,STUDENT1,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT16,0.2,Exam 2,Exam 2,100,89
+MNG_333N_222_08F,STUDENT18,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT21,0.2,Exam 2,Exam 2,100,87
+MNG_333N_222_08F,STUDENT10,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT20,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT23,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT2,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT8,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT17,0.2,Exam 2,Exam 2,100,81
+MNG_333N_222_08F,STUDENT28,0.2,Exam 2,Exam 2,100,66
+MNG_333N_222_08F,STUDENT4,0.2,Exam 2,Exam 2,100,74
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 1,10,6
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 1,10,5
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 1,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT25,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 2 Elements of Rept,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT27,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT13,0.25,Final Exam,Final Exam,100,79
+MNG_333N_222_08F,STUDENT24,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT11,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT9,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT19,0.25,Final Exam,Final Exam,100,90
+MNG_333N_222_08F,STUDENT15,0.25,Final Exam,Final Exam,100,77
+MNG_333N_222_08F,STUDENT14,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT7,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT26,0.25,Final Exam,Final Exam,100,89
+MNG_333N_222_08F,STUDENT5,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT3,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT12,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT29,0.25,Final Exam,Final Exam,100,92
+MNG_333N_222_08F,STUDENT6,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT22,0.25,Final Exam,Final Exam,100,70
+MNG_333N_222_08F,STUDENT1,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT16,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT18,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT21,0.25,Final Exam,Final Exam,100,91
+MNG_333N_222_08F,STUDENT10,0.25,Final Exam,Final Exam,100,87
+MNG_333N_222_08F,STUDENT20,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT23,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT2,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT8,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT17,0.25,Final Exam,Final Exam,100,86
+MNG_333N_222_08F,STUDENT28,0.25,Final Exam,Final Exam,100,68
+MNG_333N_222_08F,STUDENT4,0.25,Final Exam,Final Exam,100,73
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Resume,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT27,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT13,0.25,Final Exam,Final Exam,100,79
+MNG_333N_222_08F,STUDENT24,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT11,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT9,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT19,0.25,Final Exam,Final Exam,100,90
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 4 Ex 10 E,5,4.2
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Present 1 ,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Presentation 2,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Presentation 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 1,5,4.9
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 3,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 4,10,7
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 3,5,0
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 1,5,3.5
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 1,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 1,5,3.9
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 2,5,3.5
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 3,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT13,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT24,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT11,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT9,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT19,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT15,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT14,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT7,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT26,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT5,0.2,Exam 2,Exam 2,100,96
+MNG_333N_222_08F,STUDENT3,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT12,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT29,0.2,Exam 2,Exam 2,100,73
+MNG_333N_222_08F,STUDENT6,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT22,0.2,Exam 2,Exam 2,100,85
+MNG_333N_222_08F,STUDENT1,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT16,0.2,Exam 2,Exam 2,100,89
+MNG_333N_222_08F,STUDENT18,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT21,0.2,Exam 2,Exam 2,100,87
+MNG_333N_222_08F,STUDENT10,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT20,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT23,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT2,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT8,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT17,0.2,Exam 2,Exam 2,100,81
+MNG_333N_222_08F,STUDENT28,0.2,Exam 2,Exam 2,100,66
+MNG_333N_222_08F,STUDENT4,0.2,Exam 2,Exam 2,100,74
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 4,10,7
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 4,10,8
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT27,0.1,Exam1,Exam 1,100,65
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 3,5,0
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 1,5,3.5
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 1,5,3
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 1,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 1,5,3.8
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 1,5,4
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 1,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 1,5,3.9
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 2,5,3.5
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 2,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 2,5,3
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 2,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 3,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 3,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 1,10,6
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 1,10,5
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 1,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 4,10,8
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Resume,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Present 1 ,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT10,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Present 1 ,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Present 1 ,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Business Plan Presentation,Business Plan Presentation 2,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Business Plan Presentation,Business Plan Presentation 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Business Plan Presentation,Business Plan Presentation 2,5,5
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 1,5,4.9
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 1,5,4
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 1,5,4.8
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 1,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 1,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 1,5,4.7
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 2,5,4.5
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 2,5,4.76
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 2,5,3.96
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 2,5,3.9
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 2,5,4.2
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Resume,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT27,0.1,Exam1,Exam 1,100,65
+MNG_333N_222_08F,STUDENT13,0.1,Exam1,Exam 1,100,87
+MNG_333N_222_08F,STUDENT24,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT11,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT9,0.1,Exam1,Exam 1,100,93
+MNG_333N_222_08F,STUDENT19,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT15,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT14,0.1,Exam1,Exam 1,100,78
+MNG_333N_222_08F,STUDENT7,0.1,Exam1,Exam 1,100,76
+MNG_333N_222_08F,STUDENT26,0.1,Exam1,Exam 1,100,71
+MNG_333N_222_08F,STUDENT5,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT3,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT12,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT29,0.1,Exam1,Exam 1,100,88
+MNG_333N_222_08F,STUDENT6,0.1,Exam1,Exam 1,100,96
+MNG_333N_222_08F,STUDENT22,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT1,0.1,Exam1,Exam 1,100,79
+MNG_333N_222_08F,STUDENT16,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT18,0.1,Exam1,Exam 1,100,70
+MNG_333N_222_08F,STUDENT21,0.1,Exam1,Exam 1,100,73
+MNG_333N_222_08F,STUDENT10,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT20,0.1,Exam1,Exam 1,100,80
+MNG_333N_222_08F,STUDENT23,0.1,Exam1,Exam 1,100,94
+MNG_333N_222_08F,STUDENT2,0.1,Exam1,Exam 1,100,64
+MNG_333N_222_08F,STUDENT8,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT17,0.1,Exam1,Exam 1,100,83
+MNG_333N_222_08F,STUDENT28,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT4,0.1,Exam1,Exam 1,100,66
+MNG_333N_222_08F,STUDENT27,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT13,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT24,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT11,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT9,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT19,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT15,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT14,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT7,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT26,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT5,0.2,Exam 2,Exam 2,100,96
+MNG_333N_222_08F,STUDENT3,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT12,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT29,0.2,Exam 2,Exam 2,100,73
+MNG_333N_222_08F,STUDENT6,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT22,0.2,Exam 2,Exam 2,100,85
+MNG_333N_222_08F,STUDENT1,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT16,0.2,Exam 2,Exam 2,100,89
+MNG_333N_222_08F,STUDENT18,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT21,0.2,Exam 2,Exam 2,100,87
+MNG_333N_222_08F,STUDENT10,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT20,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT23,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT2,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT13,0.1,Exam1,Exam 1,100,87
+MNG_333N_222_08F,STUDENT24,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT11,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT9,0.1,Exam1,Exam 1,100,93
+MNG_333N_222_08F,STUDENT19,0.1,Exam1,Exam 1,100,90
+MNG_333N_222_08F,STUDENT15,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT14,0.1,Exam1,Exam 1,100,78
+MNG_333N_222_08F,STUDENT7,0.1,Exam1,Exam 1,100,76
+MNG_333N_222_08F,STUDENT26,0.1,Exam1,Exam 1,100,71
+MNG_333N_222_08F,STUDENT5,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT3,0.1,Exam1,Exam 1,100,84
+MNG_333N_222_08F,STUDENT12,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT29,0.1,Exam1,Exam 1,100,88
+MNG_333N_222_08F,STUDENT6,0.1,Exam1,Exam 1,100,96
+MNG_333N_222_08F,STUDENT22,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT1,0.1,Exam1,Exam 1,100,79
+MNG_333N_222_08F,STUDENT16,0.1,Exam1,Exam 1,100,92
+MNG_333N_222_08F,STUDENT18,0.1,Exam1,Exam 1,100,70
+MNG_333N_222_08F,STUDENT21,0.1,Exam1,Exam 1,100,73
+MNG_333N_222_08F,STUDENT10,0.1,Exam1,Exam 1,100,54
+MNG_333N_222_08F,STUDENT20,0.1,Exam1,Exam 1,100,80
+MNG_333N_222_08F,STUDENT23,0.1,Exam1,Exam 1,100,94
+MNG_333N_222_08F,STUDENT2,0.1,Exam1,Exam 1,100,64
+MNG_333N_222_08F,STUDENT8,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT17,0.1,Exam1,Exam 1,100,83
+MNG_333N_222_08F,STUDENT28,0.1,Exam1,Exam 1,100,81
+MNG_333N_222_08F,STUDENT4,0.1,Exam1,Exam 1,100,66
+MNG_333N_222_08F,STUDENT27,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT13,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT24,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT11,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT9,0.2,Exam 2,Exam 2,100,94
+MNG_333N_222_08F,STUDENT19,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT15,0.2,Exam 2,Exam 2,100,82
+MNG_333N_222_08F,STUDENT14,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT7,0.2,Exam 2,Exam 2,100,84
+MNG_333N_222_08F,STUDENT26,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT5,0.2,Exam 2,Exam 2,100,96
+MNG_333N_222_08F,STUDENT3,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT12,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT29,0.2,Exam 2,Exam 2,100,73
+MNG_333N_222_08F,STUDENT6,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT22,0.2,Exam 2,Exam 2,100,85
+MNG_333N_222_08F,STUDENT1,0.2,Exam 2,Exam 2,100,77
+MNG_333N_222_08F,STUDENT16,0.2,Exam 2,Exam 2,100,89
+MNG_333N_222_08F,STUDENT18,0.2,Exam 2,Exam 2,100,79
+MNG_333N_222_08F,STUDENT21,0.2,Exam 2,Exam 2,100,87
+MNG_333N_222_08F,STUDENT10,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT20,0.2,Exam 2,Exam 2,100,91
+MNG_333N_222_08F,STUDENT23,0.2,Exam 2,Exam 2,100,88
+MNG_333N_222_08F,STUDENT2,0.2,Exam 2,Exam 2,100,86
+MNG_333N_222_08F,STUDENT8,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT17,0.2,Exam 2,Exam 2,100,81
+MNG_333N_222_08F,STUDENT28,0.2,Exam 2,Exam 2,100,66
+MNG_333N_222_08F,STUDENT4,0.2,Exam 2,Exam 2,100,74
+MNG_333N_222_08F,STUDENT27,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT13,0.25,Final Exam,Final Exam,100,79
+MNG_333N_222_08F,STUDENT24,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT11,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT9,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 2,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 2,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Class Participation,Class Part 3,5,3
+MNG_333N_222_08F,STUDENT11,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT9,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 3,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 1,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT25,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 1,5,5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 2 Elements of Rept,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 2 Elements of Rept,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 2 Elements of Rept,5,4.5
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 3 Team Contract,5,5
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 3 Team Contract,5,4
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 4 Ex 10 E,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 4 Ex 10 E,5,4.8
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 4 Ex 10 E,5,4.2
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 4 Ex 10 E,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 4 Ex 10 E,5,4.9
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 4 Ex 10 E,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 4 Ex 10 E,5,4.85
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT7,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT6,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT22,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT18,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Assign 5 Slumdog,5,4.8
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Assign 5 Slumdog,5,3.5
+MNG_333N_222_08F,STUDENT23,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT15,0.25,Final Exam,Final Exam,100,77
+MNG_333N_222_08F,STUDENT14,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT7,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT26,0.25,Final Exam,Final Exam,100,89
+MNG_333N_222_08F,STUDENT5,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT3,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT12,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT29,0.25,Final Exam,Final Exam,100,92
+MNG_333N_222_08F,STUDENT6,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT22,0.25,Final Exam,Final Exam,100,70
+MNG_333N_222_08F,STUDENT1,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT16,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT18,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT21,0.25,Final Exam,Final Exam,100,91
+MNG_333N_222_08F,STUDENT10,0.25,Final Exam,Final Exam,100,87
+MNG_333N_222_08F,STUDENT20,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT23,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT2,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT8,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT17,0.25,Final Exam,Final Exam,100,86
+MNG_333N_222_08F,STUDENT28,0.25,Final Exam,Final Exam,100,68
+MNG_333N_222_08F,STUDENT4,0.25,Final Exam,Final Exam,100,73
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 1,10,6
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 1,10,5
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 1,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 1,10,9
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 1,10,8
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 4,10,7
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 4,10,6.5
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 4,10,7.5
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 4,10,9
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 4,10,8
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 4,10,\N
+MNG_333N_222_08F,STUDENT27,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT13,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT24,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT11,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT9,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT19,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT15,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT14,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT26,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT1,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT16,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT21,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT8,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Resume,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Resume,5,5
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 3,5,4.3
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 3,5,4.4
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 3,5,4.62
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 3,5,0
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 3,5,4.25
+MNG_333N_222_08F,STUDENT27,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT13,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT24,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT11,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT9,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT19,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT15,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT14,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT7,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT26,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT5,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT3,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT12,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT29,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT6,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT22,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT1,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT16,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT18,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT21,0.2,Business Plan,Business Plan Pt 4,5,4.8
+MNG_333N_222_08F,STUDENT10,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT20,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT23,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT2,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT8,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT17,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT28,0.2,Business Plan,Business Plan Pt 4,5,4
+MNG_333N_222_08F,STUDENT4,0.2,Business Plan,Business Plan Pt 4,5,4.3
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 1,10,\N
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 1,10,7
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 2,10,6
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT18,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT21,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT10,0.1,Quizzes,Quiz 2,10,\N
+MNG_333N_222_08F,STUDENT20,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT23,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT2,0.1,Quizzes,Quiz 2,10,8
+MNG_333N_222_08F,STUDENT8,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT17,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT28,0.1,Quizzes,Quiz 2,10,7
+MNG_333N_222_08F,STUDENT4,0.1,Quizzes,Quiz 2,10,10
+MNG_333N_222_08F,STUDENT27,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT13,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT24,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT11,0.1,Quizzes,Quiz 3,10,6
+MNG_333N_222_08F,STUDENT9,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT26,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT5,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT3,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT12,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT29,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT6,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT22,0.1,Quizzes,Quiz 3,10,\N
+MNG_333N_222_08F,STUDENT1,0.1,Quizzes,Quiz 3,10,9
+MNG_333N_222_08F,STUDENT16,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT15,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT14,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT7,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT26,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT5,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT3,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT12,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT29,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT6,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT22,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT1,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT16,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT18,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT21,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT10,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT20,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT23,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT2,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT8,0.05,Class Participation,Class Part 3,5,4
+MNG_333N_222_08F,STUDENT17,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Class Participation,Class Part 3,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Class Participation,Class Part 3,5,5
+MNG_333N_222_08F,STUDENT8,0.2,Exam 2,Exam 2,100,90
+MNG_333N_222_08F,STUDENT17,0.2,Exam 2,Exam 2,100,81
+MNG_333N_222_08F,STUDENT28,0.2,Exam 2,Exam 2,100,66
+MNG_333N_222_08F,STUDENT4,0.2,Exam 2,Exam 2,100,74
+MNG_333N_222_08F,STUDENT19,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT15,0.1,Quizzes,Quiz 3,10,8
+MNG_333N_222_08F,STUDENT14,0.1,Quizzes,Quiz 3,10,7
+MNG_333N_222_08F,STUDENT7,0.1,Quizzes,Quiz 3,10,10
+MNG_333N_222_08F,STUDENT19,0.25,Final Exam,Final Exam,100,90
+MNG_333N_222_08F,STUDENT15,0.25,Final Exam,Final Exam,100,77
+MNG_333N_222_08F,STUDENT14,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT7,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT26,0.25,Final Exam,Final Exam,100,89
+MNG_333N_222_08F,STUDENT5,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT3,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT12,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT29,0.25,Final Exam,Final Exam,100,92
+MNG_333N_222_08F,STUDENT6,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT22,0.25,Final Exam,Final Exam,100,70
+MNG_333N_222_08F,STUDENT1,0.25,Final Exam,Final Exam,100,84
+MNG_333N_222_08F,STUDENT16,0.25,Final Exam,Final Exam,100,95
+MNG_333N_222_08F,STUDENT18,0.25,Final Exam,Final Exam,100,80
+MNG_333N_222_08F,STUDENT21,0.25,Final Exam,Final Exam,100,91
+MNG_333N_222_08F,STUDENT10,0.25,Final Exam,Final Exam,100,87
+MNG_333N_222_08F,STUDENT20,0.25,Final Exam,Final Exam,100,93
+MNG_333N_222_08F,STUDENT23,0.25,Final Exam,Final Exam,100,88
+MNG_333N_222_08F,STUDENT2,0.25,Final Exam,Final Exam,100,83
+MNG_333N_222_08F,STUDENT8,0.25,Final Exam,Final Exam,100,82
+MNG_333N_222_08F,STUDENT17,0.25,Final Exam,Final Exam,100,86
+MNG_333N_222_08F,STUDENT28,0.25,Final Exam,Final Exam,100,68
+MNG_333N_222_08F,STUDENT4,0.25,Final Exam,Final Exam,100,73
+MNG_333N_222_08F,STUDENT17,0.05,Homework,Assign 5 Slumdog,5,5
+MNG_333N_222_08F,STUDENT28,0.05,Homework,Assign 5 Slumdog,5,0
+MNG_333N_222_08F,STUDENT4,0.05,Homework,Assign 5 Slumdog,5,5
