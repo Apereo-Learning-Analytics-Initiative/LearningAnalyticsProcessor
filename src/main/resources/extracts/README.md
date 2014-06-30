@@ -22,7 +22,6 @@ AGE                     | Integer[1-150]    | The age of the student (in years)
 RACE                    | [1-8] *See Notes* | The race of the student (self-reported)
 GENDER                  | [1,2] *See Notes* | The gender of the student (self-reported)
 STATUS                  | [1,2] *See Notes* | Code for full-time or part-time student based on the number of credit hours currently enrolled.
-SEMESTERS               | Integer[1-20]     | The current academic standing of the student as expressed by the number of semesters of completed coursework
 EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours earned by each of the student
 GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
@@ -37,10 +36,7 @@ The course data has all the relevant details of the courses.
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
 COURSE_ID               | String(200)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
-SUBJECT                 | String(50)        | The subject of the course. 
-COURSE_NUMBER           | String(50)        | The course number of the course.
-SECTION                 | String(50)        | The Section ID of the course. 
-TERM                    | String(20)        | The semester details (Eg: 08F = 2008 Fall semester, 08S = 2008 Spring semester, 08U = 2008 Summer semester etc)  
+SUBJECT                 | String(50)        | The subject of the course.
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
 COURSE_TYPE             | Integer[0,1]      | 1 = Online, 0 = Classroom
 
