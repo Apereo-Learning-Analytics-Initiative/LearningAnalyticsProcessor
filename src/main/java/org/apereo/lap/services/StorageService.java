@@ -49,6 +49,7 @@ public class StorageService {
     @PostConstruct
     public void init() {
         logger.info("INIT started");
+
         // Initialize the temp database connection
         tempJdbcTemplate = new JdbcTemplate(tempDataSource);
         /*
@@ -58,9 +59,9 @@ public class StorageService {
                 "MATH_101_11111_2014","MATH","101","11111",100,"On-ground course"
         );*/
 
-        /*
         // Initialize the persistent database connection
         persistentJdbcTemplate = new JdbcTemplate(persistentDataSource);
+        /*
         persistentJdbcTemplate.update(
                 "INSERT INTO COURSES (COURSE_ID,SUBJECT,COURSE_NUMBER,SECTION,ENROLLMENT,COURSE_TYPE) VALUES (?,?,?,?,?,?)",
                 "MATH_101_11111_2014","MATH","101","11111",100,"On-ground course"
