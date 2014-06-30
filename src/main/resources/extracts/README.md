@@ -20,13 +20,13 @@ SAT_MATH                | Integer[200-800]  | The numeric SAT mathematics score 
 ACT_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Student (or 0/blank to indicate no score)
 AGE                     | Integer[1-150]    | The age of the student (in years)
 RACE                    | [1-8] *See Notes* | The race of the student (self-reported)
-GENDER                  | [1,2] *See Notes* | The gender of the student (self-reported)
-STATUS                  | [1,2] *See Notes* | Code for full-time or part-time student based on the number of credit hours currently enrolled.
+GENDER                  | [M,F]             | The gender of the student (self-reported)
+STATUS                  | [F,P]             | Code for full-time (F) or part-time (P) student (by credit hours currently enrolled).
 EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours earned by each of the student
 GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
 STANDING                | [0-2] *See Notes* | Current university standing such as probation, regular standing or dean’s list/semester honors.
-PELL_STATUS             | Integer[0,1]      | If a student is a Pell grant recipient: 1=Yes, 0=No
+PELL_STATUS             | [Y,N]             | If a student is a Pell grant recipient: Y=Yes, N=No
 
 
 2) COURSE (Courses Data) - course.csv
@@ -38,7 +38,7 @@ COLUMN                  | FORMAT            | DESCRIPTION
 COURSE_ID               | String(100)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
 SUBJECT                 | String(50)        | The subject of the course.
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
-COURSE_TYPE             | Integer[0,1]      | 1 = Online, 0 = Classroom
+ONLINE                  | [Y,N]             | Y = Online, N = Classroom or other non-online
 
 
 3) ENROLLMENT (Student enrollments) - enrollment.csv
@@ -47,7 +47,7 @@ The enrollments data has all the details of the courses that the students are en
 
 COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
-ALTERNATIVE_ID          | String(100)        | The CWID of the student replaced with some unique identifiers for security reasons.
+ALTERNATIVE_ID          | String(100)       | The CWID of the student replaced with some unique identifiers for security reasons.
 COURSE_ID               | String(100)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
 FINAL_GRADE             | String *SPECIAL*  | The final course grade of the Student. Entries are A,A-,B+,B,B-,C+,C,C-,D,F,I, or W (or null). If the student drops the course within the official drop/add window, the course grade field will be null.
 WITHDRAWL_DATE          | [ISO-8601,""]     | The date the student opted out from the course (null if they did not drop the course).
@@ -91,10 +91,11 @@ NOTES
     * Alternative ID - no recoding necessary
     * Course ID - no recoding necessary
     * Race {1= White, 2= American Indian or Alaska Native, 3=Asian, 4=Black or African American, 5=Hispanic, 6=Native Hawaiian or Other Pacific Islander, 7= Two or More Races}
-    * Gender {1 = Female, 2 = Male}
+    * Gender M (male), F (female), converted in DB: {1 = Female, 2 = Male}
     * Full-time or Part-time Status {1 = Full-time student, 2 = Part-time student}
-    * Class Code {1 = FR(Freshman), 2 = SO(Sophomore), 3 = JR (Junior), 4 = SR(Senior), 5 = GR(Graduate)}
+    * Class Code: FR(Freshman), SO(Sophomore), JR(Junior), SR(Senior), GR(Graduate), converted in DB {1 = FR, 2 = SO, 3 = JR, 4 = SR, 5 = GR}
     * University Standing {0 = Probation, 1 = Regular standing, 2 = Semester honors / dean list}
+    * Pell Status: 1=Yes and 2=No
     * Letter Grade
 
             4.0 = A 
@@ -114,7 +115,6 @@ NOTES
 
 3. Age  
    Converted from the birth date, expressed in years.
-
 
 4. Academic_Risk  
    Defined as students completing the course within the normal timeframe and receiving a grade of C or better.  
