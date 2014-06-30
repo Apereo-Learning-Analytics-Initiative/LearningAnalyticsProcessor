@@ -1,6 +1,7 @@
 LAP Data Formats
 ================
-There are 4 data extracts formats used as inputs to the student data processing.
+There are 5 data extracts formats used as inputs to the student data processing.
+Typically, formats 1,2,3 are extracted from an SIS. Formats 4 and 5 are from an LMS.
 All files are CSV files and the columns must be in the order shown.
 See the sample files for examples.
 
