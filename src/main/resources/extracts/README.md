@@ -22,13 +22,13 @@ ACT_COMPOSITE           | Integer[1-36]     | The ACT composite score of the Stu
 AGE                     | Integer[1-150]    | The age of the student (in years)
 RACE                    | [1-8] *See Notes* | The race of the student (self-reported)
 GENDER                  | [M,F]             | The gender of the student (self-reported)
-STATUS                  | [F,P]             | Code for full-time (F) or part-time (P) student (by credit hours currently enrolled).
+ENROLLMENT_STATUS       | [F,P]             | Code for full-time (F) or part-time (P) student (by credit hours currently enrolled).
 EARNED_CREDIT_HOURS     | Integer[1-1000]   | The total number of credit hours earned by each of the student
 GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point average (float - four point scale - [0.00 - 4.00])
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
 STANDING                | [0-2] *See Notes* | Current university standing such as probation, regular standing or dean’s list/semester honors.
 PELL_STATUS             | [Y,N]             | If a student is a Pell grant recipient: Y=Yes, N=No
-
+CLASS                   | [SR,JR,SO,FR,GR]  | SR=Senior JR= Junior SO=Sophomore FR=Freshmen GR=Graduate
 
 2) COURSE (Courses Data) - course.csv
 -------------------------------------
