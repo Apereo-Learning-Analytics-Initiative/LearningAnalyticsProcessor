@@ -43,6 +43,10 @@ public class ProcessingManagerService {
     @Resource
     ConfigurationService configuration;
     @Resource
+    StorageService storage;
+    @Resource
+    NotificationService notification;
+    @Resource
     InputHandlerService inputHandler;
     @Resource
     ProcessorService processor;

@@ -26,7 +26,8 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
- * Manages the various types of storage (temporary and persistent)
+ * Manages the various types of storage (temporary and persistent),
+ * probably would be good to have a service for each type of storage (temp and persistent)
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
