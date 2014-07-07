@@ -299,4 +299,10 @@ public class ConfigurationService {
         return outputDirectory;
     }
 
+    /**
+     * @return the spring resource loader
+     */
+    public ResourceLoader getResourceLoader() {
+        return resourceLoader;
+    }
 }
