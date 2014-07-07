@@ -17,6 +17,7 @@ package org.apereo.lap.services;
 import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import java.io.*;
+import java.sql.Types;
+import java.util.ArrayList;
 
 /**
  * Handles the inputs by reading the data into the temporary data storage
@@ -41,13 +44,16 @@ public class InputHandlerService {
     @Resource
     ConfigurationService configuration;
 
+    @Resource
+    StorageService storage;
+
     @PostConstruct
     public void init() {
         logger.info("INIT");
-        if (configuration.config.getBoolean("input.copy.samples")) {
+        if (configuration.config.getBoolean("input.copy.samples", false)) {
             copySampleExtractCSVs();
         }
-        if (configuration.config.getBoolean("input.init.load.csv")) {
+        if (configuration.config.getBoolean("input.init.load.csv", false)) {
             loadCSVs();
         }
     }
@@ -82,20 +88,153 @@ public class InputHandlerService {
             CSVReader enrollmentCSV = loadCSV("enrollment.csv", 4, "ALTERNATIVE_ID");
             CSVReader gradeCSV = loadCSV("grade.csv", 8, "ALTERNATIVE_ID");
             CSVReader activityCSV = loadCSV("activity.csv", 4, "ALTERNATIVE_ID");
-            /*
-            CSVReader coursesCSV = new CSVReader(new InputStreamReader(coursesCSV_IS));
-            check = coursesCSV.readNext();
-            if (check != null && check.length >= 4 && "COURSE_ID".equals(StringUtils.trimToEmpty(check[0]).toUpperCase())) {
-                logger.info("Courses CSV file and header appear valid");
-            } else {
-                throw new IllegalStateException("Courses CSV file does not appear valid (no header or less than 4 required columns");
-            }*/
+
+            int[] types = new int[] {
+                    // ALTERNATIVE_ID,PERCENTILE,SAT_VERBAL,SAT_MATH,ACT_COMPOSITE,
+                    Types.VARCHAR, Types.FLOAT, Types.INTEGER, Types.INTEGER, Types.INTEGER,
+                    // AGE,RACE,GENDER,STATUS,EARNED_CREDIT_HOURS,
+                    Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.INTEGER,
+                    // GPA_CUMULATIVE,GPA_SEMESTER,STANDING,PELL_STATUS,CLASS
+                    Types.FLOAT, Types.FLOAT, Types.INTEGER, Types.BOOLEAN, Types.VARCHAR
+            };
+
+            // load the content into the temp DB schema
+            int line = 1;
+            int loaded = 0;
+            String file = "personal.csv";
+            String[] csvLine;
+            ArrayList<String> failures = new ArrayList<String>();
+            while ((csvLine = personalCSV.readNext()) != null) {
+                line++;
+                try {
+                    for (int i = 0; i < csvLine.length; i++) {
+                        csvLine[i] = StringUtils.trimToNull(csvLine[i]);
+                    }
+                    Object[] params = new Object[csvLine.length];
+                    params[0] = parseString(csvLine[0], null, true, "ALTERNATIVE_ID");
+                    params[1] = parseInt(csvLine[1], 0, 100, false, "PERCENTILE");
+                    params[2] = parseInt(csvLine[2], 300, 800, false, "SAT_VERBAL");
+                    params[3] = parseInt(csvLine[3], 300, 800, false, "SAT_MATH");
+                    params[4] = parseInt(csvLine[4], 11, 36, false, "ACT_COMPOSITE");
+                    params[5] = parseInt(csvLine[5], 1, 150, true, "AGE");
+                    params[6] = parseString(csvLine[6], null, false, "RACE"); // RACE
+                    params[7] = (parseString(csvLine[7], new String[]{"M","F","N"}, false, "GENDER").equalsIgnoreCase("F") ? 1 : 2);
+                    csvLine[8] = parseString(csvLine[8], new String[]{"FT","F","PT","P"}, false, "ENROLLMENT_STATUS");
+                    params[8] = ((csvLine[8].equals("PT") || csvLine[8].equals("P")) ? 2 : 1); // ENROLLMENT_STATUS
+                    params[9] = parseInt(csvLine[9], 0, 600, false, "EARNED_CREDIT_HOURS");
+                    params[10] = parseFloat(csvLine[10], 0f, 4f, false, "GPA_CUMULATIVE");
+                    params[11] = parseFloat(csvLine[11], 0f, 4f, false, "GPA_SEMESTER");
+                    params[12] = parseInt(csvLine[12], 0, 2, false, "STANDING");
+                    params[13] = parseBoolean(csvLine[13], false, "PELL_STATUS"); // PELL_STATUS
+                    params[14] = parseString(csvLine[14], new String[]{"FR", "SO", "JR", "SR", "GR"}, true, "CLASS_CODE");
+                    storage.getTempJdbcTemplate().update("INSERT INTO PERSONAL (ALTERNATIVE_ID,PERCENTILE,SAT_VERBAL,SAT_MATH,ACT_COMPOSITE,AGE,RACE,GENDER,STATUS,EARNED_CREDIT_HOURS,GPA_CUMULATIVE,GPA_SEMESTER,STANDING,PELL_STATUS,CLASS_CODE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", params, types);
+                    loaded++;
+                } catch (Exception e) {
+                    String msg = file+" line "+line+": "+e.getMessage();
+                    logger.warn(msg, e);
+                    failures.add(msg);
+                }
+            }
+            if (!failures.isEmpty()) {
+                logger.error(failures.size()+" failures while parsing "+file+":\n"+StringUtils.join(failures,"\n")+"\n");
+            }
+            logger.info(loaded+" lines from "+file+" (out of "+line+" lines) inserted into temp DB");
+
             logger.info("Loaded initial CSV files");
         } catch (Exception e) {
             String msg = "Failed to load CSVs file(s): "+e;
             logger.error(msg);
             throw new RuntimeException(msg, e);
         }
+    }
+
+    /**
+     * Attempt to verify integer
+     * @param string string to verify as integer
+     * @param min
+     * @param max
+     * @param cannotBeBlank true if this must be a number and cannot be null
+     * @param name the name of the string (the field), for error messages
+     * @return the integer OR null (if allowed)
+     * @throws java.lang.IllegalArgumentException is the string fails validation
+     */
+    private Integer parseInt(String string, Integer min, Integer max, boolean cannotBeBlank, String name) {
+        boolean blank = StringUtils.isBlank(string);
+        if (cannotBeBlank && blank) {
+            throw new IllegalArgumentException(name+" (" + string + ") cannot be blank");
+        } else if (blank) {
+            // can be blank, so return null
+            return null;
+        }
+        Integer num;
+        try {
+            num = Integer.parseInt(string);
+            if (min != null && num < min) {
+                throw new IllegalArgumentException(name+" integer ("+num+") is less than the minimum ("+min+")");
+            } else if (max != null && num > max) {
+                throw new IllegalArgumentException(name+" integer ("+num+") is greater than the maximum ("+max+")");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(name+" ("+string+") must be an integer: "+e);
+        }
+        return num;
+    }
+
+    private Float parseFloat(String string, Float min, Float max, boolean cannotBeBlank, String name) {
+        boolean blank = StringUtils.isBlank(string);
+        if (cannotBeBlank && blank) {
+            throw new IllegalArgumentException(name+" (" + string + ") cannot be blank");
+        } else if (blank) {
+            // can be blank, so return null
+            return null;
+        }
+        Float num;
+        try {
+            num = Float.parseFloat(string);
+            if (min != null && num < min) {
+                throw new IllegalArgumentException(name+" number ("+num+") is less than the minimum ("+min+")");
+            } else if (max != null && num > max) {
+                throw new IllegalArgumentException(name+" number ("+num+") is greater than the maximum ("+max+")");
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(name+" ("+string+") must be a float: "+e);
+        }
+        return num;
+    }
+
+    private Boolean parseBoolean(String string, boolean cannotBeBlank, String name) {
+        boolean blank = StringUtils.isBlank(string);
+        if (cannotBeBlank && blank) {
+            throw new IllegalArgumentException(name+" (" + string + ") cannot be blank");
+        } else if (blank) {
+            // can be blank, so return null
+            return null;
+        }
+        Boolean bool;
+        if ("T".equalsIgnoreCase(string)
+                || "Y".equalsIgnoreCase(string)
+                || "YES".equalsIgnoreCase(string)
+                ) {
+            bool = Boolean.TRUE;
+        } else {
+            bool = Boolean.parseBoolean(string);
+        }
+        return bool;
+    }
+
+    private String parseString(String string, String[] valid, boolean cannotBeBlank, String name) {
+        boolean blank = StringUtils.isBlank(string);
+        if (cannotBeBlank && blank) {
+            throw new IllegalArgumentException(name + " ("+string+") cannot be blank");
+        } else if (!blank) {
+            if (valid != null && valid.length > 0) {
+                if (!ArrayUtils.contains(valid, string)) {
+                    // invalid if not in the valid set
+                    throw new IllegalArgumentException(name + " ("+string+") must be in the valid set: "+ArrayUtils.toString(valid));
+                }
+            }
+        }
+        return string;
     }
 
     /**

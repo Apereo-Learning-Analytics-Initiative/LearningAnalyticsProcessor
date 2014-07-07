@@ -28,7 +28,7 @@ GPA_CUMULATIVE          | Float[0-4.0]      | Cumulative university grade point 
 GPA_SEMESTER            | Float[0-4.0]      | Semester university grade point average (float - four point scale - [0.00 - 4.00])
 STANDING                | [0-2] *See Notes* | Current university standing such as probation, regular standing or dean’s list/semester honors.
 PELL_STATUS             | [Y,N]             | If a student is a Pell grant recipient: Y=Yes, N=No
-CLASS                   | [SR,JR,SO,FR,GR]  | SR=Senior JR= Junior SO=Sophomore FR=Freshmen GR=Graduate
+CLASS_CODE              | [FR,SO,JR,SR,GR]  | FR=Freshmen, SO=Sophomore, JR=Junior, SR=Senior, GR=Graduate
 
 2) COURSE (Courses Data) - course.csv
 -------------------------------------

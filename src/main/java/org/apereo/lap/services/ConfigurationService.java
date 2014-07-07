@@ -15,6 +15,7 @@
 package org.apereo.lap.services;
 
 import org.apache.commons.configuration.*;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -86,7 +88,11 @@ public class ConfigurationService {
                 logger.warn("Unable to load lap.properties file");
             }
         } else {
-            logger.info("No external LAP config found: "+lapConfigProps.getAbsolutePath());
+            IOUtils.copy(
+                    InputHandlerService.class.getClassLoader().getResourceAsStream("config/lap.properties"),
+                    new FileOutputStream(new File(appHome(), "lap.properties"))
+            );
+            logger.info("No external LAP config found: "+lapConfigProps.getAbsolutePath()+", copied default sample lap.properties");
         }
         this.config = config;
 
