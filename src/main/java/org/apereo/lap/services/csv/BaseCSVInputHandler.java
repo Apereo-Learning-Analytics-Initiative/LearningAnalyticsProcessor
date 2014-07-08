@@ -60,9 +60,8 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
         handlers.put(csvih.getCSVFilename(), csvih);
         csvih = new GradeCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getCSVFilename(), csvih);
-        //csvih = new ActivityCSVInputHandler(configuration, jdbcTemplate);
-        //handlers.put(csvih.getCSVFilename(), csvih);
-        // TODO add other handlers
+        csvih = new ActivityCSVInputHandler(configuration, jdbcTemplate);
+        handlers.put(csvih.getCSVFilename(), csvih);
         return handlers;
     }
 
