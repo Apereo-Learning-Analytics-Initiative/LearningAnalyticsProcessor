@@ -62,7 +62,7 @@ COLUMN                  | FORMAT            | DESCRIPTION
 ----------------------- |:-----------------:|------------------------------------------
 ALTERNATIVE_ID          | String(100)       | The CWID of the student replaced with some unique identifiers for security reasons.
 COURSE_ID               | String(100)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
-GRADABLE_OBJECT         | String(250)       | Different gradable objects and the course
+GRADABLE_OBJECT         | String(250)       | Different gradable objects in the course
 CATEGORY                | String(250)       | The gradable objects are categorized here. For example grouping of a bunch of related assignments, forum posting, projects etc
 MAX_POINTS              | Integer[0-1000]   | Maximum allocated points for each Gradable Object
 EARNED_POINTS           | Integer[0-1000]   | Points earned by the students for a particular gradable object

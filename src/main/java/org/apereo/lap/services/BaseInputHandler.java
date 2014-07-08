@@ -142,7 +142,7 @@ public abstract class BaseInputHandler implements InputHandler {
         return string;
     }
 
-    static String[] dateFormats = new String[]{"yyyy-MM-dd'T'HH:mm:ssZZ","yyyy-MM-dd'T'HH:mm","yyyy-MM-dd"};
+    static String[] dateFormats = new String[]{"yyyy-MM-dd'T'HH:mm:ssZZ","yyyy-MM-dd'T'HH:mm:ss","yyyy-MM-dd'T'HH:mm","yyyy-MM-dd"};
     public static Timestamp parseDateTime(String string, boolean cannotBeBlank, String name) {
         Timestamp ts = null; // blank ts is null
         boolean blank = StringUtils.isBlank(string);
