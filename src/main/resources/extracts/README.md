@@ -39,7 +39,7 @@ COLUMN                  | FORMAT            | DESCRIPTION
 COURSE_ID               | String(100)       | The unique identifier standard across SIS and LMS for the course. Usually in the format Subject_CourseNumber_Section_Term.
 SUBJECT                 | String(50)        | The subject of the course.
 ENROLLMENT              | Integer[1-1000]   | The number of students in the course / section.
-ONLINE                  | [Y,N]             | Y = Online, N = Classroom or other non-online
+ONLINE_FLAG             | [Y,N]             | Y = Online, N = Classroom or other non-online
 
 
 3) ENROLLMENT (Student enrollments) - enrollment.csv
