@@ -16,7 +16,12 @@ package org.apereo.lap.services;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.Date;
 
 /**
  * Handles the input processing for a single input data source
@@ -135,6 +140,24 @@ public abstract class BaseInputHandler implements InputHandler {
             }
         }
         return string;
+    }
+
+    static String[] dateFormats = new String[]{"yyyy-MM-dd'T'HH:mm:ssZZ","yyyy-MM-dd'T'HH:mm","yyyy-MM-dd"};
+    public static Timestamp parseDateTime(String string, boolean cannotBeBlank, String name) {
+        Timestamp ts = null; // blank ts is null
+        boolean blank = StringUtils.isBlank(string);
+        if (cannotBeBlank && blank) {
+            throw new IllegalArgumentException(name + " ("+string+") cannot be blank");
+        } else if (!blank) {
+            Date d;
+            try {
+                d = DateUtils.parseDate(string, dateFormats);
+            } catch (ParseException e) {
+                throw new IllegalArgumentException(name + " ("+string+") cannot be parsed into a Timestamp/Date, format should be ISO-8601 (yyyy-MM-dd'T'HH:mm, e.g. 2014-02-03T12:34)");
+            }
+            ts = new Timestamp(d.getTime());
+        }
+        return ts;
     }
 
 }

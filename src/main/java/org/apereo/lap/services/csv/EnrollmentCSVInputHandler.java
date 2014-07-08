@@ -20,18 +20,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Types;
 
-public class CourseCSVInputHandler extends BaseCSVInputHandler {
+public class EnrollmentCSVInputHandler extends BaseCSVInputHandler {
 
-    public static final String FILENAME = "course.csv";
+    public static final String FILENAME = "enrollment.csv";
 
-    static final String SQL_INSERT = "INSERT INTO COURSE (COURSE_ID,SUBJECT,ENROLLMENT,ONLINE_FLAG) VALUES (?,?,?,?)";
+    static final String SQL_INSERT = "INSERT INTO ENROLLMENT (ALTERNATIVE_ID,COURSE_ID,FINAL_GRADE,WITHDRAWL_DATE) VALUES (?,?,?,?)";
 
     static final int[] SQL_TYPES = new int[] {
-            // COURSE_ID,SUBJECT,ENROLLMENT,ONLINE_FLAG
-            Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.BOOLEAN
+            // ALTERNATIVE_ID,COURSE_ID,FINAL_GRADE,WITHDRAWL_DATE
+            Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP
     };
 
-    public CourseCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
+    public EnrollmentCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
 
@@ -52,7 +52,7 @@ public class CourseCSVInputHandler extends BaseCSVInputHandler {
 
     @Override
     public CSVReader readCSV(boolean reRead) {
-        return readCSV(4, "COURSE_ID", reRead);
+        return readCSV(4, "ALTERNATIVE_ID", reRead);
     }
 
     @Override
@@ -65,10 +65,10 @@ public class CourseCSVInputHandler extends BaseCSVInputHandler {
     public Object[] validateAndConvertParams(String[] csvLine) {
         assert csvLine != null && csvLine.length > 0;
         Object[] params = new Object[csvLine.length];
-        params[0] = parseString(csvLine[0], null, true, "COURSE_ID");
-        params[1] = parseString(csvLine[1], null, false, "SUBJECT");
-        params[2] = parseInt(csvLine[2], 0, null, false, "ENROLLMENT");
-        params[3] = parseBoolean(csvLine[3], false, "ONLINE_FLAG");
+        params[0] = parseString(csvLine[0], null, true, "ALTERNATIVE_ID");
+        params[1] = parseString(csvLine[1], null, true, "COURSE_ID");
+        params[2] = parseString(csvLine[2], new String[] {"A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F","I","W"}, false, "FINAL_GRADE");
+        params[3] = parseDateTime(csvLine[3], false, "WITHDRAWL_DATE");
         return params;
     }
 

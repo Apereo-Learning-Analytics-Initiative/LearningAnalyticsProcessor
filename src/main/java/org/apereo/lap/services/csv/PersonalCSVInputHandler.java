@@ -24,9 +24,9 @@ public class PersonalCSVInputHandler extends BaseCSVInputHandler {
 
     public static final String FILENAME = "personal.csv";
 
-    static final String SQL_INSERT_PERSONAL = "INSERT INTO PERSONAL (ALTERNATIVE_ID,PERCENTILE,SAT_VERBAL,SAT_MATH,ACT_COMPOSITE,AGE,RACE,GENDER,STATUS,EARNED_CREDIT_HOURS,GPA_CUMULATIVE,GPA_SEMESTER,STANDING,PELL_STATUS,CLASS_CODE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    static final String SQL_INSERT = "INSERT INTO PERSONAL (ALTERNATIVE_ID,PERCENTILE,SAT_VERBAL,SAT_MATH,ACT_COMPOSITE,AGE,RACE,GENDER,STATUS,EARNED_CREDIT_HOURS,GPA_CUMULATIVE,GPA_SEMESTER,STANDING,PELL_STATUS,CLASS_CODE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-    static final int[] SQL_TYPES_PERSONAL = new int[] {
+    static final int[] SQL_TYPES = new int[] {
             // ALTERNATIVE_ID,PERCENTILE,SAT_VERBAL,SAT_MATH,ACT_COMPOSITE,
             Types.VARCHAR, Types.FLOAT, Types.INTEGER, Types.INTEGER, Types.INTEGER,
             // AGE,RACE,GENDER,STATUS,EARNED_CREDIT_HOURS,
@@ -41,12 +41,12 @@ public class PersonalCSVInputHandler extends BaseCSVInputHandler {
 
     @Override
     public String makeInsertSQL() {
-        return SQL_INSERT_PERSONAL;
+        return SQL_INSERT;
     }
 
     @Override
     public int[] makeInsertSQLParams() {
-        return SQL_TYPES_PERSONAL;
+        return SQL_TYPES;
     }
 
     @Override
