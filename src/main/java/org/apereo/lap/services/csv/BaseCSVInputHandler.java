@@ -50,8 +50,11 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
      */
     public static Map<String, CSVInputHandler> makeCSVHandlers(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         // build up the handlers
+        CSVInputHandler csvih;
         Map<String, CSVInputHandler> handlers = new LinkedHashMap<>(); // maintain order
-        CSVInputHandler csvih = new PersonalCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new PersonalCSVInputHandler(configuration, jdbcTemplate);
+        handlers.put(csvih.getCSVFilename(), csvih);
+        csvih = new CourseCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getCSVFilename(), csvih);
         // TODO add other handlers
         return handlers;
