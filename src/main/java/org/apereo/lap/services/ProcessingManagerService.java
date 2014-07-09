@@ -96,8 +96,17 @@ public class ProcessingManagerService {
             logger.info("All required inputs exist for type: "+pipelineId);
         }
 
-        // TODO handle the inputs
         // TODO start the pipeline processor
+        List<PipelineConfig.Processor> processors = config.getProcessors();
+        for (PipelineConfig.Processor processor : processors) {
+            if (PipelineConfig.ProcessorType.KETTLE == processor.type) {
+                // TODO process it!
+
+            } else {
+                throw new IllegalArgumentException("Cannot handle processor of type: "+processor.type);
+            }
+        }
+
         // TODO handle the outputs
         // TODO send notifications
         logger.info("Processing Complete");

@@ -67,7 +67,7 @@ public class PipelineConfig {
     List<String> invalidReasons;
 
     private PipelineConfig() {
-        stats = new ConcurrentHashMap<String, Float>();
+        stats = new ConcurrentHashMap<>();
     }
 
     /**
@@ -77,7 +77,7 @@ public class PipelineConfig {
      */
     public List<InputField> addInputField(InputField inputField) {
         if (this.inputs == null) {
-            this.inputs = new ArrayList<InputField>();
+            this.inputs = new ArrayList<>();
         }
         for (InputField input : this.inputs) {
             if (inputField.name.equals(input.name)) {
@@ -95,7 +95,7 @@ public class PipelineConfig {
      */
     public List<Processor> addProcessor(Processor processor) {
         if (this.processors == null) {
-            this.processors = new ArrayList<Processor>();
+            this.processors = new ArrayList<>();
         }
         this.processors.add(processor);
         return this.processors;
@@ -108,7 +108,7 @@ public class PipelineConfig {
      */
     public List<Output> addOutput(Output output) {
         if (this.outputs == null) {
-            this.outputs = new ArrayList<Output>();
+            this.outputs = new ArrayList<>();
         }
         if (output.fields == null || output.fields.isEmpty()) {
             throw new IllegalArgumentException("Output must contain at LEAST 1 field (is empty or null currently) before it can be added");
@@ -152,7 +152,7 @@ public class PipelineConfig {
      */
     public boolean isValid() {
         boolean valid = true;
-        invalidReasons = new ArrayList<String>();
+        invalidReasons = new ArrayList<>();
         if (StringUtils.isBlank(type)) {
             invalidReasons.add("Missing <type> (must not be blank)");
             valid = false;
@@ -381,7 +381,7 @@ public class PipelineConfig {
         public List<OutputField> fields;
 
         private Output() {
-            fields = new LinkedList<OutputField>();
+            fields = new LinkedList<>();
         }
 
         /**
