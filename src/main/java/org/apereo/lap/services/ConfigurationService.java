@@ -285,6 +285,29 @@ public class ConfigurationService {
     }
 
     /**
+     * @return the full Configuration object
+     */
+    public Configuration getConfig() {
+        return config;
+    }
+
+    /**
+     * @param type the pipeline type (unique id for the pipeline)
+     * @return the PipelineConfig for this type
+     */
+    public PipelineConfig getPipelineConfig(String type) {
+        assert StringUtils.isNotBlank(type);
+        return pipelineConfigs.get(type);
+    }
+
+    /**
+     * @return the map of all known pipeline configs
+     */
+    public ConcurrentHashMap<String, PipelineConfig> getPipelineConfigs() {
+        return pipelineConfigs;
+    }
+
+    /**
      * @return the directory used for storing pipeline processor config files
      */
     public File getPipelinesDirectory() {
@@ -311,4 +334,5 @@ public class ConfigurationService {
     public ResourceLoader getResourceLoader() {
         return resourceLoader;
     }
+
 }

@@ -130,7 +130,7 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
                     getTempDatabase().update(insertSQL, params, insertTypes);
                 } catch (Exception e) {
                     String msg = getHandledType()+" line "+line+": "+e.getMessage();
-                    logger.warn(msg, e); // to help in fixing the problem
+                    if (logger.isDebugEnabled()) logger.debug(msg, e); // to help in fixing the problem
                     failures.add(msg);
                 }
             }

@@ -71,8 +71,8 @@ public class GradeCSVInputHandler extends BaseCSVInputHandler {
         params[1] = parseString(csvLine[1], null, true, "COURSE_ID");
         params[2] = parseString(csvLine[2], null, true, "GRADABLE_OBJECT");
         params[3] = parseString(csvLine[3], null, false, "CATEGORY");
-        params[4] = parseInt(csvLine[4], 0, 1000, false, "MAX_POINTS");
-        params[5] = parseInt(csvLine[5], 0, 1000, true, "EARNED_POINTS");
+        params[4] = parseFloat(csvLine[4], 0f, 1000f, false, "MAX_POINTS");
+        params[5] = parseFloat(csvLine[5], 0f, 1000f, true, "EARNED_POINTS");
         params[6] = parseFloat(csvLine[6], 0f, 1f, false, "WEIGHT");
         params[7] = parseDateTime(csvLine[7], false, "GRADE_DATE");
         return params;

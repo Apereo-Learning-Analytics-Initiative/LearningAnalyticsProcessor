@@ -14,6 +14,7 @@
  */
 package org.apereo.lap.services;
 
+import org.apereo.lap.model.PipelineConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -56,10 +57,12 @@ public class ProcessingManagerService {
 
     @PostConstruct
     public void init() {
-        logger.info("Processing Initialized");
-        // TODO load up config
-        // TODO load up pipelines configs
-        logger.info("Processing Complete");
+        logger.info("INIT");
+        if (configuration.config.getBoolean("process.pipeline.sample", false)) {
+            logger.info("Running Sample Pipeline process");
+            process("sample");
+            logger.info("Sample Pipeline process COMPLETE");
+        }
     }
 
     @PreDestroy
@@ -68,8 +71,13 @@ public class ProcessingManagerService {
     }
 
     public void process(String pipelineId) {
-        logger.info("Processing Initialized");
-        // TODO load up pipeline config (by id)
+        logger.info("Pipeline Initialized: "+pipelineId);
+        // load up pipeline config (by id)
+        PipelineConfig config = configuration.getPipelineConfig(pipelineId);
+        if (config == null) {
+            throw new IllegalArgumentException("No PipelineConfig found for id/type: "+pipelineId);
+        }
+
         // TODO handle the inputs
         // TODO start the pipeline processor
         // TODO handle the outputs
