@@ -317,6 +317,11 @@ public class PipelineConfig {
         public String getName() {
             return name;
         }
+
+        @Override
+        public String toString() {
+            return (required?"Required":"optional") + " input (" + collection + "." + name + ")";
+        }
     }
 
     /**

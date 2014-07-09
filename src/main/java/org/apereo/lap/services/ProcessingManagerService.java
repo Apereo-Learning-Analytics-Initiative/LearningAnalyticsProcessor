@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * This is the trigger and general management point for the entire processing of a pipeline.
@@ -76,6 +77,23 @@ public class ProcessingManagerService {
         PipelineConfig config = configuration.getPipelineConfig(pipelineId);
         if (config == null) {
             throw new IllegalArgumentException("No PipelineConfig found for id/type: "+pipelineId);
+        }
+
+        // verify the inputs exist
+        List<PipelineConfig.InputField> inputs = config.getInputs();
+        boolean missingRequiredInput = false;
+        for (PipelineConfig.InputField input : inputs) {
+            if (!storage.checkTableAndColumnExist(input.getCollection(), input.getName(), true)) {
+                logger.warn("Missing input: "+input);
+                if (input.required) {
+                    missingRequiredInput = true;
+                }
+            }
+        }
+        if (missingRequiredInput) {
+            throw new IllegalArgumentException("Missing required inputs in the temp data, cannot proceed with this pipeline: "+pipelineId);
+        } else {
+            logger.info("All required inputs exist for type: "+pipelineId);
         }
 
         // TODO handle the inputs
