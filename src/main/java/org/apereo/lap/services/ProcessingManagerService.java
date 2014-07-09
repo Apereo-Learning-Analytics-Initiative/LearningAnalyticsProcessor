@@ -100,8 +100,8 @@ public class ProcessingManagerService {
         List<PipelineConfig.Processor> processors = config.getProcessors();
         for (PipelineConfig.Processor processor : processors) {
             if (PipelineConfig.ProcessorType.KETTLE == processor.type) {
-                // TODO process it!
-
+                // TODO process it! this should initiate a PipelineProcessor of type KettlePipelineProcessor
+                logger.warn("NOT IMPLEMENTED!!: process KETTLE pipeline ("+pipelineId+"): "+processor);
             } else {
                 throw new IllegalArgumentException("Cannot handle processor of type: "+processor.type);
             }

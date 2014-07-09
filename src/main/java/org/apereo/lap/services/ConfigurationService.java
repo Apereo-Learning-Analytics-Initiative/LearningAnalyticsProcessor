@@ -101,7 +101,7 @@ public class ConfigurationService {
         inputDirectory = verifyDir("dir.inputs", "inputs");
         outputDirectory = verifyDir("dir.outputs", "outputs");
 
-        pipelineConfigs = new ConcurrentHashMap<String, PipelineConfig>();
+        pipelineConfigs = new ConcurrentHashMap<>();
         // first load the internal ones (must be listed explicitly for now)
         Resource pipelineSample = resourceLoader.getResource("classpath:pipelines/sample.xml");
         PipelineConfig plcfg = processPipelineConfigFile(pipelineSample.getFile());

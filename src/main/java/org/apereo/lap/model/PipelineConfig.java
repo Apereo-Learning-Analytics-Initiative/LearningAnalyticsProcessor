@@ -345,9 +345,18 @@ public class PipelineConfig {
             assert StringUtils.isNotBlank(name);
             assert StringUtils.isNotBlank(filename);
             Processor obj = new Processor();
+            obj.type = ProcessorType.KETTLE;
             obj.name = name;
             obj.filename = filename;
             return obj;
+        }
+
+        @Override
+        public String toString() {
+            return "Processor{" +
+                    type + ", name='" + name + '\'' +
+                    ", filename='" + filename + '\'' +
+                    '}';
         }
     }
 
