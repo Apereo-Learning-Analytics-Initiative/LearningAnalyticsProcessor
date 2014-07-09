@@ -19,6 +19,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.csv.BaseCSVInputHandler;
 import org.apereo.lap.services.csv.CSVInputHandler;
+import org.apereo.lap.services.input.InputHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

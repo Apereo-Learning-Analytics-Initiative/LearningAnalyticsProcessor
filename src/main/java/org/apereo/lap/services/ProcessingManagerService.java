@@ -15,6 +15,8 @@
 package org.apereo.lap.services;
 
 import org.apereo.lap.model.PipelineConfig;
+import org.apereo.lap.services.pipeline.KettlePipelineProcessor;
+import org.apereo.lap.services.pipeline.PipelineProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -50,8 +52,6 @@ public class ProcessingManagerService {
     NotificationService notification;
     @Resource
     InputHandlerService inputHandler;
-    @Resource
-    ProcessorService processor;
     @Resource
     OutputHandlerService outputHandler;
 
@@ -96,14 +96,20 @@ public class ProcessingManagerService {
             logger.info("All required inputs exist for type: "+pipelineId);
         }
 
-        // TODO start the pipeline processor
+        // start the pipeline processors
         List<PipelineConfig.Processor> processors = config.getProcessors();
-        for (PipelineConfig.Processor processor : processors) {
-            if (PipelineConfig.ProcessorType.KETTLE == processor.type) {
-                // TODO process it! this should initiate a PipelineProcessor of type KettlePipelineProcessor
-                logger.warn("NOT IMPLEMENTED!!: process KETTLE pipeline ("+pipelineId+"): "+processor);
+        for (PipelineConfig.Processor processorConfig : processors) {
+            if (PipelineConfig.ProcessorType.KETTLE == processorConfig.type) {
+                logger.info("Processing KETTLE pipeline (" + pipelineId + "): " + processorConfig);
+                KettlePipelineProcessor kpp = new KettlePipelineProcessor(config, processorConfig, null);
+                try {
+                    PipelineProcessor.ProcessorResult result = kpp.process();
+                    logger.info("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") complete: "+result);
+                } catch (Exception e) {
+                    logger.error("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") failed: " + e, e);
+                }
             } else {
-                throw new IllegalArgumentException("Cannot handle processor of type: "+processor.type);
+                throw new IllegalArgumentException("Cannot handle processor of type: "+processorConfig.type);
             }
         }
 
