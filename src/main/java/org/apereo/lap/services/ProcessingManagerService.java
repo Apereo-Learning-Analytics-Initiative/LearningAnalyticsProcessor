@@ -78,71 +78,85 @@ public class ProcessingManagerService {
 
     public void process(String pipelineId) {
         logger.info("Pipeline Initialized: "+pipelineId);
-        // load up pipeline config (by id)
-        PipelineConfig config = configuration.getPipelineConfig(pipelineId);
-        if (config == null) {
-            throw new IllegalArgumentException("No PipelineConfig found for id/type: "+pipelineId);
-        }
+        try {
+            // load up pipeline config (by id)
+            PipelineConfig config = configuration.getPipelineConfig(pipelineId);
+            if (config == null) {
+                throw new IllegalArgumentException("No PipelineConfig found for id/type: "+pipelineId);
+            }
 
-        // load up the inputs
-        List<PipelineConfig.InputField> inputs = config.getInputs();
+            // load up the inputs
+            List<PipelineConfig.InputField> inputs = config.getInputs();
 
-        // verify the inputs exist
-        boolean missingRequiredInput = false;
-        for (PipelineConfig.InputField input : inputs) {
-            if (!storage.checkTableAndColumnExist(input.getCollection().name(), input.getName(), true)) {
-                logger.warn("Missing input: "+input);
-                if (input.required) {
-                    missingRequiredInput = true;
+            // verify the inputs exist
+            boolean missingRequiredInput = false;
+            for (PipelineConfig.InputField input : inputs) {
+                if (!storage.checkTableAndColumnExist(input.getCollection().name(), input.getName(), true)) {
+                    logger.warn("Missing input: "+input);
+                    if (input.required) {
+                        missingRequiredInput = true;
+                    }
                 }
             }
-        }
-        if (missingRequiredInput) {
-            throw new IllegalArgumentException("Missing required inputs in the temp data, cannot proceed with this pipeline: "+pipelineId);
-        } else {
-            logger.info("All required inputs exist for type: "+pipelineId);
-        }
-
-        // load in the inputs IF needed
-        Set<InputHandlerService.InputCollection> toLoad = new HashSet<>();
-        for (PipelineConfig.InputField input : inputs) {
-            toLoad.add(input.collection);
-        }
-        if (toLoad.isEmpty()) {
-            toLoad = null; // don't load anything if the model does not indicate it needs it
-        }
-        inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
-
-        // start the pipeline processors
-        List<Processor> processors = config.getProcessors();
-        for (Processor processorConfig : processors) {
-            if (Processor.ProcessorType.KETTLE == processorConfig.type) {
-                logger.info("Processing KETTLE pipeline (" + pipelineId + "): " + processorConfig);
-                KettlePipelineProcessor kpp = new KettlePipelineProcessor(config, processorConfig, null);
-                try {
-                    PipelineProcessor.ProcessorResult result = kpp.process();
-                    logger.info("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") complete: "+result);
-                } catch (Exception e) {
-                    logger.error("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") failed: " + e, e);
-                }
+            if (missingRequiredInput) {
+                throw new IllegalArgumentException("Missing required inputs in the temp data, cannot proceed with this pipeline: "+pipelineId);
             } else {
-                throw new IllegalArgumentException("Cannot handle processor of type: "+processorConfig.type);
+                logger.info("All required inputs exist for type: "+pipelineId);
             }
-        }
 
-        // handle the outputs
-        List<Output> outputs = config.getOutputs();
-        for (Output output : outputs) {
-            try {
-                OutputHandler.OutputResult result = outputHandler.doOutput(output);
-                logger.info("Output complete: "+result);
-            } catch (Exception e) {
-                logger.error("Output processor ("+output+") failure: "+e);
+            // load in the inputs IF needed
+            Set<InputHandlerService.InputCollection> toLoad = new HashSet<>();
+            for (PipelineConfig.InputField input : inputs) {
+                toLoad.add(input.collection);
             }
-        }
+            if (toLoad.isEmpty()) {
+                toLoad = null; // don't load anything if the model does not indicate it needs it
+            }
+            inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
 
-        // TODO send notifications
-        logger.info("Processing Complete");
+            // start the pipeline processors
+            List<Processor> processors = config.getProcessors();
+            for (Processor processorConfig : processors) {
+                if (Processor.ProcessorType.KETTLE == processorConfig.type) {
+                    logger.info("Processing KETTLE pipeline (" + pipelineId + "): " + processorConfig);
+                    KettlePipelineProcessor kpp = new KettlePipelineProcessor(config, processorConfig, null);
+                    try {
+                        PipelineProcessor.ProcessorResult result = kpp.process();
+                        logger.info("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") complete: "+result);
+                    } catch (Exception e) {
+                        throw new RuntimeException("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") failed: " + e);
+                    }
+                } else {
+                    throw new IllegalArgumentException("Cannot handle processor of type: "+processorConfig.type);
+                }
+            }
+
+            // handle the outputs
+            List<Output> outputs = config.getOutputs();
+            boolean outputSuccess = false;
+            for (Output output : outputs) {
+                try {
+                    OutputHandler.OutputResult result = outputHandler.doOutput(output);
+                    logger.info("Output complete: "+result);
+                    outputSuccess = true;
+                } catch (Exception e) {
+                    logger.error("Output processor for pipeline (" + pipelineId + ") failure: "+e);
+                }
+            }
+            // as long as at least one output was successful then we will count this pipeline as complete
+            if (!outputs.isEmpty() && !outputSuccess) {
+                // if no outputs succeeded then the pipeline has failed
+                throw new RuntimeException("All outputs failed, pipeline failure in outputs");
+            }
+
+            // send success notification
+            notification.sendNotification("Pipeline ("+pipelineId+") Complete", NotificationService.NotificationLevel.INFO);
+        } catch (RuntimeException e) {
+            // send failure notification
+            String msg = "Pipeline ("+pipelineId+") FAILED: "+e;
+            logger.error(msg);
+            notification.sendNotification(msg, NotificationService.NotificationLevel.CRITICAL);
+        }
     }
 
 }

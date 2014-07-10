@@ -14,13 +14,17 @@
  */
 package org.apereo.lap.services;
 
+import org.apereo.lap.services.notify.NotificationHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Handles all notifications from the app
@@ -32,7 +36,7 @@ public class NotificationService {
 
     private static final Logger logger = LoggerFactory.getLogger(NotificationService.class);
 
-    public static enum NotificationType {
+    public static enum NotificationLevel {
         /**
          * Informational notification (non-critical)
          */
@@ -43,8 +47,11 @@ public class NotificationService {
         CRITICAL
     }
 
-    @javax.annotation.Resource
+    @Resource
     ConfigurationService config;
+
+    @Autowired
+    List<NotificationHandler> notificationHandlers;
 
     @PostConstruct
     public void init() throws IOException {
@@ -56,8 +63,13 @@ public class NotificationService {
         logger.info("DESTROY");
     }
 
-    void sendNotification(String message, NotificationType type) {
-        // TODO implement
+    void sendNotification(String message, NotificationLevel level) {
+        if (level == null) {
+            level = NotificationLevel.INFO;
+        }
+        for (NotificationHandler notificationHandler : notificationHandlers) {
+            notificationHandler.sendNotification(level, message);
+        }
     }
 
 }
