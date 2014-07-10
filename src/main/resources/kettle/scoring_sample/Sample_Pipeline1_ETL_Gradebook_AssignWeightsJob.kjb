@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>U11F_ETL_Gradebook_AssigWeightsJob</name>
+  <name>Sample_Pipeline1_ETL_Gradebook_AssignWeightsJob</name>
     <description/>
     <extended_description/>
     <job_version/>
@@ -13,14 +13,14 @@
     <parameters>
     </parameters>
   <connection>
-    <name>OAAIDBDemo_connect</name>
-    <server>10.11.3.41</server>
+    <name>LAP_connect</name>
+    <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>oaaidbstudenttest</database>
+    <database>oaai</database>
     <port>3306</port>
-    <username>sumit</username>
-    <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f289b20abf7cce85ab8b</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -29,13 +29,16 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
     <slaveservers>
+         <slaveserver><name>localhost</name><hostname>localhost</hostname><port>8085</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>Y</master></slaveserver>
     </slaveservers>
 <job-log-table><connection/>
 <schema/>
@@ -78,111 +81,95 @@
       <yloc>80</yloc>
       </entry>
     <entry>
-      <name>Del  Null Max Point</name>
+      <name>Dummy_NullWeights</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;----------------------------------------------------------------------------------------------------------&#xd;&#xa;-- Dealing with data quality issues again since data was brought in as csv without external validators&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;drop table if exists grades_distALL&#x3b;&#xa;&#xa;create table grades_DistAll select distinct &#x2a; from &#x24;&#x7b;GRADES&#x7d;&#x3b;&#xa;&#xa;delete from grades_distALL where MAX_POINTS &#x3d; &#x27;&#x5c;&#x5c;n&#x27;&#x3b;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- Selecting records from courses where Weights are not provided by the instructor in the &#xd;&#xa;-- grading rubric&#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_GRADES&#x3b;&#xd;&#xa;CREATE TABLE DISTINCT_GRADES SELECT DISTINCT &#x2a; FROM &#x24;&#x7b;GRADE&#x7d;&#x3b;&#xd;&#xa;ALTER TABLE DISTINCT_GRADES ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID, GRADABLE_OBJECT&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;UPDATE  DISTINCT_GRADES &#xd;&#xa;SET WEIGHT &#x3d; -999 &#xd;&#xa;WHERE ALTERNATIVE_ID IN &#x28; SELECT CWID FROM &#x28;SELECT DISTINCT ALTERNATIVE_ID AS CWID&#xd;&#xa;						 FROM DISTINCT_GRADES &#xd;&#xa;						 WHERE WEIGHT IS NULL&#x29; AS c&#x29;&#xd;&#xa;    AND COURSE_ID IN &#x28;SELECT CID FROM &#x28;SELECT DISTINCT COURSE_ID AS CID&#xd;&#xa;						 FROM DISTINCT_GRADES &#xd;&#xa;						 WHERE WEIGHT IS NULL&#x29; AS b&#x29;&#xd;&#xa;	AND WEIGHT IS NULL&#x3b;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>239</xloc>
-      <yloc>77</yloc>
-      </entry>
-    <entry>
-      <name>Dummy_NullWeights</name>
-      <description/>
-      <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- Selecting records from courses where Weights are not provided by the instructor in the &#xd;&#xa;-- grading rubric&#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;update  Grades_DistAll &#xa;set     Weight &#x3d; -999 &#xa;where   ALTERNATIVE_ID IN &#x28; SELECT CWID FROM &#x28;select distinct ALTERNATIVE_ID AS CWID&#xa;						 from Grades_DistAll &#xa;						 where weight &#x3d; &#x27;&#x5c;&#x5c;n&#x27;&#x29; AS c&#x29;&#xa;    and Course IN &#x28;SELECT CID FROM &#x28;select distinct Course AS CID&#xa;						 from Grades_DistAll &#xa;						 where weight &#x3d; &#x27;&#x5c;&#x5c;n&#x27;&#x29; AS b&#x29;&#xa;	and Weight &#x3d; &#x27;&#x5c;&#x5c;n&#x27;&#x3b;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>392</xloc>
-      <yloc>80</yloc>
+      <xloc>220</xloc>
+      <yloc>79</yloc>
       </entry>
     <entry>
       <name>Zero_EarnedPoint_Nulls</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- If earned point is null then associated a zero as the entry&#xd;&#xa;-- &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;update Grades_DistAll &#xa;set Earned_Points &#x3d; &#x27;0&#x27; &#xa;where Earned_Points &#x3d; &#x27;&#x5c;&#x5c;n&#x27;&#xa;  or Earned_Points &#x3d; &#x27;&#x27;&#x3b;&#xa;</sql>
+      <sql>&#xd;&#xa;&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- If earned point is null then associated a zero as the entry&#xd;&#xa;-- &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;UPDATE DISTINCT_GRADES &#xd;&#xa;SET EARNED_POINTS &#x3d; 0 &#xd;&#xa;WHERE EARNED_POINTS IS NULL&#x3b;&#xa;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>545</xloc>
-      <yloc>80</yloc>
+      <xloc>385</xloc>
+      <yloc>81</yloc>
       </entry>
     <entry>
       <name>Sum_Max_Points</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- calculating the sum of max points for all the grading rubric courses and alternative &#xd;&#xa;-- combinations&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;create table Temp01 select course, alternative_ID, sum&#x28;max_points&#x29; as sum_max_points&#xa;from Grades_NotNULL&#xa;where weight in &#x28;-999,0&#x29;&#xa;group by course, alternative_ID&#xa;order by course,alternative_ID&#x3b;</sql>
+      <sql>&#xd;&#xa;&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- calculating the sum of max points for all the grading rubric courses and alternative &#xd;&#xa;-- combinations&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE RUBRIC_TEMP_01 SELECT COURSE_ID, ALTERNATIVE_ID, SUM&#x28;MAX_POINTS&#x29; AS SUM_MAX_POINTS&#xd;&#xa;FROM GRADES_NOTNULL&#xd;&#xa;WHERE WEIGHT IN &#x28;-999,0&#x29;&#xd;&#xa;GROUP BY COURSE_ID, ALTERNATIVE_ID&#xd;&#xa;ORDER BY COURSE_ID,ALTERNATIVE_ID&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>928</xloc>
-      <yloc>81</yloc>
+      <xloc>764</xloc>
+      <yloc>79</yloc>
       </entry>
     <entry>
       <name>Compute_frequency</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- computing frequency for of occurence for the sum of points for the course. &#xd;&#xa;-- This gets the majority grading rubric for the course&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;create table Temp02 select course, sum_max_points, count&#x28;&#x2a;&#x29;  as freq&#xa;from  Temp01&#xa;group by course, sum_max_points&#x3b;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- computing frequency for of occurence for the sum of points for the course. &#xd;&#xa;-- This gets the majority grading rubric for the course&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;CREATE TABLE RUBRIC_TEMP_02 SELECT COURSE_ID, SUM_MAX_POINTS, COUNT&#x28;&#x2a;&#x29;  as FREQ&#xd;&#xa;FROM RUBRIC_TEMP_01&#xd;&#xa;GROUP BY COURSE_ID, SUM_MAX_POINTS&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1064</xloc>
-      <yloc>81</yloc>
+      <xloc>939</xloc>
+      <yloc>79</yloc>
       </entry>
     <entry>
       <name>Total_Frequency</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- calculating sum for all the frequency&#xd;&#xa;---------------------------------------------------------------------------------------v&#xd;&#xa;&#xd;&#xa;create table temp03 select course, sum&#x28;freq&#x29; as totfreq&#xa;from Temp02&#xa;group by course&#x3b;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- calculating sum for all the frequency&#xd;&#xa;---------------------------------------------------------------------------------------v&#xd;&#xa;&#xd;&#xa;CREATE TABLE RUBRIC_TEMP_03 SELECT COURSE_ID, SUM&#x28;FREQ&#x29; AS TOTFREQ&#xd;&#xa;FROM RUBRIC_TEMP_02&#xd;&#xa;GROUP BY COURSE_ID&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1181</xloc>
-      <yloc>78</yloc>
+      <xloc>1118</xloc>
+      <yloc>83</yloc>
       </entry>
     <entry>
       <name>Frequency_Percentage</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- calculating percentage frequency by diving against frequency by total frequency&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;create table temp04 select T2.course, T2.sum_max_points, T2.freq, &#x28;T2.freq &#x2a; 1.00 &#x2f; T3.totfreq&#x29;&#x2a;100 as pctfreq&#xa;from Temp02 T2 inner join Temp03 T3&#xa;on T2.course &#x3d; T3.course&#x3b;</sql>
+      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- calculating percentage frequency by diving against frequency by total frequency&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE  RUBRIC_TEMP_04 SELECT T2.COURSE_ID, T2.SUM_MAX_POINTS, T2.FREQ, &#x28;T2.FREQ &#x2a; 1.00 &#x2f; T3.TOTFREQ&#x29;&#x2a;100 as PCTFREQ&#xd;&#xa;FROM RUBRIC_TEMP_02 T2 INNER JOIN RUBRIC_TEMP_03 T3&#xd;&#xa;ON T2.COURSE_ID &#x3d; T3.COURSE_ID&#x3b;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -193,12 +180,12 @@
       <name>Max_Percentage</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- Putting a percentage cut off so filter out low frequency grading rubrics for the course&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;create table Temp05 select course, max&#x28;pctfreq&#x29; as max_pctfreq&#xa;from Temp04&#xa;group by course&#xa;Having max&#x28;pctfreq&#x29;  &#x3e;&#x3d; 75&#x3b; </sql>
+      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- Putting a percentage cut off so filter out low frequency grading rubrics for the course&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE RUBRIC_TEMP_05 SELECT COURSE_ID, MAX&#x28;PCtFREQ&#x29; AS MAX_PCTFREQ &#xd;&#xa;FROM RUBRIC_TEMP_04&#xd;&#xa;GROUP BY COURSE_ID&#xd;&#xa;HAVING MAX&#x28;PCTFREQ&#x29;  &#x3e;&#x3d; 75&#x3b; </sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -209,28 +196,28 @@
       <name>Sum_max_points_MaxPercentage</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- Setting the maximum percentage frequency as the standard grading rubric for the course&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;create table Temp06 select T4.course, T4.sum_max_points, T5.max_pctfreq&#xa;from Temp04 T4, Temp05 T5&#xa;where T4.course &#x3d; T5.course&#xa;and T4.pctfreq &#x3d; T5.max_pctfreq&#x3b;</sql>
+      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- Setting the maximum percentage frequency as the standard grading rubric for the course&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE RUBRIC_TEMP_06 SELECT T4.COURSE_ID, T4.SUM_MAX_POINTS, T5.MAX_PCTFREQ&#xd;&#xa;FROM RUBRIC_TEMP_04 T4, RUBRIC_TEMP_05 T5&#xd;&#xa;WHERE T4.COURSE_ID &#x3d; T5.COURSE_ID&#xd;&#xa;AND T4.PCTFREQ &#x3d; T5.MAX_PCTFREQ&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>860</xloc>
+      <xloc>858</xloc>
       <yloc>203</yloc>
       </entry>
     <entry>
       <name>calculate weights</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- Assigning calculated weights to courses having -999 as weights using the grading rubric selected in previous step&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;Create table Temp07 select  G.course, G.alternative_ID,  G.max_points&#x2f;T6.sum_max_points AS  Calc_Weight, G.category,G.Gradable_object, G.max_points, G.earned_points&#xa;from Grades_NotNULL G, Temp06 T6&#xa;where G.Course &#x3d; T6.course&#xa;and weight in &#x28;-999,0&#x29;&#xa;group by g.course, g.alternative_id,g.Max_Points,g.category,G.Gradable_object,G.earned_points, T6.sum_max_points&#x3b;&#xa;&#xa;</sql>
+      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- Assigning calculated weights to courses having -999 as weights using the grading rubric selected in previous step&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE RUBRIC_TEMP_07 SELECT  G.COURSE_ID, G.ALTERNATIVE_ID,  G.MAX_POINTS&#x2f;T6.SUM_MAX_POINTS AS  CALC_WEIGHT, G.CATEGORY,G.GRADABLE_OBJECT, G.MAX_POINTS, G.EARNED_POINTS&#xd;&#xa;FROM GRADES_NOTNULL G, RUBRIC_TEMP_06 T6&#xd;&#xa;WHERE G.COURSE_ID &#x3d; T6.COURSE_ID&#xd;&#xa;AND WEIGHT IN &#x28;-999,0&#x29;&#xd;&#xa;GROUP BY G.COURSE_ID, G.ALTERNATIVE_ID, G.MAX_POINTS, G.CATEGORY, G.GRADABLE_OBJECT, G.EARNED_POINTS, T6.SUM_MAX_POINTS&#x3b;&#xa;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -241,12 +228,12 @@
       <name>copy data into tables</name>
       <description/>
       <type>SQL</type>
-      <sql>create table Grades_CW  select &#x2a; &#xa;from Grades_NotNULL&#x3b;&#xa;&#xa; create table Grades_CalculatedWeights select &#x2a; &#xa;from Temp07&#x3b;</sql>
+      <sql>CREATE TABLE GRADES_CW  SELECT &#x2a; &#xd;&#xa;FROM GRADES_NOTNULL&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE GRADES_CALCULATEDWEIGHTS SELECT &#x2a; FROM RUBRIC_TEMP_07&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -257,65 +244,49 @@
       <name>Del_TempTables</name>
       <description/>
       <type>SQL</type>
-      <sql>drop table Temp01&#x3b;&#xa;drop table Temp02&#x3b;&#xa;drop table Temp03&#x3b;&#xa;drop table Temp04&#x3b;&#xa;drop table Temp05&#x3b;&#xa;drop table Temp06&#x3b;&#xa;drop table Temp07&#x3b;</sql>
+      <sql>DROP TABLE RUBRIC_TEMP_01&#x3b;&#xd;&#xa;DROP TABLE RUBRIC_TEMP_02&#x3b;&#xd;&#xa;DROP TABLE RUBRIC_TEMP_03&#x3b;&#xd;&#xa;DROP TABLE RUBRIC_TEMP_04&#x3b;&#xd;&#xa;DROP TABLE RUBRIC_TEMP_05&#x3b;&#xd;&#xa;DROP TABLE RUBRIC_TEMP_06&#x3b;&#xd;&#xa;DROP TABLE RUBRIC_TEMP_07&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>323</xloc>
-      <yloc>204</yloc>
+      <yloc>207</yloc>
       </entry>
     <entry>
       <name>Update Gradebook</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- Merging calculated weights with the atual Gradebook table to improve more records to have &#xd;&#xa;-- more gradable objects having weights associated&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;ALTER TABLE grades_cw&#xa;ADD INDEX &#x60;agga&#x60; &#x28;&#x60;COURSE&#x60; ASC, &#x60;ALTERNATIVE_ID&#x60; ASC, &#x60;Weight&#x60; ASC&#x29;&#x3b;&#xa;&#xa;&#xa;UPDATE  Grades_CW CW&#xa;        INNER JOIN Grades_CalculatedWeights G&#xa;            ON CW.course &#x3d; G.Course&#xa; and CW.alternative_ID &#x3d; G.Alternative_ID &#xa;   and CW.Gradable_object &#x3d; G.Gradable_object&#xa;   and CW.Weight in &#x28;-999,0&#x29;&#xa;SET     CW.Weight &#x3d; G.Calc_Weight&#x3b;&#xa;&#xa;&#xa;drop table if exists GRADES&#x3b;&#xa;&#xa;create table GRADES select &#x2a; from grades_cw&#x3b;&#xa;&#xa;&#xa;update GRADES&#xa;set weight &#x3d; 0&#xa;where Weight &#x3d; -999&#x3b;&#xa;&#xa;&#xa;drop table Grades_CW&#x3b;&#xa;drop table Grades_CalculatedWeights&#x3b;&#xa;drop table Grades_NotNULL&#x3b;&#xa;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- Merging calculated weights with the atual Gradebook table to improve more records to have &#xd;&#xa;-- more gradable objects having weights associated&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;ALTER TABLE GRADES_CW&#xd;&#xa;ADD INDEX &#x60;agga&#x60; &#x28;&#x60;COURSE_ID&#x60; ASC, &#x60;ALTERNATIVE_ID&#x60; ASC, &#x60;WEIGHT&#x60; ASC&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;UPDATE  GRADES_CW CW&#xd;&#xa;        INNER JOIN GRADES_CALCULATEDWEIGHTS G&#xd;&#xa;            ON CW.COURSE_ID &#x3d; G.COURSE_ID&#xd;&#xa;	AND CW.ALTERNATIVE_ID &#x3d; G.ALTERNATIVE_ID &#xd;&#xa;	AND CW.GRADABLE_OBJECT &#x3d; G.GRADABLE_OBJECT&#xd;&#xa;	AND CW.WEIGHT in &#x28;-999,0&#x29;&#xd;&#xa;SET     CW.WEIGHT &#x3d; G.CALC_WEIGHT&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE GRADES SELECT &#x2a; FROM GRADES_CW&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;UPDATE GRADES&#xd;&#xa;SET WEIGHT &#x3d; 0&#xd;&#xa;WHERE WEIGHT &#x3d; -999&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;DROP TABLE GRADES_CW&#x3b;&#xd;&#xa;DROP TABLE GRADES_CALCULATEDWEIGHTS&#x3b;&#xd;&#xa;DROP TABLE GRADES_NOTNULL&#x3b;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>154</xloc>
-      <yloc>204</yloc>
-      </entry>
-    <entry>
-      <name>Type_Conversion</name>
-      <description/>
-      <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- Data was brought in as stringd from csv as it had a lot of quality issues. Allocating &#xd;&#xa;-- suitable data types after clean up&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;Alter table Grades_DistALL&#xa;       MODIFY Max_Points float&#x3b;&#xa;&#xa;&#xa;Alter table Grades_DistALL&#xa;       MODIFY Earned_Points float&#x3b;&#xa;       &#xa;Alter table Grades_DistALL&#xa;      MODIFY Weight float&#x3b;       &#xa;       &#xa;&#xa;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>678</xloc>
-      <yloc>81</yloc>
+      <xloc>185</xloc>
+      <yloc>209</yloc>
       </entry>
     <entry>
       <name>Delete Hybrid courses</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- The point is to enrich the gradebook metric for those course which do not use&#xd;&#xa;-- weights for the grading rubric. Eliminating hybrid courses as they are outliers&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;delete   &#xa;from   Grades_DistALL&#xa;where   Course in &#x28;SELECT CWID FROM &#x28;select distinct course AS CWID&#xa;				  from   Grades_DistALL&#xa;				  where  WEIGHT not in&#x28;-999&#x29;&#x29; AS c&#x29; &#xa;					 and Course in &#x28;SELECT CID FROM &#x28;select Course AS CID&#xa;									from   Grades_DistALL&#xa;									where  WEIGHT &#x3d; -999&#x29; AS d&#x29;&#x3b;&#xa;								&#xa;create table Grades_NotNULL select &#x2a; from Grades_DistALL&#x3b;&#xa;&#xa;drop table Grades_DistALL&#x3b;		</sql>
+      <sql>&#xd;&#xa;&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;-- The point is to enrich the gradebook metric for those course which do not use&#xd;&#xa;-- weights for the grading rubric. Eliminating hybrid courses as they are outliers&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;DELETE &#xd;&#xa;FROM  DISTINCT_GRADES&#xd;&#xa;WHERE COURSE_ID IN &#x28;SELECT CWID FROM &#x28;SELECT DISTINCT COURSE_ID AS CWID&#xd;&#xa;				  FROM   DISTINCT_GRADES&#xd;&#xa;				  WHERE  WEIGHT NOT IN&#x28;-999&#x29;&#x29; AS c&#x29; &#xd;&#xa;					 AND COURSE_ID IN &#x28;SELECT CID FROM &#x28;SELECT COURSE_ID AS CID&#xd;&#xa;									FROM   DISTINCT_GRADES&#xd;&#xa;									WHERE  WEIGHT &#x3d; -999&#x29; AS d&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE GRADES_NOTNULL SELECT &#x2a; FROM DISTINCT_GRADES&#x3b;&#xd;&#xa;DROP TABLE DISTINCT_GRADES&#x3b;	</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
       <sendOneStatement>F</sendOneStatement>
-      <connection>OAAIDBDemo_connect</connection>
+      <connection>LAP_connect</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>804</xloc>
-      <yloc>80</yloc>
+      <xloc>574</xloc>
+      <yloc>79</yloc>
       </entry>
   </entries>
   <hops>
@@ -410,33 +381,6 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Del  Null Max Point</from>
-      <to>Dummy_NullWeights</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Zero_EarnedPoint_Nulls</from>
-      <to>Type_Conversion</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Type_Conversion</from>
-      <to>Delete Hybrid courses</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Delete Hybrid courses</from>
       <to>Sum_Max_Points</to>
       <from_nr>0</from_nr>
@@ -446,8 +390,17 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
+      <from>Zero_EarnedPoint_Nulls</from>
+      <to>Delete Hybrid courses</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
       <from>START</from>
-      <to>Del  Null Max Point</to>
+      <to>Dummy_NullWeights</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
