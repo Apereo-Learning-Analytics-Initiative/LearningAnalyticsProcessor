@@ -14,7 +14,6 @@
  */
 package org.apereo.lap.services;
 
-import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.csv.BaseCSVInputHandler;
@@ -27,7 +26,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -64,6 +66,21 @@ public class InputHandlerService {
     }
 
     /**
+     * @param type the class of input handlers we are looking for
+     * @param <T> InputHandler type (e.g. CSVInputHandler)
+     * @return all handlers for a given type mapped by their unique handled type of data OR empty map if there are none
+     */
+    public <T extends InputHandler> Map<String, T> findHandlers(Class<T> type) {
+        assert type != null;
+        Map<String, T> handlers = new HashMap<>(); // empty set by default
+        if (CSVInputHandler.class.isAssignableFrom(type)) {
+            //noinspection unchecked
+            handlers = (Map<String, T>) BaseCSVInputHandler.makeCSVHandlers(configuration, storage.getTempJdbcTemplate());
+        } // add other types here
+        return handlers;
+    }
+
+    /**
      * Copies the 5 sample extract CSVs from the classpath to the inputs directory
      */
     public void copySampleExtractCSVs() {
@@ -83,7 +100,7 @@ public class InputHandlerService {
         logger.info("load CSV files from: "+configuration.inputDirectory.getAbsolutePath());
         try {
             // Initialize the CSV handlers
-            Map<String, CSVInputHandler> csvInputHandlers = BaseCSVInputHandler.makeCSVHandlers(configuration, storage.getTempJdbcTemplate());
+            Map<String, CSVInputHandler> csvInputHandlers = findHandlers(CSVInputHandler.class);
             logger.info("Loaded "+csvInputHandlers.size()+" CSV InputHandlers: "+csvInputHandlers.keySet());
 
             // First we verify the CSV files
@@ -100,17 +117,6 @@ public class InputHandlerService {
                 logger.info(result.loaded+" lines from "+result.handledType+" (out of "+result.total+" lines) inserted into temp DB (with "+result.failed+" failures): "+result);
 
             }
-
-            /*
-            CSVReader personalCSV = loadCSV("personal.csv", 15, "ALTERNATIVE_ID");
-            CSVReader courseCSV = loadCSV("course.csv", 4, "COURSE_ID");
-            CSVReader enrollmentCSV = loadCSV("enrollment.csv", 4, "ALTERNATIVE_ID");
-            CSVReader gradeCSV = loadCSV("grade.csv", 8, "ALTERNATIVE_ID");
-            CSVReader activityCSV = loadCSV("activity.csv", 4, "ALTERNATIVE_ID");
-
-            // load the content into the temp DB schema
-            readCSVFileIntoDB("personal.csv", personalCSV, SQL_INSERT_PERSONAL, SQL_TYPES_PERSONAL);
-            */
 
             logger.info("Loaded initial CSV files");
         } catch (Exception e) {
@@ -134,54 +140,6 @@ public class InputHandlerService {
             );
         } catch (IOException e) {
             throw new RuntimeException("Cannot find the sample file to copy: "+filename);
-        }
-    }
-
-    /**
-     * @TODO delete this method
-     * @deprecated REMOVE THIS
-     */
-    public void process() {
-        logger.info("PROCESS");
-        try {
-            InputStream studentsCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/students.csv");
-            InputStream coursesCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/courses.csv");
-            InputStream gradesCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/grade.csv");
-            InputStream usageCSV_IS = InputHandlerService.class.getClassLoader().getResourceAsStream("extracts/activity.csv");
-            // now check the files by trying to read the header line from each one
-            CSVReader studentsCSV = new CSVReader(new InputStreamReader(studentsCSV_IS));
-            String[] check = studentsCSV.readNext();
-            if (check != null && check.length >= 14 && "ALTERNATIVE_ID".equals(StringUtils.trimToEmpty(check[0]).toUpperCase())) {
-                logger.info("Student CSV file and header appear valid");
-            } else {
-                throw new IllegalStateException("Students CSV file does not appear valid (no header or less than 14 required columns");
-            }
-            CSVReader coursesCSV = new CSVReader(new InputStreamReader(coursesCSV_IS));
-            check = coursesCSV.readNext();
-            if (check != null && check.length >= 4 && "COURSE_ID".equals(StringUtils.trimToEmpty(check[0]).toUpperCase())) {
-                logger.info("Courses CSV file and header appear valid");
-            } else {
-                throw new IllegalStateException("Courses CSV file does not appear valid (no header or less than 4 required columns");
-            }
-            CSVReader gradesCSV = new CSVReader(new InputStreamReader(gradesCSV_IS));
-            check = gradesCSV.readNext();
-            if (check != null && check.length >= 8 && "ALTERNATIVE_ID".equals(StringUtils.trimToEmpty(check[0]).toUpperCase())) {
-                logger.info("Grades CSV file and header appear valid");
-            } else {
-                throw new IllegalStateException("Grades CSV file does not appear valid (no header or less than 4 required columns");
-            }
-            CSVReader usageCSV = new CSVReader(new InputStreamReader(usageCSV_IS));
-            check = usageCSV.readNext();
-            if (check != null && check.length >= 4 && "ALTERNATIVE_ID".equals(StringUtils.trimToEmpty(check[0]).toUpperCase())) {
-                logger.info("Usage CSV file and header appear valid");
-            } else {
-                throw new IllegalStateException("Usage CSV file does not appear valid (no header or less than 4 required columns");
-            }
-            logger.info("Loaded initial CSV files: ");
-        } catch (Exception e) {
-            String msg = "Failed to load CSVs file(s) and init the kettle pre-processor: "+e;
-            logger.error(msg);
-            throw new RuntimeException(msg, e);
         }
     }
 
