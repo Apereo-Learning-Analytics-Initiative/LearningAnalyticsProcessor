@@ -14,8 +14,10 @@
  */
 package org.apereo.lap.services;
 
+import org.apereo.lap.model.Output;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
+import org.apereo.lap.services.output.OutputHandler;
 import org.apereo.lap.services.pipeline.KettlePipelineProcessor;
 import org.apereo.lap.services.pipeline.PipelineProcessor;
 import org.slf4j.Logger;
@@ -128,7 +130,16 @@ public class ProcessingManagerService {
             }
         }
 
-        // TODO handle the outputs
+        // handle the outputs
+        List<Output> outputs = config.getOutputs();
+        for (Output output : outputs) {
+            try {
+                OutputHandler.OutputResult result = outputHandler.doOutput(output);
+                logger.info("Output complete: "+result);
+            } catch (Exception e) {
+                logger.error("Output processor ("+output+") failure: "+e);
+            }
+        }
 
         // TODO send notifications
         logger.info("Processing Complete");

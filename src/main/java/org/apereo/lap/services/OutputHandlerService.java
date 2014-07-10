@@ -14,8 +14,9 @@
  */
 package org.apereo.lap.services;
 
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.model.Output;
+import org.apereo.lap.services.output.CSVOutputHandler;
+import org.apereo.lap.services.output.OutputHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -34,24 +35,11 @@ public class OutputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(OutputHandlerService.class);
 
-    /**
-     * Defines the valid types of output the system can handle
-     */
-    public static enum OutputType {
-        CSV, STORAGE;
-        public static OutputType fromString(String str) {
-            if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
-                return CSV;
-            } else if (StringUtils.equalsIgnoreCase(str, STORAGE.name())) {
-                return STORAGE;
-            } else {
-                throw new IllegalArgumentException("output type ("+str+") does not match the valid types: "+ ArrayUtils.toString(OutputType.values()));
-            }
-        }
-    }
-
     @Resource
     ConfigurationService configuration;
+
+    @Resource
+    StorageService storage;
 
     @PostConstruct
     public void init() {
@@ -63,9 +51,23 @@ public class OutputHandlerService {
         logger.info("DESTROY");
     }
 
-    public void process() {
-        logger.info("PROCESS");
-        // TODO execute the processor
+    /**
+     * Process the output for the given Output
+     * @param output defines the requested output type
+     * @return the result of the output processing
+     * @throws java.lang.IllegalArgumentException is the inputs are bad
+     * @throws java.lang.RuntimeException if the output handler fails
+     */
+    public OutputHandler.OutputResult doOutput(Output output) {
+        assert output != null;
+        OutputHandler.OutputResult result;
+        if (Output.OutputType.CSV == output.type) {
+            CSVOutputHandler csvOutputHandler = new CSVOutputHandler(configuration, storage);
+            result = csvOutputHandler.writeOutput(output);
+        } else {
+            throw new IllegalArgumentException("No handler for output type: "+output.type);
+        }
+        return result;
     }
 
 }

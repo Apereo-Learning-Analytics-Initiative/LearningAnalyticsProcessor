@@ -14,11 +14,22 @@
  */
 package org.apereo.lap.services.output;
 
+import org.apereo.lap.services.ConfigurationService;
+import org.apereo.lap.services.StorageService;
+
 /**
  * Handles the output processing for a single target output type
  *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
 public abstract class BaseOutputHandler implements OutputHandler {
+
+    ConfigurationService configuration;
+    StorageService storage;
+
+    BaseOutputHandler(ConfigurationService configurationService, StorageService storageService) {
+        this.configuration = configurationService;
+        this.storage = storageService;
+    }
 
 }

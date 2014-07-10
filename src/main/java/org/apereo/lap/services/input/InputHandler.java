@@ -84,7 +84,7 @@ public interface InputHandler {
         public void done(int itemsCount, ArrayList<String> failures) {
             this.total = itemsCount;
             this.failures = failures;
-            this.failed = failures.size();
+            this.failed = failures != null ? failures.size() : 0;
             this.loaded = total - this.failed;
             this.endTimeMS = System.currentTimeMillis();
             this.totalTimeMS = this.endTimeMS - this.startTimeMS;

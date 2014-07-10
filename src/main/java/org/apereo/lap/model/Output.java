@@ -37,6 +37,10 @@ public class Output {
         fields = new LinkedList<>();
     }
 
+    public String getName() {
+        return type+":"+from+"->"+(to!=null?to:filename);
+    }
+
     /**
      * Create a STORAGE based output by copying
      * (copies data from temporary to persistent storage)
@@ -99,6 +103,11 @@ public class Output {
         OutputField field = new OutputField(this.type, source, null, header);
         this.fields.add(field);
         return field;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
     }
 
     /**

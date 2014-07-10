@@ -14,6 +14,8 @@
  */
 package org.apereo.lap.services.output;
 
+import org.apereo.lap.model.Output;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,12 +29,19 @@ public interface OutputHandler {
     /**
      * @return the name of the data type handled by this handler
      */
-    String getHandledType();
+    Output.OutputType getHandledType();
 
-    OutputResult writeOutput();
+    /**
+     * Process this output request
+     * @param output the output config
+     * @return the results of the output processing
+     */
+    OutputResult writeOutput(Output output);
 
     public static class OutputResult {
-        public String handledType;
+        public String name;
+        public Output.OutputType handledType;
+        public Output output;
         public long totalTimeMS;
         public long startTimeMS;
         public long endTimeMS;
@@ -41,15 +50,17 @@ public interface OutputHandler {
         public int failed = 0;
         public ArrayList<String> failures;
 
-        public OutputResult(String handledType) {
-            this.handledType = handledType;
+        public OutputResult(Output output) {
+            this.output = output;
+            this.handledType = output.type;
+            this.name = output.getName();
             startTimeMS = System.currentTimeMillis();
         }
 
         public void done(int itemsCount, ArrayList<String> failures) {
             this.total = itemsCount;
             this.failures = failures;
-            this.failed = failures.size();
+            this.failed = failures != null ? failures.size() : 0;
             this.loaded = total - this.failed;
             this.endTimeMS = System.currentTimeMillis();
             this.totalTimeMS = this.endTimeMS - this.startTimeMS;
@@ -57,7 +68,7 @@ public interface OutputHandler {
 
         @Override
         public String toString() {
-            return "OutputResult:" + handledType +
+            return "OutputResult:" + name +
                     ", total=" + total +
                     ", loaded=" + loaded +
                     ", failed=" + failed +

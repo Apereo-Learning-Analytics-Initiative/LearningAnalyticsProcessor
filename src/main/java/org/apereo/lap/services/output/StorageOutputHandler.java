@@ -23,23 +23,21 @@ import org.apereo.lap.services.StorageService;
  *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
-public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler {
+public class StorageOutputHandler extends BaseOutputHandler implements OutputHandler {
 
-    public CSVOutputHandler(ConfigurationService configurationService, StorageService storageService) {
+    public StorageOutputHandler(ConfigurationService configurationService, StorageService storageService) {
         super(configurationService, storageService);
     }
 
     @Override
     public Output.OutputType getHandledType() {
-        return Output.OutputType.CSV;
+        return Output.OutputType.STORAGE;
     }
 
     @Override
     public OutputResult writeOutput(Output output) {
-        OutputResult result = new OutputResult(output);
-        // TODO
-        result.done(0, null);
-        return result;
+        // TODO implement this
+        throw new UnsupportedOperationException("NOT IMPLEMENTED");
     }
 
 }
