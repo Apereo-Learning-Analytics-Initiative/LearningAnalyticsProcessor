@@ -30,6 +30,14 @@ public interface PipelineProcessor {
      */
     PipelineConfig.ProcessorType getProcessorType();
 
+    /**
+     * Do the actual processing for this processor (and populate the results data and temp store if needed)
+     *
+     * If there is a failure and the pipeline should be stopped then throw a RuntimeException
+     *
+     * @return the results of the processor run
+     * @throws java.lang.RuntimeException if the processor fails
+     */
     ProcessorResult process();
 
     public static class ProcessorResult {

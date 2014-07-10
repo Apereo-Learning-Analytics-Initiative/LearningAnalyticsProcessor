@@ -45,7 +45,10 @@ public class KettlePipelineProcessor implements PipelineProcessor {
     @Override
     public ProcessorResult process() {
         ProcessorResult result = new ProcessorResult(PipelineConfig.ProcessorType.KETTLE);
-        // TODO do processing here!
+
+        // TODO do processing here! (Bob)
+
+        result.done(null); // TODO populate failures
         return result;
     }
 
