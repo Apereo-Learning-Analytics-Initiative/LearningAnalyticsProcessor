@@ -18,6 +18,7 @@ import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.ConfigurationService;
+import org.apereo.lap.services.InputHandlerService;
 import org.apereo.lap.services.input.BaseInputHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +68,8 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
 
     @Override
     public String getHandledType() {
-        return getCSVFilename();
+        // convert the CSV filename into a standard collection name
+        return InputHandlerService.InputCollection.fromString(StringUtils.stripEnd(getCSVFilename(), ".csv")).name();
     }
 
     // general use functions

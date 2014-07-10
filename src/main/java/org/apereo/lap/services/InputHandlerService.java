@@ -31,6 +31,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Handles the inputs by reading the data into the temporary data storage
@@ -48,6 +49,31 @@ public class InputHandlerService {
 
     @Resource
     StorageService storage;
+
+    public static enum InputCollection {
+        PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY;
+        public static InputCollection fromString(String str) {
+            if (StringUtils.equalsIgnoreCase(str, PERSONAL.name())) {
+                return PERSONAL;
+            } else if (StringUtils.equalsIgnoreCase(str, COURSE.name())) {
+                return COURSE;
+            } else if (StringUtils.equalsIgnoreCase(str, ENROLLMENT.name())) {
+                return ENROLLMENT;
+            } else if (StringUtils.equalsIgnoreCase(str, GRADE.name())) {
+                return GRADE;
+            } else if (StringUtils.equalsIgnoreCase(str, ACTIVITY.name())) {
+                return ACTIVITY;
+            } else {
+                throw new IllegalArgumentException("collection type ("+str+") does not match the valid types: PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY");
+            }
+        }
+    }
+
+    /**
+     * Stores the map of loaded input collection names and their handlers
+     * NOTE: these are the things that were already loaded and exist in the temp data stores
+     */
+    ConcurrentHashMap<String, InputHandler> loadedInputCollections = new ConcurrentHashMap<>();
 
     @PostConstruct
     public void init() {
@@ -115,7 +141,7 @@ public class InputHandlerService {
                     logger.error(result.failures.size()+" failures while parsing "+result.handledType+":\n"+ StringUtils.join(result.failures, "\n")+"\n");
                 }
                 logger.info(result.loaded+" lines from "+result.handledType+" (out of "+result.total+" lines) inserted into temp DB (with "+result.failed+" failures): "+result);
-
+                loadedInputCollections.put(csvInputHandler.getHandledType(), csvInputHandler);
             }
 
             logger.info("Loaded initial CSV files");

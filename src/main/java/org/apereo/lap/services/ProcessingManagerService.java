@@ -79,6 +79,9 @@ public class ProcessingManagerService {
             throw new IllegalArgumentException("No PipelineConfig found for id/type: "+pipelineId);
         }
 
+        // load up the inputs
+        // TODO figure out the best way to initiate the data loads or check if they already exist (probably use the required collections set from the pipeline config and ask the input handler to load it up - InputCollection)
+
         // verify the inputs exist
         List<PipelineConfig.InputField> inputs = config.getInputs();
         boolean missingRequiredInput = false;
@@ -114,6 +117,7 @@ public class ProcessingManagerService {
         }
 
         // TODO handle the outputs
+
         // TODO send notifications
         logger.info("Processing Complete");
     }
