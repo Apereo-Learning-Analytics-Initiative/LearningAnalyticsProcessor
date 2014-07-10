@@ -14,6 +14,8 @@
  */
 package org.apereo.lap.services;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -31,6 +33,22 @@ import javax.annotation.Resource;
 public class OutputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(OutputHandlerService.class);
+
+    /**
+     * Defines the valid types of output the system can handle
+     */
+    public static enum OutputType {
+        CSV, STORAGE;
+        public static OutputType fromString(String str) {
+            if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
+                return CSV;
+            } else if (StringUtils.equalsIgnoreCase(str, STORAGE.name())) {
+                return STORAGE;
+            } else {
+                throw new IllegalArgumentException("output type ("+str+") does not match the valid types: "+ ArrayUtils.toString(OutputType.values()));
+            }
+        }
+    }
 
     @Resource
     ConfigurationService configuration;

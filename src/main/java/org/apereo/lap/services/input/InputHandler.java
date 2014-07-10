@@ -14,6 +14,7 @@
  */
 package org.apereo.lap.services.input;
 
+import org.apereo.lap.services.InputHandlerService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
@@ -27,9 +28,14 @@ import java.util.Date;
 public interface InputHandler {
 
     /**
-     * @return the name of the data type handled by this handler
+     * @return the data type handled by this handler
      */
-    String getHandledType();
+    InputHandlerService.InputType getHandledType();
+
+    /**
+     * @return the collection type handled by this handler
+     */
+    InputHandlerService.InputCollection getHandledCollection();
 
     /**
      * @return the JdbcTemplate for the temp database (get this from the StorageService)

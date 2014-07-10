@@ -12,7 +12,7 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.lap.services.csv;
+package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
 import org.apereo.lap.services.input.InputHandler;

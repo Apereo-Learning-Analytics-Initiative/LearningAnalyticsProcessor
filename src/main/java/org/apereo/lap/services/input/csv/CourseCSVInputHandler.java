@@ -12,7 +12,7 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.lap.services.csv;
+package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
 import org.apereo.lap.services.ConfigurationService;
@@ -20,20 +20,18 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Types;
 
-public class GradeCSVInputHandler extends BaseCSVInputHandler {
+public class CourseCSVInputHandler extends BaseCSVInputHandler {
 
-    public static final String FILENAME = "grade.csv";
+    public static final String FILENAME = "course.csv";
 
-    static final String SQL_INSERT = "INSERT INTO GRADE (ALTERNATIVE_ID,COURSE_ID,GRADABLE_OBJECT,CATEGORY,MAX_POINTS,EARNED_POINTS,WEIGHT,GRADE_DATE) VALUES (?,?,?,?,?,?,?,?)";
+    static final String SQL_INSERT = "INSERT INTO COURSE (COURSE_ID,SUBJECT,ENROLLMENT,ONLINE_FLAG) VALUES (?,?,?,?)";
 
     static final int[] SQL_TYPES = new int[] {
-            // ALTERNATIVE_ID,COURSE_ID,GRADABLE_OBJECT,CATEGORY,
-            Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
-            // MAX_POINTS,EARNED_POINTS,WEIGHT,GRADE_DATE
-            Types.INTEGER, Types.INTEGER, Types.FLOAT, Types.TIMESTAMP
+            // COURSE_ID,SUBJECT,ENROLLMENT,ONLINE_FLAG
+            Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.BOOLEAN
     };
 
-    public GradeCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
+    public CourseCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
 
@@ -54,7 +52,7 @@ public class GradeCSVInputHandler extends BaseCSVInputHandler {
 
     @Override
     public CSVReader readCSV(boolean reRead) {
-        return readCSV(8, "ALTERNATIVE_ID", reRead);
+        return readCSV(4, "COURSE_ID", reRead);
     }
 
     @Override
@@ -67,14 +65,10 @@ public class GradeCSVInputHandler extends BaseCSVInputHandler {
     public Object[] validateAndConvertParams(String[] csvLine) {
         assert csvLine != null && csvLine.length > 0;
         Object[] params = new Object[csvLine.length];
-        params[0] = parseString(csvLine[0], null, true, "ALTERNATIVE_ID");
-        params[1] = parseString(csvLine[1], null, true, "COURSE_ID");
-        params[2] = parseString(csvLine[2], null, true, "GRADABLE_OBJECT");
-        params[3] = parseString(csvLine[3], null, false, "CATEGORY");
-        params[4] = parseFloat(csvLine[4], 0f, 1000f, false, "MAX_POINTS"); // default 0
-        params[5] = parseFloat(csvLine[5], 0f, 1000f, false, "EARNED_POINTS"); // default 0
-        params[6] = parseFloat(csvLine[6], 0f, 1f, false, "WEIGHT");
-        params[7] = parseDateTime(csvLine[7], false, "GRADE_DATE");
+        params[0] = parseString(csvLine[0], null, true, "COURSE_ID");
+        params[1] = parseString(csvLine[1], null, false, "SUBJECT");
+        params[2] = parseInt(csvLine[2], 0, null, false, "ENROLLMENT");
+        params[3] = parseBoolean(csvLine[3], false, "ONLINE_FLAG");
         return params;
     }
 

@@ -12,7 +12,7 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.lap.services.csv;
+package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.io.FileUtils;
@@ -67,9 +67,14 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
     }
 
     @Override
-    public String getHandledType() {
+    public InputHandlerService.InputType getHandledType() {
+        return InputHandlerService.InputType.CSV;
+    }
+
+    @Override
+    public InputHandlerService.InputCollection getHandledCollection() {
         // convert the CSV filename into a standard collection name
-        return InputHandlerService.InputCollection.fromString(StringUtils.stripEnd(getCSVFilename(), ".csv")).name();
+        return InputHandlerService.InputCollection.fromString(StringUtils.stripEnd(getCSVFilename(), ".csv"));
     }
 
     // general use functions

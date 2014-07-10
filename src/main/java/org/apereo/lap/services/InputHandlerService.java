@@ -15,10 +15,11 @@
 package org.apereo.lap.services;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apereo.lap.services.csv.BaseCSVInputHandler;
-import org.apereo.lap.services.csv.CSVInputHandler;
 import org.apereo.lap.services.input.InputHandler;
+import org.apereo.lap.services.input.csv.BaseCSVInputHandler;
+import org.apereo.lap.services.input.csv.CSVInputHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -29,8 +30,7 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -49,7 +49,23 @@ public class InputHandlerService {
 
     @Resource
     StorageService storage;
+    /**
+     * Defines the valid types of input the system can handle
+     */
+    public static enum InputType {
+        CSV, STORAGE;
+        public static InputType fromString(String str) {
+            if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
+                return CSV;
+            } else {
+                throw new IllegalArgumentException("input type ("+str+") does not match the valid types: "+ ArrayUtils.toString(InputType.values()));
+            }
+        }
+    }
 
+    /**
+     * Defines the data collection sets that
+     */
     public static enum InputCollection {
         PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY;
         public static InputCollection fromString(String str) {
@@ -64,7 +80,7 @@ public class InputHandlerService {
             } else if (StringUtils.equalsIgnoreCase(str, ACTIVITY.name())) {
                 return ACTIVITY;
             } else {
-                throw new IllegalArgumentException("collection type ("+str+") does not match the valid types: PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY");
+                throw new IllegalArgumentException("collection type ("+str+") does not match the valid types: "+ ArrayUtils.toString(InputCollection.values()));
             }
         }
     }
@@ -73,11 +89,18 @@ public class InputHandlerService {
      * Stores the map of loaded input collection names and their handlers
      * NOTE: these are the things that were already loaded and exist in the temp data stores
      */
-    ConcurrentHashMap<String, InputHandler> loadedInputCollections = new ConcurrentHashMap<>();
+    Map<InputCollection, InputHandler> loadedInputCollections;
+    /**
+     * Stored the set of all loaded input types
+     */
+    Set<InputType> loadedInputTypes;
 
     @PostConstruct
     public void init() {
         logger.info("INIT");
+        loadedInputCollections = new ConcurrentHashMap<>();
+        //noinspection unchecked
+        loadedInputTypes = Collections.newSetFromMap(new ConcurrentHashMap());
         if (configuration.config.getBoolean("input.copy.samples", false)) {
             copySampleExtractCSVs();
         }
@@ -107,9 +130,50 @@ public class InputHandlerService {
     }
 
     /**
+     * Load the inputs by collection type needed for the pipeline
+     * By default we should not reload the data or reset the store
+     * @param reloadData if true, reload the inputs data even if already loaded
+     * @param resetStore if true, reset the data store
+     * @param inputCollection these collection types will be loaded
+     * @return the set of all loaded collections
+     */
+    Set<InputCollection> loadInputCollections(boolean reloadData, boolean resetStore, InputCollection... inputCollection) {
+        return null; // TODO implement this
+    }
+
+    /**
+     * @param inputType the input type to load
+     * @param resetStore if true, clear the current temp database before loading
+     * @return the loaded set of collections from this input
+     */
+    public Set<InputCollection> loadInputType(InputType inputType, boolean resetStore) {
+        // TODO handle resetStore
+        Set<InputCollection> loaded = new HashSet<>();
+        if (InputType.CSV == inputType) {
+            loaded = loadCSVs();
+            loadedInputTypes.add(InputType.CSV);
+        }
+        return loaded;
+    }
+
+    /**
+     * @return the collection of all InputCollection types which have been loaded in this input handler
+     */
+    public Collection<InputCollection> getLoadedInputCollections() {
+        return loadedInputCollections.keySet();
+    }
+
+    /**
+     * @return the collection of all input types that have been loaded
+     */
+    public Set<InputType> getLoadedInputTypes() {
+        return loadedInputTypes;
+    }
+
+    /**
      * Copies the 5 sample extract CSVs from the classpath to the inputs directory
      */
-    public void copySampleExtractCSVs() {
+    void copySampleExtractCSVs() {
         logger.info("copySampleExtractCSVs start");
         copySampleCSV("extracts/", "personal.csv");
         copySampleCSV("extracts/", "course.csv");
@@ -120,9 +184,10 @@ public class InputHandlerService {
     }
 
     /**
-     * Loads and verifies the 5 standard CSVs from the inputs directory
+     * Loads and verifies the standard CSVs from the inputs directory
      */
-    public void loadCSVs() {
+    Set<InputCollection> loadCSVs() {
+        Set<InputCollection> loaded = new HashSet<>();
         logger.info("load CSV files from: "+configuration.inputDirectory.getAbsolutePath());
         try {
             // Initialize the CSV handlers
@@ -141,15 +206,17 @@ public class InputHandlerService {
                     logger.error(result.failures.size()+" failures while parsing "+result.handledType+":\n"+ StringUtils.join(result.failures, "\n")+"\n");
                 }
                 logger.info(result.loaded+" lines from "+result.handledType+" (out of "+result.total+" lines) inserted into temp DB (with "+result.failed+" failures): "+result);
-                loadedInputCollections.put(csvInputHandler.getHandledType(), csvInputHandler);
+                loaded.add(csvInputHandler.getHandledCollection());
+                loadedInputCollections.put(csvInputHandler.getHandledCollection(), csvInputHandler);
             }
 
-            logger.info("Loaded initial CSV files");
+            logger.info("Loaded CSV files: "+loadedInputCollections.keySet());
         } catch (Exception e) {
             String msg = "Failed to load CSVs file(s): "+e;
             logger.error(msg);
             throw new RuntimeException(msg, e);
         }
+        return loaded;
     }
 
     /**
