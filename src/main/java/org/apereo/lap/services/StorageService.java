@@ -50,36 +50,33 @@ public class StorageService {
 
     @PostConstruct
     public void init() {
-        logger.info("INIT started");
-
         // Initialize the temp database connection
         tempJdbcTemplate = new JdbcTemplate(tempDataSource);
-        // JdbcTestUtils.executeSqlScript(JdbcTemplate jdbcTemplate, Resource resource, boolean continueOnError)
-
-        /*
-        tempJdbcTemplate.queryForList("SELECT * FROM COURSES");
-        tempJdbcTemplate.update(
-                "INSERT INTO COURSES (COURSE_ID,SUBJECT,COURSE_NUMBER,SECTION,ENROLLMENT,COURSE_TYPE) VALUES (?,?,?,?,?,?)",
-                "MATH_101_11111_2014","MATH","101","11111",100,"On-ground course"
-        );*/
 
         // Initialize the persistent database connection
         persistentJdbcTemplate = new JdbcTemplate(persistentDataSource);
-        /*
-        persistentJdbcTemplate.update(
-                "INSERT INTO COURSES (COURSE_ID,SUBJECT,COURSE_NUMBER,SECTION,ENROLLMENT,COURSE_TYPE) VALUES (?,?,?,?,?,?)",
-                "MATH_101_11111_2014","MATH","101","11111",100,"On-ground course"
-        );
-        */
 
-        logger.info("INIT completed: "+this);
+        logger.info("INIT");
     }
 
     @PreDestroy
     public void destroy() {
+        tempJdbcTemplate = null;
+        persistentJdbcTemplate = null;
         logger.info("DESTROY");
     }
 
+    /**
+     * Clears the temp datastore tables for data reload
+     */
+    public void resetTempStore() {
+        // doesn't really make sense to reset the persistent store
+        this.tempJdbcTemplate.execute("TRUNCATE ACTIVITY");
+        this.tempJdbcTemplate.execute("TRUNCATE GRADE");
+        this.tempJdbcTemplate.execute("TRUNCATE ENROLLMENT");
+        this.tempJdbcTemplate.execute("TRUNCATE COURSE");
+        this.tempJdbcTemplate.execute("TRUNCATE PERSONAL");
+    }
 
     /**
      * Check if a table exists and contains the given column

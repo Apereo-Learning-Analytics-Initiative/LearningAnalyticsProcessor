@@ -24,7 +24,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This is the trigger and general management point for the entire processing of a pipeline.
@@ -80,13 +82,21 @@ public class ProcessingManagerService {
         }
 
         // load up the inputs
-        // TODO figure out the best way to initiate the data loads or check if they already exist (probably use the required collections set from the pipeline config and ask the input handler to load it up - InputCollection)
+        List<PipelineConfig.InputField> inputs = config.getInputs();
+        // load in the inputs IF needed
+        Set<InputHandlerService.InputCollection> toLoad = new HashSet<>();
+        for (PipelineConfig.InputField input : inputs) {
+            toLoad.add(input.collection);
+        }
+        if (toLoad.isEmpty()) {
+            toLoad = null; // don't load anything if the model does not indicate it needs it
+        }
+        inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
 
         // verify the inputs exist
-        List<PipelineConfig.InputField> inputs = config.getInputs();
         boolean missingRequiredInput = false;
         for (PipelineConfig.InputField input : inputs) {
-            if (!storage.checkTableAndColumnExist(input.getCollection(), input.getName(), true)) {
+            if (!storage.checkTableAndColumnExist(input.getCollection().name(), input.getName(), true)) {
                 logger.warn("Missing input: "+input);
                 if (input.required) {
                     missingRequiredInput = true;

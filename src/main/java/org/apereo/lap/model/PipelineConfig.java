@@ -17,6 +17,7 @@ package org.apereo.lap.model;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.services.InputHandlerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -278,7 +279,7 @@ public class PipelineConfig {
      * A field is specified using a combination of the type and the name, for example: COURSE.COURSE_ID or PERSONAL.AGE
      */
     public static class InputField {
-        public String collection;
+        public InputHandlerService.InputCollection collection;
         public String name;
         public boolean required = false;
 
@@ -298,7 +299,7 @@ public class PipelineConfig {
             assert StringUtils.isNotBlank(parts[0]) : "InputField Collection part is blank: "+collectionAndName;
             assert StringUtils.isNotBlank(parts[1]) : "InputField Name part is blank: "+collectionAndName;
             InputField field = new InputField();
-            field.collection = parts[0];
+            field.collection = InputHandlerService.InputCollection.fromString(parts[0]);
             field.name = parts[1];
             field.required = required;
             return field;
@@ -307,7 +308,7 @@ public class PipelineConfig {
         /**
          * @return the collection for this field (e.g. PERSONAL from PERSONAL.AGE)
          */
-        public String getCollection() {
+        public InputHandlerService.InputCollection getCollection() {
             return collection;
         }
 

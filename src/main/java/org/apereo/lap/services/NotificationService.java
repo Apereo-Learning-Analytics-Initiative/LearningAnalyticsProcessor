@@ -48,7 +48,7 @@ public class NotificationService {
 
     @PostConstruct
     public void init() throws IOException {
-        logger.info("INIT complete");
+        logger.info("INIT");
     }
 
     @PreDestroy

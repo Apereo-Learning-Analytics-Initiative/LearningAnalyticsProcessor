@@ -134,11 +134,50 @@ public class InputHandlerService {
      * By default we should not reload the data or reset the store
      * @param reloadData if true, reload the inputs data even if already loaded
      * @param resetStore if true, reset the data store
-     * @param inputCollection these collection types will be loaded
-     * @return the set of all loaded collections
+     * @param inputCollections these collection types will be loaded (empty indicates that all should be loaded, null indicates none should be loaded)
+     * @return the set of all loaded collections (empty if none loaded)
      */
-    Set<InputCollection> loadInputCollections(boolean reloadData, boolean resetStore, InputCollection... inputCollection) {
-        return null; // TODO implement this
+    Set<InputCollection> loadInputCollections(boolean reloadData, boolean resetStore, Set<InputCollection> inputCollections) {
+        Set<InputCollection> loaded = new HashSet<>();
+        if (resetStore) {
+            storage.resetTempStore();
+        }
+        if (inputCollections == null) {
+            logger.info("No collections will be loaded (null inputCollection)");
+        } else {
+            // set up the set of collections to be loaded
+            Set<InputCollection> icToLoad = new LinkedHashSet<>();
+            if (inputCollections.isEmpty()) {
+                // add the complete known set
+                icToLoad.add(InputCollection.PERSONAL);
+                icToLoad.add(InputCollection.COURSE);
+                icToLoad.add(InputCollection.ENROLLMENT);
+                icToLoad.add(InputCollection.GRADE);
+                icToLoad.add(InputCollection.ACTIVITY);
+                inputCollections.addAll(icToLoad);
+            } else {
+                icToLoad.addAll(inputCollections);
+            }
+            if (!reloadData) {
+                // only load if not already loaded
+                for (InputCollection ic : inputCollections) {
+                    if (loadedInputCollections.containsKey(ic)) {
+                        // remove the ones already loaded so they are not loaded again
+                        icToLoad.remove(ic);
+                    }
+                }
+            }
+            // see what we need to load
+            if (icToLoad.isEmpty()) {
+                logger.info("No input collections to load (already loaded) from set: "+inputCollections);
+            } else {
+                // for now we only have one source to load from, might need to handle more sources later
+                Map<InputCollection, InputHandler.ReadResult> loadedResults = loadCSVs(icToLoad.toArray(new InputCollection[icToLoad.size()]));
+                loaded = loadedResults.keySet();
+                logger.info("Input collections loaded ("+loaded+") of original: "+inputCollections);
+            }
+        }
+        return loaded;
     }
 
     /**
@@ -147,10 +186,13 @@ public class InputHandlerService {
      * @return the loaded set of collections from this input
      */
     public Set<InputCollection> loadInputType(InputType inputType, boolean resetStore) {
-        // TODO handle resetStore
+        if (resetStore) {
+            storage.resetTempStore();
+        }
         Set<InputCollection> loaded = new HashSet<>();
         if (InputType.CSV == inputType) {
-            loaded = loadCSVs();
+            Map<InputCollection, InputHandler.ReadResult> loadedResults = loadCSVs();
+            loaded = loadedResults.keySet();
             loadedInputTypes.add(InputType.CSV);
         }
         return loaded;
@@ -185,36 +227,53 @@ public class InputHandlerService {
 
     /**
      * Loads and verifies the standard CSVs from the inputs directory
+     * @param inputCollections all collections to load (empty indicates that all should be loaded, null indicates none should be loaded)
+     * @return a map of all loaded collection types -> the results of the load
      */
-    Set<InputCollection> loadCSVs() {
-        Set<InputCollection> loaded = new HashSet<>();
-        logger.info("load CSV files from: "+configuration.inputDirectory.getAbsolutePath());
-        try {
-            // Initialize the CSV handlers
-            Map<String, CSVInputHandler> csvInputHandlers = findHandlers(CSVInputHandler.class);
-            logger.info("Loaded "+csvInputHandlers.size()+" CSV InputHandlers: "+csvInputHandlers.keySet());
-
-            // First we verify the CSV files
-            for (CSVInputHandler csvInputHandler : csvInputHandlers.values()) {
-                csvInputHandler.readCSV(true); // force it just in case
-                logger.info(csvInputHandler.getCSVFilename()+" file and header appear valid");
-            }
-            // Next we load the data into the temp DB
-            for (CSVInputHandler csvInputHandler : csvInputHandlers.values()) {
-                InputHandler.ReadResult result = csvInputHandler.readInputIntoDB();
-                if (!result.failures.isEmpty()) {
-                    logger.error(result.failures.size()+" failures while parsing "+result.handledType+":\n"+ StringUtils.join(result.failures, "\n")+"\n");
+    Map<InputCollection, InputHandler.ReadResult> loadCSVs(InputCollection... inputCollections) {
+        Map<InputCollection, InputHandler.ReadResult> loaded = new HashMap<>();
+        if (inputCollections == null) {
+            logger.info("Not loading any CSV files (empty inputCollections param)");
+        } else {
+            logger.info("load CSV files from: "+configuration.inputDirectory.getAbsolutePath());
+            try {
+                // Initialize the CSV handlers
+                Map<String, CSVInputHandler> csvInputHandlerMap = findHandlers(CSVInputHandler.class);
+                Collection<CSVInputHandler> csvInputHandlers = new ArrayList<>(csvInputHandlerMap.values());
+                if (inputCollections.length > 0) { // null or empty means include them all
+                    for (CSVInputHandler entry : csvInputHandlers) {
+                        if (!ArrayUtils.contains(inputCollections, entry.getHandledCollection())) {
+                            // filtering this one out
+                            csvInputHandlerMap.remove(entry.getCSVFilename());
+                        }
+                    }
+                    // rebuild it from whatever is left
+                    csvInputHandlers = csvInputHandlerMap.values();
                 }
-                logger.info(result.loaded+" lines from "+result.handledType+" (out of "+result.total+" lines) inserted into temp DB (with "+result.failed+" failures): "+result);
-                loaded.add(csvInputHandler.getHandledCollection());
-                loadedInputCollections.put(csvInputHandler.getHandledCollection(), csvInputHandler);
-            }
+                logger.info("Loaded "+csvInputHandlers.size()+" CSV InputHandlers: "+csvInputHandlerMap.keySet());
 
-            logger.info("Loaded CSV files: "+loadedInputCollections.keySet());
-        } catch (Exception e) {
-            String msg = "Failed to load CSVs file(s): "+e;
-            logger.error(msg);
-            throw new RuntimeException(msg, e);
+                // First we verify the CSV files
+                for (CSVInputHandler csvInputHandler : csvInputHandlers) {
+                    csvInputHandler.readCSV(true); // force it true just in case
+                    logger.info(csvInputHandler.getCSVFilename()+" file and header appear valid");
+                }
+                // Next we load the data into the temp DB
+                for (CSVInputHandler csvInputHandler : csvInputHandlers) {
+                    InputHandler.ReadResult result = csvInputHandler.readInputIntoDB();
+                    if (!result.failures.isEmpty()) {
+                        logger.error(result.failures.size()+" failures while parsing "+result.handledType+":\n"+ StringUtils.join(result.failures, "\n")+"\n");
+                    }
+                    logger.info(result.loaded+" lines from "+result.handledType+" (out of "+result.total+" lines) inserted into temp DB (with "+result.failed+" failures): "+result);
+                    loaded.put(csvInputHandler.getHandledCollection(), result);
+                    loadedInputCollections.put(csvInputHandler.getHandledCollection(), csvInputHandler);
+                }
+
+                logger.info("Loaded CSV files: "+loadedInputCollections.keySet());
+            } catch (Exception e) {
+                String msg = "Failed to load CSVs file(s): "+e;
+                logger.error(msg);
+                throw new RuntimeException(msg, e);
+            }
         }
         return loaded;
     }
