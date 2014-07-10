@@ -22,7 +22,10 @@ import org.apereo.lap.services.InputHandlerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -241,8 +244,8 @@ public class PipelineConfig {
         for (HierarchicalConfiguration processor : processors) {
             try {
                 String pType = processor.getString("type");
-                ProcessorType pt =  ProcessorType.fromString(pType); // IllegalArgumentException if invalid
-                if (pt == ProcessorType.KETTLE) {
+                Processor.ProcessorType pt =  Processor.ProcessorType.fromString(pType); // IllegalArgumentException if invalid
+                if (pt == Processor.ProcessorType.KETTLE) {
                     pc.addProcessor(Processor.makeKettle(processor.getString("name"), processor.getString("file")));
                 } // Add other types here as needed
             } catch (Exception e) {
@@ -255,8 +258,8 @@ public class PipelineConfig {
         for (HierarchicalConfiguration output : outputs) {
             try {
                 String oType = output.getString("type");
-                OutputType ot =  OutputType.fromString(oType); // IllegalArgumentException if invalid
-                if (ot == OutputType.CSV) {
+                Output.OutputType ot =  Output.OutputType.fromString(oType); // IllegalArgumentException if invalid
+                if (ot == Output.OutputType.CSV) {
                     Output o = Output.makeCSV(output.getString("from"), output.getString("filename"));
                     // load the output fields
                     List<HierarchicalConfiguration> outputFields = output.configurationsAt("fields.field");
@@ -264,7 +267,7 @@ public class PipelineConfig {
                         o.addFieldCSV(outputField.getString("source"), outputField.getString("header"));
                     }
                     pc.addOutput(o);
-                } else if (ot == OutputType.STORAGE) {
+                } else if (ot == Output.OutputType.STORAGE) {
                     Output o = Output.makeStorage(output.getString("from"), output.getString("to"));
                     // load the output fields
                     List<HierarchicalConfiguration> outputFields = output.configurationsAt("fields.field");
@@ -337,184 +340,4 @@ public class PipelineConfig {
         }
     }
 
-    /**
-     * Defines a pipeline processor.
-     * This is where all the work in the pipeline happens.
-     */
-    public static class Processor {
-        public String name;
-        public ProcessorType type;
-        public String filename;
-
-        private Processor() {}
-
-        /**
-         * Create a Pentaho Kettle based processor object
-         * @param name the name of this part of the processor (mostly for logging and visuals)
-         * @param filename the complete path (or relative from the pipelines directory) to the kettle ktr or kjb xml file
-         * @return the processor object
-         */
-        public static Processor makeKettle(String name, String filename) {
-            assert StringUtils.isNotBlank(name);
-            assert StringUtils.isNotBlank(filename);
-            Processor obj = new Processor();
-            obj.type = ProcessorType.KETTLE;
-            obj.name = name;
-            obj.filename = filename;
-            return obj;
-        }
-
-        @Override
-        public String toString() {
-            return "Processor{" +
-                    type + ", name='" + name + '\'' +
-                    ", filename='" + filename + '\'' +
-                    '}';
-        }
-    }
-
-    /**
-     * Represents the possible processor types
-     */
-    public static enum ProcessorType {
-        /**
-         * A Pentaho Kettle based processor
-         */
-        KETTLE;
-        static ProcessorType fromString(String str) {
-            if (StringUtils.equalsIgnoreCase(str, KETTLE.name())) {
-                return KETTLE;
-            } else {
-                throw new IllegalArgumentException("processor type ("+str+") does not match the valid types: KETTLE");
-            }
-        }
-    }
-
-    /**
-     * Represents a type of output from a pipeline
-     * The processed data from a pipeline is flushed completely after it completes
-     * so the outputs allow some data to be saved
-     */
-    public static class Output {
-        public OutputType type;
-        public String from;
-        public String to;
-        public String filename;
-        public List<OutputField> fields;
-
-        private Output() {
-            fields = new LinkedList<>();
-        }
-
-        /**
-         * Create a STORAGE based output by copying
-         * (copies data from temporary to persistent storage)
-         * @param from the name of the Table or Collection in the temporary storage to copy from
-         * @param to the name of the Table or Collection in the persistent storage to copy to
-         * @return the output object
-         */
-        public static Output makeStorage(String from, String to) {
-            assert StringUtils.isNotBlank(from);
-            assert StringUtils.isNotBlank(to);
-            Output obj = new Output();
-            obj.type = OutputType.STORAGE;
-            obj.from = from;
-            obj.to = to;
-            return obj;
-        }
-
-        /**
-         * Create a STORAGE based output by copying data from temporary storage to a CSV
-         * @param from the name of the Table or Collection in the temporary storage to copy from
-         * @param filename the name of the CSV file to copy into
-         * @return the output object
-         */
-        public static Output makeCSV(String from, String filename) {
-            assert StringUtils.isNotBlank(from);
-            assert StringUtils.isNotBlank(filename);
-            Output obj = new Output();
-            obj.type = OutputType.CSV;
-            obj.from = from;
-            obj.filename = filename;
-            return obj;
-        }
-
-
-        /**
-         * Adds an output field to place in the persistent storage from the temporary storage
-         * @param source the name of the temp storage field (e.g. AGE)
-         * @param target the name of the persistent storage field (e.g. USER_ID_ALT)
-         * @return the output field object
-         */
-        public OutputField addFieldStorage(String source, String target) {
-            if (this.type != OutputType.STORAGE) {
-                throw new IllegalStateException("Can only add Storage fields to a STORAGE type object, this type is: "+this.type);
-            }
-            OutputField field = new OutputField(this.type, source, target, null);
-            this.fields.add(field);
-            return field;
-        }
-
-        /**
-         * Adds an output field to place in a CSV file
-         * @param source the name of the temp storage field (e.g. PERSONAL.AGE)
-         * @param header the name of the CSV header for this field
-         * @return the output field object
-         */
-        public OutputField addFieldCSV(String source, String header) {
-            if (this.type != OutputType.CSV) {
-                throw new IllegalStateException("Can only add CSV fields to a CSV type object, this type is: "+this.type);
-            }
-            OutputField field = new OutputField(this.type, source, null, header);
-            this.fields.add(field);
-            return field;
-        }
-    }
-
-    /**
-     * Represents a single field of output for a pipeline
-     *
-     * Can output to persistent storage or a CSV file (for now)
-     */
-    public static class OutputField {
-        public OutputType type;
-        public String source;
-        public String target;
-        public String header;
-
-        protected OutputField() {}
-
-        protected OutputField(OutputType type, String source, String target, String header) {
-            assert type != null;
-            assert source != null;
-            this.type = type;
-            this.source = source;
-            this.target = target;
-            this.header = header;
-        }
-    }
-
-    /**
-     * Represents the possible output types
-     */
-    public static enum OutputType {
-        /**
-         * Output into the persistent storage
-         * (tables/collections must already be defined)
-         */
-        STORAGE,
-        /**
-         * Output into a CSV file in the default location
-         */
-        CSV;
-        static OutputType fromString(String str) {
-            if (StringUtils.equalsIgnoreCase(str, STORAGE.name())) {
-                return STORAGE;
-            } else if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
-                return CSV;
-            } else {
-                throw new IllegalArgumentException("Output type ("+str+") does not match the valid types: CSV,STORAGE");
-            }
-        }
-    }
 }

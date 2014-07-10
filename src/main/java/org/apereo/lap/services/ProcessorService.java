@@ -28,7 +28,7 @@ import javax.annotation.Resource;
 import java.io.InputStream;
 
 /**
- * Handles the merging of the data inputs and processing in kettle with the selected PMML
+ * @deprecated This class will be deleted
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
@@ -44,11 +44,7 @@ public class ProcessorService {
 
     @PostConstruct
     public void init() {
-        logger.info("INIT started");
-        // TODO load up config
-
-        // TODO init kettle
-        logger.info("INIT completed");
+        logger.info("INIT");
     }
 
     @PreDestroy
@@ -57,10 +53,9 @@ public class ProcessorService {
     }
 
     public void loadPMML() {
-        // TOOD init weka PMML
+        // init weka PMML
         try {
             InputStream pmml = ProcessorService.class.getClassLoader().getResourceAsStream("pmml/oaai.marist.pmml.xml");
-            // TODO - allow pmml file path override / config
             PMMLModel model = PMMLFactory.getPMMLModel(pmml);
             logger.info("Loaded PMML: "+model);
             if (model instanceof PMMLClassifier) {
@@ -75,11 +70,6 @@ public class ProcessorService {
         } catch (Exception e) {
             throw new RuntimeException("Failed to load pmml file and init the classifier: "+e, e);
         }
-    }
-
-    public void process() {
-        logger.info("PROCESS");
-        // TODO execute the processor
     }
 
 }

@@ -15,6 +15,7 @@
 package org.apereo.lap.services;
 
 import org.apereo.lap.model.PipelineConfig;
+import org.apereo.lap.model.Processor;
 import org.apereo.lap.services.pipeline.KettlePipelineProcessor;
 import org.apereo.lap.services.pipeline.PipelineProcessor;
 import org.slf4j.Logger;
@@ -111,9 +112,9 @@ public class ProcessingManagerService {
         inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
 
         // start the pipeline processors
-        List<PipelineConfig.Processor> processors = config.getProcessors();
-        for (PipelineConfig.Processor processorConfig : processors) {
-            if (PipelineConfig.ProcessorType.KETTLE == processorConfig.type) {
+        List<Processor> processors = config.getProcessors();
+        for (Processor processorConfig : processors) {
+            if (Processor.ProcessorType.KETTLE == processorConfig.type) {
                 logger.info("Processing KETTLE pipeline (" + pipelineId + "): " + processorConfig);
                 KettlePipelineProcessor kpp = new KettlePipelineProcessor(config, processorConfig, null);
                 try {

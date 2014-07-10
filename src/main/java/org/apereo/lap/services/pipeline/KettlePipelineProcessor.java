@@ -15,6 +15,7 @@
 package org.apereo.lap.services.pipeline;
 
 import org.apereo.lap.model.PipelineConfig;
+import org.apereo.lap.model.Processor;
 
 import java.io.File;
 
@@ -27,10 +28,10 @@ public class KettlePipelineProcessor implements PipelineProcessor {
 
     String name;
     PipelineConfig config;
-    PipelineConfig.Processor processorConfig;
+    Processor processorConfig;
     File kettleXMLFile;
 
-    public KettlePipelineProcessor(PipelineConfig config, PipelineConfig.Processor processorConfig, File kettleXMLFile) {
+    public KettlePipelineProcessor(PipelineConfig config, Processor processorConfig, File kettleXMLFile) {
         this.config = config;
         this.processorConfig = processorConfig;
         this.name = processorConfig.name;
@@ -38,13 +39,13 @@ public class KettlePipelineProcessor implements PipelineProcessor {
     }
 
     @Override
-    public PipelineConfig.ProcessorType getProcessorType() {
-        return PipelineConfig.ProcessorType.KETTLE;
+    public Processor.ProcessorType getProcessorType() {
+        return Processor.ProcessorType.KETTLE;
     }
 
     @Override
     public ProcessorResult process() {
-        ProcessorResult result = new ProcessorResult(PipelineConfig.ProcessorType.KETTLE);
+        ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE);
 
         // TODO do processing here! (Bob)
 

@@ -14,7 +14,7 @@
  */
 package org.apereo.lap.services.pipeline;
 
-import org.apereo.lap.model.PipelineConfig;
+import org.apereo.lap.model.Processor;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public interface PipelineProcessor {
     /**
      * @return the name of the processor type handled by this processor
      */
-    PipelineConfig.ProcessorType getProcessorType();
+    Processor.ProcessorType getProcessorType();
 
     /**
      * Do the actual processing for this processor (and populate the results data and temp store if needed)
@@ -41,13 +41,13 @@ public interface PipelineProcessor {
     ProcessorResult process();
 
     public static class ProcessorResult {
-        public PipelineConfig.ProcessorType type;
+        public Processor.ProcessorType type;
         public long totalTimeMS;
         public long startTimeMS;
         public long endTimeMS;
         public ArrayList<String> failures;
 
-        public ProcessorResult(PipelineConfig.ProcessorType processorType) {
+        public ProcessorResult(Processor.ProcessorType processorType) {
             this.type = processorType;
             startTimeMS = System.currentTimeMillis();
         }
