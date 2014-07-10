@@ -106,6 +106,7 @@ public class ConfigurationService {
         Resource pipelineSample = resourceLoader.getResource("classpath:pipelines/sample.xml");
         PipelineConfig plcfg = processPipelineConfigFile(pipelineSample.getFile());
         if (plcfg != null) {
+            plcfg.setConfiguration(this);
             pipelineConfigs.put(plcfg.getType(), plcfg);
         }
         // then try to load the external ones
@@ -115,6 +116,7 @@ public class ConfigurationService {
                 if (fileEntry.isFile()) {
                     PipelineConfig filePLC = processPipelineConfigFile(pipelineSample.getFile());
                     if (filePLC != null) {
+                        filePLC.setConfiguration(this);
                         pipelineConfigs.put(filePLC.getType(), filePLC);
                     }
                 }

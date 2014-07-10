@@ -83,15 +83,6 @@ public class ProcessingManagerService {
 
         // load up the inputs
         List<PipelineConfig.InputField> inputs = config.getInputs();
-        // load in the inputs IF needed
-        Set<InputHandlerService.InputCollection> toLoad = new HashSet<>();
-        for (PipelineConfig.InputField input : inputs) {
-            toLoad.add(input.collection);
-        }
-        if (toLoad.isEmpty()) {
-            toLoad = null; // don't load anything if the model does not indicate it needs it
-        }
-        inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
 
         // verify the inputs exist
         boolean missingRequiredInput = false;
@@ -108,6 +99,16 @@ public class ProcessingManagerService {
         } else {
             logger.info("All required inputs exist for type: "+pipelineId);
         }
+
+        // load in the inputs IF needed
+        Set<InputHandlerService.InputCollection> toLoad = new HashSet<>();
+        for (PipelineConfig.InputField input : inputs) {
+            toLoad.add(input.collection);
+        }
+        if (toLoad.isEmpty()) {
+            toLoad = null; // don't load anything if the model does not indicate it needs it
+        }
+        inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
 
         // start the pipeline processors
         List<PipelineConfig.Processor> processors = config.getProcessors();

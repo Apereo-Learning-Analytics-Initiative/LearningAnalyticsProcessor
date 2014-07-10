@@ -17,6 +17,7 @@ package org.apereo.lap.model;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.InputHandlerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,6 +67,11 @@ public class PipelineConfig {
      * The list of reasons why the loaded pipeline config is not valid
      */
     List<String> invalidReasons;
+
+    /**
+     * The LAP config service
+     */
+    ConfigurationService configuration;
 
     private PipelineConfig() {
         stats = new ConcurrentHashMap<>();
@@ -145,6 +151,14 @@ public class PipelineConfig {
 
     public List<Output> getOutputs() {
         return outputs;
+    }
+
+    public ConfigurationService getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(ConfigurationService configuration) {
+        this.configuration = configuration;
     }
 
     /**
@@ -264,8 +278,6 @@ public class PipelineConfig {
                 logger.warn("Unable to load output ("+output.toString()+") (skipping it): "+e);
             }
         }
-
-        // TODO build the config from the XML data
         return pc;
     }
 
