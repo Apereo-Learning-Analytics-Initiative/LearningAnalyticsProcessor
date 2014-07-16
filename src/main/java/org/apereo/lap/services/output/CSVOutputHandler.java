@@ -19,9 +19,11 @@ import org.apache.commons.io.IOUtils;
 import org.apereo.lap.model.Output;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
+import java.util.Map;
 
 /**
  * Handles the output processing for a single target output type
@@ -58,8 +60,26 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
                 throw new IllegalStateException("Cannot write to the CSV file: " + csv.getAbsolutePath());
             }
         }
+
         // make sure we can read from the temp data source
-        // TODO
+        try {
+            int rows = storage.getTempJdbcTemplate().queryForObject(output.makeTempDBCheckSQL(), Integer.class);
+            logger.info("Preparing to output "+rows+" from temp table "+output.from+" to "+output.filename);
+        } catch (Exception e) {
+            throw new RuntimeException("Failure while trying to count the output data rows: "+output.makeTempDBCheckSQL());
+        }
+
+        Map<String, String> sourceToHeaderMap = output.makeSourceTargetMap();
+        String selectSQL = output.makeTempDBSelectSQL();
+
+        // fetch the data to write to CSV
+        SqlRowSet rowSet;
+        try {
+            // for really large data we probably need to use http://docs.spring.io/spring/docs/3.0.x/api/org/springframework/jdbc/core/RowCallbackHandler.html
+            rowSet = storage.getTempJdbcTemplate().queryForRowSet(selectSQL);
+        } catch (Exception e) {
+            throw new RuntimeException("Failure while trying to retrieve the output data set: "+selectSQL);
+        }
 
         // write data to the CSV file
         int lines = 0;
@@ -68,12 +88,26 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
             pw = new PrintWriter(new BufferedWriter(new FileWriter(csv, true)));
             CSVWriter writer = new CSVWriter(pw);
 
+            // write out the header
+            writer.writeNext( sourceToHeaderMap.values().toArray(new String[sourceToHeaderMap.size()]) );
+
+            // write out the rows
+            while (rowSet.next()) {
+                String[] rowVals = new String[sourceToHeaderMap.size()];
+                for (int i = 0; i < sourceToHeaderMap.size(); i++) {
+                    rowVals[i] = (rowSet.wasNull() ? null : rowSet.getString(i+1));
+                }
+                writer.writeNext(rowVals);
+            }
+
+            /*
             // TODO real writing here
             writer.writeNext(new String[] {"AZ","testing","CSV","1"});
             writer.writeNext(new String[] {"AZ","testing","CSV","2"});
             writer.writeNext(new String[] {"AZ","testing","CSV","3"});
             lines = 3;
             // TODO end fake stuff
+            */
 
             IOUtils.closeQuietly(writer);
         } catch (Exception e) {
