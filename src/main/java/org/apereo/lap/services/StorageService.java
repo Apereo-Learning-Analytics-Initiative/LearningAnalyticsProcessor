@@ -71,11 +71,11 @@ public class StorageService {
      */
     public void resetTempStore() {
         // doesn't really make sense to reset the persistent store
-        this.tempJdbcTemplate.execute("TRUNCATE ACTIVITY");
-        this.tempJdbcTemplate.execute("TRUNCATE GRADE");
-        this.tempJdbcTemplate.execute("TRUNCATE ENROLLMENT");
-        this.tempJdbcTemplate.execute("TRUNCATE COURSE");
-        this.tempJdbcTemplate.execute("TRUNCATE PERSONAL");
+        this.tempJdbcTemplate.execute("TRUNCATE TABLE ACTIVITY");
+        this.tempJdbcTemplate.execute("TRUNCATE TABLE GRADE");
+        this.tempJdbcTemplate.execute("TRUNCATE TABLE ENROLLMENT");
+        this.tempJdbcTemplate.execute("TRUNCATE TABLE COURSE");
+        this.tempJdbcTemplate.execute("TRUNCATE TABLE PERSONAL");
     }
 
     /**
