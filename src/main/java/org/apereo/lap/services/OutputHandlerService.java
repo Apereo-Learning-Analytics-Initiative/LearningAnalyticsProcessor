@@ -15,15 +15,15 @@
 package org.apereo.lap.services;
 
 import org.apereo.lap.model.Output;
-import org.apereo.lap.services.output.CSVOutputHandler;
 import org.apereo.lap.services.output.OutputHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Handles the the data outputs from the pipeline (including the generation of output formats)
@@ -35,11 +35,8 @@ public class OutputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(OutputHandlerService.class);
 
-    @Resource
-    ConfigurationService configuration;
-
-    @Resource
-    StorageService storage;
+    @Autowired
+    List<OutputHandler> outputHandlers;
 
     @PostConstruct
     public void init() {
@@ -56,16 +53,28 @@ public class OutputHandlerService {
      * @param output defines the requested output type
      * @return the result of the output processing
      * @throws java.lang.IllegalArgumentException is the inputs are bad
+     * @throws java.lang.IllegalStateException is the result is invalid (null)
      * @throws java.lang.RuntimeException if the output handler fails
      */
     public OutputHandler.OutputResult doOutput(Output output) {
         assert output != null;
-        OutputHandler.OutputResult result;
-        if (Output.OutputType.CSV == output.type) {
-            CSVOutputHandler csvOutputHandler = new CSVOutputHandler(configuration, storage);
-            result = csvOutputHandler.writeOutput(output);
-        } else {
+        OutputHandler.OutputResult result = null;
+        boolean found = false;
+        for (OutputHandler outputHandler : outputHandlers) {
+            // NOTE: more than one output handler is allowed per type but only the last ones results will be passed back
+            if (output.type == outputHandler.getHandledType()) {
+                try {
+                    result = outputHandler.writeOutput(output);
+                    found = true;
+                } catch (Exception e) {
+                    throw new RuntimeException("Handler failed during processing: "+output.type+" :"+e, e);
+                }
+            }
+        }
+        if (!found) {
             throw new IllegalArgumentException("No handler for output type: "+output.type);
+        } else if (result == null) {
+            throw new IllegalStateException("Handler returned null result: "+output.type);
         }
         return result;
     }

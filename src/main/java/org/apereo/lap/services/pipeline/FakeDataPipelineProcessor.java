@@ -12,34 +12,47 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.lap.services.output;
+package org.apereo.lap.services.pipeline;
 
-import org.apereo.lap.model.Output;
+import org.apereo.lap.model.PipelineConfig;
+import org.apereo.lap.model.Processor;
 import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.StorageService;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+
 /**
- * Handles the output processing for a single target output type
+ * This processor just produces Fake data in a "FAKE_DATA" table
+ * The table has these fields: ID (auto), USERNAME, SCORE, INFO
  *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
 @Component
-public class StorageOutputHandler extends BaseOutputHandler implements OutputHandler {
+public class FakeDataPipelineProcessor implements PipelineProcessor {
 
-    public StorageOutputHandler(ConfigurationService configurationService, StorageService storageService) {
-        super(configurationService, storageService);
+    @Resource
+    ConfigurationService config;
+
+    @Resource
+    StorageService storage;
+
+    int recordsToFake = 100;
+
+    @Override
+    public Processor.ProcessorType getProcessorType() {
+        return Processor.ProcessorType.FAKE_DATA;
     }
 
     @Override
-    public Output.OutputType getHandledType() {
-        return Output.OutputType.STORAGE;
-    }
+    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
+        ProcessorResult result = new ProcessorResult(Processor.ProcessorType.FAKE_DATA);
 
-    @Override
-    public OutputResult writeOutput(Output output) {
-        // TODO implement this
-        throw new UnsupportedOperationException("NOT IMPLEMENTED");
+        // create the temp table
+
+
+        result.done(null);
+        return result;
     }
 
 }

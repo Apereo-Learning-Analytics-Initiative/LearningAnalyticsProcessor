@@ -18,10 +18,10 @@ import org.apereo.lap.model.Output;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.apereo.lap.services.output.OutputHandler;
-import org.apereo.lap.services.pipeline.KettlePipelineProcessor;
 import org.apereo.lap.services.pipeline.PipelineProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -60,6 +60,8 @@ public class ProcessingManagerService {
     @Resource
     OutputHandlerService outputHandler;
 
+    @Autowired
+    List<PipelineProcessor> pipelineProcessors;
 
     @PostConstruct
     public void init() {
@@ -117,16 +119,20 @@ public class ProcessingManagerService {
             // start the pipeline processors
             List<Processor> processors = config.getProcessors();
             for (Processor processorConfig : processors) {
-                if (Processor.ProcessorType.KETTLE == processorConfig.type) {
-                    logger.info("Processing KETTLE pipeline (" + pipelineId + "): " + processorConfig);
-                    KettlePipelineProcessor kpp = new KettlePipelineProcessor(config, processorConfig, null);
-                    try {
-                        PipelineProcessor.ProcessorResult result = kpp.process();
-                        logger.info("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") complete: "+result);
-                    } catch (Exception e) {
-                        throw new RuntimeException("KETTLE pipeline (" + pipelineId + ") processor ("+processorConfig.name+") failed: " + e);
+                boolean matched = false;
+                for (PipelineProcessor pipelineProcessor : pipelineProcessors) {
+                    if (pipelineProcessor.getProcessorType() == processorConfig.type) {
+                        matched = true;
+                        try {
+                            PipelineProcessor.ProcessorResult result = pipelineProcessor.process(config, processorConfig);
+                            logger.info(pipelineProcessor.getProcessorType()+" pipeline (" + pipelineId + ") processor ("+processorConfig.name+") complete: "+result);
+                        } catch (Exception e) {
+                            throw new RuntimeException(pipelineProcessor.getProcessorType()+" pipeline (" + pipelineId + ") processor ("+processorConfig.name+") failed: " + e);
+                        }
                     }
-                } else {
+                }
+                if (!matched) {
+                    // no processor found for the requested type
                     throw new IllegalArgumentException("Cannot handle processor of type: "+processorConfig.type);
                 }
             }

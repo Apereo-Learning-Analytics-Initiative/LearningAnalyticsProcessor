@@ -14,6 +14,7 @@
  */
 package org.apereo.lap.services.pipeline;
 
+import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 
 import java.util.ArrayList;
@@ -35,10 +36,12 @@ public interface PipelineProcessor {
      *
      * If there is a failure and the pipeline should be stopped then throw a RuntimeException
      *
+     * @param pipelineConfig the pipeline config
+     * @param processorConfig the processor config (within the pipeline config)
      * @return the results of the processor run
      * @throws java.lang.RuntimeException if the processor fails
      */
-    ProcessorResult process();
+    ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig);
 
     public static class ProcessorResult {
         public Processor.ProcessorType type;

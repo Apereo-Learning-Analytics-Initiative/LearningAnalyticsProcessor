@@ -16,26 +16,36 @@ package org.apereo.lap.services.pipeline;
 
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
+import org.apereo.lap.services.ConfigurationService;
+import org.apereo.lap.services.StorageService;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Handles the pipeline processing for Kettle processors
  *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
+@Component
 public class KettlePipelineProcessor implements PipelineProcessor {
 
-    String name;
-    PipelineConfig config;
-    Processor processorConfig;
-    File kettleXMLFile;
+    @Resource
+    ConfigurationService config;
 
-    public KettlePipelineProcessor(PipelineConfig config, Processor processorConfig, File kettleXMLFile) {
-        this.config = config;
-        this.processorConfig = processorConfig;
-        this.name = processorConfig.name;
-        this.kettleXMLFile = kettleXMLFile;
+    @Resource
+    StorageService storage;
+
+    @Resource
+    ResourceLoader resourceLoader;
+
+    @PostConstruct
+    public void init() throws IOException {
+        // Do any init here you need to (but note this is for the service and not each run)
     }
 
     @Override
@@ -44,8 +54,15 @@ public class KettlePipelineProcessor implements PipelineProcessor {
     }
 
     @Override
-    public ProcessorResult process() {
+    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
+        String name = processorConfig.name;
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE);
+        try {
+            // TODO maybe make this read the kettle files from the pipelines dir as well?
+            File kettleXMLFile = resourceLoader.getResource("classpath:"+processorConfig.filename).getFile();
+        } catch (IOException e) {
+            throw new RuntimeException("FAIL! (to read kettle file): "+processorConfig.filename+" :"+e, e);
+        }
 
         // TODO do processing here! (Bob)
 

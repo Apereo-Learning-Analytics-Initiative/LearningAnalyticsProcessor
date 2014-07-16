@@ -58,10 +58,16 @@ public class Processor {
         /**
          * A Pentaho Kettle based processor
          */
-        KETTLE;
+        KETTLE,
+        /**
+         * This processor just produces Fake data in a "FAKE_DATA" table
+         */
+        FAKE_DATA;
         static ProcessorType fromString(String str) {
             if (StringUtils.equalsIgnoreCase(str, KETTLE.name())) {
                 return KETTLE;
+            } else if (StringUtils.equalsIgnoreCase(str, FAKE_DATA.name())) {
+                    return FAKE_DATA;
             } else {
                 throw new IllegalArgumentException("processor type ("+str+") does not match the valid types: KETTLE");
             }

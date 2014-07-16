@@ -14,16 +14,33 @@
  */
 package org.apereo.lap.services.output;
 
+import au.com.bytecode.opencsv.CSVWriter;
+import org.apache.commons.io.IOUtils;
 import org.apereo.lap.model.Output;
 import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.StorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.io.*;
 
 /**
  * Handles the output processing for a single target output type
  *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
+@Component
 public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler {
+
+    static final Logger logger = LoggerFactory.getLogger(CSVOutputHandler.class);
+
+    @Resource
+    ConfigurationService config;
+
+    @Resource
+    StorageService storage;
 
     public CSVOutputHandler(ConfigurationService configurationService, StorageService storageService) {
         super(configurationService, storageService);
@@ -37,7 +54,42 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
     @Override
     public OutputResult writeOutput(Output output) {
         OutputResult result = new OutputResult(output);
+        // make sure we can write the CSV
+        File csv = new File(configuration.getOutputDirectory(), output.filename);
+        boolean created;
+        try {
+            created = csv.createNewFile();
+            if (logger.isDebugEnabled()) logger.debug("CSV file created ("+created+"): "+csv.getAbsolutePath());
+        } catch (IOException e) {
+            throw new IllegalStateException("Exception creating CSV file: "+csv.getAbsolutePath()+": "+e, e);
+        }
+        if (!created && csv.isFile() && csv.canRead() && csv.canWrite()) {
+            // file exists and we can write to it
+            if (logger.isDebugEnabled()) logger.debug("CSV file is writeable: "+csv.getAbsolutePath());
+        } else {
+            throw new IllegalStateException("Cannot write to the CSV file: "+csv.getAbsolutePath());
+        }
+        // make sure we can read from the temp data source
         // TODO
+
+        // write data to the CSV file
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(new BufferedWriter(new FileWriter(csv, true)));
+            CSVWriter writer = new CSVWriter(pw);
+
+            // TODO real writing here
+            writer.writeNext(new String[] {"AZ","testing","CSV","1"});
+            writer.writeNext(new String[] {"AZ","testing","CSV","2"});
+            writer.writeNext(new String[] {"AZ","testing","CSV","3"});
+
+            IOUtils.closeQuietly(writer);
+        } catch (Exception e) {
+            throw new RuntimeException("Failure writing output to CSV ("+csv.getAbsolutePath()+"): "+e, e);
+        } finally {
+            IOUtils.closeQuietly(pw);
+        }
+
         result.done(0, null);
         return result;
     }

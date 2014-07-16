@@ -35,6 +35,7 @@ public interface OutputHandler {
      * Process this output request
      * @param output the output config
      * @return the results of the output processing
+     * @throws java.lang.IllegalStateException if the output source will not accept the write
      */
     OutputResult writeOutput(Output output);
 
