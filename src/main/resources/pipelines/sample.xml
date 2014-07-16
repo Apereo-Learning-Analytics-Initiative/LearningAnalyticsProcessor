@@ -84,11 +84,11 @@
     -->
     <output>
       <type>STORAGE</type><!-- from Temp to Persistent Storage -->
-      <from>RISK</from><!-- the temporary storage collection/table -->
+      <from>FAKE_DATA</from><!-- the temporary storage collection/table -->
       <to>RESULTS</to><!-- the persistent storage collection/table -->
       <fields>
         <field>
-          <source>ALTERNATIVE_ID</source>
+          <source>USERNAME</source>
           <target>USER_ID_ALT</target>
         </field>
         <field>
@@ -99,12 +99,12 @@
     </output>
     <output>
       <type>CSV</type>
-      <from>RISK</from><!-- the temporary storage collection/table -->
+      <from>FAKE_DATA</from><!-- the temporary storage collection/table -->
       <filename>students_at_risk.csv</filename>
       <fields>
         <field>
           <header>USER_ID_ALT</header>
-          <source>ALTERNATIVE_ID</source>
+          <source>USERNAME</source>
         </field>
         <field>
           <header>RISK_PERCENTAGE</header>

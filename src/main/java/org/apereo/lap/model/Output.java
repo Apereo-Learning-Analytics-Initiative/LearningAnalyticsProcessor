@@ -16,8 +16,7 @@ package org.apereo.lap.model;
 
 import org.apache.commons.lang.StringUtils;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Represents a type of output from a pipeline
@@ -74,6 +73,59 @@ public class Output {
         return obj;
     }
 
+    /**
+     * @return SQL to run for this output to count the item to output and verify table is accessible
+     */
+    public String makeTempDBCheckSQL() {
+        return "SELECT COUNT(*) as COUNT FROM "+this.from;
+    }
+
+    /**
+     * @return SQL to run for this output to retrieve the columns
+     */
+    public String makeTempDBSelectSQL() {
+        List<String> columns = makeSourceColumns();
+        for (int i = 0; i < columns.size(); i++) {
+            String column = columns.get(i);
+            columns.set(i, column+" AS "+StringUtils.upperCase(column));
+        }
+        String columnsSQL = StringUtils.join(columns, ",");
+        return "SELECT "+columnsSQL+" FROM "+this.from;
+    }
+
+    /**
+     * @return the list of source columns from the temp DB (in defined order)
+     */
+    public List<String> makeSourceColumns() {
+        ArrayList<String> columns = new ArrayList<>();
+        for (OutputField field : fields) {
+            columns.add(field.source);
+        }
+        return columns;
+    }
+
+    /**
+     * @return the list of target names (in defined order) - e.g. table column names or CSV headers
+     */
+    public List<String> makeTargetNames() {
+        ArrayList<String> columns = new ArrayList<>();
+        for (OutputField field : fields) {
+            columns.add(field.getTarget());
+        }
+        return columns;
+    }
+
+    /**
+     * @return the ordered map of source -> target (e.g. source column name to target header name),
+     *      the source name is uppercase to match with the select template
+     */
+    public Map<String, String> makeSourceTargetMap() {
+        LinkedHashMap<String, String> sourceTarget = new LinkedHashMap<>();
+        for (OutputField field : fields) {
+            sourceTarget.put(StringUtils.upperCase(field.source), field.getTarget());
+        }
+        return sourceTarget;
+    }
 
     /**
      * Adds an output field to place in the persistent storage from the temporary storage
@@ -155,5 +207,10 @@ public class Output {
             this.target = target;
             this.header = header;
         }
+
+        public String getTarget() {
+            return this.target != null ? this.target : this.header;
+        }
     }
+
 }
