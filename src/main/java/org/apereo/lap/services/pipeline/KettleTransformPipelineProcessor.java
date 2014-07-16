@@ -16,32 +16,23 @@ package org.apereo.lap.services.pipeline;
 
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
-import org.apereo.lap.services.ConfigurationService;
-import org.apereo.lap.services.StorageService;
-import org.springframework.core.io.ResourceLoader;
+import org.pentaho.di.core.KettleEnvironment;
+import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.trans.Trans;
+import org.pentaho.di.trans.TransMeta;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Handles the pipeline processing for Kettle processors
  *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
+ * @author Robert Long (rlong @ unicon.net)
  */
 @Component
-public class KettleTransformPipelineProcessor implements PipelineProcessor {
-
-    @Resource
-    ConfigurationService config;
-
-    @Resource
-    StorageService storage;
-
-    @Resource
-    ResourceLoader resourceLoader;
+public class KettleTransformPipelineProcessor extends KettleBasePipelineProcessor {
 
     @PostConstruct
     public void init() {
@@ -57,15 +48,19 @@ public class KettleTransformPipelineProcessor implements PipelineProcessor {
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
         String name = processorConfig.name;
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_TRANSFORM);
-        File kettleXMLFile;
-        try {
-            // TODO maybe make this read the kettle files from the pipelines dir as well?
-            kettleXMLFile = resourceLoader.getResource("classpath:"+processorConfig.filename).getFile();
-        } catch (IOException e) {
-            throw new RuntimeException("FAIL! (to read kettle file): "+processorConfig.filename+" :"+e, e);
-        }
+        File kettleXMLFile = getKettleXmlFile(processorConfig.filename);
 
         // TODO do processing here! (Bob)
+        try {
+            KettleEnvironment.init(false);
+            EnvUtil.environmentInit();
+            TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
+
+            Trans trans = new Trans(transMeta);
+            trans.beginProcessing();
+            trans.waitUntilFinished();
+        } catch(Exception e) {
+        }
 
         result.done(0, null); // TODO populate count and failures
         return result;
