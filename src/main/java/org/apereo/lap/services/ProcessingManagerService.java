@@ -47,7 +47,7 @@ import java.util.Set;
 @Component
 public class ProcessingManagerService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ProcessingManagerService.class);
+    static final Logger logger = LoggerFactory.getLogger(ProcessingManagerService.class);
 
     @Resource
     ConfigurationService configuration;
@@ -82,13 +82,13 @@ public class ProcessingManagerService {
         logger.info("Pipeline Initialized: "+pipelineId);
         try {
             // load up pipeline config (by id)
-            PipelineConfig config = configuration.getPipelineConfig(pipelineId);
-            if (config == null) {
+            PipelineConfig pipelineConfig = configuration.getPipelineConfig(pipelineId);
+            if (pipelineConfig == null) {
                 throw new IllegalArgumentException("No PipelineConfig found for id/type: "+pipelineId);
             }
 
             // load up the inputs
-            List<PipelineConfig.InputField> inputs = config.getInputs();
+            List<PipelineConfig.InputField> inputs = pipelineConfig.getInputs();
 
             // verify the inputs exist
             boolean missingRequiredInput = false;
@@ -117,14 +117,15 @@ public class ProcessingManagerService {
             inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
 
             // start the pipeline processors
-            List<Processor> processors = config.getProcessors();
+            List<Processor> processors = pipelineConfig.getProcessors();
+            logger.info("Pipeline ("+pipelineId+") running "+processors.size()+" processors");
             for (Processor processorConfig : processors) {
                 boolean matched = false;
                 for (PipelineProcessor pipelineProcessor : pipelineProcessors) {
                     if (pipelineProcessor.getProcessorType() == processorConfig.type) {
                         matched = true;
                         try {
-                            PipelineProcessor.ProcessorResult result = pipelineProcessor.process(config, processorConfig);
+                            PipelineProcessor.ProcessorResult result = pipelineProcessor.process(pipelineConfig, processorConfig);
                             logger.info(pipelineProcessor.getProcessorType()+" pipeline (" + pipelineId + ") processor ("+processorConfig.name+") complete: "+result);
                         } catch (Exception e) {
                             throw new RuntimeException(pipelineProcessor.getProcessorType()+" pipeline (" + pipelineId + ") processor ("+processorConfig.name+") failed: " + e);
@@ -138,7 +139,7 @@ public class ProcessingManagerService {
             }
 
             // handle the outputs
-            List<Output> outputs = config.getOutputs();
+            List<Output> outputs = pipelineConfig.getOutputs();
             boolean outputSuccess = false;
             for (Output output : outputs) {
                 try {

@@ -18,6 +18,8 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.StorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +34,8 @@ import java.util.Random;
  */
 @Component
 public class FakeDataPipelineProcessor implements PipelineProcessor {
+
+    static final Logger logger = LoggerFactory.getLogger(FakeDataPipelineProcessor.class);
 
     @Resource
     ConfigurationService config;
@@ -55,6 +59,7 @@ public class FakeDataPipelineProcessor implements PipelineProcessor {
                 "  UNIQUE KEY USERNAME_UNIQUE (USERNAME)" +
                 ")"
         );
+        logger.info("INIT: created temp table FAKE_DATA");
     }
 
     int randInt(int min, int max) {
@@ -75,6 +80,9 @@ public class FakeDataPipelineProcessor implements PipelineProcessor {
         if (recordsToFake < 0) {
             recordsToFake = 100;
         }
+
+        // clear the temp table
+        storage.getTempJdbcTemplate().execute("TRUNCATE TABLE FAKE_DATA");
 
         // insert fake data into the table
         for (int i = 0; i < recordsToFake; i++) {

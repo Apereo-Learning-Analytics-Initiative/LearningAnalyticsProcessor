@@ -14,7 +14,21 @@ Important links
 Build
 -----
 Build and execute for testing purposes:
-mvn clean install jetty:run
+
+    mvn clean install jetty:run
+
+Debug
+-----
+If you want to run the app in debugging mode you can run it like this and attach a remote debugger to port 8000:
+
+    mvnDebug clean install jetty:run
+
+Deploy
+------
+Deploy the application war file into your tomcat or other servlet container 
+after building it using this command (the war will be in the target directory):
+
+    mvn clean install
 
 Contacts
 --------

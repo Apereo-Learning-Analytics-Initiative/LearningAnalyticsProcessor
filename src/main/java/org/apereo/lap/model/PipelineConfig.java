@@ -253,6 +253,7 @@ public class PipelineConfig {
                     p.name = processor.getString("name");
                     p.count = processor.getInt("count");
                     pc.addProcessor(p);
+                    logger.warn("FAKE DATA processor loaded ("+p.toString()+")");
                 } // Add other types here as needed
             } catch (Exception e) {
                 // skip this processor and warn

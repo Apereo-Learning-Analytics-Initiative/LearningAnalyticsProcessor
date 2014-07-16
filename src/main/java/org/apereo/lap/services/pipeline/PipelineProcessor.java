@@ -18,6 +18,7 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Handles the pipeline processing for a specific type of processor (e.g. Kettle)
@@ -69,6 +70,17 @@ public interface PipelineProcessor {
             }
             this.endTimeMS = System.currentTimeMillis();
             this.totalTimeMS = this.endTimeMS - this.startTimeMS;
+        }
+
+        @Override
+        public String toString() {
+            return "ProcessorResult{" +
+                    "type=" + type +
+                    ", outputCount=" + outputCount +
+                    ", failures=" + failures.size() +
+                    ", runSecs=" + String.format("%.2f", totalTimeMS/1000f) +
+                    ", started=" + new Date(startTimeMS) +
+                    '}';
         }
     }
 
