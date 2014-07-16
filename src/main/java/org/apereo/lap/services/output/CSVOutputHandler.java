@@ -100,15 +100,6 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
                 writer.writeNext(rowVals);
             }
 
-            /*
-            // TODO real writing here
-            writer.writeNext(new String[] {"AZ","testing","CSV","1"});
-            writer.writeNext(new String[] {"AZ","testing","CSV","2"});
-            writer.writeNext(new String[] {"AZ","testing","CSV","3"});
-            lines = 3;
-            // TODO end fake stuff
-            */
-
             IOUtils.closeQuietly(writer);
         } catch (Exception e) {
             throw new RuntimeException("Failure writing output to CSV ("+csv.getAbsolutePath()+"): "+e, e);
