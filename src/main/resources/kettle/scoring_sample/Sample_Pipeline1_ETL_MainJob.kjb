@@ -19,8 +19,8 @@
     <access>Native</access>
     <database>oaai</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f289b20abf7cce85ab8b</password>
+    <username>oaai</username>
+    <password>oaai</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -79,6 +79,22 @@
       <nr>0</nr>
       <xloc>54</xloc>
       <yloc>42</yloc>
+      </entry>
+      <entry>
+      <name>Create temp Bio tables</name>
+      <description/>
+      <type>SQL</type>
+      <sql>&#xd;&#xa;--------------------------------------------------------------------------------------&#xd;&#xa;-- Kettle doesn&#x27;t seem to accept multiline comments. Hence using single line comments&#xd;&#xa;-- CREATE A temporary table DISTINCT_PERSONAL from the base BIO file.   &#xd;&#xa;-- Check and eliminate duplicate entries if any by using Row number option.&#xd;&#xa;--------------------------------------------------------------------------------&#xd;&#xa;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE DISTINCT_PERSONAL SELECT DISTINCT &#x2a; FROM PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL ADD PRIMARY KEY &#x28;ALTERNATIVE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL add APTITUDE_SCORE int&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>LAP_connect</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>333</xloc>
+      <yloc>154</yloc>
       </entry>
     <entry>
       <name>Calculate Aptitude Score</name>
@@ -369,22 +385,6 @@
       <yloc>463</yloc>
       </entry>
     <entry>
-      <name>Create temp Bio tables</name>
-      <description/>
-      <type>SQL</type>
-      <sql>&#xd;&#xa;--------------------------------------------------------------------------------------&#xd;&#xa;-- Kettle doesn&#x27;t seem to accept multiline comments. Hence using single line comments&#xd;&#xa;-- CREATE A temporary table DISTINCT_PERSONAL from the base BIO file.   &#xd;&#xa;-- Check and eliminate duplicate entries if any by using Row number option.&#xd;&#xa;--------------------------------------------------------------------------------&#xd;&#xa;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE DISTINCT_PERSONAL SELECT DISTINCT &#x2a; FROM PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL ADD PRIMARY KEY &#x28;ALTERNATIVE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL add APTITUDE_SCORE int&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>LAP_connect</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>333</xloc>
-      <yloc>154</yloc>
-      </entry>
-    <entry>
       <name>AssignWeights_Grades</name>
       <description/>
       <type>JOB</type>
@@ -548,7 +548,7 @@
       <name>Course Enrollment Details</name>
       <description/>
       <type>SQL</type>
-      <sql>----------------------------------------------------------------------&#xd;&#xa;-- Eliminates duplicate entries for Course and Enrollment. This was necessary as there were &#xd;&#xa;-- repetitions in the csv files received. We use row numbers to identify&#xd;&#xa;-- duplicates and write distinct entries to a different table. &#xd;&#xa;-----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE &#x3b;&#xd;&#xa;CREATE TABLE DISTINCT_COURSE &#xd;&#xa;SELECT a.ALTERNATIVE_ID, a.COURSE_ID,b.SUBJECT, b.ENROLLMENT, b.ONLINE_FLAG, a.FINAL_GRADE, a.WITHDRAWAL_DATE &#xd;&#xa;FROM ENROLLMENT a, COURSE b&#xd;&#xa;WHERE a.COURSE_ID &#x3d; b.COURSE_ID &#x3b;	&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_COURSE ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
+      <sql>----------------------------------------------------------------------&#xd;&#xa;-- Eliminates duplicate entries for Course and Enrollment. This was necessary as there were &#xd;&#xa;-- repetitions in the csv files received. We use row numbers to identify&#xd;&#xa;-- duplicates and write distinct entries to a different table. &#xd;&#xa;-----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE &#x3b;&#xd;&#xa;CREATE TABLE DISTINCT_COURSE &#xd;&#xa;SELECT a.ALTERNATIVE_ID, a.COURSE_ID,b.SUBJECT, b.ENROLLMENT, b.ONLINE_FLAG, a.FINAL_GRADE, a.WITHDRAWL_DATE &#xd;&#xa;FROM ENROLLMENT a, COURSE b&#xd;&#xa;WHERE a.COURSE_ID &#x3d; b.COURSE_ID &#x3b;	&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_COURSE ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>

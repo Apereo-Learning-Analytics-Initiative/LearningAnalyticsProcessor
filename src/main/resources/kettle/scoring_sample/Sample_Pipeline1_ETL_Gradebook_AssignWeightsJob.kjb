@@ -19,8 +19,8 @@
     <access>Native</access>
     <database>oaai</database>
     <port>3306</port>
-    <username>root</username>
-    <password>Encrypted 2be98afc86aa7f289b20abf7cce85ab8b</password>
+    <username>oaai</username>
+    <password>oaai</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
