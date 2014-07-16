@@ -73,7 +73,6 @@
       <name>AZ-fake-data-sample</name>
       <count>100</count>
     </processor>
-      <file>kettle-sample/sample.kjb</file>
   </processors>
 
   <outputs>
