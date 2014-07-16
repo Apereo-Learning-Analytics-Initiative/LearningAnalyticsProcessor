@@ -248,7 +248,7 @@ public class PipelineConfig {
                 if (pt == Processor.ProcessorType.KETTLE_JOB) {
                     pc.addProcessor(Processor.makeKettleJob(processor.getString("name"), processor.getString("file")));
                 } else if (pt == Processor.ProcessorType.KETTLE_TRANSFORM) {
-                        pc.addProcessor(Processor.makeKettleTransform(processor.getString("name"), processor.getString("file")));
+                    pc.addProcessor(Processor.makeKettleTransform(processor.getString("name"), processor.getString("file")));
                 } else if (pt == Processor.ProcessorType.FAKE_DATA) {
                     Processor p = new Processor();
                     p.type = Processor.ProcessorType.FAKE_DATA;
