@@ -50,16 +50,19 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
         } catch (IOException e) {
             throw new IllegalStateException("Exception creating CSV file: "+csv.getAbsolutePath()+": "+e, e);
         }
-        if (!created && csv.isFile() && csv.canRead() && csv.canWrite()) {
-            // file exists and we can write to it
-            if (logger.isDebugEnabled()) logger.debug("CSV file is writeable: "+csv.getAbsolutePath());
-        } else {
-            throw new IllegalStateException("Cannot write to the CSV file: "+csv.getAbsolutePath());
+        if (!created) { // created file is going to be a writeable file so no check needed
+            if (csv.isFile() && csv.canRead() && csv.canWrite()) {
+                // file exists and we can write to it
+                if (logger.isDebugEnabled()) logger.debug("CSV file is writeable: "+csv.getAbsolutePath());
+            } else {
+                throw new IllegalStateException("Cannot write to the CSV file: " + csv.getAbsolutePath());
+            }
         }
         // make sure we can read from the temp data source
         // TODO
 
         // write data to the CSV file
+        int lines = 0;
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter(csv, true)));
@@ -69,6 +72,8 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
             writer.writeNext(new String[] {"AZ","testing","CSV","1"});
             writer.writeNext(new String[] {"AZ","testing","CSV","2"});
             writer.writeNext(new String[] {"AZ","testing","CSV","3"});
+            lines = 3;
+            // TODO end fake stuff
 
             IOUtils.closeQuietly(writer);
         } catch (Exception e) {
@@ -77,7 +82,7 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
             IOUtils.closeQuietly(pw);
         }
 
-        result.done(0, null);
+        result.done(lines, null);
         return result;
     }
 
