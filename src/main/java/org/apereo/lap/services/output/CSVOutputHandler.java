@@ -17,13 +17,10 @@ package org.apereo.lap.services.output;
 import au.com.bytecode.opencsv.CSVWriter;
 import org.apache.commons.io.IOUtils;
 import org.apereo.lap.model.Output;
-import org.apereo.lap.services.ConfigurationService;
-import org.apereo.lap.services.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.io.*;
 
 /**
@@ -35,16 +32,6 @@ import java.io.*;
 public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler {
 
     static final Logger logger = LoggerFactory.getLogger(CSVOutputHandler.class);
-
-    @Resource
-    ConfigurationService config;
-
-    @Resource
-    StorageService storage;
-
-    public CSVOutputHandler(ConfigurationService configurationService, StorageService storageService) {
-        super(configurationService, storageService);
-    }
 
     @Override
     public Output.OutputType getHandledType() {

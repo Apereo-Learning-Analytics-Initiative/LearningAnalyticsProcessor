@@ -68,6 +68,11 @@
       <name>kettle_sample_2</name>
       <file>kettle-sample/sample.kjb</file>
     </processor>
+    <processor>
+      <type>fake_data</type>
+      <name>AZ-fake-data-sample</name>
+      <count>100</count>
+    </processor>
   </processors>
 
   <outputs>

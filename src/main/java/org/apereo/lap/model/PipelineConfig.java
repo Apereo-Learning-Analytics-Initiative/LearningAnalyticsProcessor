@@ -247,6 +247,12 @@ public class PipelineConfig {
                 Processor.ProcessorType pt =  Processor.ProcessorType.fromString(pType); // IllegalArgumentException if invalid
                 if (pt == Processor.ProcessorType.KETTLE) {
                     pc.addProcessor(Processor.makeKettle(processor.getString("name"), processor.getString("file")));
+                } else if (pt == Processor.ProcessorType.FAKE_DATA) {
+                    Processor p = new Processor();
+                    p.type = Processor.ProcessorType.FAKE_DATA;
+                    p.name = processor.getString("name");
+                    p.count = processor.getInt("count");
+                    pc.addProcessor(p);
                 } // Add other types here as needed
             } catch (Exception e) {
                 // skip this processor and warn

@@ -45,6 +45,7 @@ public interface PipelineProcessor {
 
     public static class ProcessorResult {
         public Processor.ProcessorType type;
+        public int outputCount;
         public long totalTimeMS;
         public long startTimeMS;
         public long endTimeMS;
@@ -55,8 +56,17 @@ public interface PipelineProcessor {
             startTimeMS = System.currentTimeMillis();
         }
 
-        public void done(ArrayList<String> failures) {
-            this.failures = failures;
+        /**
+         * @param outputCount the number of items output (e.g. rows written to DB)
+         * @param failures List of String representing all failures that occurred (1 entry per failure)
+         */
+        public void done(int outputCount, ArrayList<String> failures) {
+            this.outputCount = outputCount;
+            if (failures == null) {
+                this.failures = new ArrayList<>(0);
+            } else {
+                this.failures = failures;
+            }
             this.endTimeMS = System.currentTimeMillis();
             this.totalTimeMS = this.endTimeMS - this.startTimeMS;
         }

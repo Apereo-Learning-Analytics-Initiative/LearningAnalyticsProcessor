@@ -44,7 +44,7 @@ public class KettlePipelineProcessor implements PipelineProcessor {
     ResourceLoader resourceLoader;
 
     @PostConstruct
-    public void init() throws IOException {
+    public void init() {
         // Do any init here you need to (but note this is for the service and not each run)
     }
 
@@ -66,7 +66,7 @@ public class KettlePipelineProcessor implements PipelineProcessor {
 
         // TODO do processing here! (Bob)
 
-        result.done(null); // TODO populate failures
+        result.done(0, null); // TODO populate count and failures
         return result;
     }
 

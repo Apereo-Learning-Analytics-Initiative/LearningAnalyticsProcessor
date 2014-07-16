@@ -17,6 +17,8 @@ package org.apereo.lap.services.output;
 import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.StorageService;
 
+import javax.annotation.Resource;
+
 /**
  * Handles the output processing for a single target output type
  *
@@ -24,12 +26,10 @@ import org.apereo.lap.services.StorageService;
  */
 public abstract class BaseOutputHandler implements OutputHandler {
 
+    @Resource
     ConfigurationService configuration;
-    StorageService storage;
 
-    BaseOutputHandler(ConfigurationService configurationService, StorageService storageService) {
-        this.configuration = configurationService;
-        this.storage = storageService;
-    }
+    @Resource
+    StorageService storage;
 
 }

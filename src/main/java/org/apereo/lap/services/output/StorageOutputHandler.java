@@ -15,8 +15,6 @@
 package org.apereo.lap.services.output;
 
 import org.apereo.lap.model.Output;
-import org.apereo.lap.services.ConfigurationService;
-import org.apereo.lap.services.StorageService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,10 +24,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class StorageOutputHandler extends BaseOutputHandler implements OutputHandler {
-
-    public StorageOutputHandler(ConfigurationService configurationService, StorageService storageService) {
-        super(configurationService, storageService);
-    }
 
     @Override
     public Output.OutputType getHandledType() {

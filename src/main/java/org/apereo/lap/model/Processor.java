@@ -21,9 +21,19 @@ import org.apache.commons.lang.StringUtils;
  * This is where all the work in the pipeline happens.
  */
 public class Processor {
-    public String name;
     public ProcessorType type;
+    /**
+     * The name of this processor (for printing mostly)
+     */
+    public String name;
+    /**
+     * The filename related to this processor (e.g. kettle kjb)
+     */
     public String filename;
+    /**
+     * The configured count (usually for iterations)
+     */
+    public int count;
 
     Processor() {}
 
