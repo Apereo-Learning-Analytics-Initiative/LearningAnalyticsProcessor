@@ -245,8 +245,10 @@ public class PipelineConfig {
             try {
                 String pType = processor.getString("type");
                 Processor.ProcessorType pt =  Processor.ProcessorType.fromString(pType); // IllegalArgumentException if invalid
-                if (pt == Processor.ProcessorType.KETTLE) {
-                    pc.addProcessor(Processor.makeKettle(processor.getString("name"), processor.getString("file")));
+                if (pt == Processor.ProcessorType.KETTLE_JOB) {
+                    pc.addProcessor(Processor.makeKettleJob(processor.getString("name"), processor.getString("file")));
+                } else if (pt == Processor.ProcessorType.KETTLE_TRANSFORM) {
+                        pc.addProcessor(Processor.makeKettleTransform(processor.getString("name"), processor.getString("file")));
                 } else if (pt == Processor.ProcessorType.FAKE_DATA) {
                     Processor p = new Processor();
                     p.type = Processor.ProcessorType.FAKE_DATA;

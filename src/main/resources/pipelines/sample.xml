@@ -59,12 +59,12 @@
      They will execute in the order they are included
     -->
     <processor>
-      <type>kettle</type>
+      <type>kettle_transform</type>
       <name>kettle_sample_1</name>
       <file>kettle/sample1.ktr.xml</file>
     </processor>
     <processor>
-      <type>kettle</type>
+      <type>kettle_job</type>
       <name>kettle_sample_2</name>
       <file>kettle/sample2.kjb.xml</file>
     </processor>

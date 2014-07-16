@@ -14,6 +14,7 @@
  */
 package org.apereo.lap.model;
 
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -43,13 +44,19 @@ public class Processor {
      * @param filename the complete path (or relative from the pipelines directory) to the kettle ktr or kjb xml file
      * @return the processor object
      */
-    public static Processor makeKettle(String name, String filename) {
+    public static Processor makeKettleJob(String name, String filename) {
         assert StringUtils.isNotBlank(name);
         assert StringUtils.isNotBlank(filename);
         Processor obj = new Processor();
-        obj.type = ProcessorType.KETTLE;
+        obj.type = ProcessorType.KETTLE_JOB;
         obj.name = name;
         obj.filename = filename;
+        return obj;
+    }
+
+    public static Processor makeKettleTransform(String name, String filename) {
+        Processor obj = makeKettleJob(name, filename);
+        obj.type = ProcessorType.KETTLE_TRANSFORM;
         return obj;
     }
 
@@ -66,20 +73,26 @@ public class Processor {
      */
     public static enum ProcessorType {
         /**
-         * A Pentaho Kettle based processor
+         * A Pentaho Kettle Job processor
          */
-        KETTLE,
+        KETTLE_JOB,
+        /**
+         * A Pentaho Kettle transform processor
+         */
+        KETTLE_TRANSFORM,
         /**
          * This processor just produces Fake data in a "FAKE_DATA" table
          */
         FAKE_DATA;
         static ProcessorType fromString(String str) {
-            if (StringUtils.equalsIgnoreCase(str, KETTLE.name())) {
-                return KETTLE;
-            } else if (StringUtils.equalsIgnoreCase(str, FAKE_DATA.name())) {
-                    return FAKE_DATA;
+            if (StringUtils.equalsIgnoreCase(str, FAKE_DATA.name())) {
+                return FAKE_DATA;
+            } else if (StringUtils.equalsIgnoreCase(str, KETTLE_JOB.name())) {
+                    return KETTLE_JOB;
+            } else if (StringUtils.equalsIgnoreCase(str, KETTLE_TRANSFORM.name())) {
+                return KETTLE_TRANSFORM;
             } else {
-                throw new IllegalArgumentException("processor type ("+str+") does not match the valid types: KETTLE");
+                throw new IllegalArgumentException("processor type ("+str+") does not match the valid types: "+ ArrayUtils.toString(values()));
             }
         }
     }

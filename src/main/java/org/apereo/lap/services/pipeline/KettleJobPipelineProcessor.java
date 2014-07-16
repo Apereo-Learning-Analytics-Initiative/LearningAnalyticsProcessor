@@ -19,19 +19,18 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.StorageService;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.stereotype.Component;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.util.EnvUtil;
-import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.Job;
+import org.pentaho.di.job.JobMeta;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -41,7 +40,7 @@ import java.util.Properties;
  * @author Robert Long (rlong @ unicon.net)
  */
 @Component
-public class KettlePipelineProcessor implements PipelineProcessor {
+public class KettleJobPipelineProcessor implements PipelineProcessor {
 
     @Resource
     ConfigurationService configuration;
@@ -59,13 +58,13 @@ public class KettlePipelineProcessor implements PipelineProcessor {
 
     @Override
     public Processor.ProcessorType getProcessorType() {
-        return Processor.ProcessorType.KETTLE;
+        return Processor.ProcessorType.KETTLE_JOB;
     }
 
     @Override
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
         String name = processorConfig.name;
-        ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE);
+        ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_JOB);
         File kettleXMLFile;
 
         try {
