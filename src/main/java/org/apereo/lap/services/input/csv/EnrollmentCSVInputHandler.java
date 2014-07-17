@@ -24,10 +24,10 @@ public class EnrollmentCSVInputHandler extends BaseCSVInputHandler {
 
     public static final String FILENAME = "enrollment.csv";
 
-    static final String SQL_INSERT = "INSERT INTO ENROLLMENT (ALTERNATIVE_ID,COURSE_ID,FINAL_GRADE,WITHDRAWL_DATE) VALUES (?,?,?,?)";
+    static final String SQL_INSERT = "INSERT INTO ENROLLMENT (ALTERNATIVE_ID,COURSE_ID,FINAL_GRADE,WITHDRAWAL_DATE) VALUES (?,?,?,?)";
 
     static final int[] SQL_TYPES = new int[] {
-            // ALTERNATIVE_ID,COURSE_ID,FINAL_GRADE,WITHDRAWL_DATE
+            // ALTERNATIVE_ID,COURSE_ID,FINAL_GRADE,WITHDRAWAL_DATE
             Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP
     };
 
@@ -68,7 +68,7 @@ public class EnrollmentCSVInputHandler extends BaseCSVInputHandler {
         params[0] = parseString(csvLine[0], null, true, "ALTERNATIVE_ID");
         params[1] = parseString(csvLine[1], null, true, "COURSE_ID");
         params[2] = parseString(csvLine[2], new String[] {"A","A-","B+","B","B-","C+","C","C-","D+","D","D-","F","I","W"}, false, "FINAL_GRADE");
-        params[3] = parseDateTime(csvLine[3], false, "WITHDRAWL_DATE");
+        params[3] = parseDateTime(csvLine[3], false, "WITHDRAWAL_DATE");
         return params;
     }
 
