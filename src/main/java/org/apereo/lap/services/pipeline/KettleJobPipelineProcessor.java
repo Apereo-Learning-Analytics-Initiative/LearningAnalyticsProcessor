@@ -17,7 +17,6 @@ package org.apereo.lap.services.pipeline;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
-import org.pentaho.di.core.RowMetaAndData;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
@@ -26,7 +25,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * Handles the pipeline processing for Kettle processors
@@ -39,7 +37,7 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
 
     @PostConstruct
     public void init() {
-        // Do any init here you need to (but note
+        // Do any init here you need to (but note this is for the service and not each run)
     }
 
     @Override
@@ -51,7 +49,7 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
         String name = processorConfig.name;
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_JOB);
-        File kettleXMLFile = getKettleXmlFile(processorConfig.filename);
+        File kettleXMLFile = getFile(processorConfig.filename);
 
         // TODO do processing here! (Bob)
         try {

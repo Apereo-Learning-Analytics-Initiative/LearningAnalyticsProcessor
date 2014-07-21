@@ -14,16 +14,25 @@
  */
 package org.apereo.lap.services.pipeline;
 
+import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
+import org.pentaho.di.core.Result;
 import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.scoring.WekaScoringMeta;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
+import org.pentaho.di.trans.step.StepMeta;
+import org.pentaho.di.trans.steps.jsoninput.JsonInputMeta;
+import org.pentaho.di.trans.steps.jsonoutput.JsonOutputMeta;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+
 import java.io.File;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Handles the pipeline processing for Kettle processors
@@ -37,6 +46,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
     @PostConstruct
     public void init() {
         // Do any init here you need to (but note this is for the service and not each run)
+        setKettlePluginsDirectory();
     }
 
     @Override
@@ -46,23 +56,48 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
 
     @Override
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
-        String name = processorConfig.name;
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_TRANSFORM);
-        File kettleXMLFile = getKettleXmlFile(processorConfig.filename);
+        File kettleXMLFile = getFile(processorConfig.filename);
 
-        // TODO do processing here! (Bob)
         try {
             KettleEnvironment.init(false);
             EnvUtil.environmentInit();
             TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
 
+            List<StepMeta> stepMetaList = transMeta.getSteps();
+            for (StepMeta stepMeta : stepMetaList) {
+                logger.info("Processing step: "+stepMeta.getName()+" in file: "+kettleXMLFile.getAbsolutePath());
+                stepMeta.setChangedDate(new Date());
+                File newFile = null;
+
+                // set the file path to the one necessary, based on step type
+                if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonInput")){
+                    newFile = getFile("/kettle/sample1_input.json");
+                    JsonInputMeta jsonInputMeta = (JsonInputMeta) stepMeta.getStepMetaInterface();
+                    jsonInputMeta.setFileName(new String[]{newFile.getAbsolutePath()});
+                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonOutput")) {
+                    newFile = getFile("/kettle/sample1_output.json");
+                    JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
+                    jsonOutputMeta.setFileName(newFile.getAbsolutePath());
+                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {
+                    newFile = getFile("/kettle/Marist_OAAI_ACADEMIC_RISK.xml");
+                    WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
+                    wekaScoringMeta.setSerializedModelFileName(newFile.getAbsolutePath());
+                }
+            }
+
             Trans trans = new Trans(transMeta);
+            trans.calculateBatchIdAndDateRange();
             trans.beginProcessing();
+            trans.execute(new String[]{});
             trans.waitUntilFinished();
-        } catch(Exception e) {
+
+            Result transResult = trans.getResult();
+            result.done((int) transResult.getNrErrors(), null);
+        } catch (Exception e) {
+            // swallow exceptions for now...
         }
 
-        result.done(0, null); // TODO populate count and failures
         return result;
     }
 

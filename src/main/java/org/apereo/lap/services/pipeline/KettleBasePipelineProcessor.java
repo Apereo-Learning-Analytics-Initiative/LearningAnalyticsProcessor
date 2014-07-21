@@ -25,6 +25,8 @@ import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.StorageService;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.trans.HasDatabasesInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ResourceLoader;
 
 /**
@@ -33,6 +35,8 @@ import org.springframework.core.io.ResourceLoader;
  * @author Robert Long (rlong @ unicon.net)
  */
 public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
+
+    static final Logger logger = LoggerFactory.getLogger(KettleBasePipelineProcessor.class);
 
     @Resource
     ConfigurationService configuration;
@@ -43,14 +47,14 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     @Resource
     ResourceLoader resourceLoader;
 
-    protected File getKettleXmlFile(String filename) {
+    protected File getFile(String filename) {
         try {
             // TODO maybe make this read the kettle files from the pipelines dir as well?
-            File kettleXMLFile = resourceLoader.getResource("classpath:"+filename).getFile();
+            File file = resourceLoader.getResource("classpath:"+filename).getFile();
 
-            return kettleXMLFile;
+            return file;
         } catch (IOException e) {
-            throw new RuntimeException("FAIL! (to read kettle file): "+filename+" :"+e, e);
+            throw new RuntimeException("FAIL! (to read kettle file): "+filename+": "+e, e);
         }
     }
 
@@ -82,4 +86,15 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
         //jobMeta.addDatabase(dm);
         meta.addOrReplaceDatabase(dm);
     }
+
+    protected void setKettlePluginsDirectory() {
+        try {
+            String plugins = resourceLoader.getResource("classpath:kettle/plugins").getURI().toString();
+            System.setProperty("KETTLE_PLUGIN_BASE_FOLDERS", plugins);
+            logger.info("Setting kettle plugins base directory to: "+plugins);
+        } catch (IOException e) {
+            logger.error("Error setting Kettle plugins directory. Error: " + e, e);
+        }
+    }
+
 }
