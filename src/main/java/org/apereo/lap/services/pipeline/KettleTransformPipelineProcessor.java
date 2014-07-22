@@ -76,7 +76,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     JsonInputMeta jsonInputMeta = (JsonInputMeta) stepMeta.getStepMetaInterface();
                     jsonInputMeta.setFileName(new String[]{newFile.getAbsolutePath()});
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonOutput")) {
-                    newFile = getFile("/kettle/sample1_output.json");
+                    newFile = createOutputFile("sample1_output");
                     JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
                     jsonOutputMeta.setFileName(newFile.getAbsolutePath());
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {

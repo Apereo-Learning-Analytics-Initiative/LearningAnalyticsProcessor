@@ -58,6 +58,27 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
         }
     }
 
+    protected File createOutputFile(String filename) {
+        File outputFile = new File(configuration.getOutputDirectory(), filename);
+        boolean created;
+        try {
+            created = outputFile.createNewFile();
+            if (logger.isDebugEnabled()) logger.debug("Output file created ("+created+"): "+outputFile.getAbsolutePath());
+        } catch (IOException e) {
+            throw new IllegalStateException("Exception creating output file: "+outputFile.getAbsolutePath()+": "+e, e);
+        }
+        if (!created) { // created file is going to be a writable file so no check needed
+            if (outputFile.isFile() && outputFile.canRead() && outputFile.canWrite()) {
+                // file exists and we can write to it
+                if (logger.isDebugEnabled()) logger.debug("Output file is writable: "+outputFile.getAbsolutePath());
+            } else {
+                throw new IllegalStateException("Cannot write to the output file: " + outputFile.getAbsolutePath());
+            }
+        }
+
+        return outputFile;
+    }
+
     protected void addNewDatabaseConnection(HasDatabasesInterface meta, String connectionName) {
         Configuration config = configuration.getConfig();
 
