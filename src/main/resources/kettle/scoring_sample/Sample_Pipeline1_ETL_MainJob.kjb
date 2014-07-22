@@ -19,8 +19,8 @@
     <access>Native</access>
     <database>oaai</database>
     <port>3306</port>
-    <username>oaai</username>
-    <password>oaai</password>
+    <username>root</username>
+    <password>Encrypted 2be98afc86aa7f289b20abf7cce85ab8b</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -77,30 +77,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>54</xloc>
-      <yloc>42</yloc>
-      </entry>
-      <entry>
-      <name>Create temp Bio tables</name>
-      <description/>
-      <type>SQL</type>
-      <sql>&#xd;&#xa;--------------------------------------------------------------------------------------&#xd;&#xa;-- Kettle doesn&#x27;t seem to accept multiline comments. Hence using single line comments&#xd;&#xa;-- CREATE A temporary table DISTINCT_PERSONAL from the base BIO file.   &#xd;&#xa;-- Check and eliminate duplicate entries if any by using Row number option.&#xd;&#xa;--------------------------------------------------------------------------------&#xd;&#xa;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE DISTINCT_PERSONAL SELECT DISTINCT &#x2a; FROM PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL ADD PRIMARY KEY &#x28;ALTERNATIVE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL add APTITUDE_SCORE int&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>LAP_connect</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>333</xloc>
-      <yloc>154</yloc>
+      <xloc>161</xloc>
+      <yloc>46</yloc>
       </entry>
     <entry>
       <name>Calculate Aptitude Score</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------------------&#xd;&#xa;-- Queries to convert ACT_Composite score to equivalent SAT scores.&#xd;&#xa;-- &#xd;&#xa;---------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE DISTINCT_PERSONAL&#xd;&#xa;   SET APTITUDE_SCORE &#x3d;&#xd;&#xa;   CASE &#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;36 THEN 1600&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;35 THEN 1560&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;34 THEN 1510&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;33 THEN 1460&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;32 THEN 1420&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;31 THEN 1380&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;30 THEN 1340&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;29 THEN 1300&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;28 THEN 1260&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;27 THEN 1220&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;26 THEN 1190&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;25 THEN 1150&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;24 THEN 1110&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;23 THEN 1070&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;22 THEN 1030&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;21 THEN 990&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;20 THEN 950&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;19 THEN 910&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;18 THEN 870 &#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;17 THEN 830 &#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;16 THEN 790&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;15 THEN 740 &#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;14 THEN 690&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;13 THEN 640&#xd;&#xa; 	  WHEN ACT_COMPOSITE&#x3d;12 THEN 590&#xd;&#xa;	  WHEN ACT_COMPOSITE&#x3d;11 THEN 530&#xd;&#xa;	  WHEN SAT_MATH is not null&#xd;&#xa;		   and SAT_VERBAL  is not null THEN SAT_VERBAL &#x2b; SAT_MATH&#xd;&#xa;	  WHEN SAT_MATH is not null&#xd;&#xa;		   and SAT_VERBAL is not null&#xd;&#xa;		   and ACT_COMPOSITE is not null THEN SAT_VERBAL &#x2b; SAT_MATH&#xd;&#xa;END&#x3b;&#xd;&#xa;</sql>
+      <sql>---------------------------------------------------------------------&#xd;&#xa;-- Queries to convert ACT_Composite score to equivalent SAT scores.&#xd;&#xa;-- &#xd;&#xa;---------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE DISTINCT_PERSONAL&#xd;&#xa;   SET APTITUDE_SCORE &#x3d;&#xd;&#xa;   CASE &#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;36 THEN 1600&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;35 THEN 1560&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;34 THEN 1510&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;33 THEN 1460&#xd;&#xa;      WHEN ACT_COMPOSITE&#x3d;32 THEN 1420&#xd;&#xa;   WHEN ACT_COMPOSITE&#x3d;31 THEN 1380&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;30 THEN 1340&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;29 THEN 1300&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;28 THEN 1260&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;27 THEN 1220&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;26 THEN 1190&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;25 THEN 1150&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;24 THEN 1110&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;23 THEN 1070&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;22 THEN 1030&#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;21 THEN 990&#xd;&#xa;   WHEN ACT_COMPOSITE&#x3d;20 THEN 950&#xd;&#xa;   WHEN ACT_COMPOSITE&#x3d;19 THEN 910&#xd;&#xa;   WHEN ACT_COMPOSITE&#x3d;18 THEN 870 &#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;17 THEN 830 &#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;16 THEN 790&#xd;&#xa;   WHEN ACT_COMPOSITE&#x3d;15 THEN 740 &#xd;&#xa;    WHEN ACT_COMPOSITE&#x3d;14 THEN 690&#xd;&#xa;   WHEN ACT_COMPOSITE&#x3d;13 THEN 640&#xd;&#xa;     WHEN ACT_COMPOSITE&#x3d;12 THEN 590&#xd;&#xa;   WHEN ACT_COMPOSITE&#x3d;11 THEN 530&#xd;&#xa;   WHEN SAT_MATH is not null&#xd;&#xa;      and SAT_VERBAL  is not null THEN SAT_VERBAL &#x2b; SAT_MATH&#xd;&#xa;    WHEN SAT_MATH is not null&#xd;&#xa;      and SAT_VERBAL is not null&#xd;&#xa;      and ACT_COMPOSITE is not null THEN SAT_VERBAL &#x2b; SAT_MATH&#xd;&#xa;END&#x3b;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -116,7 +100,7 @@
       <name>PC</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;----------------------------------------------------------------------------------&#xd;&#xa;-- First stage of merging. Includes merging of Demographics &#x28;BIO&#x29; table and   &#xd;&#xa;-- Course Enrollment table. For our analysis we are deleting the letter grades&#xd;&#xa;-- which are not valid. Technically for scoring purposes we wont have the &#xd;&#xa;-- grade information since we will be predicting it. So we can eliminate &#xd;&#xa;-- the delete query for grade info&#xd;&#xa;---------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PC&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PC&#xd;&#xa;SELECT  P.ALTERNATIVE_ID,&#xd;&#xa;C.COURSE_ID,&#xd;&#xa;C.SUBJECT,&#xd;&#xa;C.ONLINE_FLAG,&#xd;&#xa;C.ENROLLMENT,&#xd;&#xa;C.FINAL_GRADE,&#xd;&#xa;P.PERCENTILE,&#xd;&#xa;P.SAT_VERBAL,&#xd;&#xa;P.SAT_MATH,&#xd;&#xa;P.ACT_COMPOSITE,&#xd;&#xa;P.APTITUDE_SCORE,&#xd;&#xa;P.AGE,&#xd;&#xa;P.GENDER,&#xd;&#xa;P.ENROLLMENT_STATUS,&#xd;&#xa;P.CLASS_CODE,&#xd;&#xa;P.GPA_CUMULATIVE,&#xd;&#xa;P.GPA_SEMESTER,&#xd;&#xa;P.STANDING&#xd;&#xa;FROM DISTINCT_PERSONAL  P&#xd;&#xa;INNER JOIN DISTINCT_COURSE  C&#xd;&#xa;&#xd;&#xa;ON P.ALTERNATIVE_ID &#x3d;C.ALTERNATIVE_ID&#x3b;&#xd;&#xa;</sql>
+      <sql>&#xd;&#xa;----------------------------------------------------------------------------------&#xd;&#xa;-- First stage of merging. Includes merging of Demographics &#x28;BIO&#x29; table and   &#xd;&#xa;-- Course Enrollment table. For our analysis we are deleting the letter grades&#xd;&#xa;-- which are not valid. Technically for scoring purposes we wont have the &#xd;&#xa;-- grade information since we will be predicting it. So we can eliminate &#xd;&#xa;-- the delete query for grade info&#xd;&#xa;---------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PC&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PC&#xd;&#xa;SELECT  P.ALTERNATIVE_ID,&#xd;&#xa;C.COURSE_ID,&#xd;&#xa;C.SUBJECT,&#xd;&#xa;C.ONLINE_FLAG,&#xd;&#xa;C.ENROLLMENT,&#xd;&#xa;C.FINAL_GRADE,&#xd;&#xa;P.PERCENTILE,&#xd;&#xa;P.SAT_VERBAL,&#xd;&#xa;P.SAT_MATH,&#xd;&#xa;P.ACT_COMPOSITE,&#xd;&#xa;P.APTITUDE_SCORE,&#xd;&#xa;P.AGE,&#xd;&#xa;P.GENDER,&#xd;&#xa;P.ENROLLMENT_STATUS,&#xd;&#xa;P.CLASS_CODE,&#xd;&#xa;P.GPA_CUMULATIVE,&#xd;&#xa;P.GPA_SEMESTER,&#xd;&#xa;P.STANDING&#xd;&#xa;FROM DISTINCT_PERSONAL  P&#xd;&#xa;INNER JOIN DISTINCT_COURSE  C&#xd;&#xa;&#xd;&#xa;ON P.ALTERNATIVE_ID &#x3d;C.ALTERNATIVE_ID&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE PC ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -132,7 +116,7 @@
       <name>Recodin</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Gender information into numeric for data mining purposes&#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xa;UPDATE PC &#xd;&#xa;       SET GENDER &#x3d; CASE&#xd;&#xa;			WHEN GENDER &#x3d; &#x27;F&#x27; THEN &#x27;1&#x27;&#xd;&#xa;			WHEN GENDER &#x3d; &#x27;M&#x27; THEN &#x27;2&#x27;&#xd;&#xa;			ELSE NULL&#xd;&#xa;		END&#x3b;&#xd;&#xa;			&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Gender information into Full time- Part time status&#xd;&#xa;-- for data mining purposes&#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE PC &#xd;&#xa;       SET ENROLLMENT_STATUS &#x3d; CASE&#xd;&#xa;			WHEN ENROLLMENT_STATUS &#x3d; &#x27;F&#x27; THEN &#x27;1&#x27;&#xd;&#xa;			WHEN ENROLLMENT_STATUS &#x3d; &#x27;P&#x27; THEN &#x27;2&#x27;&#xd;&#xa;			ELSE NULL&#xd;&#xa;		END&#x3b;&#xd;&#xa;&#xa;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Gender information into Class year&#xd;&#xa;-- for data mining purposes&#xd;&#xa;-- Varies for different intitution type&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE PC &#xd;&#xa;       SET CLASS_CODE &#x3d; CASE&#xd;&#xa;			WHEN CLASS_CODE &#x3d; &#x27;FR&#x27; THEN &#x27;1&#x27;&#xd;&#xa;			WHEN CLASS_CODE &#x3d; &#x27;SO&#x27; THEN &#x27;2&#x27;&#xd;&#xa;			WHEN CLASS_CODE &#x3d; &#x27;JR&#x27; THEN &#x27;3&#x27;&#xd;&#xa;			WHEN CLASS_CODE &#x3d; &#x27;SR&#x27; THEN &#x27;4&#x27;&#xd;&#xa;			WHEN CLASS_CODE &#x3d; &#x27;GR&#x27; THEN &#x27;5&#x27;&#xd;&#xa;			ELSE NULL&#xd;&#xa;		END&#x3b;&#xa;&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Letter Grade information to Numeric GPA &#xd;&#xa;-- for data mining purposes&#xd;&#xa;--&#xd;&#xa;-- These adhere to Marist grading policy. Might change if deployed elsewhere&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE PC &#xd;&#xa;       SET FINAL_GRADE &#x3d; CASE&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;A&#x27;  THEN &#x27;4.0&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;A-&#x27; THEN &#x27;3.7&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;B&#x2b;&#x27; THEN &#x27;3.3&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;B&#x27;  THEN &#x27;3.0&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;B-&#x27; THEN &#x27;2.7&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;C&#x2b;&#x27; THEN &#x27;2.3&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;C&#x27;  THEN &#x27;2.0&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;C-&#x27; THEN &#x27;1.7&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;D&#x2b;&#x27; THEN &#x27;1.3&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;D&#x27;  THEN &#x27;1.0&#x27;&#xd;&#xa;			WHEN FINAL_GRADE &#x3d; &#x27;F&#x27;  THEN &#x27;0.0&#x27;&#xd;&#xa;			ELSE NULL&#xd;&#xa;		END&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;       &#xa;       &#xa; </sql>
+      <sql>&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Gender information into numeric for data mining purposes&#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xa;UPDATE PC &#xd;&#xa;       SET GENDER &#x3d; CASE&#xd;&#xa;     WHEN GENDER &#x3d; &#x27;F&#x27; THEN &#x27;1&#x27;&#xd;&#xa;     WHEN GENDER &#x3d; &#x27;M&#x27; THEN &#x27;2&#x27;&#xd;&#xa;     ELSE NULL&#xd;&#xa;   END&#x3b;&#xd;&#xa;     &#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Gender information into Full time- Part time status&#xd;&#xa;-- for data mining purposes&#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE PC &#xd;&#xa;       SET ENROLLMENT_STATUS &#x3d; CASE&#xd;&#xa;      WHEN ENROLLMENT_STATUS &#x3d; &#x27;F&#x27; THEN &#x27;1&#x27;&#xd;&#xa;      WHEN ENROLLMENT_STATUS &#x3d; &#x27;P&#x27; THEN &#x27;2&#x27;&#xd;&#xa;      ELSE NULL&#xd;&#xa;   END&#x3b;&#xd;&#xa;&#xa;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Gender information into Class year&#xd;&#xa;-- for data mining purposes&#xd;&#xa;-- Varies for different intitution type&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE PC &#xd;&#xa;       SET CLASS_CODE &#x3d; CASE&#xd;&#xa;      WHEN CLASS_CODE &#x3d; &#x27;FR&#x27; THEN &#x27;1&#x27;&#xd;&#xa;      WHEN CLASS_CODE &#x3d; &#x27;SO&#x27; THEN &#x27;2&#x27;&#xd;&#xa;      WHEN CLASS_CODE &#x3d; &#x27;JR&#x27; THEN &#x27;3&#x27;&#xd;&#xa;      WHEN CLASS_CODE &#x3d; &#x27;SR&#x27; THEN &#x27;4&#x27;&#xd;&#xa;      WHEN CLASS_CODE &#x3d; &#x27;GR&#x27; THEN &#x27;5&#x27;&#xd;&#xa;      ELSE NULL&#xd;&#xa;   END&#x3b;&#xa;&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Recoding Letter Grade information to Numeric GPA &#xd;&#xa;-- for data mining purposes&#xd;&#xa;--&#xd;&#xa;-- These adhere to Marist grading policy. Might change if deployed elsewhere&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;UPDATE PC &#xd;&#xa;       SET FINAL_GRADE &#x3d; CASE&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;A&#x27;  THEN &#x27;4.0&#x27;&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;A-&#x27; THEN &#x27;3.7&#x27;&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;B&#x2b;&#x27; THEN &#x27;3.3&#x27;&#xd;&#xa;      WHEN FINAL_GRADE &#x3d; &#x27;B&#x27;  THEN &#x27;3.0&#x27;&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;B-&#x27; THEN &#x27;2.7&#x27;&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;C&#x2b;&#x27; THEN &#x27;2.3&#x27;&#xd;&#xa;      WHEN FINAL_GRADE &#x3d; &#x27;C&#x27;  THEN &#x27;2.0&#x27;&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;C-&#x27; THEN &#x27;1.7&#x27;&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;D&#x2b;&#x27; THEN &#x27;1.3&#x27;&#xd;&#xa;      WHEN FINAL_GRADE &#x3d; &#x27;D&#x27;  THEN &#x27;1.0&#x27;&#xd;&#xa;     WHEN FINAL_GRADE &#x3d; &#x27;F&#x27;  THEN &#x27;0.0&#x27;&#xd;&#xa;     ELSE NULL&#xd;&#xa;   END&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;       &#xa;       &#xa; </sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -180,7 +164,7 @@
       <name>PCS</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Second stage of merging. Includes merging Demographic BIO table,&#xd;&#xa;-- Course enrollment table and Derived metric from Gradebook&#xd;&#xa;-- RMN_Score &#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCS&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PCS SELECT  P.&#x2a;, C.RMN_SCORE &#xd;&#xa;FROM PC  P&#xd;&#xa;INNER JOIN GRADES_SCORES C&#xd;&#xa;ON P.ALTERNATIVE_ID &#x3d;C.ALTERNATIVE_ID&#xd;&#xa;AND P.COURSE_ID&#x3d;C.COURSE_ID&#x3b;</sql>
+      <sql>&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Second stage of merging. Includes merging Demographic BIO table,&#xd;&#xa;-- Course enrollment table and Derived metric from Gradebook&#xd;&#xa;-- RMN_Score &#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCS&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PCS SELECT  P.&#x2a;, C.RMN_SCORE &#xd;&#xa;FROM PC  P&#xd;&#xa;LEFT JOIN GRADES_SCORES C&#xd;&#xa;ON P.ALTERNATIVE_ID &#x3d;C.ALTERNATIVE_ID&#xd;&#xa;AND P.COURSE_ID&#x3d;C.COURSE_ID&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE PCS ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -196,7 +180,7 @@
       <name>Calculate Event Qty</name>
       <description/>
       <type>SQL</type>
-      <sql>------------------------------------------------------------------------------------&#xd;&#xa;-- Add Indexes to speed up querying on merged tables.&#xd;&#xa;-- Crunching Sakai Event Log table for a semester to derive metric in similar lines&#xd;&#xa;-- to Gradebook. &#xd;&#xa;------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_QTY&#x3b; &#xd;&#xa;CREATE TABLE COURSE_STUDENT_EVENT_QTY&#xd;&#xa;SELECT S.COURSE_ID, RC_CLASS_CODE, P.ALTERNATIVE_ID, EVENT, COUNT&#x28;&#x2a;&#x29; AS QTY&#xd;&#xa;FROM  ACTIVITY S, PC P&#xd;&#xa;WHERE S.ALTERNATIVE_ID &#x3d; P.ALTERNATIVE_ID&#xd;&#xa;GROUP BY S.COURSE_ID,RC_CLASS_CODE, P.ALTERNATIVE_ID,EVENT&#xd;&#xa;ORDER BY S.COURSE_ID,RC_CLASS_CODE, P.ALTERNATIVE_ID,EVENT&#x3b;</sql>
+      <sql>------------------------------------------------------------------------------------&#xd;&#xa;-- Add Indexes to speed up querying on merged tables.&#xd;&#xa;-- Crunching Sakai Event Log table for a semester to derive metric in similar lines&#xd;&#xa;-- to Gradebook. &#xd;&#xa;------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_QTY&#x3b; &#xd;&#xa;CREATE TABLE COURSE_STUDENT_EVENT_QTY&#xd;&#xa;SELECT S.COURSE_ID, RC_CLASS_CODE, P.ALTERNATIVE_ID, EVENT, COUNT&#x28;&#x2a;&#x29; AS QTY&#xd;&#xa;FROM  ACTIVITY S, PC P&#xd;&#xa;WHERE S.ALTERNATIVE_ID &#x3d; P.ALTERNATIVE_ID&#xd;&#xa;GROUP BY S.COURSE_ID,RC_CLASS_CODE, P.ALTERNATIVE_ID,EVENT&#xd;&#xa;ORDER BY S.COURSE_ID,RC_CLASS_CODE, P.ALTERNATIVE_ID,EVENT&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE COURSE_STUDENT_EVENT_QTY ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID, EVENT&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -205,14 +189,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>962</xloc>
-      <yloc>459</yloc>
+      <xloc>960</xloc>
+      <yloc>461</yloc>
       </entry>
     <entry>
       <name>Calculate Course Event Avg</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Counts the counts for a particular event in a course and &#xd;&#xa;-- calculates course average as mean.&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xa;&#xa;CREATE TABLE COURSE_EVENT_AVG &#xd;&#xa;SELECT COURSE_ID, EVENT, SUM&#x28;QTY&#x29; AS TQTY, AVG&#x28;QTY &#x2a; 1.0&#x29; AS MEAN&#xd;&#xa;FROM   COURSE_STUDENT_EVENT_QTY&#xd;&#xa;GROUP BY COURSE_ID, EVENT&#x3b;</sql>
+      <sql>&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Counts the counts for a particular event in a course and &#xd;&#xa;-- calculates course average as mean.&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xa;&#xa;CREATE TABLE COURSE_EVENT_AVG &#xd;&#xa;SELECT COURSE_ID, EVENT, SUM&#x28;QTY&#x29; AS TQTY, AVG&#x28;QTY &#x2a; 1.0&#x29; AS MEAN&#xd;&#xa;FROM   COURSE_STUDENT_EVENT_QTY&#xd;&#xa;GROUP BY COURSE_ID, EVENT&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE COURSE_EVENT_AVG ADD PRIMARY KEY &#x28;COURSE_ID, EVENT&#x29;&#x3b;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -228,7 +212,7 @@
       <name>Metric Event Ratio</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Counts the counts for a student, course combination and derives a  &#xd;&#xa;-- ratio of student use against the average course usuage for the event&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;ALTER TABLE &#x60;COURSE_STUDENT_EVENT_QTY&#x60; &#xd;&#xa;ADD INDEX &#x60;COURSE_STUDENT_EVENT_QTY_idx&#x60; &#x28;&#x60;COURSE_ID&#x60; ASC, &#x60;EVENT&#x60; ASC&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;SELECT &#xd;&#xa;  v1.COURSE_ID, v1.ALTERNATIVE_ID, v1.EVENT,&#xd;&#xa;  v1.QTY, v2.MEAN, v1.QTY &#x2f; v2.MEAN AS RATIO&#xd;&#xa;FROM COURSE_STUDENT_EVENT_QTY AS v1 &#xd;&#xa;INNER JOIN COURSE_EVENT_AVG AS v2 &#xd;&#xa;ON v1.COURSE_ID &#x3d; v2.COURSE_ID&#xd;&#xa;AND v1.EVENT &#x3d; v2.EVENT&#x3b;</sql>
+      <sql>&#xd;&#xa;&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;-- Counts the counts for a student, course combination and derives a  &#xd;&#xa;-- ratio of student use against the average course usuage for the event&#xd;&#xa;--&#xd;&#xa;----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;ALTER TABLE &#x60;COURSE_STUDENT_EVENT_QTY&#x60; &#xd;&#xa;ADD INDEX &#x60;COURSE_STUDENT_EVENT_QTY_idx&#x60; &#x28;&#x60;COURSE_ID&#x60; ASC, &#x60;EVENT&#x60; ASC&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;SELECT &#xd;&#xa;  v1.COURSE_ID, v1.ALTERNATIVE_ID, v1.EVENT,&#xd;&#xa;  v1.QTY, v2.MEAN, v1.QTY &#x2f; v2.MEAN AS RATIO&#xd;&#xa;FROM COURSE_STUDENT_EVENT_QTY AS v1 &#xd;&#xa;INNER JOIN COURSE_EVENT_AVG AS v2 &#xd;&#xa;ON v1.COURSE_ID &#x3d; v2.COURSE_ID&#xd;&#xa;AND v1.EVENT &#x3d; v2.EVENT&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE COURSE_STUDENT_EVENT_RATIO ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID, EVENT&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -244,7 +228,7 @@
       <name>Assmt_sub</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assessment submitted event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xa;CREATE TABLE ASSMT_SUB&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASSMT_SUB,&#xd;&#xa;  Ratio AS R_ASSMT_SUB&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO &#xd;&#xa;WHERE EVENT &#x3d; &#x27;sam.assessment.submit&#x27;&#x3b;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assessment submitted event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xa;CREATE TABLE ASSMT_SUB&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASSMT_SUB,&#xd;&#xa;  Ratio AS R_ASSMT_SUB&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO &#xd;&#xa;WHERE EVENT &#x3d; &#x27;sam.assessment.submit&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE ASSMT_SUB ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -260,7 +244,7 @@
       <name>Asn_Read</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assignemnt read event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xa;CREATE TABLE ASN_READ&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASN_READ,&#xd;&#xa;  Ratio AS R_ASN_READ&#xd;&#xa;FROM  COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d; &#x27;asn.read.assignment&#x27;&#x3b;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assignemnt read event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xa;CREATE TABLE ASN_READ&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASN_READ,&#xd;&#xa;  Ratio AS R_ASN_READ&#xd;&#xa;FROM  COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d; &#x27;asn.read.assignment&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE ASN_READ ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -276,7 +260,7 @@
       <name>Asn_sub</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assignment submission &#xd;&#xa;-- event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;CREATE TABLE ASN_SUB&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASN_SUB,&#xd;&#xa;  RATIO AS R_ASN_SUB&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO &#xd;&#xa;WHERE EVENT &#x3d; &#x27;asn.submit.submission&#x27;&#x3b;</sql>
+      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assignment submission &#xd;&#xa;-- event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;CREATE TABLE ASN_SUB&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASN_SUB,&#xd;&#xa;  RATIO AS R_ASN_SUB&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO &#xd;&#xa;WHERE EVENT &#x3d; &#x27;asn.submit.submission&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE ASN_SUB ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -292,7 +276,7 @@
       <name>Con_read</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Content Read event &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xa;CREATE TABLE CONTENT_READ&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_CONTENT_READ,&#xd;&#xa;  RATIO AS R_CONTENT_READ&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO  &#xd;&#xa;WHERE EVENT &#x3d; &#x27;content.read&#x27;&#x3b;&#xa;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Content Read event &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xa;CREATE TABLE CONTENT_READ&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_CONTENT_READ,&#xd;&#xa;  RATIO AS R_CONTENT_READ&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO  &#xd;&#xa;WHERE EVENT &#x3d; &#x27;content.read&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE CONTENT_READ ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -308,7 +292,7 @@
       <name>Lessons</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Lessons View event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE LESSONS_VIEW&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_LESSONS_VIEW,&#xd;&#xa;  RATIO AS R_LESSONS_VIEW&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO &#xd;&#xa;WHERE EVENT &#x3d; &#x27;melete.section.read&#x27;&#x3b;</sql>
+      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Lessons View event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE LESSONS_VIEW&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_LESSONS_VIEW,&#xd;&#xa;  RATIO AS R_LESSONS_VIEW&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO &#xd;&#xa;WHERE EVENT &#x3d; &#x27;melete.section.read&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE LESSONS_VIEW ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -317,14 +301,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>973</xloc>
-      <yloc>568</yloc>
+      <xloc>972</xloc>
+      <yloc>570</yloc>
       </entry>
     <entry>
       <name>Forum_pst</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Forum Post event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE FORUM_POST&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  SUM&#x28;QTY&#x29; AS Q_FORUM_POST,&#xd;&#xa;  SUM&#x28;QTY &#x29;&#x2f;SUM&#x28;MEAN&#x29; AS R_FORUM_POST&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO  &#xd;&#xa;WHERE EVENT IN &#x28;&#x27;forums.new&#x27; , &#x27;forums.newtopic&#x27; , &#x27;forums.response&#x27;&#x29;&#xd;&#xa;GROUP BY COURSE_ID, ALTERNATIVE_ID&#x3b;&#xa;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Forum Post event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE FORUM_POST&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  SUM&#x28;QTY&#x29; AS Q_FORUM_POST,&#xd;&#xa;  SUM&#x28;QTY &#x29;&#x2f;SUM&#x28;MEAN&#x29; AS R_FORUM_POST&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO  &#xd;&#xa;WHERE EVENT IN &#x28;&#x27;forums.new&#x27; , &#x27;forums.newtopic&#x27; , &#x27;forums.response&#x27;&#x29;&#xd;&#xa;GROUP BY COURSE_ID, ALTERNATIVE_ID&#x3b;&#xa;&#xd;&#xa;&#xd;&#xa;ALTER TABLE FORUM_POST ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -340,7 +324,7 @@
       <name>Forum_Read</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Forum Read  event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE FORUM_READ&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_FORUM_READ,&#xd;&#xa;  Ratio AS R_FORUM_READ&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d;&#x27;forums.read&#x27;&#x3b;</sql>
+      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Forum Read  event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE FORUM_READ&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_FORUM_READ,&#xd;&#xa;  Ratio AS R_FORUM_READ&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d;&#x27;forums.read&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE FORUM_READ ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -349,14 +333,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>729</xloc>
-      <yloc>657</yloc>
+      <xloc>768</xloc>
+      <yloc>661</yloc>
       </entry>
     <entry>
       <name>Output PCSM</name>
       <description/>
       <type>SQL</type>
-      <sql>-----------------------------------------------------------------------------------------------------------&#xd;&#xa;-- Final Outpur table for the ETL to feed into Predictive modelling or Prediction Scoring flows.&#xd;&#xa;-- The merge includes tying Sakai Events table to already merged Demographics, Course Enrollment and&#xd;&#xa;-- Gradebook table &#x28;PCS&#x29;&#xd;&#xa;&#xd;&#xa;-- The query current takes around 4 minutes for execution.&#xd;&#xa;----------------------------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCSM&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PCSM&#xd;&#xa;SELECT C.ALTERNATIVE_ID, C.COURSE_ID, C.SUBJECT,C.ONLINE_FLAG,C.ENROLLMENT,C.RC_FINAL_GRADE,&#xd;&#xa;&#xd;&#xa;       C.PERCENTILE,C.SAT_VERBAL,C.SAT_MATH,&#xd;&#xa;	   &#xd;&#xa;	   C.APTITUDE_SCORE,C.AGE,C.RC_GENDER,C.RC_ENROLLMENT_STATUS,C.RC_CLASS_CODE,C.GPA_CUMULATIVE,&#xd;&#xa;&#xd;&#xa;	   C.GPA_SEMESTER, C.STANDING,C.RMN_SCORE,C.RMN_SCORE AS RMN_SCORE_PARTIAL,&#xd;&#xa;       &#xd;&#xa;       R_CONTENT_READ,&#xd;&#xa;       &#xd;&#xa;       R_ASN_SUB,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_POST,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_READ,&#xd;&#xa;       &#xd;&#xa;       R_LESSONS_VIEW,&#xd;&#xa;      &#xd;&#xa;       R_ASSMT_TAKE,&#xd;&#xa;       &#xd;&#xa;       R_ASSMT_SUB,&#xd;&#xa;&#xd;&#xa;	   R_ASN_READ,&#xd;&#xa;&#xd;&#xa;	   R_SESSIONS,&#xd;&#xa;	&#xd;&#xa;	   C.ACADEMIC_RISK&#xd;&#xa;FROM PCS C &#xd;&#xa;LEFT JOIN CONTENT_READ CT&#xd;&#xa;ON C.COURSE_ID &#x3d; CT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; CT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN SESSIONS SES&#xd;&#xa;ON C.COURSE_ID &#x3d; SES.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; SES.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN ASN_SUB ASN&#xd;&#xa;ON C.COURSE_ID &#x3d; ASN.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASN.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_POST FP&#xd;&#xa;ON C.COURSE_ID &#x3d; FP.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FP.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_READ FR&#xd;&#xa;ON C.COURSE_ID &#x3d; FR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FR.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN LESSONS_VIEW LS&#xd;&#xa;ON C.COURSE_ID &#x3d; LS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; LS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_TAKE ASSMT&#xd;&#xa;ON C.COURSE_ID &#x3d; ASSMT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASSMT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_SUB ASMS&#xd;&#xa;ON C.COURSE_ID &#x3d; ASMS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASMS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASN_READ ASNR&#xd;&#xa;ON C.COURSE_ID &#x3d; ASNR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASNR.ALTERNATIVE_ID&#x3b;&#xd;&#xa;&#xd;&#xa;UPDATE PCSM SET GPA_CUMULATIVE &#x3d; NULL WHERE GPA_CUMULATIVE&#x3d;0 AND RC_CLASS_CODE&#x3d;1&#x3b;</sql>
+      <sql>-----------------------------------------------------------------------------------------------------------&#xd;&#xa;-- Final Outpur table for the ETL to feed into Predictive modelling or Prediction Scoring flows.&#xd;&#xa;-- The merge includes tying Sakai Events table to already merged Demographics, Course Enrollment and&#xd;&#xa;-- Gradebook table &#x28;PCS&#x29;&#xd;&#xa;&#xd;&#xa;-- The query current takes around 4 minutes for execution.&#xd;&#xa;----------------------------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCSM&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PCSM&#xd;&#xa;SELECT C.ALTERNATIVE_ID, C.COURSE_ID, C.SUBJECT,C.ONLINE_FLAG,C.ENROLLMENT,C.RC_FINAL_GRADE,&#xd;&#xa;&#xd;&#xa;       C.PERCENTILE,C.SAT_VERBAL,C.SAT_MATH,&#xd;&#xa;     &#xd;&#xa;    C.APTITUDE_SCORE,C.AGE,C.RC_GENDER,C.RC_ENROLLMENT_STATUS,C.RC_CLASS_CODE,C.GPA_CUMULATIVE,&#xd;&#xa;&#xd;&#xa;     C.GPA_SEMESTER, C.STANDING,C.RMN_SCORE,C.RMN_SCORE AS RMN_SCORE_PARTIAL,&#xd;&#xa;       &#xd;&#xa;       R_CONTENT_READ,&#xd;&#xa;       &#xd;&#xa;       R_ASN_SUB,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_POST,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_READ,&#xd;&#xa;       &#xd;&#xa;       R_LESSONS_VIEW,&#xd;&#xa;      &#xd;&#xa;       R_ASSMT_TAKE,&#xd;&#xa;       &#xd;&#xa;       R_ASSMT_SUB,&#xd;&#xa;&#xd;&#xa;    R_ASN_READ,&#xd;&#xa;&#xd;&#xa;     R_SESSIONS,&#xd;&#xa;  &#xd;&#xa;     C.ACADEMIC_RISK&#xd;&#xa;FROM PCS C &#xd;&#xa;LEFT JOIN CONTENT_READ CT&#xd;&#xa;ON C.COURSE_ID &#x3d; CT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; CT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN SESSIONS SES&#xd;&#xa;ON C.COURSE_ID &#x3d; SES.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; SES.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN ASN_SUB ASN&#xd;&#xa;ON C.COURSE_ID &#x3d; ASN.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASN.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_POST FP&#xd;&#xa;ON C.COURSE_ID &#x3d; FP.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FP.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_READ FR&#xd;&#xa;ON C.COURSE_ID &#x3d; FR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FR.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN LESSONS_VIEW LS&#xd;&#xa;ON C.COURSE_ID &#x3d; LS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; LS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_TAKE ASSMT&#xd;&#xa;ON C.COURSE_ID &#x3d; ASSMT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASSMT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_SUB ASMS&#xd;&#xa;ON C.COURSE_ID &#x3d; ASMS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASMS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASN_READ ASNR&#xd;&#xa;ON C.COURSE_ID &#x3d; ASNR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASNR.ALTERNATIVE_ID&#x3b;&#xd;&#xa;&#xd;&#xa;UPDATE PCSM SET GPA_CUMULATIVE &#x3d; NULL WHERE GPA_CUMULATIVE&#x3d;0 AND RC_CLASS_CODE&#x3d;1&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -372,7 +356,7 @@
       <name>Assmt_tk</name>
       <description/>
       <type>SQL</type>
-      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assessment taken event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE ASSMT_TAKE&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASSMT_TAKE,&#xd;&#xa;  RATIO AS R_ASSMT_TAKE&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d; &#x27;sam.assessment.take&#x27;&#x3b;</sql>
+      <sql>---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Assessment taken event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE ASSMT_TAKE&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_ASSMT_TAKE,&#xd;&#xa;  RATIO AS R_ASSMT_TAKE&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d; &#x27;sam.assessment.take&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE ASSMT_TAKE ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -383,6 +367,22 @@
       <nr>0</nr>
       <xloc>411</xloc>
       <yloc>463</yloc>
+      </entry>
+    <entry>
+      <name>Create temp Bio tables</name>
+      <description/>
+      <type>SQL</type>
+      <sql>&#xd;&#xa;--------------------------------------------------------------------------------------&#xd;&#xa;-- Kettle doesn&#x27;t seem to accept multiline comments. Hence using single line comments&#xd;&#xa;-- CREATE A temporary table DISTINCT_PERSONAL from the base PERSONAL H2&#x2f;MySQL table.   &#xd;&#xa;-- Check and eliminate duplicate entries if any by using Row number option.&#xd;&#xa;--------------------------------------------------------------------------------&#xd;&#xa;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE DISTINCT_PERSONAL SELECT DISTINCT &#x2a; FROM PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL ADD PRIMARY KEY &#x28;ALTERNATIVE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL add APTITUDE_SCORE int&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>LAP_connect</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>333</xloc>
+      <yloc>154</yloc>
       </entry>
     <entry>
       <name>AssignWeights_Grades</name>
@@ -420,7 +420,7 @@
       <name>Sessions</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Session Login event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xa;CREATE TABLE SESSIONS&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_SESSIONS,&#xd;&#xa;  RATIO AS R_SESSIONS&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d; &#x27;pres.begin&#x27;&#x3b;&#xa;&#xa;</sql>
+      <sql>&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;-- Create a separate ratio table for Session Login event  &#xd;&#xa;--&#xd;&#xa;---------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xa;CREATE TABLE SESSIONS&#xd;&#xa;SELECT &#xd;&#xa;  COURSE_ID,&#xd;&#xa;  ALTERNATIVE_ID,&#xd;&#xa;  QTY AS Q_SESSIONS,&#xd;&#xa;  RATIO AS R_SESSIONS&#xd;&#xa;FROM COURSE_STUDENT_EVENT_RATIO&#xd;&#xa;WHERE EVENT &#x3d; &#x27;pres.begin&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE SESSIONS ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;&#xa;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -461,14 +461,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>382</xloc>
-      <yloc>260</yloc>
+      <xloc>413</xloc>
+      <yloc>258</yloc>
       </entry>
     <entry>
       <name>AVG_Score</name>
       <description/>
       <type>SQL</type>
-      <sql>--------------------------------------------------------------------&#xd;&#xa;-- Calculating a ratio of students effective weigthed score against &#xd;&#xa;-- the average effective score for the course. This gives a read of&#xd;&#xa;-- where the student stand in with respect to class average according&#xd;&#xa;-- to grading rubric &#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;--------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES_SCORES&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE GRADES_SCORES&#xd;&#xa;&#xd;&#xa;SELECT A.&#x2a; &#xd;&#xa;      ,AVG_EFFWT_SCORE&#xd;&#xa;      ,EFFWT_SCORE&#x2f;AVG_EFFWT_SCORE&#x2a;100 AS RMN_SCORE  &#xd;&#xa;FROM AUX2_AGGSCORES A, AUX_AVGCOURSE_EFFTWTSCORE M&#xd;&#xa;WHERE A.COURSE_ID&#x3d; M.COURSE_ID&#xd;&#xa;AND AVG_EFFWT_SCORE &#x3e; 0&#xd;&#xa;ORDER BY AVG_EFFWT_SCORE&#x3b;&#xd;&#xa;</sql>
+      <sql>--------------------------------------------------------------------&#xd;&#xa;-- Calculating a ratio of students effective weigthed score against &#xd;&#xa;-- the average effective score for the course. This gives a read of&#xd;&#xa;-- where the student stand in with respect to class average according&#xd;&#xa;-- to grading rubric &#xd;&#xa;--&#xd;&#xa;--&#xd;&#xa;--------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES_SCORES&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE GRADES_SCORES&#xd;&#xa;&#xd;&#xa;SELECT A.&#x2a; &#xd;&#xa;      ,AVG_EFFWT_SCORE&#xd;&#xa;      ,EFFWT_SCORE&#x2f;AVG_EFFWT_SCORE&#x2a;100 AS RMN_SCORE  &#xd;&#xa;FROM AUX2_AGGSCORES A, AUX_AVGCOURSE_EFFTWTSCORE M&#xd;&#xa;WHERE A.COURSE_ID&#x3d; M.COURSE_ID&#xd;&#xa;AND AVG_EFFWT_SCORE &#x3e; 0&#xd;&#xa;ORDER BY AVG_EFFWT_SCORE&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE GRADES_SCORES ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -477,14 +477,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>402</xloc>
-      <yloc>369</yloc>
+      <xloc>414</xloc>
+      <yloc>367</yloc>
       </entry>
     <entry>
       <name>Agg_Scor</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;-------------------------------------------------------------------&#xd;&#xa;-- Calculating the actual score towards final grading by multiplying&#xd;&#xa;-- score and weight associated with it. Sum of all these scores for a&#xd;&#xa;-- student gives the final score against the grading rubric for the&#xd;&#xa;-- course.&#xd;&#xa;--&#xd;&#xa;-------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX1_AGGSCORES &#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE AUX1_AGGSCORES &#xd;&#xa;SELECT COURSE_ID,ALTERNATIVE_ID,SUM&#x28;WEIGHT&#x29; TOTAL_WEIGHT&#xd;&#xa;	  ,SUM&#x28;SCORE &#x2a; WEIGHT&#x29;  as WEIGHTED_SCORE  &#xd;&#xa;FROM GRADES &#xd;&#xa;GROUP BY COURSE_ID,ALTERNATIVE_ID&#xd;&#xa;ORDER BY COURSE_ID,ALTERNATIVE_ID&#x3b;</sql>
+      <sql>&#xd;&#xa;-------------------------------------------------------------------&#xd;&#xa;-- Calculating the actual score towards final grading by multiplying&#xd;&#xa;-- score and weight associated with it. Sum of all these scores for a&#xd;&#xa;-- student gives the final score against the grading rubric for the&#xd;&#xa;-- course.&#xd;&#xa;--&#xd;&#xa;-------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX1_AGGSCORES &#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE AUX1_AGGSCORES &#xd;&#xa;SELECT COURSE_ID,ALTERNATIVE_ID,SUM&#x28;WEIGHT&#x29; TOTAL_WEIGHT&#xd;&#xa;   ,SUM&#x28;SCORE &#x2a; WEIGHT&#x29;  as WEIGHTED_SCORE  &#xd;&#xa;FROM GRADES &#xd;&#xa;GROUP BY COURSE_ID,ALTERNATIVE_ID&#xd;&#xa;ORDER BY COURSE_ID,ALTERNATIVE_ID&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -516,7 +516,7 @@
       <name>Drop temp tables</name>
       <description/>
       <type>SQL</type>
-      <sql>--ALTER IGNORE TABLE table_name DROP INDEX index_name&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX1_AGGSCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX2_AGGSCORES &#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX_AVGCOURSE_EFFTWTSCORE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PC&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCS&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES_SCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_QTY&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_EVENT_AVG&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_RATIO&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_TAKE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS CONTENT_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS LESSONS_VIEW&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_POST&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS SESSIONS&#x3b;	&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;</sql>
+      <sql>--ALTER IGNORE TABLE table_name DROP INDEX index_name&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX1_AGGSCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX2_AGGSCORES &#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX_AVGCOURSE_EFFTWTSCORE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PC&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCS&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES_SCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_QTY&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_EVENT_AVG&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_RATIO&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_TAKE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS CONTENT_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS LESSONS_VIEW&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_POST&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS SESSIONS&#x3b; &#xd;&#xa;&#xd;&#xa;&#xd;&#xa;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -532,7 +532,7 @@
       <name>Drop temp tables 2</name>
       <description/>
       <type>SQL</type>
-      <sql>--ALTER IGNORE TABLE table_name DROP INDEX index_name&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX1_AGGSCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX2_AGGSCORES &#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX_AVGCOURSE_EFFTWTSCORE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PC&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCS&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES_SCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_QTY&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_EVENT_AVG&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_RATIO&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_TAKE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS CONTENT_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS LESSONS_VIEW&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_POST&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS SESSIONS&#x3b;	&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;</sql>
+      <sql>-------------------------------------------------------&#xd;&#xa;-- Droping temporary tables and retaining only base tables&#xd;&#xa;-------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX1_AGGSCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX2_AGGSCORES &#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS AUX_AVGCOURSE_EFFTWTSCORE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PC&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCS&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES_SCORES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS GRADES&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_QTY&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_EVENT_AVG&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS COURSE_STUDENT_EVENT_RATIO&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_TAKE&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASSMT_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS ASN_SUB&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS CONTENT_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS LESSONS_VIEW&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_POST&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS FORUM_READ&#x3b;&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS SESSIONS&#x3b;  &#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -548,7 +548,7 @@
       <name>Course Enrollment Details</name>
       <description/>
       <type>SQL</type>
-      <sql>----------------------------------------------------------------------&#xd;&#xa;-- Eliminates duplicate entries for Course and Enrollment. This was necessary as there were &#xd;&#xa;-- repetitions in the csv files received. We use row numbers to identify&#xd;&#xa;-- duplicates and write distinct entries to a different table. &#xd;&#xa;-----------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE &#x3b;&#xd;&#xa;CREATE TABLE DISTINCT_COURSE &#xd;&#xa;SELECT a.ALTERNATIVE_ID, a.COURSE_ID,b.SUBJECT, b.ENROLLMENT, b.ONLINE_FLAG, a.FINAL_GRADE, a.WITHDRAWAL_DATE &#xd;&#xa;FROM ENROLLMENT a, COURSE b&#xd;&#xa;WHERE a.COURSE_ID &#x3d; b.COURSE_ID &#x3b;	&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_COURSE ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
+      <sql>--------------------------------------------------------------------------------------------&#xd;&#xa;-- Eliminates duplicate entries for Course and Enrollment. This was necessary as there were &#xd;&#xa;-- repetitions in the csv files received. We use row numbers to identify&#xd;&#xa;-- duplicates and write distinct entries to a different table. &#xd;&#xa;--------------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS DISTINCT_COURSE &#x3b;&#xd;&#xa;CREATE TABLE DISTINCT_COURSE &#xd;&#xa;SELECT distinct a.ALTERNATIVE_ID, a.COURSE_ID,b.SUBJECT, b.ENROLLMENT, b.ONLINE_FLAG, a.FINAL_GRADE, a.WITHDRAWAL_DATE &#xd;&#xa;FROM ENROLLMENT a, COURSE b&#xd;&#xa;WHERE a.COURSE_ID &#x3d; b.COURSE_ID &#x3b; &#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_COURSE ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -557,8 +557,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>698</xloc>
-      <yloc>154</yloc>
+      <xloc>694</xloc>
+      <yloc>158</yloc>
       </entry>
   </entries>
   <hops>
@@ -586,8 +586,8 @@
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>Calculate Course Event Avg</from>
@@ -739,8 +739,8 @@
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>Add_Score</from>
@@ -827,8 +827,8 @@
   <notepads>
     <notepad>
       <note>ETL process involving the Demographic Data</note>
-      <xloc>0</xloc>
-      <yloc>188</yloc>
+      <xloc>4</xloc>
+      <yloc>183</yloc>
       <width>271</width>
       <heigth>25</heigth>
       <fontname/>
@@ -869,8 +869,8 @@
     </notepad>
     <notepad>
       <note>ETL involving processing of Gradebook data&#xa;&#xa;1&#x29; Clean the gradebook data through a series of transformation&#xa;    and calculate scores for each of the gradebook entries.&#xa;&#xa;2&#x29; Calculation of scores considering all the gradable objects &#xa;    in the course. This results in generation of a powerful &#xa;    predictive metric called the RMN_SCORE.&#xa;</note>
-      <xloc>0</xloc>
-      <yloc>338</yloc>
+      <xloc>9</xloc>
+      <yloc>339</yloc>
       <width>380</width>
       <heigth>148</heigth>
       <fontname>Arial</fontname>
@@ -953,8 +953,8 @@
     </notepad>
     <notepad>
       <note>Depicts the student performance using the level of &#xa;participation of the students in the course through &#xa;the various Sakai Events available.&#xa;&#xa;THe following metrics are used for predictions&#xa;&#xa;SESSIONS OPENED,&#xa; CONTENT_READ,&#xa; ASSESSMENT_TAKE &#x2f; SUBMIT ,&#xa; ASSIGNMENT READ&#x2f;SUMIT , &#xa;LESSONS_VIEW&#xa;FORUM  READ &#x2f; POST.</note>
-      <xloc>211</xloc>
-      <yloc>662</yloc>
+      <xloc>217</xloc>
+      <yloc>656</yloc>
       <width>310</width>
       <heigth>192</heigth>
       <fontname>Arial</fontname>
