@@ -44,7 +44,7 @@ import java.util.List;
 public class KettleTransformPipelineProcessor extends KettleBasePipelineProcessor {
 
     private String jsonInputFilename = "sample1_input.json";
-    private String jsonOutputFilename = "sample1_output"; // no extension, will be added by transform
+    private String jsonOutputFilename = "sample1_output.json";
     private String scoringModelFilename = "/kettle/Marist_OAAI_ACADEMIC_RISK.xml";
 
     @PostConstruct
@@ -82,6 +82,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     // set output file to output/<FILENAME>
                     JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
                     jsonOutputMeta.setFileName(configuration.getOutputDirectory().getAbsolutePath() + "/" + jsonOutputFilename);
+                    jsonOutputMeta.setExtension("");
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {
                     // set Weka serialized scoring model
                     File file = getFile(scoringModelFilename);

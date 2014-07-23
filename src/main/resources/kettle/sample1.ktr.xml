@@ -446,7 +446,7 @@ input JSON to create the final output JSON. </note>
     <addtoresult>N</addtoresult>
     <file>
       <name>D:\OAAI Research Demo\PMMLOutputJSON1</name>
-      <extention>js</extention>
+      <extention>json</extention>
       <append>N</append>
       <split>N</split>
       <haspartno>N</haspartno>
