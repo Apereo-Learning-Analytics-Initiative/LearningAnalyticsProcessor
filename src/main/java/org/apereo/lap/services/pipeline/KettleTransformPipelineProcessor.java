@@ -43,6 +43,10 @@ import java.util.List;
 @Component
 public class KettleTransformPipelineProcessor extends KettleBasePipelineProcessor {
 
+    private String jsonInputFilename = "sample1_input.json";
+    private String jsonOutputFilename = "sample1_output"; // no extension, will be added by transform
+    private String scoringModelFilename = "/kettle/Marist_OAAI_ACADEMIC_RISK.xml";
+
     @PostConstruct
     public void init() {
         // Do any init here you need to (but note this is for the service and not each run)
@@ -66,23 +70,23 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
 
             List<StepMeta> stepMetaList = transMeta.getSteps();
             for (StepMeta stepMeta : stepMetaList) {
-                logger.info("Processing step: "+stepMeta.getName()+" in file: "+kettleXMLFile.getAbsolutePath());
-                stepMeta.setChangedDate(new Date());
-                File newFile = null;
+                logger.info("Processing step: '"+stepMeta.getName()+"' in file: "+kettleXMLFile.getAbsolutePath());
 
                 // set the file path to the one necessary, based on step type
                 if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonInput")){
-                    newFile = getFile("/kettle/sample1_input.json");
+                    // copy JSON input file from classpath:extracts/ to inputs/
+                    inputHandler.copySampleCSV("extracts/", jsonInputFilename);
                     JsonInputMeta jsonInputMeta = (JsonInputMeta) stepMeta.getStepMetaInterface();
-                    jsonInputMeta.setFileName(new String[]{newFile.getAbsolutePath()});
+                    jsonInputMeta.setFileName(new String[]{configuration.getInputDirectory().getAbsolutePath() + "/" + jsonInputFilename});
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonOutput")) {
-                    newFile = createOutputFile("sample1_output");
+                    // set output file to output/<FILENAME>
                     JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
-                    jsonOutputMeta.setFileName(newFile.getAbsolutePath());
+                    jsonOutputMeta.setFileName(configuration.getOutputDirectory().getAbsolutePath() + "/" + jsonOutputFilename);
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {
-                    newFile = getFile("/kettle/Marist_OAAI_ACADEMIC_RISK.xml");
+                    // set Weka serialized scoring model
+                    File file = getFile(scoringModelFilename);
                     WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
-                    wekaScoringMeta.setSerializedModelFileName(newFile.getAbsolutePath());
+                    wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
                 }
             }
 
@@ -96,6 +100,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             result.done((int) transResult.getNrErrors(), null);
         } catch (Exception e) {
             // swallow exceptions for now...
+            // e.printStackTrace();
         }
 
         return result;

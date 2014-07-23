@@ -284,7 +284,7 @@ public class InputHandlerService {
      * @param filename the csv file to copy from extracts to the inputs location
      * @throws java.lang.RuntimeException if the file cannot copy
      */
-    private void copySampleCSV(String classpathDir, String filename) {
+    public void copySampleCSV(String classpathDir, String filename) {
         try {
             IOUtils.copy(
                     InputHandlerService.class.getClassLoader().getResourceAsStream(classpathDir + filename),

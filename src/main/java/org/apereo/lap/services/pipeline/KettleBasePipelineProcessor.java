@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.configuration.Configuration;
 import org.apereo.lap.services.ConfigurationService;
+import org.apereo.lap.services.InputHandlerService;
 import org.apereo.lap.services.StorageService;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.trans.HasDatabasesInterface;
@@ -42,6 +43,9 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     ConfigurationService configuration;
 
     @Resource
+    InputHandlerService inputHandler;
+
+    @Resource
     StorageService storage;
 
     @Resource
@@ -58,54 +62,8 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
         }
     }
 
-    protected File createOutputFile(String filename) {
-        File outputFile = new File(configuration.getOutputDirectory(), filename);
-        boolean created;
-        try {
-            created = outputFile.createNewFile();
-            if (logger.isDebugEnabled()) logger.debug("Output file created ("+created+"): "+outputFile.getAbsolutePath());
-        } catch (IOException e) {
-            throw new IllegalStateException("Exception creating output file: "+outputFile.getAbsolutePath()+": "+e, e);
-        }
-        if (!created) { // created file is going to be a writable file so no check needed
-            if (outputFile.isFile() && outputFile.canRead() && outputFile.canWrite()) {
-                // file exists and we can write to it
-                if (logger.isDebugEnabled()) logger.debug("Output file is writable: "+outputFile.getAbsolutePath());
-            } else {
-                throw new IllegalStateException("Cannot write to the output file: " + outputFile.getAbsolutePath());
-            }
-        }
-
-        return outputFile;
-    }
-
     protected void addNewDatabaseConnection(HasDatabasesInterface meta, String connectionName) {
-        Configuration config = configuration.getConfig();
-
-        DatabaseMeta dm = new DatabaseMeta();
-        dm.setName(connectionName);
-        dm.setHostname(config.getString(connectionName + ".db.hostname"));
-        dm.setDatabaseType(config.getString(connectionName + ".db.databasetype"));
-        dm.setAccessType(config.getInt(connectionName + ".db.accesstype"));
-        dm.setDBName(config.getString(connectionName + ".db.dbname"));
-        dm.setDBPort(config.getString(connectionName + ".db.dbport"));
-        dm.setUsername(config.getString(connectionName + ".db.username"));
-        dm.setPassword(config.getString(connectionName + ".db.password"));
-        
-        Properties attributes = new Properties();
-        attributes.setProperty("FORCE_IDENTIFIERS_TO_LOWERCASE", "N");
-        attributes.setProperty("FORCE_IDENTIFIERS_TO_UPPERCASE", "N");
-        attributes.setProperty("IS_CLUSTERED", "N");
-        attributes.setProperty("PRESERVE_RESERVED_WORD_CASE", "N");
-        attributes.setProperty("QUOTE_ALL_FIELDS", "N");
-        attributes.setProperty("STREAM_RESULTS", "Y");
-        attributes.setProperty("SUPPORTS_BOOLEAN_DATA_TYPE", "N");
-        attributes.setProperty("SUPPORTS_TIMESTAMP_DATA_TYPE", "N");
-        attributes.setProperty("USE_POOLING", "N");
-        dm.setAttributes(attributes);
-
-        //jobMeta.addDatabase(dm);
-        meta.addOrReplaceDatabase(dm);
+        // TODO make the database config dynamic using a connection from StorageService
     }
 
     protected void setKettlePluginsDirectory() {

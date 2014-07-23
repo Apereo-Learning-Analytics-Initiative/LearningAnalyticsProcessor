@@ -17,6 +17,7 @@ package org.apereo.lap.services.pipeline;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
+import org.pentaho.di.core.Result;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
@@ -47,11 +48,9 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
 
     @Override
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
-        String name = processorConfig.name;
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_JOB);
         File kettleXMLFile = getFile(processorConfig.filename);
 
-        // TODO do processing here! (Bob)
         try {
             KettleEnvironment.init(false);
             EnvUtil.environmentInit();
@@ -60,10 +59,14 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
             Job job = new Job(null, jobMeta);
             job.start();
             job.waitUntilFinished();
+
+            Result jobResult = job.getResult();
+            result.done((int) jobResult.getNrErrors(), null);
         } catch(Exception e) {
+            // swallow exceptions for now...
+            // e.printStackTrace();
         }
 
-        result.done(0, null); // TODO populate count and failures
         return result;
     }
 
