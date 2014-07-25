@@ -180,7 +180,7 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.4.178</version>
+      <version>1.4.180</version>
     </dependency>
     <!-- MySQL support -->
     <dependency>
@@ -232,7 +232,7 @@
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
-      <version>20030825.184428</version>
+      <version>1.4</version>
       <type>jar</type>
       <scope>compile</scope>
     </dependency>

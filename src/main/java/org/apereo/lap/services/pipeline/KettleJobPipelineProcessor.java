@@ -18,6 +18,7 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
+import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
@@ -55,6 +56,8 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
             KettleEnvironment.init(false);
             EnvUtil.environmentInit();
             JobMeta jobMeta = new JobMeta(kettleXMLFile.getAbsolutePath(), null, null);
+            DatabaseMeta databaseMeta = jobMeta.getDatabase(0);
+            updateDatabaseConnection(databaseMeta);
 
             Job job = new Job(null, jobMeta);
             job.start();
@@ -64,7 +67,7 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
             result.done((int) jobResult.getNrErrors(), null);
         } catch(Exception e) {
             // swallow exceptions for now...
-            // e.printStackTrace();
+            e.printStackTrace();
         }
 
         return result;

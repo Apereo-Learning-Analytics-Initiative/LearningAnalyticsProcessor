@@ -31,7 +31,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -77,11 +76,11 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     // copy JSON input file from classpath:extracts/ to inputs/
                     inputHandler.copySampleCSV("extracts/", jsonInputFilename);
                     JsonInputMeta jsonInputMeta = (JsonInputMeta) stepMeta.getStepMetaInterface();
-                    jsonInputMeta.setFileName(new String[]{configuration.getInputDirectory().getAbsolutePath() + "/" + jsonInputFilename});
+                    jsonInputMeta.setFileName(new String[]{configurationService.getInputDirectory().getAbsolutePath() + "/" + jsonInputFilename});
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonOutput")) {
                     // set output file to output/<FILENAME>
                     JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
-                    jsonOutputMeta.setFileName(configuration.getOutputDirectory().getAbsolutePath() + "/" + jsonOutputFilename);
+                    jsonOutputMeta.setFileName(configurationService.getOutputDirectory().getAbsolutePath() + "/" + jsonOutputFilename);
                     jsonOutputMeta.setExtension("");
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {
                     // set Weka serialized scoring model
