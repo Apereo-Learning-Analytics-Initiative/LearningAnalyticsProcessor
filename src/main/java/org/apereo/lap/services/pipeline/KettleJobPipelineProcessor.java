@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Handles the pipeline processing for Kettle processors
@@ -56,8 +57,10 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
             KettleEnvironment.init(false);
             EnvUtil.environmentInit();
             JobMeta jobMeta = new JobMeta(kettleXMLFile.getAbsolutePath(), null, null);
-            DatabaseMeta databaseMeta = jobMeta.getDatabase(0);
-            updateDatabaseConnection(databaseMeta);
+            List<DatabaseMeta> databaseMetas = jobMeta.getDatabases();
+            for (DatabaseMeta databaseMeta : databaseMetas) {
+                updateDatabaseConnection(databaseMeta);
+            }
 
             Job job = new Job(null, jobMeta);
             job.start();

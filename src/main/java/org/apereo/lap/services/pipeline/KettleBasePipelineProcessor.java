@@ -66,32 +66,17 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
 
     protected void updateDatabaseConnection(DatabaseMeta databaseMeta) {
         Configuration configuration = configurationService.getConfig();
+        H2DatabaseMeta h2DatabaseMeta = new H2DatabaseMeta();
 
-        if (StringUtils.equalsIgnoreCase(configuration.getString("db.job.type", ""), "MySQL")) {
-            // set MySQL database properties
-            MySQLDatabaseMeta mySQLDatabaseMeta = new MySQLDatabaseMeta();
-            mySQLDatabaseMeta.setName(databaseMeta.getName());
-            mySQLDatabaseMeta.setUsername(configuration.getString("db.job.username", ""));
-            mySQLDatabaseMeta.setPassword(configuration.getString("db.job.password", ""));
-            mySQLDatabaseMeta.setHostname(configuration.getString("db.job.host", ""));
-            mySQLDatabaseMeta.setDatabasePortNumberString(configuration.getString("db.job.port", ""));
-            mySQLDatabaseMeta.setDatabaseName(configuration.getString("db.job.dbname", ""));
-            mySQLDatabaseMeta.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
-            databaseMeta.setDatabaseInterface(mySQLDatabaseMeta);
-        } else if (StringUtils.equalsIgnoreCase(configuration.getString("db.job.type", ""), "H2")) {
-            // set H2 database properties
-            H2DatabaseMeta h2DatabaseMeta = new H2DatabaseMeta();
-            h2DatabaseMeta.setName(databaseMeta.getName());
-            h2DatabaseMeta.setUsername(configuration.getString("db.job.username", ""));
-            h2DatabaseMeta.setPassword(configuration.getString("db.job.password", ""));
-            h2DatabaseMeta.setHostname(configuration.getString("db.job.host", ""));
-            h2DatabaseMeta.setDatabasePortNumberString(configuration.getString("db.job.port", "3306"));
-            h2DatabaseMeta.setDatabaseName(configuration.getString("db.job.dbname", ""));
-            h2DatabaseMeta.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
-            databaseMeta.setDatabaseInterface(h2DatabaseMeta);
-        } else {
-            throw new IllegalArgumentException("Invalid database type: " + configuration.getString("db.job.type"));
-        }
+        String url = StringUtils.remove(configuration.getString("db.url", ""), "jdbc:h2:");
+        h2DatabaseMeta.setName(databaseMeta.getName());
+        h2DatabaseMeta.setUsername(configuration.getString("db.username", ""));
+        h2DatabaseMeta.setPassword(configuration.getString("db.password", ""));
+        h2DatabaseMeta.setDatabaseName(url);
+        h2DatabaseMeta.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
+
+        databaseMeta.setDatabaseInterface(h2DatabaseMeta);
+
     }
 
     protected void setKettlePluginsDirectory() {

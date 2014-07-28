@@ -33,10 +33,10 @@
     <server>localhost</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>oaai</database>
+    <database>oaai1</database>
     <port>3306</port>
-    <username>oaai</username>
-    <password>oaai</password>
+    <username>oaai1</username>
+    <password>oaai1</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -388,7 +388,7 @@
       <name>Create temp Bio tables</name>
       <description/>
       <type>SQL</type>
-      <sql>&#xd;&#xa;--------------------------------------------------------------------------------------&#xd;&#xa;-- Kettle doesn&#x27;t seem to accept multiline comments. Hence using single line comments&#xd;&#xa;-- CREATE A temporary table DISTINCT_PERSONAL from the base BIO file.   &#xd;&#xa;-- Check and eliminate duplicate entries if any by using Row number option.&#xd;&#xa;--------------------------------------------------------------------------------&#xd;&#xa;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE DISTINCT_PERSONAL SELECT DISTINCT &#x2a; FROM PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL ADD PRIMARY KEY &#x28;ALTERNATIVE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL add APTITUDE_SCORE int&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
+      <sql>&#xd;&#xa;--------------------------------------------------------------------------------------&#xd;&#xa;-- Kettle doesn&#x27;t seem to accept multiline comments. Hence using single line comments&#xd;&#xa;-- CREATE A temporary table DISTINCT_PERSONAL from the base BIO file.   &#xd;&#xa;-- Check and eliminate duplicate entries if any by using Row number option.&#xd;&#xa;--------------------------------------------------------------------------------&#xd;&#xa;&#xa;DROP TABLE IF EXISTS DISTINCT_PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE DISTINCT_PERSONAL AS SELECT &#x2a; FROM PERSONAL&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL ADD PRIMARY KEY &#x28;ALTERNATIVE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE DISTINCT_PERSONAL add APTITUDE_SCORE int&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>

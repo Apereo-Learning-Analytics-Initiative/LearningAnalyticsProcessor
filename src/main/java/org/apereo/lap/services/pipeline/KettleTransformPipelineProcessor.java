@@ -19,6 +19,7 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
+import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.scoring.WekaScoringMeta;
 import org.pentaho.di.trans.Trans;
@@ -67,6 +68,11 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             EnvUtil.environmentInit();
             TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
 
+            List<DatabaseMeta> databaseMetas = transMeta.getDatabases();
+            for (DatabaseMeta databaseMeta : databaseMetas) {
+                updateDatabaseConnection(databaseMeta);
+            }
+
             List<StepMeta> stepMetaList = transMeta.getSteps();
             for (StepMeta stepMeta : stepMetaList) {
                 logger.info("Processing step: '"+stepMeta.getName()+"' in file: "+kettleXMLFile.getAbsolutePath());
@@ -100,7 +106,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             result.done((int) transResult.getNrErrors(), null);
         } catch (Exception e) {
             // swallow exceptions for now...
-            // e.printStackTrace();
+            e.printStackTrace();
         }
 
         return result;
