@@ -52,6 +52,11 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     ResourceLoader resourceLoader;
 
     /**
+     * System defined path separator Windows = "\", Unix = "/"
+     */
+    protected static final String SLASH = System.getProperty("file.separator");
+
+    /**
      * Gets a file from the classpath with the given name or path
      * 
      * @param filename the file's name or path
