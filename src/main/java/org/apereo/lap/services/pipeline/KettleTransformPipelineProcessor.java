@@ -68,6 +68,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             EnvUtil.environmentInit();
             TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
 
+            // update the database connections to use the temporary in-memory database
             List<DatabaseMeta> databaseMetas = transMeta.getDatabases();
             for (DatabaseMeta databaseMeta : databaseMetas) {
                 updateDatabaseConnection(databaseMeta);
@@ -93,6 +94,8 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     File file = getFile(scoringModelFilename);
                     WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
                     wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
+                } else {
+                    logger.error("There was an unknown step type '" + stepMeta.getTypeId() + "' in the tranformation file: " + processorConfig.filename);
                 }
             }
 
@@ -103,10 +106,10 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             trans.waitUntilFinished();
 
             Result transResult = trans.getResult();
+            // TODO find a way to get the errors during processing
             result.done((int) transResult.getNrErrors(), null);
         } catch (Exception e) {
-            // swallow exceptions for now...
-            e.printStackTrace();
+            logger.error("An error occurred processing the transformation file: " + processorConfig.filename + ". Error: " + e, e);
         }
 
         return result;
