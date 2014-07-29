@@ -19,6 +19,7 @@ import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.InputHandlerService;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,6 +42,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
+@JsonIgnoreProperties({"configuration"})
 public class PipelineConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(PipelineConfig.class);

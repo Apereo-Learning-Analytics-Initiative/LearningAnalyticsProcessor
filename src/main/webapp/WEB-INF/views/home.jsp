@@ -27,6 +27,13 @@
   More information about this project is available at <a href="https://confluence.sakaiproject.org/display/LAI/Apereo+Learning+Analytics+Processor">Apereo Learning Analytics Processor wiki</a>.
   </div>
 
+  <h2>Current <a href="pipeline/">pipelines</a></h2>
+  <ol>
+      <c:forEach items="${pipelines}" var="pipeline">
+          <li><strong><a href="pipeline/${pipeline.type}">${pipeline.type}:</a></strong> ${pipeline.name}</li>
+      </c:forEach>
+  </ol>
+
   <h2>Current pipeline processors</h2>
   <ol>
       <c:forEach items="${processors}" var="processor">

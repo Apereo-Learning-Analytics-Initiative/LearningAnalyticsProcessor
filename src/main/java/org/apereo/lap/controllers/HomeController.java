@@ -46,6 +46,7 @@ public class HomeController {
     public String home(Model model) {
         model.addAttribute("dev", "AZ"); // for testing
         model.addAttribute("processors", processingManagerService.getPipelineProcessors());
+        model.addAttribute("pipelines", processingManagerService.getPipelineConfigs().values());
         model.addAttribute("outputDir", configuration.getOutputDirectory().getAbsolutePath());
         model.addAttribute("inputDir", configuration.getInputDirectory().getAbsolutePath());
         model.addAttribute("pipelinesDir", configuration.getPipelinesDirectory().getAbsolutePath());

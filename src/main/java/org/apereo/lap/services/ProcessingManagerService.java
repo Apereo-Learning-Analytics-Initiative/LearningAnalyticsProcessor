@@ -27,9 +27,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * This is the trigger and general management point for the entire processing of a pipeline.
@@ -78,8 +76,39 @@ public class ProcessingManagerService {
         logger.info("DESTROY");
     }
 
-    public void process(String pipelineId) {
+    /**
+     * @param processorKey the key for this PipelineProcessor
+     * @return the PipelineProcessor if found OR null if none exist for this key
+     */
+    public PipelineProcessor findProcessor(String processorKey) {
+        Processor.ProcessorType ptype = Processor.ProcessorType.valueOf(processorKey);
+        for (PipelineProcessor pipelineProcessor : pipelineProcessors) {
+            if (pipelineProcessor.getProcessorType() == ptype) {
+                return pipelineProcessor;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @param pipelineId the id for this pipeline config
+     * @return the config OR null if not found for this id
+     */
+    public PipelineConfig findPipelineConfig(String pipelineId) {
+        // load up pipeline config (by id)
+        return configuration.getPipelineConfig(pipelineId);
+    }
+
+    /**
+     * @return the map of String config id to PipelineConfig
+     */
+    public Map<String, PipelineConfig> getPipelineConfigs() {
+        return new HashMap<>(configuration.getPipelineConfigs());
+    }
+
+    public boolean process(String pipelineId) {
         logger.info("Pipeline Initialized: "+pipelineId);
+        boolean processResult = false;
         try {
             // load up pipeline config (by id)
             PipelineConfig pipelineConfig = configuration.getPipelineConfig(pipelineId);
@@ -158,12 +187,14 @@ public class ProcessingManagerService {
 
             // send success notification
             notification.sendNotification("Pipeline ("+pipelineId+") Complete", NotificationService.NotificationLevel.INFO);
+            processResult = true;
         } catch (RuntimeException e) {
             // send failure notification
             String msg = "Pipeline ("+pipelineId+") FAILED: "+e;
             logger.error(msg);
             notification.sendNotification(msg, NotificationService.NotificationLevel.CRITICAL);
         }
+        return processResult;
     }
 
     public List<PipelineProcessor> getPipelineProcessors() {
