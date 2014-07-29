@@ -83,18 +83,23 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                 if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonInput")){
                     // copy JSON input file from classpath:extracts/ to inputs/
                     inputHandler.copySampleCSV("extracts/", jsonInputFilename);
+                    String filePath = configurationService.getInputDirectory().getAbsolutePath() + SLASH + jsonInputFilename;
                     JsonInputMeta jsonInputMeta = (JsonInputMeta) stepMeta.getStepMetaInterface();
-                    jsonInputMeta.setFileName(new String[]{configurationService.getInputDirectory().getAbsolutePath() + SLASH + jsonInputFilename});
+                    jsonInputMeta.setFileName(new String[]{filePath});
+                    logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' JSON input filename to " + filePath);
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonOutput")) {
                     // set output file to output/<FILENAME>
+                    String filePath = configurationService.getOutputDirectory().getAbsolutePath() + SLASH + jsonOutputFilename;
                     JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
-                    jsonOutputMeta.setFileName(configurationService.getOutputDirectory().getAbsolutePath() + SLASH + jsonOutputFilename);
+                    jsonOutputMeta.setFileName(filePath);
                     jsonOutputMeta.setExtension("");
+                    logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' JSON output filename to " + filePath);
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {
                     // set Weka serialized scoring model
                     File file = getFile(scoringModelFilename);
                     WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
                     wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
+                    logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' Weka scoring model filename to " + file.getAbsolutePath());
                 } else {
                     logger.error("There was an unknown step type '" + stepMeta.getTypeId() + "' in the tranformation file: " + processorConfig.filename);
                 }

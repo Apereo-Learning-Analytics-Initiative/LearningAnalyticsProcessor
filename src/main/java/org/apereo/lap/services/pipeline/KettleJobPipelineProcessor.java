@@ -14,6 +14,7 @@
  */
 package org.apereo.lap.services.pipeline;
 
+import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
@@ -22,6 +23,8 @@ import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.job.entries.job.JobEntryJob;
+import org.pentaho.di.job.entry.JobEntryCopy;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -37,6 +40,9 @@ import java.util.List;
  */
 @Component
 public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
+
+    private String assignWeightsEntryName = "AssignWeights_Grades";
+    private String assignWeightsFilename = SLASH + "kettle" + SLASH + "sample2_1.kjb.xml";
 
     @PostConstruct
     public void init() {
@@ -58,6 +64,18 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
             KettleEnvironment.init(false);
             EnvUtil.environmentInit();
             JobMeta jobMeta = new JobMeta(kettleXMLFile.getAbsolutePath(), null, null);
+
+            List<JobEntryCopy> jobEntryCopies = jobMeta.getJobCopies();
+            for (JobEntryCopy jobEntryCopy : jobEntryCopies) {
+                // set the AssignWeights_Grades entry file name to the one on the classpath
+                if (StringUtils.equalsIgnoreCase(jobEntryCopy.getName(), assignWeightsEntryName)) {
+                    JobEntryJob jobEntryJob = (JobEntryJob) jobEntryCopy.getEntry();
+                    File file = getFile(assignWeightsFilename);
+                    jobEntryJob.setFileName(file.getAbsolutePath());
+
+                    logger.info("Setting job entry '" + kettleXMLFile.getName() + " : " + assignWeightsEntryName + "' filename to " + file.getAbsolutePath());
+                }
+            }
 
             // update the database connections to use the temporary in-memory database
             List<DatabaseMeta> databaseMetas = jobMeta.getDatabases();
