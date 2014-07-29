@@ -27,7 +27,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -165,6 +164,10 @@ public class ProcessingManagerService {
             logger.error(msg);
             notification.sendNotification(msg, NotificationService.NotificationLevel.CRITICAL);
         }
+    }
+
+    public List<PipelineProcessor> getPipelineProcessors() {
+        return pipelineProcessors;
     }
 
 }

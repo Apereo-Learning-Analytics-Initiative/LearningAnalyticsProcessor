@@ -18,10 +18,34 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Home</title>
+<title>LAP Home</title>
 </head>
 <body>
-  <h1>Hello world!</h1>
-  ${controllerMessage}
+  <h1>Learning Analytics Processor</h1>
+
+  <div>This page is just informational for now.
+  More information about this project is available at <a href="https://confluence.sakaiproject.org/display/LAI/Apereo+Learning+Analytics+Processor">Apereo Learning Analytics Processor wiki</a>.
+  </div>
+
+  <h2>Current pipeline processors</h2>
+  <ol>
+      <c:forEach items="${processors}" var="processor">
+      <li>${processor.processorType}</li>
+      </c:forEach>
+  </ol>
+
+  <h2>Processing directories</h2>
+  <div>
+      <div><strong>Input:</strong> ${inputDir}</div>
+      <div><strong>Output:</strong> ${outputDir}</div>
+      <div><strong>Pipelines:</strong> ${pipelinesDir}</div>
+  </div>
+
+  <h2>Databases</h2>
+  <div>
+      <div><strong>Temporary:</strong> ${temporaryDB}</div>
+      <div><strong>Persistent:</strong> ${persistentDB}</div>
+  </div>
+
 </body>
 </html>

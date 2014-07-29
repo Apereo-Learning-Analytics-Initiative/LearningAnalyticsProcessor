@@ -15,6 +15,7 @@
 package org.apereo.lap.controllers;
 
 import org.apereo.lap.services.ConfigurationService;
+import org.apereo.lap.services.ProcessingManagerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -35,13 +36,21 @@ public class HomeController {
     @Resource
     ConfigurationService configuration;
 
+    @Resource
+    ProcessingManagerService processingManagerService;
+
     /**
      * Selects the home page and populates the model with a message
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
-        logger.info("Welcome home!");
-        model.addAttribute("controllerMessage", "This is the message from the controller!");
+        model.addAttribute("dev", "AZ"); // for testing
+        model.addAttribute("processors", processingManagerService.getPipelineProcessors());
+        model.addAttribute("outputDir", configuration.getOutputDirectory().getAbsolutePath());
+        model.addAttribute("inputDir", configuration.getInputDirectory().getAbsolutePath());
+        model.addAttribute("pipelinesDir", configuration.getPipelinesDirectory().getAbsolutePath());
+        model.addAttribute("temporaryDB", configuration.getConfig().getString("db.url"));
+        model.addAttribute("persistentDB", configuration.getConfig().getString("edb.url"));
         return "home";
     }
 
