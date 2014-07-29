@@ -16,7 +16,6 @@ package org.apereo.lap.services.pipeline;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 import javax.annotation.Resource;
 
@@ -27,7 +26,6 @@ import org.apereo.lap.services.InputHandlerService;
 import org.apereo.lap.services.StorageService;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.database.H2DatabaseMeta;
-import org.pentaho.di.core.database.MySQLDatabaseMeta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ResourceLoader;
@@ -53,6 +51,12 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     @Resource
     ResourceLoader resourceLoader;
 
+    /**
+     * Gets a file from the classpath with the given name or path
+     * 
+     * @param filename the file's name or path
+     * @return the object for the file
+     */
     protected File getFile(String filename) {
         try {
             // TODO maybe make this read the kettle files from the pipelines dir as well?
@@ -64,6 +68,11 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
         }
     }
 
+    /**
+     * Updates the database connection for the given DatabaseMeta object
+     * 
+     * @param databaseMeta the DatabaseObject that contains the connection data
+     */
     protected void updateDatabaseConnection(DatabaseMeta databaseMeta) {
         Configuration configuration = configurationService.getConfig();
         H2DatabaseMeta h2DatabaseMeta = new H2DatabaseMeta();
@@ -79,6 +88,9 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
 
     }
 
+    /**
+     * Updates the Kettle configuration parameter KETTLE_PLUGIN_BASE_FOLDERS with the external plug-ins directory
+     */
     protected void setKettlePluginsDirectory() {
         try {
             String plugins = resourceLoader.getResource("classpath:kettle/plugins").getURI().toString();

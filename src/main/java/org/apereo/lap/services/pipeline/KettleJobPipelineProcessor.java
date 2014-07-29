@@ -41,6 +41,7 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
     @PostConstruct
     public void init() {
         // Do any init here you need to (but note this is for the service and not each run)
+        setKettlePluginsDirectory();
     }
 
     @Override
@@ -57,6 +58,8 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
             KettleEnvironment.init(false);
             EnvUtil.environmentInit();
             JobMeta jobMeta = new JobMeta(kettleXMLFile.getAbsolutePath(), null, null);
+
+            // update the database connections to use the temporary in-memory database
             List<DatabaseMeta> databaseMetas = jobMeta.getDatabases();
             for (DatabaseMeta databaseMeta : databaseMetas) {
                 updateDatabaseConnection(databaseMeta);
@@ -67,10 +70,10 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
             job.waitUntilFinished();
 
             Result jobResult = job.getResult();
+            // TODO find a way to get the errors during processing
             result.done((int) jobResult.getNrErrors(), null);
         } catch(Exception e) {
-            // swallow exceptions for now...
-            e.printStackTrace();
+            logger.error("An error occurred processing the job file: " + processorConfig.filename + ". Error: " + e, e);
         }
 
         return result;
