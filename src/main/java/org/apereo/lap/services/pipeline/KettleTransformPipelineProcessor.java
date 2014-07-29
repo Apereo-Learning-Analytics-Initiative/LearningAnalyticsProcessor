@@ -49,6 +49,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
 
     @PostConstruct
     public void init() {
+        // Do any init here you need to (but note this is for the service and not each run)
         setKettlePluginsDirectory();
     }
 
