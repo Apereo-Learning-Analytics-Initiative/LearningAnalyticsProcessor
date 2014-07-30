@@ -16,9 +16,24 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-<html>
+<html lang="en">
 <head>
-<title>LAP Home</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learning Analytics Processor Home">
+    <meta name="author" content="Aaron Zeckoski">
+    <link rel="shortcut icon" href="<c:url value="resources/favicon.ico"/>" type="image/x-icon">
+    <link rel="icon" href="<c:url value="resources/favicon.ico"/>" type="image/x-icon">
+    <title>LAP Home</title>
+
+    <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="resources/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="resources/css/screen.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script src="resources/jquery/jquery-1.11.1.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="resources/js/lap.js"></script>
 </head>
 <body>
   <h1>Learning Analytics Processor</h1>
@@ -30,7 +45,12 @@
   <h2>Current <a href="pipeline/">pipelines</a></h2>
   <ol>
       <c:forEach items="${pipelines}" var="pipeline">
-          <li><strong><a href="pipeline/${pipeline.type}">${pipeline.type}:</a></strong> ${pipeline.name}</li>
+          <li>
+              <strong><a href="pipeline/${pipeline.type}">${pipeline.type}:</a></strong> ${pipeline.name}
+              <form action="/pipeline/${pipeline.type}" method="post" style="display: inline;">
+                  <input type="submit" name="start-pipeline-${pipeline.type}" value="Run" />
+              </form>
+          </li>
       </c:forEach>
   </ol>
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2013 Unicon (R) Licensed under the
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
@@ -12,35 +12,27 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-/*
- * Custom CSS for the lap application does in here
+/**
+ * Custom LAP javascript goes in here,
+ * Sample below shows how to properly namespace it
+ * -AZ
  */
-.odd {
-	background: #f0f0f0;
-}
+(function( lap, $, undefined ) {
+    //Private Property
+    var isPrivate = true;
 
-.even {
-	background: #ffffff;
-}
+    //Public Property
+    lap.publicVar = "public";
 
-.dataTable {
-	border-collapse: collapse;;
-	width: 100%;
-}
+    //Public Method
+    lap.publicMethod = function() {
+        console.log( "Doing stuff " + lap.publicVar );
+    };
 
-.dataTable th {
-	background: #204080;
-	color: #f0f0f0;
-	padding: 6px;
-	border: 1px solid #f0f0f0;
-}
-
-.dataTable td {
-	border: 1px solid #d0d0d0;
-	padding: 4px;
-}
-
-.errorMessage {
-	color: #ff0000;
-	font-weight: bold;
-}
+    //Private Method
+    function doSomething( item ) {
+        if ( item !== undefined ) {
+            console.log( "Something " + $.trim(item) );
+        }
+    }
+}( window.lap = window.lap || {}, jQuery ));

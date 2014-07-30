@@ -372,9 +372,11 @@
             <exclude>**/*.txt</exclude>
             <exclude>**/*.md</exclude>
             <exclude>**/*.sql</exclude>
-            <exclude>**/javascript/jquery/**</exclude>
+            <exclude>**/*.json</exclude>
             <exclude>**/pmml/**</exclude>
             <exclude>**/kettle/**</exclude>
+            <exclude>**/jquery/**</exclude>
+            <exclude>**/bootstrap/**</exclude>
           </excludes>
           <mapping>
             <tag>DYNASCRIPT_STYLE</tag>
