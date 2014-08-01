@@ -17,9 +17,7 @@ package org.apereo.lap.services.pipeline;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
-import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
-import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.scoring.WekaScoringMeta;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
@@ -47,9 +45,11 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
     private String jsonOutputFilename = "sample1_output.json";
     private String scoringModelFilename = SLASH + "kettle" + SLASH + "Marist_OAAI_ACADEMIC_RISK.xml";
 
+    /**
+     * Service-level initialization, will not be run every time
+     */
     @PostConstruct
     public void init() {
-        // Do any init here you need to (but note this is for the service and not each run)
         configureKettle();
     }
 
@@ -64,16 +64,14 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
         File kettleXMLFile = getFile(processorConfig.filename);
 
         try {
-            KettleEnvironment.init(false);
-            EnvUtil.environmentInit();
             TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
 
-            // update the database connections to use the pre-configured database
-            configureDatabaseConnection(transMeta);
+            // update the shared objects to use the pre-configured shared objects
+            transMeta.setSharedObjects(getSharedObjects());
 
             List<StepMeta> stepMetaList = transMeta.getSteps();
             for (StepMeta stepMeta : stepMetaList) {
-                logger.info("Processing step: '"+stepMeta.getName()+"' in file: "+kettleXMLFile.getAbsolutePath());
+                logger.info("Processing step: '" + stepMeta.getName() + "' in file: " + kettleXMLFile.getAbsolutePath());
 
                 // set the file path to the one necessary, based on step type
                 if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonInput")){
@@ -101,12 +99,14 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                 }
             }
 
+            // run the transformation
             Trans trans = new Trans(transMeta);
             trans.calculateBatchIdAndDateRange();
             trans.beginProcessing();
             trans.execute(new String[]{});
             trans.waitUntilFinished();
 
+            // process the results
             Result transResult = trans.getResult();
             result.done((int) transResult.getNrErrors(), null);
         } catch (Exception e) {

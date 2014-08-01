@@ -17,9 +17,7 @@ package org.apereo.lap.services.pipeline;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
-import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
-import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.job.entries.job.JobEntryJob;
@@ -43,9 +41,11 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
     private String assignWeightsEntryName = "AssignWeights_Grades";
     private String assignWeightsFilename = SLASH + "kettle" + SLASH + "sample2_1.kjb.xml";
 
+    /**
+     * Service-level initialization, will not be run every time
+     */
     @PostConstruct
     public void init() {
-        // Do any init here you need to (but note this is for the service and not each run)
         configureKettle();
     }
 
@@ -60,9 +60,10 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
         File kettleXMLFile = getFile(processorConfig.filename);
 
         try {
-            KettleEnvironment.init(false);
-            EnvUtil.environmentInit();
             JobMeta jobMeta = new JobMeta(kettleXMLFile.getAbsolutePath(), null, null);
+
+            // update the shared objects to use the pre-configured shared objects
+            jobMeta.setSharedObjects(getSharedObjects());
 
             List<JobEntryCopy> jobEntryCopies = jobMeta.getJobCopies();
             for (JobEntryCopy jobEntryCopy : jobEntryCopies) {
@@ -78,13 +79,12 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
                 }
             }
 
-            // update the database connections to use the pre-configured database
-            configureDatabaseConnection(jobMeta);
-
+            // run the job
             Job job = new Job(null, jobMeta);
             job.start();
             job.waitUntilFinished();
 
+            // process the results
             Result jobResult = job.getResult();
             result.done((int) jobResult.getNrErrors(), null);
         } catch(Exception e) {
