@@ -19,7 +19,6 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
-import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
@@ -47,7 +46,7 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
     @PostConstruct
     public void init() {
         // Do any init here you need to (but note this is for the service and not each run)
-        setKettlePluginsDirectory();
+        configureKettle();
     }
 
     @Override
@@ -74,21 +73,19 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
                     jobEntryJob.setFileName(file.getAbsolutePath());
 
                     logger.info("Setting job entry '" + kettleXMLFile.getName() + " : " + assignWeightsEntryName + "' filename to " + file.getAbsolutePath());
+
+                    break;
                 }
             }
 
-            // update the database connections to use the temporary in-memory database
-            List<DatabaseMeta> databaseMetas = jobMeta.getDatabases();
-            for (DatabaseMeta databaseMeta : databaseMetas) {
-                updateDatabaseConnection(databaseMeta);
-            }
+            // update the database connections to use the pre-configured database
+            configureDatabaseConnection(jobMeta);
 
             Job job = new Job(null, jobMeta);
             job.start();
             job.waitUntilFinished();
 
             Result jobResult = job.getResult();
-            // TODO find a way to get the errors during processing
             result.done((int) jobResult.getNrErrors(), null);
         } catch(Exception e) {
             logger.error("An error occurred processing the job file: " + processorConfig.filename + ". Error: " + e, e);

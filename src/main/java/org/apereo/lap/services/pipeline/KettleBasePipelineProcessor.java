@@ -16,6 +16,7 @@ package org.apereo.lap.services.pipeline;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 
@@ -26,6 +27,11 @@ import org.apereo.lap.services.InputHandlerService;
 import org.apereo.lap.services.StorageService;
 import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.database.H2DatabaseMeta;
+import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.shared.SharedObjectInterface;
+import org.pentaho.di.shared.SharedObjects;
+import org.pentaho.di.trans.HasDatabasesInterface;
+import org.pentaho.di.trans.TransMeta;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ResourceLoader;
@@ -57,6 +63,11 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     protected static final String SLASH = System.getProperty("file.separator");
 
     /**
+     * Shared objects (database connections, etc.) located in .kettle/shared.xml
+     */
+    private SharedObjects sharedObjects;
+
+    /**
      * Gets a file from the classpath with the given name or path
      * 
      * @param filename the file's name or path
@@ -64,7 +75,6 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
      */
     protected File getFile(String filename) {
         try {
-            // TODO maybe make this read the kettle files from the pipelines dir as well?
             File file = resourceLoader.getResource("classpath:"+filename).getFile();
 
             return file;
@@ -74,35 +84,101 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     }
 
     /**
-     * Updates the database connection for the given DatabaseMeta object
+     * Configures the job or transform to use a pre-defined database connection
      * 
-     * @param databaseMeta the DatabaseObject that contains the connection data
+     * @param meta the meta object (JobMeta or TransMeta)
      */
-    protected void updateDatabaseConnection(DatabaseMeta databaseMeta) {
+    protected void configureDatabaseConnection(HasDatabasesInterface meta) {
+        assert meta != null;
+
+        if (sharedObjects == null) {
+            logger.info("SharedObjects is null, configuring pre-defined shared database connections.");
+            updateSharedDatabase();
+        }
+
+        if (meta instanceof TransMeta) {
+            logger.info("Setting shared objects for TransMeta.");
+            ((TransMeta) meta).setSharedObjects(sharedObjects);
+        } else if (meta instanceof JobMeta) {
+            logger.info("Setting shared objects for JobMeta.");
+            ((JobMeta) meta).setSharedObjects(sharedObjects);
+        } else {
+            throw new IllegalArgumentException("Error setting shared objects for non-configurable meta class: " + meta.getClass().getName());
+        }
+    }
+
+    /**
+     * Updates Kettle configuration properties
+     */
+    protected void configureKettle() {
+        setKettleHomeDirectory();
+        setKettlePluginsDirectory();
+    }
+
+    /**
+     * Updates the shared database connections defined in shared.xml
+     * 
+     */
+    private void updateSharedDatabase() {
         Configuration configuration = configurationService.getConfig();
-        H2DatabaseMeta h2DatabaseMeta = new H2DatabaseMeta();
 
-        String url = StringUtils.remove(configuration.getString("db.url", ""), "jdbc:h2:");
-        h2DatabaseMeta.setName(databaseMeta.getName());
-        h2DatabaseMeta.setUsername(configuration.getString("db.username", ""));
-        h2DatabaseMeta.setPassword(configuration.getString("db.password", ""));
-        h2DatabaseMeta.setDatabaseName(url);
-        h2DatabaseMeta.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
+        try {
+            sharedObjects = new SharedObjects();
+            Iterator<SharedObjectInterface> iterator = sharedObjects.getObjectsMap().values().iterator();
+            while (iterator.hasNext()) {
+                SharedObjectInterface sharedObjectInterface = iterator.next();
+                // only update the database connections
+                if (sharedObjectInterface instanceof DatabaseMeta) {
+                    logger.info("Updating shared database connection '" + sharedObjectInterface.getName() + "' in file: " + sharedObjects.getFilename());
+                    String databaseName = StringUtils.remove(configuration.getString("db.url", ""), "jdbc:h2:");
 
-        databaseMeta.setDatabaseInterface(h2DatabaseMeta);
+                    // create a fully-configured H2 database connection
+                    H2DatabaseMeta h2DatabaseMeta = new H2DatabaseMeta();
+                    h2DatabaseMeta.setName(sharedObjectInterface.getName());
+                    h2DatabaseMeta.setUsername(configuration.getString("db.username", ""));
+                    h2DatabaseMeta.setPassword(configuration.getString("db.password", ""));
+                    h2DatabaseMeta.setDatabaseName(databaseName);
+                    h2DatabaseMeta.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
+                    h2DatabaseMeta.setAttributes(((DatabaseMeta) sharedObjectInterface).getAttributes());
+                    h2DatabaseMeta.setDatabasePortNumberString(null);
+                    h2DatabaseMeta.setPluginId("H2");
+
+                    // set the interface to the H2 configuration
+                    ((DatabaseMeta) sharedObjectInterface).setDatabaseInterface(h2DatabaseMeta);
+                }
+            }
+
+            // save the new configuration to shared.xml
+            sharedObjects.saveToFile();
+        } catch (Exception e) {
+            logger.error("An error occurred dynamically configuring the shared database connection. Error: " + e, e);
+        }
 
     }
 
     /**
      * Updates the Kettle configuration parameter KETTLE_PLUGIN_BASE_FOLDERS with the external plug-ins directory
      */
-    protected void setKettlePluginsDirectory() {
+    private void setKettlePluginsDirectory() {
         try {
             String plugins = resourceLoader.getResource("classpath:kettle/plugins").getURI().toString();
             System.setProperty("KETTLE_PLUGIN_BASE_FOLDERS", plugins);
             logger.info("Setting kettle plugins base directory to: "+plugins);
         } catch (IOException e) {
             logger.error("Error setting Kettle plugins directory. Error: " + e, e);
+        }
+    }
+
+    /**
+     * Updates the Kettle configuration parameter KETTLE_HOME with the external home directory
+     */
+    private void setKettleHomeDirectory() {
+        try {
+            String home = resourceLoader.getResource("classpath:kettle/home").getURI().toString();
+            System.setProperty("KETTLE_HOME", home);
+            logger.info("Setting kettle home directory to: "+home);
+        } catch (IOException e) {
+            logger.error("Error setting Kettle home directory. Error: " + e, e);
         }
     }
 

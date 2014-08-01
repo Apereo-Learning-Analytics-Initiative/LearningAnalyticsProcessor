@@ -19,7 +19,6 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.Result;
-import org.pentaho.di.core.database.DatabaseMeta;
 import org.pentaho.di.core.util.EnvUtil;
 import org.pentaho.di.scoring.WekaScoringMeta;
 import org.pentaho.di.trans.Trans;
@@ -51,7 +50,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
     @PostConstruct
     public void init() {
         // Do any init here you need to (but note this is for the service and not each run)
-        setKettlePluginsDirectory();
+        configureKettle();
     }
 
     @Override
@@ -69,11 +68,8 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             EnvUtil.environmentInit();
             TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
 
-            // update the database connections to use the temporary in-memory database
-            List<DatabaseMeta> databaseMetas = transMeta.getDatabases();
-            for (DatabaseMeta databaseMeta : databaseMetas) {
-                updateDatabaseConnection(databaseMeta);
-            }
+            // update the database connections to use the pre-configured database
+            configureDatabaseConnection(transMeta);
 
             List<StepMeta> stepMetaList = transMeta.getSteps();
             for (StepMeta stepMeta : stepMetaList) {
@@ -112,7 +108,6 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             trans.waitUntilFinished();
 
             Result transResult = trans.getResult();
-            // TODO find a way to get the errors during processing
             result.done((int) transResult.getNrErrors(), null);
         } catch (Exception e) {
             logger.error("An error occurred processing the transformation file: " + processorConfig.filename + ". Error: " + e, e);
