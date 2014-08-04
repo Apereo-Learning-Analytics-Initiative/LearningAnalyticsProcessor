@@ -39,7 +39,7 @@ import java.util.List;
 public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
 
     private String assignWeightsEntryName = "AssignWeights_Grades";
-    private String assignWeightsFilename = SLASH + "kettle" + SLASH + "sample2_1.kjb.xml";
+    private String assignWeightsFilename = SLASH + "kettle" + SLASH + "scoring_sample" + SLASH + "Sample_Pipeline1_ETL_Gradebook_AssignWeightsJob.kjb";
 
     /**
      * Service-level initialization, will not be run every time
