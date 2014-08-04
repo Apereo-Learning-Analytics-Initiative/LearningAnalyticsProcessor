@@ -69,10 +69,15 @@
       <file>kettle/scoring_sample/Sample_Pipeline1_ETL_MainJob.kjb</file>
     </processor>
     <processor>
+      <type>kettle_data</type>
+      <name>kettle-data</name>
+      <count>100</count>
+    </processor>
+    <!-- processor>
       <type>fake_data</type>
       <name>AZ-fake-data-sample</name>
       <count>100</count>
-    </processor>
+    </processor -->
   </processors>
 
   <outputs>
@@ -84,7 +89,7 @@
     -->
     <output>
       <type>STORAGE</type><!-- from Temp to Persistent Storage -->
-      <from>FAKE_DATA</from><!-- the temporary storage collection/table -->
+      <from>KETTLE_DATA</from><!-- the temporary storage collection/table -->
       <to>RESULTS</to><!-- the persistent storage collection/table -->
       <fields>
         <field>
@@ -99,8 +104,8 @@
     </output>
     <output>
       <type>CSV</type>
-      <from>FAKE_DATA</from><!-- the temporary storage collection/table -->
-      <filename>students_at_risk.csv</filename>
+      <from>KETTLE_DATA</from><!-- the temporary storage collection/table -->
+      <filename>kettle_data_output.csv</filename>
       <fields>
         <field>
           <header>USER_ID_ALT</header>

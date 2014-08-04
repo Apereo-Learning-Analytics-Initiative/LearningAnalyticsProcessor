@@ -251,6 +251,13 @@ public class PipelineConfig {
                     pc.addProcessor(Processor.makeKettleJob(processor.getString("name"), processor.getString("file")));
                 } else if (pt == Processor.ProcessorType.KETTLE_TRANSFORM) {
                     pc.addProcessor(Processor.makeKettleTransform(processor.getString("name"), processor.getString("file")));
+                } else if (pt == Processor.ProcessorType.KETTLE_DATA) {
+                    Processor p = new Processor();
+                    p.type = Processor.ProcessorType.KETTLE_DATA;
+                    p.name = processor.getString("name");
+                    p.count = processor.getInt("count");
+                    pc.addProcessor(p);
+                    logger.warn("KETTLE DATA processor loaded ("+p.toString()+")");
                 } else if (pt == Processor.ProcessorType.FAKE_DATA) {
                     Processor p = new Processor();
                     p.type = Processor.ProcessorType.FAKE_DATA;

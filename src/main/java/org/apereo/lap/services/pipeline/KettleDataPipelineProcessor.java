@@ -27,15 +27,15 @@ import javax.annotation.Resource;
 import java.util.Random;
 
 /**
- * This processor just produces Fake data in a "FAKE_DATA" table
+ * This processor just produces Fake data in a "KETTLE_DATA" table
  * The table has these fields: ID (auto), USERNAME, SCORE, INFO
  *
- * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
+ * @author Robert Long (rlong @ unicon.net)
  */
 @Component
-public class FakeDataPipelineProcessor implements PipelineProcessor {
+public class KettleDataPipelineProcessor implements PipelineProcessor {
 
-    static final Logger logger = LoggerFactory.getLogger(FakeDataPipelineProcessor.class);
+    static final Logger logger = LoggerFactory.getLogger(KettleDataPipelineProcessor.class);
 
     @Resource
     ConfigurationService config;
@@ -50,16 +50,16 @@ public class FakeDataPipelineProcessor implements PipelineProcessor {
         rand = new Random();
         // create the temp table
         storage.getTempJdbcTemplate().execute(
-                "CREATE TABLE IF NOT EXISTS FAKE_DATA (" +
+                "CREATE TABLE IF NOT EXISTS KETTLE_DATA (" +
                 "  ID INT(11) NOT NULL AUTO_INCREMENT," +
                 "  USERNAME VARCHAR(255) NOT NULL," +
                 "  SCORE INT(11) NOT NULL DEFAULT '0'," +
                 "  INFO VARCHAR(255) DEFAULT NULL," +
                 "  PRIMARY KEY (ID)," +
-                "  UNIQUE KEY FAKE_USERNAME_UNIQUE (USERNAME)" +
+                "  UNIQUE KEY USERNAME_UNIQUE (USERNAME)" +
                 ")"
         );
-        logger.info("INIT: created temp table FAKE_DATA");
+        logger.info("INIT: created temp table KETTLE_DATA");
     }
 
     int randInt(int min, int max) {
@@ -70,24 +70,24 @@ public class FakeDataPipelineProcessor implements PipelineProcessor {
 
     @Override
     public Processor.ProcessorType getProcessorType() {
-        return Processor.ProcessorType.FAKE_DATA;
+        return Processor.ProcessorType.KETTLE_DATA;
     }
 
     @Override
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
-        ProcessorResult result = new ProcessorResult(Processor.ProcessorType.FAKE_DATA);
+        ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_DATA);
         int recordsToFake = processorConfig.count;
         if (recordsToFake < 0) {
             recordsToFake = 100;
         }
 
         // clear the temp table
-        storage.getTempJdbcTemplate().execute("TRUNCATE TABLE FAKE_DATA");
+        storage.getTempJdbcTemplate().execute("TRUNCATE TABLE KETTLE_DATA");
 
         // insert fake data into the table
         for (int i = 0; i < recordsToFake; i++) {
-            Object[] values = new Object[]{"AZ"+i, randInt(1,100), "AZ info goes here"};
-            storage.getTempJdbcTemplate().update("INSERT INTO FAKE_DATA (USERNAME,SCORE,INFO) VALUES (?,?,?)", values);
+            Object[] values = new Object[]{"Bob"+i, randInt(1,100), "Bob info goes here"};
+            storage.getTempJdbcTemplate().update("INSERT INTO KETTLE_DATA (USERNAME,SCORE,INFO) VALUES (?,?,?)", values);
         }
 
         result.done(recordsToFake, null);
