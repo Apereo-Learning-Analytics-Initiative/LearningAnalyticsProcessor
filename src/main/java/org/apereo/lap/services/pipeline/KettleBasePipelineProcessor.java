@@ -15,6 +15,7 @@
 package org.apereo.lap.services.pipeline;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.annotation.Resource;
@@ -199,6 +200,69 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
             return file;
         } catch (IOException e) {
             throw new RuntimeException("FAIL! (to read kettle file): "+filename+": "+e, e);
+        }
+    }
+
+    /**
+     * Create a temp file for input
+     * 
+     * @param filename the file name
+     * @param extension the file extension
+     * @return the newly created temporary file object
+     */
+    protected File createTempInputFile(String filename, String extension) {
+        assert StringUtils.isNotEmpty(filename);
+        assert StringUtils.isNotEmpty(extension);
+
+        try {
+            File newTempFile = File.createTempFile(filename, extension);
+            newTempFile.deleteOnExit();
+
+            return newTempFile;
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating temporary file: " + filename + "." + extension, e);
+        }
+    }
+
+    /**
+     * Deletes a given file from the file system
+     * 
+     * @param file the File object to delete
+     */
+    protected void deleteTempInputFile(File file) {
+        assert file != null;
+
+        try {
+            file.delete();
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting file: " + file.getAbsolutePath(), e);
+        }
+    }
+
+    /**
+     * Writes the contents of a string to the given file
+     * 
+     * @param file the file to write the contents to
+     * @param contents the contents to write in the file
+     */
+    protected void writeStringToFile(File file, String contents) {
+        assert file != null;
+
+        FileWriter fileWriter = null;
+
+        try {
+            fileWriter = new FileWriter(file);
+            fileWriter.write(contents);
+        } catch (Exception e) {
+            throw new RuntimeException("Error writing contents to file: " + file.getAbsolutePath(), e);
+        } finally {
+            try {
+                if (fileWriter != null) {
+                    fileWriter.close();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Error writing contents to file: " + file.getAbsolutePath(), e);
+            }
         }
     }
 

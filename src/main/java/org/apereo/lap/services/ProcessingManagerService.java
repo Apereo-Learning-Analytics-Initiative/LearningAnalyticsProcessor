@@ -66,7 +66,7 @@ public class ProcessingManagerService {
         logger.info("INIT");
         if (configuration.config.getBoolean("process.pipeline.sample", false)) {
             logger.info("Running Sample Pipeline process");
-            process("sample");
+            process("sample", null);
             logger.info("Sample Pipeline process COMPLETE");
         }
     }
@@ -106,7 +106,7 @@ public class ProcessingManagerService {
         return new HashMap<>(configuration.getPipelineConfigs());
     }
 
-    public boolean process(String pipelineId) {
+    public boolean process(String pipelineId, String inputJson) {
         logger.info("Pipeline Initialized: "+pipelineId);
         boolean processResult = false;
         try {
@@ -154,7 +154,7 @@ public class ProcessingManagerService {
                     if (pipelineProcessor.getProcessorType() == processorConfig.type) {
                         matched = true;
                         try {
-                            PipelineProcessor.ProcessorResult result = pipelineProcessor.process(pipelineConfig, processorConfig);
+                            PipelineProcessor.ProcessorResult result = pipelineProcessor.process(pipelineConfig, processorConfig, inputJson);
                             logger.info(pipelineProcessor.getProcessorType()+" pipeline (" + pipelineId + ") processor ("+processorConfig.name+") complete: "+result);
                         } catch (Exception e) {
                             throw new RuntimeException(pipelineProcessor.getProcessorType()+" pipeline (" + pipelineId + ") processor ("+processorConfig.name+") failed: " + e);

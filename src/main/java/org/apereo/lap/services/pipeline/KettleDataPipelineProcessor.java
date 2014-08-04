@@ -74,7 +74,7 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
     }
 
     @Override
-    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
+    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig, String inputJson) {
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_DATA);
         int recordsToFake = processorConfig.count;
         if (recordsToFake < 0) {

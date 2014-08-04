@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+
 import java.util.Random;
 
 /**
@@ -74,7 +75,7 @@ public class FakeDataPipelineProcessor implements PipelineProcessor {
     }
 
     @Override
-    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
+    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig, String inputJson) {
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.FAKE_DATA);
         int recordsToFake = processorConfig.count;
         if (recordsToFake < 0) {

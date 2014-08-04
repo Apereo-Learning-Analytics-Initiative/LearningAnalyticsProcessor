@@ -55,7 +55,7 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
     }
 
     @Override
-    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
+    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig, String inputJson) {
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_JOB);
         File kettleXMLFile = getFile(processorConfig.filename);
 

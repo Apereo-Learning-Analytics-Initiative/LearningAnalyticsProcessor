@@ -30,6 +30,7 @@ import javax.annotation.PostConstruct;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Handles the pipeline processing for Kettle processors
@@ -59,9 +60,10 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
     }
 
     @Override
-    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig) {
+    public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig, String inputJson) {
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_TRANSFORM);
         File kettleXMLFile = getFile(processorConfig.filename);
+        File inputFile = null;
 
         try {
             TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
@@ -75,9 +77,20 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
 
                 // set the file path to the one necessary, based on step type
                 if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonInput")){
-                    // copy JSON input file from classpath:extracts/ to inputs/
-                    inputHandler.copySampleCSV("extracts/", jsonInputFilename);
-                    String filePath = configurationService.getInputDirectory().getAbsolutePath() + SLASH + jsonInputFilename;
+                    String filePath = "";
+                    // if no JSON input is given, use the hard-coded JSON input file from the classpath
+                    if (StringUtils.isEmpty(inputJson)) {
+                        // copy JSON input file from classpath:extracts/ to inputs/
+                        inputHandler.copySampleCSV("extracts/", jsonInputFilename);
+                        filePath = configurationService.getInputDirectory().getAbsolutePath() + SLASH + jsonInputFilename;
+                    } else {
+                        // get input file contents from JSON string
+                        inputFile = createTempInputFile(UUID.randomUUID().toString(), ".json");
+                        filePath = inputFile.getAbsolutePath();
+
+                        writeStringToFile(inputFile, inputJson);
+                    }
+
                     JsonInputMeta jsonInputMeta = (JsonInputMeta) stepMeta.getStepMetaInterface();
                     jsonInputMeta.setFileName(new String[]{filePath});
                     logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' JSON input filename to " + filePath);
@@ -111,6 +124,11 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             result.done((int) transResult.getNrErrors(), null);
         } catch (Exception e) {
             logger.error("An error occurred processing the transformation file: " + processorConfig.filename + ". Error: " + e, e);
+        } finally {
+            // delete the temporary JSON input file, if it exists
+            if (inputFile != null) {
+                deleteTempInputFile(inputFile);
+            }
         }
 
         return result;

@@ -39,10 +39,11 @@ public interface PipelineProcessor {
      *
      * @param pipelineConfig the pipeline config
      * @param processorConfig the processor config (within the pipeline config)
+     * @param inputJson string of JSON for input (may be null)
      * @return the results of the processor run
      * @throws java.lang.RuntimeException if the processor fails
      */
-    ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig);
+    ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig, String inputJson);
 
     public static class ProcessorResult {
         public Processor.ProcessorType type;

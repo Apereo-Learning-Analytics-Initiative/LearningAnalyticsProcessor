@@ -21,11 +21,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -78,7 +80,16 @@ public class PipelineController {
     @RequestMapping(value = {"/{type}"}, method = RequestMethod.POST, produces="application/json;charset=utf-8")
     public @ResponseBody boolean postType(@PathVariable("type") String pipelineConfigId) {
         logger.info("pipeline POST: "+pipelineConfigId);
-        return processingManagerService.process(pipelineConfigId);
+        return processingManagerService.process(pipelineConfigId, null);
     }
 
+    /**
+     * Post to start one pipeline with JSON data
+     * TODO probably need to add security to this
+     */
+    @RequestMapping(value = {"/json/{type}"}, method = RequestMethod.POST, consumes="application/json", produces="application/json;charset=utf-8")
+    public @ResponseBody boolean postJsonType(@PathVariable("type") String pipelineConfigId, @RequestBody String inputJson) {
+        logger.info("pipeline POST: "+pipelineConfigId+" with JSON data");
+        return processingManagerService.process(pipelineConfigId, inputJson);
+    }
 }
