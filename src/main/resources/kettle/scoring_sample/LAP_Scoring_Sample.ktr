@@ -108,7 +108,7 @@
     <name>Table input</name>
     <type>TableInput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -116,7 +116,7 @@
            <schema_name/>
            </partitioning>
     <connection>LAP_connect</connection>
-    <sql>SELECT&#xd;&#xa;  ALTERNATIVE_ID&#xd;&#xa;, COURSE_ID&#xd;&#xa;, SUBJECT&#xd;&#xa;, ONLINE_FLAG&#xd;&#xa;, ENROLLMENT&#xd;&#xa;, RC_FINAL_GRADE&#xd;&#xa;, PERCENTILE&#xd;&#xa;, SAT_VERBAL&#xd;&#xa;, SAT_MATH&#xd;&#xa;, APTITUDE_SCORE&#xd;&#xa;, AGE&#xd;&#xa;, RC_GENDER&#xd;&#xa;, RC_ENROLLMENT_STATUS&#xd;&#xa;, RC_CLASS_CODE&#xd;&#xa;, GPA_CUMULATIVE&#xd;&#xa;, GPA_SEMESTER&#xd;&#xa;, STANDING&#xd;&#xa;, RMN_SCORE&#xd;&#xa;, RMN_SCORE_PARTIAL&#xd;&#xa;, R_CONTENT_READ&#xd;&#xa;, R_ASN_SUB&#xd;&#xa;, R_FORUM_POST&#xd;&#xa;, R_FORUM_READ&#xd;&#xa;, R_LESSONS_VIEW&#xd;&#xa;, R_ASSMT_TAKE&#xd;&#xa;, R_ASSMT_SUB&#xd;&#xa;, R_ASN_READ&#xd;&#xa;, R_SESSIONS&#xd;&#xa;, ACADEMIC_RISK&#xd;&#xa;FROM pcsm&#xd;&#xa;</sql>
+    <sql>SELECT&#xd;&#xa;  ALTERNATIVE_ID&#xd;&#xa;, COURSE_ID&#xd;&#xa;, SUBJECT&#xd;&#xa;, ONLINE_FLAG&#xd;&#xa;, ENROLLMENT&#xd;&#xa;, RC_FINAL_GRADE&#xd;&#xa;, PERCENTILE&#xd;&#xa;, SAT_VERBAL&#xd;&#xa;, SAT_MATH&#xd;&#xa;, APTITUDE_SCORE&#xd;&#xa;, AGE&#xd;&#xa;, RC_GENDER&#xd;&#xa;, RC_ENROLLMENT_STATUS&#xd;&#xa;, RC_CLASS_CODE&#xd;&#xa;, GPA_CUMULATIVE&#xd;&#xa;, GPA_SEMESTER&#xd;&#xa;, STANDING&#xd;&#xa;, RMN_SCORE&#xd;&#xa;, RMN_SCORE_PARTIAL&#xd;&#xa;, R_CONTENT_READ&#xd;&#xa;, R_ASN_SUB&#xd;&#xa;, R_FORUM_POST&#xd;&#xa;, R_FORUM_READ&#xd;&#xa;, R_LESSONS_VIEW&#xd;&#xa;, R_ASSMT_TAKE&#xd;&#xa;, R_ASSMT_SUB&#xd;&#xa;, R_ASN_READ&#xd;&#xa;, R_SESSIONS&#xd;&#xa;, ACADEMIC_RISK&#xd;&#xa;FROM PCSM&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -134,7 +134,7 @@
     <name>Table output</name>
     <type>TableOutput</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
@@ -286,8 +286,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>750</xloc>
-      <yloc>203</yloc>
+      <xloc>712</xloc>
+      <yloc>198</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -296,7 +296,7 @@
     <name>Weka Scoring</name>
     <type>WekaScoring</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
