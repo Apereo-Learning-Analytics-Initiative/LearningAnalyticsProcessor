@@ -168,7 +168,7 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
      */
     private void setKettlePluginsDirectory() {
         try {
-            String plugins = resourceLoader.getResource("classpath:kettle/plugins").getURI().toString();
+            String plugins = resourceLoader.getResource("classpath:kettle" + SLASH + "plugins").getURI().toString();
             System.setProperty("KETTLE_PLUGIN_BASE_FOLDERS", plugins);
             logger.info("Setting kettle plugins base directory to: "+plugins);
         } catch (IOException e) {

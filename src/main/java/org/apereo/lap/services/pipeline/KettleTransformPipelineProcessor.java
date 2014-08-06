@@ -19,6 +19,7 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.scoring.WekaScoringMeta;
+import org.pentaho.di.scoring.WekaScoringModel;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
@@ -82,7 +83,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     // if no JSON input is given, use the hard-coded JSON input file from the classpath
                     if (StringUtils.isEmpty(inputJson)) {
                         // copy JSON input file from classpath:extracts/ to inputs/
-                        inputHandler.copySampleCSV("extracts/", jsonInputFilename);
+                        inputHandler.copySampleCSV("extracts" + SLASH, jsonInputFilename);
                         filePath = configurationService.getInputDirectory().getAbsolutePath() + SLASH + jsonInputFilename;
                     } else {
                         // get input file contents from JSON string
@@ -107,6 +108,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     File file = getFile(scoringModelFilename);
                     WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
                     wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
+                    wekaScoringMeta.setFileNameFromField(true);
                     logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' Weka scoring model filename to " + file.getAbsolutePath());
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "TableInput")) {
                     // do stuff for table input
