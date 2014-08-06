@@ -59,14 +59,14 @@
      They will execute in the order they are included
     -->
     <processor>
-      <type>kettle_transform</type>
-      <name>kettle_sample_1</name>
-      <file>kettle/sample1.ktr.xml</file>
-    </processor>
-    <processor>
       <type>kettle_job</type>
       <name>kettle_sample_2</name>
       <file>kettle/scoring_sample/Sample_Pipeline1_ETL_MainJob.kjb</file>
+    </processor>
+    <processor>
+      <type>kettle_transform</type>
+      <name>kettle_sample_1</name>
+      <file>kettle/scoring_sample/LAP_Scoring_Sample.ktr</file>
     </processor>
     <processor>
       <type>kettle_data</type>
@@ -93,12 +93,12 @@
       <to>RESULTS</to><!-- the persistent storage collection/table -->
       <fields>
         <field>
-          <source>USERNAME</source>
-          <target>USER_ID_ALT</target>
+          <source>ALTERNATIVE_ID</source>
+          <target>ALTERNATIVE_ID</target>
         </field>
         <field>
-          <source>SCORE</source>
-          <target>RISK_PERCENTAGE</target>
+          <source>ACADEMIC_RISK</source>
+          <target>ACADEMIC_RISK</target>
         </field>
       </fields>
     </output>
@@ -108,12 +108,12 @@
       <filename>kettle_data_output.csv</filename>
       <fields>
         <field>
-          <header>USER_ID_ALT</header>
-          <source>USERNAME</source>
+          <header>ALTERNATIVE_ID</header>
+          <source>ALTERNATIVE_ID</source>
         </field>
         <field>
-          <header>RISK_PERCENTAGE</header>
-          <source>SCORE</source>
+          <header>ACADEMIC_RISK</header>
+          <source>ACADEMIC_RISK</source>
         </field>
       </fields>
     </output>

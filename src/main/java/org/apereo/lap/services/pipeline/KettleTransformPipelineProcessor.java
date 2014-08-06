@@ -41,10 +41,10 @@ import java.util.UUID;
 @Component
 public class KettleTransformPipelineProcessor extends KettleBasePipelineProcessor {
 
-    
+    // TODO these JSON files no longer needed?
     private String jsonInputFilename = "sample1_input.json";
     private String jsonOutputFilename = "sample1_output.json";
-    private String scoringModelFilename = SLASH + "kettle" + SLASH + "Marist_OAAI_ACADEMIC_RISK.xml";
+    private String scoringModelFilename = SLASH + "kettle" + SLASH + "scoring_sample" + SLASH + "oaai.lap.logistic.pmml.xml";
 
     /**
      * Service-level initialization, will not be run every time
@@ -76,6 +76,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                 logger.info("Processing step: '" + stepMeta.getName() + "' in file: " + kettleXMLFile.getAbsolutePath());
 
                 // set the file path to the one necessary, based on step type
+                // TODO these JSON type checks no longer needed?
                 if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonInput")){
                     String filePath = "";
                     // if no JSON input is given, use the hard-coded JSON input file from the classpath
@@ -107,6 +108,10 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
                     wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
                     logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' Weka scoring model filename to " + file.getAbsolutePath());
+                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "TableInput")) {
+                    // do stuff for table input
+                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "TableOutput")) {
+                    // do stuff for table output
                 } else {
                     logger.error("There was an unknown step type '" + stepMeta.getTypeId() + "' in the tranformation file: " + processorConfig.filename);
                 }
