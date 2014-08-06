@@ -77,13 +77,7 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
         String sql = "SELECT " +
                         "ALTERNATIVE_ID," +
                         "COURSE_ID," +
-                        "CASE " +
-                            "WHEN FAIL_PROBABILITY >= 0.90 THEN 'HIGH RISK' " +
-                            "WHEN FAIL_PROBABILITY >= 0.75 and FAIL_PROBABILITY < 0.90 THEN 'MEDIUM RISK' " +
-                            "WHEN FAIL_PROBABILITY >= 0.50 and FAIL_PROBABILITY < 0.75 THEN 'LOW RISK' " +
-                            "WHEN FAIL_PROBABILITY < 0.50 THEN 'NO RISK' " +
-                            "ELSE NULL " +
-                        "END AS MODEL_RISK_CONFIDENCE " +
+                        "MODEL_RISK_CONFIDENCE " +
                      "FROM " +
                         "PCSM_SCORING";
         List<Map<String, Object>> pcsmScoring = storage.getTempJdbcTemplate().queryForList(sql);
