@@ -87,21 +87,21 @@
      Example shown: RISK.SCORE -> a table in persistent storage called RESULTS with a field called RISK_PERCENTAGE
      NOTE: the storage must already have the table/collection defined, this will only attempt to write into it
     -->
-    <output>
-      <type>STORAGE</type><!-- from Temp to Persistent Storage -->
-      <from>KETTLE_DATA</from><!-- the temporary storage collection/table -->
-      <to>RESULTS</to><!-- the persistent storage collection/table -->
-      <fields>
-        <field>
-          <source>ALTERNATIVE_ID</source>
-          <target>ALTERNATIVE_ID</target>
-        </field>
-        <field>
-          <source>ACADEMIC_RISK</source>
-          <target>ACADEMIC_RISK</target>
-        </field>
-      </fields>
-    </output>
+<!--     <output> -->
+<!--       <type>STORAGE</type>from Temp to Persistent Storage -->
+<!--       <from>KETTLE_DATA</from>the temporary storage collection/table -->
+<!--       <to>RESULTS</to>the persistent storage collection/table -->
+<!--       <fields> -->
+<!--         <field> -->
+<!--           <source>ALTERNATIVE_ID</source> -->
+<!--           <target>ALTERNATIVE_ID</target> -->
+<!--         </field> -->
+<!--         <field> -->
+<!--           <source>ACADEMIC_RISK</source> -->
+<!--           <target>ACADEMIC_RISK</target> -->
+<!--         </field> -->
+<!--       </fields> -->
+<!--     </output> -->
     <output>
       <type>CSV</type>
       <from>KETTLE_DATA</from><!-- the temporary storage collection/table -->
@@ -112,8 +112,12 @@
           <source>ALTERNATIVE_ID</source>
         </field>
         <field>
-          <header>ACADEMIC_RISK</header>
-          <source>ACADEMIC_RISK</source>
+          <header>COURSE_ID</header>
+          <source>COURSE_ID</source>
+        </field>
+        <field>
+          <header>MODEL_RISK_CONFIDENCE</header>
+          <source>MODEL_RISK_CONFIDENCE</source>
         </field>
       </fields>
     </output>

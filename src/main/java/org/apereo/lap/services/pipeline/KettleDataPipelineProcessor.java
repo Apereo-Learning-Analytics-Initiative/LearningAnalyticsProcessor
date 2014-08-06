@@ -52,9 +52,10 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
                 "CREATE TABLE IF NOT EXISTS KETTLE_DATA (" +
                 "  ID INT(11) NOT NULL AUTO_INCREMENT," +
                 "  ALTERNATIVE_ID VARCHAR(255) NOT NULL," +
-                "  ACADEMIC_RISK VARCHAR(11) NOT NULL DEFAULT '0'," +
+                "  COURSE_ID VARCHAR(255) NOT NULL," +
+                "  MODEL_RISK_CONFIDENCE VARCHAR(255), " +
                 "  PRIMARY KEY (ID)," +
-                "  UNIQUE KEY KETTLE_DATA_UNIQUE (ALTERNATIVE_ID)" +
+                "  UNIQUE KEY KETTLE_DATA_UNIQUE (ALTERNATIVE_ID, COURSE_ID)" +
                 ")"
         );
         logger.info("INIT: created temp table KETTLE_DATA");
@@ -73,13 +74,25 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
         storage.getTempJdbcTemplate().execute("TRUNCATE TABLE KETTLE_DATA");
 
         // get the data from the PCSM_SCORING table
-        List<Map<String, Object>> pcsmScoring = storage.getTempJdbcTemplate().queryForList("SELECT * FROM PCSM_SCORING");
+        String sql = "SELECT " +
+                        "ALTERNATIVE_ID," +
+                        "COURSE_ID," +
+                        "CASE " +
+                            "WHEN FAIL_PROBABILITY >= 0.90 THEN 'HIGH RISK' " +
+                            "WHEN FAIL_PROBABILITY >= 0.75 and FAIL_PROBABILITY < 0.90 THEN 'MEDIUM RISK' " +
+                            "WHEN FAIL_PROBABILITY >= 0.50 and FAIL_PROBABILITY < 0.75 THEN 'LOW RISK' " +
+                            "WHEN FAIL_PROBABILITY < 0.50 THEN 'NO RISK' " +
+                            "ELSE NULL " +
+                        "END AS MODEL_RISK_CONFIDENCE " +
+                     "FROM " +
+                        "PCSM_SCORING";
+        List<Map<String, Object>> pcsmScoring = storage.getTempJdbcTemplate().queryForList(sql);
 
         // insert data from PCSM_SCORING into KETTLE_DATA for CSV output
         int rowCount = 0;
         for (Map<String, Object> pcsmScore : pcsmScoring) {
-            Object[] values = new Object[]{pcsmScore.get("ALTERNATIVE_ID"), pcsmScore.get("ACADEMIC_RISK")};
-            storage.getTempJdbcTemplate().update("INSERT INTO KETTLE_DATA (ALTERNATIVE_ID,ACADEMIC_RISK) VALUES (?,?)", values);
+            Object[] values = new Object[]{pcsmScore.get("ALTERNATIVE_ID"), pcsmScore.get("COURSE_ID"), pcsmScore.get("MODEL_RISK_CONFIDENCE")};
+            storage.getTempJdbcTemplate().update("INSERT INTO KETTLE_DATA (ALTERNATIVE_ID, COURSE_ID, MODEL_RISK_CONFIDENCE) VALUES (?,?,?)", values);
             rowCount++;
         }
 
