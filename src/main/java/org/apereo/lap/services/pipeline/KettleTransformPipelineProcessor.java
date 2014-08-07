@@ -108,7 +108,6 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     File file = getFile(scoringModelFilename);
                     WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
                     wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
-                    wekaScoringMeta.setFileNameFromField(true);
                     logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' Weka scoring model filename to " + file.getAbsolutePath());
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "TableInput")) {
                     // do stuff for table input

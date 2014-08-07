@@ -50,6 +50,22 @@
         <name>COURSE.SUBJECT</name>
         <required>false</required>
       </field>
+      <field>
+        <name>ENROLLMENT.ALTERNATIVE_ID</name>
+        <required>false</required>
+      </field>
+      <field>
+        <name>ENROLLMENT.COURSE_ID</name>
+        <required>false</required>
+      </field>
+      <field>
+        <name>GRADE.ALTERNATIVE_ID</name>
+        <required>false</required>
+      </field>
+      <field>
+        <name>ACTIVITY.ALTERNATIVE_ID</name>
+        <required>false</required>
+      </field>
     </fields>
   </inputs>
 
