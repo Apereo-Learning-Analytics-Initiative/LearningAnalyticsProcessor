@@ -115,7 +115,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "TableOutput")) {
                     // do stuff for table output
                 } else {
-                    logger.error("There was an unknown step type '" + stepMeta.getTypeId() + "' in the tranformation file: " + processorConfig.filename);
+                    // do stuff for unknown step type IDs
                 }
             }
 
