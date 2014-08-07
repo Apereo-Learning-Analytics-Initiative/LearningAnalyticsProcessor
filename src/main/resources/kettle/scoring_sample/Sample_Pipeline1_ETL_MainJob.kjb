@@ -214,7 +214,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>962</xloc>
-      <yloc>461</yloc>
+      <yloc>463</yloc>
       </entry>
     <entry>
       <name>Calculate Course Event Avg</name>
@@ -364,7 +364,7 @@
       <name>Output PCSM</name>
       <description/>
       <type>SQL</type>
-      <sql>-----------------------------------------------------------------------------------------------------------&#xd;&#xa;-- Final Outpur table for the ETL to feed into Predictive modelling or Prediction Scoring flows.&#xd;&#xa;-- The merge includes tying Sakai Events table to already merged Demographics, Course Enrollment and&#xd;&#xa;-- Gradebook table &#x28;PCS&#x29;&#xd;&#xa;&#xd;&#xa;-- The query current takes around 4 minutes for execution.&#xd;&#xa;----------------------------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCSM&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PCSM &#x28;&#xd;&#xa;  ALTERNATIVE_ID varchar&#x28;100&#x29; NOT NULL&#xd;&#xa;, COURSE_ID varchar&#x28;100&#x29; NOT NULL&#xd;&#xa;, SUBJECT varchar&#x28;50&#x29;&#xd;&#xa;, ONLINE_FLAG char&#x28;1&#x29;&#xd;&#xa;, ENROLLMENT int&#xd;&#xa;, RC_FINAL_GRADE float&#xd;&#xa;, PERCENTILE int&#xd;&#xa;, SAT_VERBAL int&#xd;&#xa;, SAT_MATH int&#xd;&#xa;, APTITUDE_SCORE int&#xd;&#xa;, AGE int&#xd;&#xa;, RC_GENDER int&#xd;&#xa;, RC_ENROLLMENT_STATUS char&#x28;1&#x29;&#xd;&#xa;, RC_CLASS_CODE char&#x28;1&#x29;&#xd;&#xa;, GPA_CUMULATIVE float&#xd;&#xa;, GPA_SEMESTER float&#xd;&#xa;, STANDING char&#x28;1&#x29;&#xd;&#xa;, RMN_SCORE float&#xd;&#xa;, RMN_SCORE_PARTIAL float&#xd;&#xa;, R_CONTENT_READ float&#xd;&#xa;, R_ASN_SUB float&#xd;&#xa;, R_FORUM_POST float&#xd;&#xa;, R_FORUM_READ float&#xd;&#xa;, R_LESSONS_VIEW float&#xd;&#xa;, R_ASSMT_TAKE float&#xd;&#xa;, R_ASSMT_SUB float&#xd;&#xa;, R_ASN_READ float&#xd;&#xa;, R_SESSIONS float&#xd;&#xa;, ACADEMIC_RISK char&#x28;1&#x29;&#xd;&#xa;, PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#xd;&#xa;&#x29; AS&#xd;&#xa;&#xd;&#xa;SELECT C.ALTERNATIVE_ID, C.COURSE_ID, C.SUBJECT,C.ONLINE_FLAG,C.ENROLLMENT,C.RC_FINAL_GRADE,&#xd;&#xa;&#xd;&#xa;       C.PERCENTILE,C.SAT_VERBAL,C.SAT_MATH,&#xd;&#xa;     &#xd;&#xa;    C.APTITUDE_SCORE,C.AGE,C.RC_GENDER,C.RC_ENROLLMENT_STATUS,C.RC_CLASS_CODE,C.GPA_CUMULATIVE,&#xd;&#xa;&#xd;&#xa;     C.GPA_SEMESTER, C.STANDING,C.RMN_SCORE,C.RMN_SCORE AS RMN_SCORE_PARTIAL,&#xd;&#xa;       &#xd;&#xa;       R_CONTENT_READ,&#xd;&#xa;       &#xd;&#xa;       R_ASN_SUB,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_POST,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_READ,&#xd;&#xa;       &#xd;&#xa;       R_LESSONS_VIEW,&#xd;&#xa;      &#xd;&#xa;       R_ASSMT_TAKE,&#xd;&#xa;       &#xd;&#xa;       R_ASSMT_SUB,&#xd;&#xa;&#xd;&#xa;    R_ASN_READ,&#xd;&#xa;&#xd;&#xa;     R_SESSIONS,&#xd;&#xa;  &#xd;&#xa;     C.ACADEMIC_RISK&#xd;&#xa;FROM PCS C &#xd;&#xa;LEFT JOIN CONTENT_READ CT&#xd;&#xa;ON C.COURSE_ID &#x3d; CT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; CT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN SESSIONS SES&#xd;&#xa;ON C.COURSE_ID &#x3d; SES.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; SES.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN ASN_SUB ASN&#xd;&#xa;ON C.COURSE_ID &#x3d; ASN.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASN.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_POST FP&#xd;&#xa;ON C.COURSE_ID &#x3d; FP.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FP.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_READ FR&#xd;&#xa;ON C.COURSE_ID &#x3d; FR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FR.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN LESSONS_VIEW LS&#xd;&#xa;ON C.COURSE_ID &#x3d; LS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; LS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_TAKE ASSMT&#xd;&#xa;ON C.COURSE_ID &#x3d; ASSMT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASSMT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_SUB ASMS&#xd;&#xa;ON C.COURSE_ID &#x3d; ASMS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASMS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASN_READ ASNR&#xd;&#xa;ON C.COURSE_ID &#x3d; ASNR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASNR.ALTERNATIVE_ID&#x3b;&#xd;&#xa;&#xd;&#xa;--UPDATE PCSM SET GPA_CUMULATIVE &#x3d; NULL WHERE GPA_CUMULATIVE&#x3d;0 AND RC_CLASS_CODE&#x3d;1&#x3b;&#xd;&#xa;&#xd;&#xa;-- ALTER TABLE PCSM ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;</sql>
+      <sql>-----------------------------------------------------------------------------------------------------------&#xd;&#xa;-- Final Outpur table for the ETL to feed into Predictive modelling or Prediction Scoring flows.&#xd;&#xa;-- The merge includes tying Sakai Events table to already merged Demographics, Course Enrollment and&#xd;&#xa;-- Gradebook table &#x28;PCS&#x29;&#xd;&#xa;&#xd;&#xa;-- The query current takes around 4 minutes for execution.&#xd;&#xa;----------------------------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;DROP TABLE IF EXISTS PCSM&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE PCSM &#x28;&#xd;&#xa;  ALTERNATIVE_ID varchar&#x28;100&#x29; NOT NULL&#xd;&#xa;, COURSE_ID varchar&#x28;100&#x29; NOT NULL&#xd;&#xa;, SUBJECT varchar&#x28;50&#x29;&#xd;&#xa;, ONLINE_FLAG char&#x28;1&#x29;&#xd;&#xa;, ENROLLMENT int&#xd;&#xa;, RC_FINAL_GRADE float&#xd;&#xa;, PERCENTILE int&#xd;&#xa;, SAT_VERBAL int&#xd;&#xa;, SAT_MATH int&#xd;&#xa;, APTITUDE_SCORE int&#xd;&#xa;, AGE int&#xd;&#xa;, RC_GENDER char&#x28;1&#x29;&#xd;&#xa;, RC_ENROLLMENT_STATUS char&#x28;1&#x29;&#xd;&#xa;, RC_CLASS_CODE char&#x28;1&#x29;&#xd;&#xa;, GPA_CUMULATIVE float&#xd;&#xa;, GPA_SEMESTER float&#xd;&#xa;, STANDING char&#x28;1&#x29;&#xd;&#xa;, RMN_SCORE float&#xd;&#xa;, RMN_SCORE_PARTIAL float&#xd;&#xa;, R_CONTENT_READ float&#xd;&#xa;, R_ASN_SUB float&#xd;&#xa;, R_FORUM_POST float&#xd;&#xa;, R_FORUM_READ float&#xd;&#xa;, R_LESSONS_VIEW float&#xd;&#xa;, R_ASSMT_TAKE float&#xd;&#xa;, R_ASSMT_SUB float&#xd;&#xa;, R_ASN_READ float&#xd;&#xa;, R_SESSIONS float&#xd;&#xa;, ACADEMIC_RISK char&#x28;1&#x29;&#xd;&#xa;, PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#xd;&#xa;&#x29; AS&#xd;&#xa;&#xd;&#xa;SELECT C.ALTERNATIVE_ID, C.COURSE_ID, C.SUBJECT,C.ONLINE_FLAG,C.ENROLLMENT,C.RC_FINAL_GRADE,&#xd;&#xa;&#xd;&#xa;       C.PERCENTILE,C.SAT_VERBAL,C.SAT_MATH,&#xd;&#xa;     &#xd;&#xa;    C.APTITUDE_SCORE,C.AGE,C.RC_GENDER,C.RC_ENROLLMENT_STATUS,C.RC_CLASS_CODE,C.GPA_CUMULATIVE,&#xd;&#xa;&#xd;&#xa;     C.GPA_SEMESTER, C.STANDING,C.RMN_SCORE,C.RMN_SCORE AS RMN_SCORE_PARTIAL,&#xd;&#xa;       &#xd;&#xa;       R_CONTENT_READ,&#xd;&#xa;       &#xd;&#xa;       R_ASN_SUB,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_POST,&#xd;&#xa;       &#xd;&#xa;       R_FORUM_READ,&#xd;&#xa;       &#xd;&#xa;       R_LESSONS_VIEW,&#xd;&#xa;      &#xd;&#xa;       R_ASSMT_TAKE,&#xd;&#xa;       &#xd;&#xa;       R_ASSMT_SUB,&#xd;&#xa;&#xd;&#xa;    R_ASN_READ,&#xd;&#xa;&#xd;&#xa;     R_SESSIONS,&#xd;&#xa;  &#xd;&#xa;     C.ACADEMIC_RISK&#xd;&#xa;FROM PCS C &#xd;&#xa;LEFT JOIN CONTENT_READ CT&#xd;&#xa;ON C.COURSE_ID &#x3d; CT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; CT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN SESSIONS SES&#xd;&#xa;ON C.COURSE_ID &#x3d; SES.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; SES.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN ASN_SUB ASN&#xd;&#xa;ON C.COURSE_ID &#x3d; ASN.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASN.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_POST FP&#xd;&#xa;ON C.COURSE_ID &#x3d; FP.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FP.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN FORUM_READ FR&#xd;&#xa;ON C.COURSE_ID &#x3d; FR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; FR.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN LESSONS_VIEW LS&#xd;&#xa;ON C.COURSE_ID &#x3d; LS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; LS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_TAKE ASSMT&#xd;&#xa;ON C.COURSE_ID &#x3d; ASSMT.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASSMT.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASSMT_SUB ASMS&#xd;&#xa;ON C.COURSE_ID &#x3d; ASMS.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASMS.ALTERNATIVE_ID&#xd;&#xa;LEFT JOIN  ASN_READ ASNR&#xd;&#xa;ON C.COURSE_ID &#x3d; ASNR.COURSE_ID AND C.ALTERNATIVE_ID &#x3d; ASNR.ALTERNATIVE_ID&#x3b;&#xd;&#xa;&#xd;&#xa;--UPDATE PCSM SET GPA_CUMULATIVE &#x3d; NULL WHERE GPA_CUMULATIVE&#x3d;0 AND RC_CLASS_CODE&#x3d;1&#x3b;&#xd;&#xa;&#xd;&#xa;-- ALTER TABLE PCSM ADD PRIMARY KEY &#x28;ALTERNATIVE_ID, COURSE_ID&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -599,6 +599,55 @@
       <nr>0</nr>
       <xloc>749</xloc>
       <yloc>795</yloc>
+      </entry>
+    <entry>
+      <name>LAP Scoring Transformation</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;LAP_Scoring_Sample.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1013</xloc>
+      <yloc>794</yloc>
+      </entry>
+    <entry>
+      <name>Classify Risk Confidence</name>
+      <description/>
+      <type>SQL</type>
+      <sql>---------------------------------------------------------------------------------------&#xd;&#xa;-- Classifies the Fail Probability predicted by the PMML &#x2f; XML model into HIGH, MEDIUM, &#xd;&#xa;-- LOW and NO RISK confidence levels.&#xd;&#xa;---------------------------------------------------------------------------------------&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;UPDATE PCSM_SCORING SET MODEL_RISK_CONFIDENCE &#x3d;&#xd;&#xa;CASE&#xd;&#xa;WHEN FAIL_PROBABILITY &#x3e;&#x3d; 0.90 THEN &#x27;HIGH RISK&#x27;&#xd;&#xa;WHEN FAIL_PROBABILITY &#x3e;&#x3d; 0.75 AND FAIL_PROBABILITY &#x3c; 0.90 THEN &#x27;MEDIUM RISK&#x27;&#xd;&#xa;WHEN FAIL_PROBABILITY &#x3e;&#x3d; 0.50 AND FAIL_PROBABILITY &#x3c; 0.75 THEN &#x27;LOW RISK&#x27;&#xd;&#xa;WHEN FAIL_PROBABILITY &#x3c; 0.50 THEN &#x27;NO RISK&#x27;&#xd;&#xa;ELSE NULL&#xd;&#xa;END&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>LAP_connect</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1011</xloc>
+      <yloc>890</yloc>
       </entry>
   </entries>
   <hops>
@@ -872,6 +921,24 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Drop temp tables</from>
+      <to>LAP Scoring Transformation</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>LAP Scoring Transformation</from>
+      <to>Classify Risk Confidence</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
@@ -1023,8 +1090,8 @@
     </notepad>
     <notepad>
       <note>Merge all the four transformed files &#x28; Demographic , Course, Gradebook, Sakai &#x29; into a single table which &#xa;will be used in training of the predictive model. </note>
-      <xloc>768</xloc>
-      <yloc>876</yloc>
+      <xloc>502</xloc>
+      <yloc>959</yloc>
       <width>677</width>
       <heigth>42</heigth>
       <fontname/>
@@ -1065,8 +1132,8 @@
     </notepad>
     <notepad>
       <note>Merge Phase II</note>
-      <xloc>921</xloc>
-      <yloc>811</yloc>
+      <xloc>645</xloc>
+      <yloc>892</yloc>
       <width>145</width>
       <heigth>33</heigth>
       <fontname>Arial Black</fontname>
