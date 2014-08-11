@@ -19,7 +19,6 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.scoring.WekaScoringMeta;
-import org.pentaho.di.scoring.WekaScoringModel;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
 import org.pentaho.di.trans.step.StepMeta;
@@ -45,7 +44,6 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
     // TODO these JSON files no longer needed?
     private String jsonInputFilename = "sample1_input.json";
     private String jsonOutputFilename = "sample1_output.json";
-    private String scoringModelFilename = SLASH + "kettle" + SLASH + "scoring_sample" + SLASH + "oaai.lap.logistic.pmml.xml";
 
     /**
      * Service-level initialization, will not be run every time
@@ -105,7 +103,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' JSON output filename to " + filePath);
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {
                     // set Weka serialized scoring model
-                    File file = getFile(scoringModelFilename);
+                    File file = getFile(makeFilePath(SCORING_MODEL_FILE_NAME));
                     WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
                     wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
                     logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' Weka scoring model filename to " + file.getAbsolutePath());

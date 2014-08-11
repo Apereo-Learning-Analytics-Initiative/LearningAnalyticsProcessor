@@ -54,7 +54,7 @@
         <name>ENROLLMENT.ALTERNATIVE_ID</name>
         <required>false</required>
       </field>
-      <field>
+      <!-- field>
         <name>ENROLLMENT.COURSE_ID</name>
         <required>false</required>
       </field>
@@ -65,7 +65,7 @@
       <field>
         <name>ACTIVITY.ALTERNATIVE_ID</name>
         <required>false</required>
-      </field>
+      </field -->
     </fields>
   </inputs>
 
@@ -79,11 +79,11 @@
       <name>kettle_sample_2</name>
       <file>kettle/scoring_sample/Sample_Pipeline1_ETL_MainJob.kjb</file>
     </processor>
-    <processor>
+    <!-- processor>
       <type>kettle_transform</type>
       <name>kettle_sample_1</name>
       <file>kettle/scoring_sample/LAP_Scoring_Sample.ktr</file>
-    </processor>
+    </processor -->
     <processor>
       <type>kettle_data</type>
       <name>kettle-data</name>

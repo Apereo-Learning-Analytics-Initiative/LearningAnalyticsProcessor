@@ -27,19 +27,16 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 import java.io.File;
-import java.util.List;
+import java.util.Iterator;
 
 /**
- * Handles the pipeline processing for Kettle processors
+ * Handles the pipeline processing for Kettle Job processors
  *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  * @author Robert Long (rlong @ unicon.net)
  */
 @Component
 public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
-
-    private String assignWeightsEntryName = "AssignWeights_Grades";
-    private String assignWeightsFilename = SLASH + "kettle" + SLASH + "scoring_sample" + SLASH + "Sample_Pipeline1_ETL_Gradebook_AssignWeightsJob.kjb";
 
     /**
      * Service-level initialization, will not be run every time
@@ -60,22 +57,24 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
         File kettleXMLFile = getFile(processorConfig.filename);
 
         try {
+            // update the Weka Scoring model file path
+            updateWekaScoringModel(getFile(makeFilePath(SCORING_TRANSFORM_FILE)));
+
             JobMeta jobMeta = new JobMeta(kettleXMLFile.getAbsolutePath(), null, null);
 
             // update the shared objects to use the pre-configured shared objects
             jobMeta.setSharedObjects(getSharedObjects());
 
-            List<JobEntryCopy> jobEntryCopies = jobMeta.getJobCopies();
-            for (JobEntryCopy jobEntryCopy : jobEntryCopies) {
+            Iterator<JobEntryCopy> iterator = jobMeta.getJobCopies().iterator();
+            while (iterator.hasNext()) {
+                JobEntryCopy jobEntryCopy = iterator.next();
                 // set the AssignWeights_Grades entry file name to the one on the classpath
-                if (StringUtils.equalsIgnoreCase(jobEntryCopy.getName(), assignWeightsEntryName)) {
+                if (StringUtils.equalsIgnoreCase(jobEntryCopy.getName(), ASSIGN_WEIGHTS_ENTRY_NAME)) {
                     JobEntryJob jobEntryJob = (JobEntryJob) jobEntryCopy.getEntry();
-                    File file = getFile(assignWeightsFilename);
+                    File file = getFile(makeFilePath(ASSIGN_WEIGHTS_FILE_NAME));
                     jobEntryJob.setFileName(file.getAbsolutePath());
 
-                    logger.info("Setting job entry '" + kettleXMLFile.getName() + " : " + assignWeightsEntryName + "' filename to " + file.getAbsolutePath());
-
-                    break;
+                    logger.info("Setting job entry '" + kettleXMLFile.getName() + " : " + ASSIGN_WEIGHTS_ENTRY_NAME + "' filename to " + file.getAbsolutePath());
                 }
             }
 
