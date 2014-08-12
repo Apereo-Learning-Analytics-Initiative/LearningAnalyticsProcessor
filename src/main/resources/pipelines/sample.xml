@@ -135,6 +135,18 @@
           <header>MODEL_RISK_CONFIDENCE</header>
           <source>MODEL_RISK_CONFIDENCE</source>
         </field>
+        <field>
+          <header>FAIL_PROBABILITY</header>
+          <source>FAIL_PROBABILITY</source>
+        </field>
+        <field>
+          <header>PASS_PROBABILITY</header>
+          <source>PASS_PROBABILITY</source>
+        </field>
+<!--         <field> -->
+<!--           <header>RISK_CONFIDENCE</header> -->
+<!--           <source>RISK_CONFIDENCE</source> -->
+<!--         </field> -->
       </fields>
     </output>
   </outputs>
