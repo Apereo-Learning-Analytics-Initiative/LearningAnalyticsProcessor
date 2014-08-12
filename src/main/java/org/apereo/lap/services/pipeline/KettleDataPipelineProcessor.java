@@ -54,8 +54,8 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
                 "  ALTERNATIVE_ID VARCHAR(255) NOT NULL," +
                 "  COURSE_ID VARCHAR(255) NOT NULL," +
                 "  MODEL_RISK_CONFIDENCE VARCHAR(255), " +
-                "  FAIL_PROBABILITY VARCHAR(255)," +
-                "  PASS_PROBABILITY VARCHAR(255)," +
+                "  FAIL_PROBABILITY DECIMAL," +
+                "  PASS_PROBABILITY DECIMAL," +
                 "  PRIMARY KEY (ID)," +
                 "  UNIQUE KEY KETTLE_DATA_UNIQUE (ALTERNATIVE_ID, COURSE_ID)" +
                 ")"
