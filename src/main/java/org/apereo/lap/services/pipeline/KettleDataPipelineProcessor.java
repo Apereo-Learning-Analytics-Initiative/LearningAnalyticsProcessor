@@ -54,8 +54,6 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
                 "  ALTERNATIVE_ID VARCHAR(255) NOT NULL," +
                 "  COURSE_ID VARCHAR(255) NOT NULL," +
                 "  MODEL_RISK_CONFIDENCE VARCHAR(255), " +
-                "  FAIL_PROBABILITY DECIMAL," +
-                "  PASS_PROBABILITY DECIMAL," +
                 "  PRIMARY KEY (ID)," +
                 "  UNIQUE KEY KETTLE_DATA_UNIQUE (ALTERNATIVE_ID, COURSE_ID)" +
                 ")"
@@ -79,9 +77,7 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
         String sql = "SELECT " +
                         "ALTERNATIVE_ID," +
                         "COURSE_ID," +
-                        "MODEL_RISK_CONFIDENCE," +
-                        "FAIL_PROBABILITY," +
-                        "PASS_PROBABILITY " +
+                        "MODEL_RISK_CONFIDENCE " +
                      "FROM " +
                         "PCSM_SCORING";
         List<Map<String, Object>> pcsmScoring = storage.getTempJdbcTemplate().queryForList(sql);
@@ -92,11 +88,9 @@ public class KettleDataPipelineProcessor implements PipelineProcessor {
             Object[] values = new Object[]{
                 pcsmScore.get("ALTERNATIVE_ID"),
                 pcsmScore.get("COURSE_ID"),
-                pcsmScore.get("MODEL_RISK_CONFIDENCE"),
-                pcsmScore.get("FAIL_PROBABILITY"),
-                pcsmScore.get("PASS_PROBABILITY")
+                pcsmScore.get("MODEL_RISK_CONFIDENCE")
             };
-            storage.getTempJdbcTemplate().update("INSERT INTO KETTLE_DATA (ALTERNATIVE_ID, COURSE_ID, MODEL_RISK_CONFIDENCE, FAIL_PROBABILITY, PASS_PROBABILITY) VALUES (?,?,?,?,?)", values);
+            storage.getTempJdbcTemplate().update("INSERT INTO KETTLE_DATA (ALTERNATIVE_ID, COURSE_ID, MODEL_RISK_CONFIDENCE) VALUES (?,?,?)", values);
             rowCount++;
         }
 
