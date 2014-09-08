@@ -65,11 +65,6 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     ResourceLoader resourceLoader;
 
     /**
-     * System defined path separator Windows = "\", Unix = "/"
-     */
-    protected static final String SLASH = System.getProperty("file.separator");
-
-    /**
      * The Kettle root directory
      */
     protected static final String KETTLE_ROOT_DIR = "kettle";
@@ -146,7 +141,7 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
      * @return the path to the file
      */
     protected String makeFilePath(String filename) {
-        return SLASH + KETTLE_ROOT_DIR + SLASH + KETTLE_PIPELINE_ROOT_DIR + SLASH + filename;
+        return ConfigurationService.SLASH + KETTLE_ROOT_DIR + ConfigurationService.SLASH + KETTLE_PIPELINE_ROOT_DIR + ConfigurationService.SLASH + filename;
     }
 
     /**
@@ -244,7 +239,7 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
      */
     private void setKettlePluginsDirectory() {
         try {
-            String plugins = resourceLoader.getResource("classpath:kettle" + SLASH + "plugins").getURI().toString();
+            String plugins = resourceLoader.getResource("classpath:kettle" + ConfigurationService.SLASH + "plugins").getURI().toString();
             System.setProperty("KETTLE_PLUGIN_BASE_FOLDERS", plugins);
             logger.info("Setting kettle plugins base directory to: "+plugins);
         } catch (IOException e) {

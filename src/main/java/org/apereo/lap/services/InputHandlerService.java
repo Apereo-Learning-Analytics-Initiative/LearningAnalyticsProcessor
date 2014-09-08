@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -216,12 +217,13 @@ public class InputHandlerService {
      * Copies the 5 sample extract CSVs from the classpath to the inputs directory
      */
     void copySampleExtractCSVs() {
+        String extractsFolder = "extracts" + ConfigurationService.SLASH;
         logger.info("copySampleExtractCSVs start");
-        copySampleCSV("extracts/", "personal.csv");
-        copySampleCSV("extracts/", "course.csv");
-        copySampleCSV("extracts/", "enrollment.csv");
-        copySampleCSV("extracts/", "grade.csv");
-        copySampleCSV("extracts/", "activity.csv");
+        copySampleCSV(extractsFolder, "personal.csv");
+        copySampleCSV(extractsFolder, "course.csv");
+        copySampleCSV(extractsFolder, "enrollment.csv");
+        copySampleCSV(extractsFolder, "grade.csv");
+        copySampleCSV(extractsFolder, "activity.csv");
         logger.info("copySampleExtractCSVs to "+configuration.inputDirectory.getAbsolutePath()+" complete");
     }
 

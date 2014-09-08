@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -55,6 +56,11 @@ public class ConfigurationService {
 
     @javax.annotation.Resource
     ResourceLoader resourceLoader;
+
+    /**
+     * System defined path separator Windows = "\", Unix = "/"
+     */
+    public static final String SLASH = System.getProperty("file.separator");
 
     @PostConstruct
     public void init() throws IOException {

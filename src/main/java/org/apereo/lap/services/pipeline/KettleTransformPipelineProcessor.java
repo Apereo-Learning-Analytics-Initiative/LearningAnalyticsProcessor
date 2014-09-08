@@ -17,6 +17,7 @@ package org.apereo.lap.services.pipeline;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
+import org.apereo.lap.services.ConfigurationService;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.scoring.WekaScoringMeta;
 import org.pentaho.di.trans.Trans;
@@ -81,8 +82,8 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     // if no JSON input is given, use the hard-coded JSON input file from the classpath
                     if (StringUtils.isEmpty(inputJson)) {
                         // copy JSON input file from classpath:extracts/ to inputs/
-                        inputHandler.copySampleCSV("extracts" + SLASH, jsonInputFilename);
-                        filePath = configurationService.getInputDirectory().getAbsolutePath() + SLASH + jsonInputFilename;
+                        inputHandler.copySampleCSV("extracts" + ConfigurationService.SLASH, jsonInputFilename);
+                        filePath = configurationService.getInputDirectory().getAbsolutePath() + ConfigurationService.SLASH + jsonInputFilename;
                     } else {
                         // get input file contents from JSON string
                         inputFile = createTempInputFile(UUID.randomUUID().toString(), ".json");
@@ -96,7 +97,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
                     logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' JSON input filename to " + filePath);
                 } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonOutput")) {
                     // set output file to output/<FILENAME>
-                    String filePath = configurationService.getOutputDirectory().getAbsolutePath() + SLASH + jsonOutputFilename;
+                    String filePath = configurationService.getOutputDirectory().getAbsolutePath() + ConfigurationService.SLASH + jsonOutputFilename;
                     JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
                     jsonOutputMeta.setFileName(filePath);
                     jsonOutputMeta.setExtension("");
