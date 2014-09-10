@@ -95,7 +95,7 @@ public class ConfigurationService {
             }
         } else {
             IOUtils.copy(
-                    InputHandlerService.class.getClassLoader().getResourceAsStream("config/lap.properties"),
+                    InputHandlerService.class.getClassLoader().getResourceAsStream("config" + SLASH + "lap.properties"),
                     new FileOutputStream(new File(appHome(), "lap.properties"))
             );
             logger.info("No external LAP config found: "+lapConfigProps.getAbsolutePath()+", copied default sample lap.properties");
@@ -109,7 +109,7 @@ public class ConfigurationService {
 
         pipelineConfigs = new ConcurrentHashMap<>();
         // first load the internal ones (must be listed explicitly for now)
-        Resource pipelineSample = resourceLoader.getResource("classpath:pipelines/sample.xml");
+        Resource pipelineSample = resourceLoader.getResource("classpath:pipelines" + SLASH + "sample.xml");
         PipelineConfig plcfg = processPipelineConfigFile(pipelineSample.getFile());
         if (plcfg != null) {
             plcfg.setConfiguration(this);
@@ -168,7 +168,7 @@ public class ConfigurationService {
         } else {
             // check if relative or absolute path
             dirStr = StringUtils.trim(dirStr);
-            if (StringUtils.startsWith(dirStr, "/")) {
+            if (StringUtils.startsWith(dirStr, SLASH)) {
                 fileDir = new File(dirStr);
             } else {
                 // this is a relative path
