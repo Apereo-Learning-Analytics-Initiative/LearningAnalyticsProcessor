@@ -320,19 +320,6 @@
 	<build>
 		<finalName>lap</finalName>
 		<plugins>
-
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<username>${tomcat.username}</username>
-					<password>${tomcat.password}</password>
-					<url>${tomcat.url}</url>
-					<update>true</update>
-				</configuration>
-			</plugin>
-
 			<!-- Facilitates downloading source and javadoc in Eclipse -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
