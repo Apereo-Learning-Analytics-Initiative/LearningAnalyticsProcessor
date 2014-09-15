@@ -14,7 +14,9 @@
  */
 package org.apereo.lap.dao.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,9 +32,11 @@ public class RiskConfidence  extends BaseEntity {
     @Column(name="MODEL_RISK_CONFIDENCE")
     private String modelRiskConfidence;
     @Column(name="DATE_CREATED")
-    private Date dateCreated;
-    
-    public String getAlternativeId() {
+    private Date dateCreated = Calendar.getInstance().getTime();
+    @Column(name="GROUP_ID")
+    private String groupId;
+
+	public String getAlternativeId() {
 		return alternativeId;
 	}
 
@@ -59,6 +63,14 @@ public class RiskConfidence  extends BaseEntity {
 	protected boolean matchesClassAndId(Object other) {
         return RiskConfidence.class.isInstance(other) ? matchesId((RiskConfidence)other) : false;
     }
+    
+    public String getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
 
 	public Date getDateCreated() {
 		return dateCreated;

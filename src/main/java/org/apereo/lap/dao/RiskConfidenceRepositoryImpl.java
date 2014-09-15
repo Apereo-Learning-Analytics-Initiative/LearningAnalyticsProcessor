@@ -22,6 +22,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 
@@ -37,19 +38,37 @@ public class RiskConfidenceRepositoryImpl implements RiskConfidenceRepositoryExt
 	
 	public List<RiskConfidence> findByUserCourseDate(String user, String course) {
 		
-		if(StringUtils.isEmpty(user) && StringUtils.isEmpty(course))
-			return new ArrayList<RiskConfidence>();
-		
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<RiskConfidence> criteria = builder.createQuery(RiskConfidence.class);
 		Root<RiskConfidence> root = criteria.from(RiskConfidence.class);
 		EntityType<RiskConfidence> type = entityManager.getMetamodel().entity(RiskConfidence.class);
+		criteria.orderBy(builder.desc(root.get("dateCreated")));
 		
+		List<RiskConfidence> lastRiskConfidences = entityManager.createQuery( criteria )
+				.setFirstResult(0) 
+		         .setMaxResults(1)
+		         .getResultList();
+		
+		if(lastRiskConfidences.size() == 0)
+			return new ArrayList<RiskConfidence>();
+		
+		RiskConfidence lastRickConfidence = lastRiskConfidences.get(0);
+		
+		if(StringUtils.isEmpty(user) && StringUtils.isEmpty(course))
+			return new ArrayList<RiskConfidence>();
+
+		builder = entityManager.getCriteriaBuilder();
+		criteria = builder.createQuery(RiskConfidence.class);
+		root = criteria.from(RiskConfidence.class);
+		type = entityManager.getMetamodel().entity(RiskConfidence.class);
+		
+		Predicate groupPredicate = builder.equal(root.get("groupId"), lastRickConfidence.getGroupId());
+				
 		if(!StringUtils.isEmpty(user))
-			criteria.where( builder.like(builder.lower(root.get(type.getDeclaredSingularAttribute("alternativeId", String.class))), "%" + user.toLowerCase() + "%" ) );
+			criteria.where(groupPredicate, builder.like(builder.lower(root.get(type.getDeclaredSingularAttribute("alternativeId", String.class))), "%" + user.toLowerCase() + "%" ) );
 		
 		if(!StringUtils.isEmpty(course))
-			criteria.where( builder.like(builder.lower(root.get(type.getDeclaredSingularAttribute("courseId", String.class))), "%" + course.toLowerCase() + "%" ) );
+			criteria.where(groupPredicate, builder.like(builder.lower(root.get(type.getDeclaredSingularAttribute("courseId", String.class))), "%" + course.toLowerCase() + "%" ) );
 		
 		return entityManager.createQuery( criteria ).getResultList();
 	}

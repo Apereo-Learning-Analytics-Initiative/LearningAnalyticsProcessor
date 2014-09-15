@@ -137,5 +137,24 @@
         </field>
       </fields>
     </output>
+    <output>
+      <type>STORAGE</type>
+      <from>KETTLE_DATA</from><!-- the temporary storage collection/table -->
+      <filename>kettle_data_output.csv</filename>
+      <fields>
+        <field>
+          <header>ALTERNATIVE_ID</header>
+          <source>ALTERNATIVE_ID</source>
+        </field>
+        <field>
+          <header>COURSE_ID</header>
+          <source>COURSE_ID</source>
+        </field>
+        <field>
+          <header>MODEL_RISK_CONFIDENCE</header>
+          <source>MODEL_RISK_CONFIDENCE</source>
+        </field>
+      </fields>
+    </output>
   </outputs>
 </pipeline>
