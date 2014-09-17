@@ -23,11 +23,16 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd"
        default-autowire="byName">
 
+  <!-- Scans within the base package of the application for @Components to configure as beans -->
   <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="location" value="classpath:test-db.properties" />
   </bean>
 
-  <bean id="tempDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
+    <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
+  </bean>
+
+  <bean id="tempDataSource" class="org.apache.commons.dbcp.BasicDataSource" depends-on="h2WebServer">
     <property name="driverClassName" value="${db.driver}" />
     <property name="url" value="${db.url}" />
     <property name="username" value="${db.username}" />
@@ -44,19 +49,29 @@
     <property name="dataSource" ref="tempDataSource" />
   </bean>
 
-  <bean id="persistentDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <bean id="persistentDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName" value="${edb.driver}" />
     <property name="url" value="${edb.url}" />
     <property name="username" value="${edb.username}" />
     <property name="password" value="${edb.password}" />
   </bean>
 
-  <jdbc:initialize-database data-source="persistentDataSource" ignore-failures="DROPS">
-    <jdbc:script location="classpath:db/schema.sql"/>
-  </jdbc:initialize-database>
 
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+      <property name="dataSource" ref="persistentDataSource" />
+      <property name="packagesToScan" value="org.apereo.lap.dao.model"/>
+      <property name="jpaVendorAdapter">
+         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+      </property>
+  </bean>
+  
+ 	<jdbc:initialize-database data-source="persistentDataSource" ignore-failures="DROPS">
+    	<jdbc:script location="classpath:db/schema-persistance.sql"/>
+  	</jdbc:initialize-database>
+  
+  
   <bean id="transactionManager"
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="dataSource" ref="persistentDataSource" />
   </bean>
 

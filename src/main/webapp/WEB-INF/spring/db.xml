@@ -28,30 +28,6 @@
     <property name="location" value="classpath:db.properties" />
   </bean>
 
-  <!--
-  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    <property name="jpaVendorAdapter">
-      <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="showSql" value="true" />
-        <property name="generateDdl" value="true" />
-        <property name="databasePlatform" value="${db.dialect}" />
-      </bean>
-    </property>
-    <property name="dataSource" ref="tempDataSource" />
-  </bean>
-  -->
-
-  <!-- HSQLDB
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    <property name="driverClassName" value="${db.driver}" />
-    <property name="url" value="${db.url}" />
-    <property name="username" value="${db.username}" />
-    <property name="password" value="${db.password}" />
-  </bean>
-  <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-  </bean>
-  -->
-
   <bean id="h2WebServer" class="org.h2.tools.Server" factory-method="createWebServer" init-method="start" destroy-method="stop">
     <constructor-arg value="-web,-webAllowOthers,-webPort,8082"/>
   </bean>
