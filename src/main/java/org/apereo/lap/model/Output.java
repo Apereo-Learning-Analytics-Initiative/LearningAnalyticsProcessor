@@ -49,7 +49,7 @@ public class Output {
      */
     public static Output makeStorage(String from, String to) {
         assert StringUtils.isNotBlank(from);
-        assert StringUtils.isNotBlank(to);
+        //assert StringUtils.isNotBlank(to);
         Output obj = new Output();
         obj.type = OutputType.STORAGE;
         obj.from = from;
