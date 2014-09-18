@@ -53,9 +53,6 @@ public class RiskConfidenceRepositoryImpl implements RiskConfidenceRepositoryExt
 			return new ArrayList<RiskConfidence>();
 		
 		RiskConfidence lastRickConfidence = lastRiskConfidences.get(0);
-		
-		if(StringUtils.isEmpty(user) && StringUtils.isEmpty(course))
-			return new ArrayList<RiskConfidence>();
 
 		builder = entityManager.getCriteriaBuilder();
 		criteria = builder.createQuery(RiskConfidence.class);
@@ -69,6 +66,11 @@ public class RiskConfidenceRepositoryImpl implements RiskConfidenceRepositoryExt
 		
 		if(!StringUtils.isEmpty(course))
 			criteria.where(groupPredicate, builder.like(builder.lower(root.get(type.getDeclaredSingularAttribute("courseId", String.class))), "%" + course.toLowerCase() + "%" ) );
+		
+		if(StringUtils.isEmpty(user) && StringUtils.isEmpty(course))
+		{
+			criteria.where(groupPredicate);
+		}
 		
 		return entityManager.createQuery( criteria ).getResultList();
 	}
