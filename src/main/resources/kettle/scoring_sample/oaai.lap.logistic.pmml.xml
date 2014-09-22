@@ -88,14 +88,14 @@
 		<Extension extender="spss.com" name="numberParameters" value="16"/>
 		<MiningSchema>
 			<MiningField missingValueTreatment="asIs" name="ACADEMIC_RISK" usageType="predicted"/>
-			<MiningField missingValueTreatment="asIs" name="ONLINE_FLAG" usageType="active"/>
-			<MiningField missingValueTreatment="asIs" name="RC_ENROLLMENT_STATUS" usageType="active"/>
-			<MiningField missingValueTreatment="asIs" name="RC_CLASS_CODE" usageType="active"/>
-			<MiningField missingValueTreatment="asIs" name="STANDING" usageType="active"/>
-			<MiningField missingValueTreatment="asIs" name="AGE" usageType="active"/>
-			<MiningField missingValueTreatment="asIs" name="GPA_CUMULATIVE" usageType="active"/>
-			<MiningField missingValueTreatment="asIs" name="RMN_SCORE_PARTIAL" usageType="active"/>
-			<MiningField missingValueTreatment="asIs" name="R_SESSIONS" usageType="active"/>
+			<MiningField missingValueReplacement="1" missingValueTreatment="asMean" name="ONLINE_FLAG" usageType="active"/>
+			<MiningField missingValueReplacement="29" missingValueTreatment="asMean" name="RC_ENROLLMENT_STATUS" usageType="active"/>
+			<MiningField missingValueReplacement="3" missingValueTreatment="asMean" name="RC_CLASS_CODE" usageType="active"/>
+			<MiningField missingValueReplacement="0" missingValueTreatment="asMean" name="STANDING" usageType="active"/>
+			<MiningField missingValueReplacement="21" missingValueTreatment="asMean" name="AGE" usageType="active"/>
+			<MiningField missingValueReplacement="1" missingValueTreatment="asMean" name="GPA_CUMULATIVE" usageType="active"/>
+			<MiningField missingValueReplacement="50" missingValueTreatment="asMean" name="RMN_SCORE_PARTIAL" usageType="active"/>
+			<MiningField missingValueReplacement="0.5" missingValueTreatment="asMean" name="R_SESSIONS" usageType="active"/>
 		</MiningSchema>
 		<ParameterList>
 			<Parameter label="Intercept" name="P0000001"/>
