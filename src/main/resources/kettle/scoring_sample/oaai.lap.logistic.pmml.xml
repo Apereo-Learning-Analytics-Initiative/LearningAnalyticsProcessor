@@ -89,7 +89,7 @@
 		<MiningSchema>
 			<MiningField missingValueTreatment="asIs" name="ACADEMIC_RISK" usageType="predicted"/>
 			<MiningField missingValueReplacement="1" missingValueTreatment="asMean" name="ONLINE_FLAG" usageType="active"/>
-			<MiningField missingValueReplacement="29" missingValueTreatment="asMean" name="RC_ENROLLMENT_STATUS" usageType="active"/>
+			<MiningField missingValueReplacement="1" missingValueTreatment="asMean" name="RC_ENROLLMENT_STATUS" usageType="active"/>
 			<MiningField missingValueReplacement="3" missingValueTreatment="asMean" name="RC_CLASS_CODE" usageType="active"/>
 			<MiningField missingValueReplacement="0" missingValueTreatment="asMean" name="STANDING" usageType="active"/>
 			<MiningField missingValueReplacement="21" missingValueTreatment="asMean" name="AGE" usageType="active"/>
