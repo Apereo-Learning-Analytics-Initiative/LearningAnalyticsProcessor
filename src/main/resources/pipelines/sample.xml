@@ -57,15 +57,15 @@
       <!-- field>
         <name>ENROLLMENT.COURSE_ID</name>
         <required>false</required>
-      </field>
-      <field>
-        <name>GRADE.ALTERNATIVE_ID</name>
-        <required>false</required>
-      </field>
-      <field>
-        <name>ACTIVITY.ALTERNATIVE_ID</name>
-        <required>false</required>
       </field -->
+      <field>
+        <name>GRADE.GRADABLE_OBJECT</name>
+        <required>false</required>
+      </field>
+      <field>
+        <name>ACTIVITY.ID</name>
+        <required>false</required>
+      </field>
     </fields>
   </inputs>
 
