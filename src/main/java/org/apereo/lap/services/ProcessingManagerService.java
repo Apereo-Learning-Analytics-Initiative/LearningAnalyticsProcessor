@@ -77,20 +77,6 @@ public class ProcessingManagerService {
     }
 
     /**
-     * @param processorKey the key for this PipelineProcessor
-     * @return the PipelineProcessor if found OR null if none exist for this key
-     */
-    public PipelineProcessor findProcessor(String processorKey) {
-        Processor.ProcessorType ptype = Processor.ProcessorType.valueOf(processorKey);
-        for (PipelineProcessor pipelineProcessor : pipelineProcessors) {
-            if (pipelineProcessor.getProcessorType() == ptype) {
-                return pipelineProcessor;
-            }
-        }
-        return null;
-    }
-
-    /**
      * @param pipelineId the id for this pipeline config
      * @return the config OR null if not found for this id
      */

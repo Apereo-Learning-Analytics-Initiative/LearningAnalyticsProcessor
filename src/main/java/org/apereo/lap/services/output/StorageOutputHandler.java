@@ -20,7 +20,6 @@ import java.util.UUID;
 import org.apereo.lap.dao.RiskConfidenceRepository;
 import org.apereo.lap.dao.model.RiskConfidence;
 import org.apereo.lap.model.Output;
-import org.apereo.lap.services.output.OutputHandler.OutputResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;

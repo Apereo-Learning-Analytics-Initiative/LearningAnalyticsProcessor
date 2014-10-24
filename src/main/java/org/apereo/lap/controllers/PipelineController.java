@@ -14,8 +14,14 @@
  */
 package org.apereo.lap.controllers;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.apereo.lap.model.PipelineConfig;
-import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.ProcessingManagerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,13 +32,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Service to retrieve pipeline processor configuration and initiate a processor run
  */
@@ -41,9 +40,6 @@ import java.util.Map;
 public class PipelineController {
 
     private static final Logger logger = LoggerFactory.getLogger(PipelineController.class);
-
-    @Resource
-    ConfigurationService configuration;
 
     @Resource
     ProcessingManagerService processingManagerService;
