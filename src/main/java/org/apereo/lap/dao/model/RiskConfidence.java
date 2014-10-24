@@ -16,13 +16,16 @@ package org.apereo.lap.dao.model;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * Represents a row in the risk_confidence table
+ *
+ */
 @Entity(name="risk_confidence")
-public class RiskConfidence  extends BaseEntity {
+public class RiskConfidence extends BaseEntity {
     private static final long serialVersionUID = -8050631804690469935L;
 
     @Column(name="ALTERNATIVE_ID")
@@ -78,5 +81,13 @@ public class RiskConfidence  extends BaseEntity {
 
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+
+	@Override
+	public String toString() {
+		return "RiskConfidence [alternativeId=" + alternativeId + ", courseId="
+				+ courseId + ", modelRiskConfidence=" + modelRiskConfidence
+				+ ", dateCreated=" + dateCreated + ", groupId=" + groupId
+				+ ", getId()=" + getId() + "]";
 	}
 }

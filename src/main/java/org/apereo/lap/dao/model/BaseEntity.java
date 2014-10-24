@@ -21,9 +21,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * Base class for all JPA entities
+ *
+ */
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = -8379618317974016042L;
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;

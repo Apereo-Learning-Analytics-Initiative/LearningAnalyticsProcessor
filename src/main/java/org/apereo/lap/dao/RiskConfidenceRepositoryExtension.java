@@ -19,6 +19,10 @@ import java.util.List;
 import org.apereo.lap.dao.model.RiskConfidence;
 
 
+/**
+ * An interface that defines custom queries to the risk confidence table
+ *
+ */
 public interface RiskConfidenceRepositoryExtension  {
-	List<RiskConfidence> findByUserCourseDate(String user, String course);
+	List<RiskConfidence> findByUserCourseDate(final String user, final String course);
 }

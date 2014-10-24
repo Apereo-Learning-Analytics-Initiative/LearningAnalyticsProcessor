@@ -14,14 +14,22 @@
  */
 package org.apereo.lap.dao;
 
-import org.apereo.lap.dao.model.RiskConfidence;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * Provides data access via JPA to the RiskConfidence table.
- * The risk confidence table contains a historical record of each processing run.
- *
- */
-public interface RiskConfidenceRepository extends JpaRepository<RiskConfidence, Long>, RiskConfidenceRepositoryExtension  {
+@ContextConfiguration({ "classpath:test-context.xml" })
+@RunWith(SpringJUnit4ClassRunner.class)
+public class RiskConfidenceRepositoryImplTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(RiskConfidenceRepositoryImplTest.class);
+
+	@Test
+	public void testFindByUserCourseDate() {
+		logger.warn("Test not yet implemented");
+	}
 	
 }
