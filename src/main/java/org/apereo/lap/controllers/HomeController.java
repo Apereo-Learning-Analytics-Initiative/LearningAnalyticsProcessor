@@ -44,6 +44,11 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
+    	
+    	if (logger.isDebugEnabled()) {
+    		logger.debug("Model: "+model.toString());
+    	}
+    	
         model.addAttribute("dev", "AZ"); // for testing
         model.addAttribute("processors", processingManagerService.getPipelineProcessors());
         model.addAttribute("pipelines", processingManagerService.getPipelineConfigs().values());

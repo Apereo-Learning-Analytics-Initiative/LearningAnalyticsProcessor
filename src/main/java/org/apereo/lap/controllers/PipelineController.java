@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Sample controller for going to the home page with a message
+ * Service to retrieve pipeline processor configuration and initiate a processor run
  */
 @Controller
 @RequestMapping("/pipeline")
@@ -52,14 +52,22 @@ public class PipelineController {
      * lists out the pipelines available (keys)
      */
     @RequestMapping(value = {"/",""}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
-    public @ResponseBody Map rootGet() {
-        logger.info("pipelines");
+    public @ResponseBody Map<String, Object> rootGet() {
+    	
+    	if (logger.isDebugEnabled()) {
+    		logger.debug("Get all pipeline configs");
+    	}
+        
         Map<String, PipelineConfig> pipelines = processingManagerService.getPipelineConfigs();
         Map<String, Object> data = new LinkedHashMap<>();
         List<PipelineConfig> procs = new ArrayList<>();
-        for (PipelineConfig pipelineProcessor : pipelines.values()) {
-            procs.add(pipelineProcessor);
+        
+        if (pipelines != null && !pipelines.isEmpty()) {
+            for (PipelineConfig pipelineProcessor : pipelines.values()) {
+                procs.add(pipelineProcessor);
+            }
         }
+        
         data.put("processors", procs);
         return data;
     }
@@ -68,9 +76,12 @@ public class PipelineController {
      * Get one pipeline config
      */
     @RequestMapping(value = {"/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
-    public @ResponseBody PipelineConfig getType(@PathVariable("type") String pipelineConfigId) {
-        logger.info("pipeline config: "+pipelineConfigId);
-        return processingManagerService.findPipelineConfig(pipelineConfigId);
+    public @ResponseBody PipelineConfig getType(@PathVariable("type") String type) {
+    	if (logger.isDebugEnabled()) {
+    		logger.debug("Get pipeline config for type: "+type);
+    	}
+    	
+        return processingManagerService.findPipelineConfig(type);
     }
 
     /**
@@ -78,9 +89,12 @@ public class PipelineController {
      * TODO probably need to add security to this
      */
     @RequestMapping(value = {"/{type}"}, method = RequestMethod.POST, produces="application/json;charset=utf-8")
-    public @ResponseBody boolean postType(@PathVariable("type") String pipelineConfigId) {
-        logger.info("pipeline POST: "+pipelineConfigId);
-        return processingManagerService.process(pipelineConfigId, null);
+    public @ResponseBody boolean postType(@PathVariable("type") String type) {
+    	if (logger.isDebugEnabled()) {
+    		logger.debug("Start pipeline for type: "+type);
+    	}
+    	
+        return processingManagerService.process(type, null);
     }
 
     /**
@@ -88,8 +102,11 @@ public class PipelineController {
      * TODO probably need to add security to this
      */
     @RequestMapping(value = {"/json/{type}"}, method = RequestMethod.POST, consumes="application/json", produces="application/json;charset=utf-8")
-    public @ResponseBody boolean postJsonType(@PathVariable("type") String pipelineConfigId, @RequestBody String inputJson) {
-        logger.info("pipeline POST: "+pipelineConfigId+" with JSON data");
-        return processingManagerService.process(pipelineConfigId, inputJson);
+    public @ResponseBody boolean postJsonType(@PathVariable("type") String type, @RequestBody String json) {
+    	if (logger.isDebugEnabled()) {
+    		logger.debug("Start pipeline for type: "+type+" with json: "+json);
+    	}
+    	
+        return processingManagerService.process(type, json);
     }
 }

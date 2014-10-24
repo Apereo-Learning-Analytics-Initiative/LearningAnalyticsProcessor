@@ -14,8 +14,15 @@
  */
 package org.apereo.lap.controllers.model;
 
+import java.io.Serializable;
 
-public class RiskConfidenceRequest {
+
+/**
+ * Wraps query parameters for an incoming risk confidence api request
+ *
+ */
+public class RiskConfidenceRequest implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String user;
 	private String course;
 	
@@ -30,5 +37,11 @@ public class RiskConfidenceRequest {
 	}
 	public void setCourse(String course) {
 		this.course = course;
+	}
+	
+	@Override
+	public String toString() {
+		return "RiskConfidenceRequest [user=" + user + ", course=" + course
+				+ "]";
 	}
 }

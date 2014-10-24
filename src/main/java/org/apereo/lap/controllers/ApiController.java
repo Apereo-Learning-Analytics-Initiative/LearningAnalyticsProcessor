@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Sample controller for going to the home page with a message
+ * Controller for the rest api
  */
 @Controller
 @RequestMapping(value = {"/api"})
@@ -46,6 +46,11 @@ public class ApiController {
      */
     @RequestMapping(value = {"/riskconfidence"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
     public @ResponseBody List<RiskConfidence> riskconfidence(@ModelAttribute RiskConfidenceRequest request) {
+    	
+    	if (logger.isDebugEnabled()) {
+    		logger.debug(request.toString());
+    	}
+    	
     	return riskConfidenceRepository.findByUserCourseDate(request.getUser(), request.getCourse());
     }
 }
