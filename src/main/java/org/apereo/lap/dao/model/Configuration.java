@@ -27,10 +27,10 @@ public class Configuration extends BaseEntity {
 
     @Column(name="SSP_BASE_URL")
     private String sspBaseUrl;
-    @Column(name="RISK_CONFIDENCE_THRESHOLD")
-    private Float riskConfidenceThreshold;
-    @Column(name="ACTIVE")
-    private boolean active;
+    @Column(name="SSP_RISK_CONFIDENCE_THRESHOLD")
+    private Float sspRiskConfidenceThreshold;
+    @Column(name="SSP_ACTIVE")
+    private boolean sspActive;
     
 	public String getSspBaseUrl() {
 		return sspBaseUrl;
@@ -40,20 +40,20 @@ public class Configuration extends BaseEntity {
 		this.sspBaseUrl = sspBaseUrl;
 	}
 
-	public Float getRiskConfidenceThreshold() {
-		return riskConfidenceThreshold;
+	public Float getSSPRiskConfidenceThreshold() {
+		return sspRiskConfidenceThreshold;
 	}
 
-	public void setRiskConfidenceThreshold(Float riskConfidenceThreshold) {
-		this.riskConfidenceThreshold = riskConfidenceThreshold;
+	public void setSSPRiskConfidenceThreshold(Float sspRiskConfidenceThreshold) {
+		this.sspRiskConfidenceThreshold = sspRiskConfidenceThreshold;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean isSSPActive() {
+		return sspActive;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setSSPActive(boolean sspActive) {
+		this.sspActive = sspActive;
 	}
 
 	@Override

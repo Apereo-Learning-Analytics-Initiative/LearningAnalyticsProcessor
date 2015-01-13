@@ -57,7 +57,9 @@ public class ProcessingManagerService {
     InputHandlerService inputHandler;
     @Resource
     OutputHandlerService outputHandler;
-
+    @Resource
+    ThresholdTriggerService thresholdTrigger;
+    
     @Autowired
     List<PipelineProcessor> pipelineProcessors;
 
@@ -170,6 +172,9 @@ public class ProcessingManagerService {
                 // if no outputs succeeded then the pipeline has failed
                 throw new RuntimeException("All outputs failed, pipeline failure in outputs");
             }
+            
+            // Trigger SSP call
+            thresholdTrigger.triggerSSP(outputs);
 
             // send success notification
             notification.sendNotification("Pipeline ("+pipelineId+") Complete", NotificationService.NotificationLevel.INFO);

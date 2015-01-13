@@ -56,16 +56,10 @@
 							id="sspBaseUrl" value="${configuration.sspBaseUrl}" />
 					</div>
 					<div class="form-group">
-						<label>Risk Confidence Threshold</label> 
-						<input type="text" class="form-control"
-							name="riskConfidenceThreshold" id="riskConfidenceThreshold"
-							value="${configuration.riskConfidenceThreshold}" />
-					</div>
-					<div class="form-group">
 						<div class="checkbox">
 						<label>
-							<input type="checkbox" name="active" 
-								id="active" checked="${configuration.active ? 'checked' : ''}" /> Active</label> 
+							<input type="checkbox" name="sspActive" 
+								id="sspActive" checked="${configuration.sspActive ? 'checked' : ''}" /> Active</label> 
 						</div>
 					</div>
 

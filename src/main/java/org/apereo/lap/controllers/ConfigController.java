@@ -59,11 +59,11 @@ public class ConfigController {
     	
     	ConfigurationRequest model = new ConfigurationRequest();
     	model.setSspBaseUrl(configuration.getSspBaseUrl());
-    	if(configuration.getRiskConfidenceThreshold() != null)
+    	if(configuration.getSSPRiskConfidenceThreshold() != null)
 		{
-    		model.setRiskConfidenceThreshold(Float.toString(configuration.getRiskConfidenceThreshold()));
+    		model.setSspRiskConfidenceThreshold(Float.toString(configuration.getSSPRiskConfidenceThreshold()));
 		}
-    	model.setActive(configuration.isActive());;
+    	model.setSspActive(configuration.isSSPActive());;
     	
     	viewModel.addAttribute("configuration", model);
     	
@@ -77,9 +77,9 @@ public class ConfigController {
 
     	try
     	{
-    		if(!StringUtils.isNullOrEmpty(model.getRiskConfidenceThreshold()))
+    		if(!StringUtils.isNullOrEmpty(model.getSspRiskConfidenceThreshold()))
     		{
-    			Double.parseDouble(model.getRiskConfidenceThreshold());
+    			Double.parseDouble(model.getSspRiskConfidenceThreshold());
     		}
     	}
     	catch(NumberFormatException e)
@@ -91,15 +91,15 @@ public class ConfigController {
     	{
     		Configuration configuration = getConfiguration();
     		configuration.setSspBaseUrl(model.getSspBaseUrl());
-    		if(!StringUtils.isNullOrEmpty(model.getRiskConfidenceThreshold()))
+    		if(!StringUtils.isNullOrEmpty(model.getSspRiskConfidenceThreshold()))
     		{
-    			configuration.setRiskConfidenceThreshold(Float.parseFloat(model.getRiskConfidenceThreshold()));
+    			configuration.setSSPRiskConfidenceThreshold(Float.parseFloat(model.getSspRiskConfidenceThreshold()));
     		}
     		else
     		{
-    			configuration.setRiskConfidenceThreshold(null);
+    			configuration.setSSPRiskConfidenceThreshold(null);
     		}
-    		configuration.setActive(model.isActive());;
+    		configuration.setSSPActive(model.isSspActive());;
     		
     		configurationRepository.save(configuration);
     	}

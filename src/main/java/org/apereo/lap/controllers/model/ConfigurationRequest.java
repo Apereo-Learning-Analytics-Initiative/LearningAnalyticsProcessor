@@ -25,8 +25,8 @@ public class ConfigurationRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String sspBaseUrl;
-	private String riskConfidenceThreshold;
-	private boolean active;
+	private String sspRiskConfidenceThreshold;
+	private boolean sspActive;
 	
 	public String getSspBaseUrl() {
 		return sspBaseUrl;
@@ -34,16 +34,16 @@ public class ConfigurationRequest implements Serializable {
 	public void setSspBaseUrl(String sspBaseUrl) {
 		this.sspBaseUrl = sspBaseUrl;
 	}
-	public String getRiskConfidenceThreshold() {
-		return riskConfidenceThreshold;
+	public String getSspRiskConfidenceThreshold() {
+		return sspRiskConfidenceThreshold;
 	}
-	public void setRiskConfidenceThreshold(String riskConfidenceThreshold) {
-		this.riskConfidenceThreshold = riskConfidenceThreshold;
+	public void setSspRiskConfidenceThreshold(String sspRiskConfidenceThreshold) {
+		this.sspRiskConfidenceThreshold = sspRiskConfidenceThreshold;
 	}
-	public boolean isActive() {
-		return active;
+	public boolean isSspActive() {
+		return sspActive;
 	}
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setSspActive(boolean sspActive) {
+		this.sspActive = sspActive;
 	}
 }
