@@ -29,7 +29,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.ConfigurationService;
-import org.apereo.lap.services.InputHandlerService;
+import org.apereo.lap.services.SampleCSVInputHandlerService;
 import org.apereo.lap.services.StorageService;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.database.DatabaseMeta;
@@ -56,7 +56,7 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     ConfigurationService configurationService;
 
     @Resource
-    InputHandlerService inputHandler;
+    SampleCSVInputHandlerService inputHandler;
 
     @Resource
     StorageService storage;

@@ -54,7 +54,7 @@ public class ProcessingManagerService {
     @Resource
     NotificationService notification;
     @Resource
-    InputHandlerService inputHandler;
+    SampleCSVInputHandlerService inputHandler;
     @Resource
     OutputHandlerService outputHandler;
     @Resource
@@ -124,7 +124,7 @@ public class ProcessingManagerService {
             }
 
             // load in the inputs IF needed
-            Set<InputHandlerService.InputCollection> toLoad = new HashSet<>();
+            Set<SampleCSVInputHandlerService.InputCollection> toLoad = new HashSet<>();
             for (PipelineConfig.InputField input : inputs) {
                 toLoad.add(input.collection);
             }

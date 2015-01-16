@@ -95,7 +95,7 @@ public class ConfigurationService {
             }
         } else {
             IOUtils.copy(
-                    InputHandlerService.class.getClassLoader().getResourceAsStream("config" + SLASH + "lap.properties"),
+                    SampleCSVInputHandlerService.class.getClassLoader().getResourceAsStream("config" + SLASH + "lap.properties"),
                     new FileOutputStream(new File(appHome(), "lap.properties"))
             );
             logger.info("No external LAP config found: "+lapConfigProps.getAbsolutePath()+", copied default sample lap.properties");

@@ -18,7 +18,7 @@ import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.ConfigurationService;
-import org.apereo.lap.services.InputHandlerService;
+import org.apereo.lap.services.SampleCSVInputHandlerService;
 import org.apereo.lap.services.input.BaseInputHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +31,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.apereo.lap.services.BaseInputHandlerService;
+
 
 public abstract class BaseCSVInputHandler extends BaseInputHandler implements CSVInputHandler {
 
@@ -67,14 +69,14 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
     }
 
     @Override
-    public InputHandlerService.InputType getHandledType() {
-        return InputHandlerService.InputType.CSV;
+    public SampleCSVInputHandlerService.InputType getHandledType() {
+        return BaseInputHandlerService.InputType.CSV;
     }
 
     @Override
-    public InputHandlerService.InputCollection getHandledCollection() {
+    public SampleCSVInputHandlerService.InputCollection getHandledCollection() {
         // convert the CSV filename into a standard collection name
-        return InputHandlerService.InputCollection.fromString(StringUtils.stripEnd(getCSVFilename(), ".csv"));
+        return BaseInputHandlerService.InputCollection.fromString(StringUtils.stripEnd(getCSVFilename(), ".csv"));
     }
 
     // general use functions

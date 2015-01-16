@@ -18,7 +18,7 @@ import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.ConfigurationService;
-import org.apereo.lap.services.InputHandlerService;
+import org.apereo.lap.services.SampleCSVInputHandlerService;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.apereo.lap.services.BaseInputHandlerService;;
 
 /**
  * This is an object that represents all configuration settings for a specific pipeline
@@ -312,7 +313,7 @@ public class PipelineConfig {
      * A field is specified using a combination of the type and the name, for example: COURSE.COURSE_ID or PERSONAL.AGE
      */
     public static class InputField {
-        public InputHandlerService.InputCollection collection;
+        public SampleCSVInputHandlerService.InputCollection collection;
         public String name;
         public boolean required = false;
 
@@ -332,7 +333,7 @@ public class PipelineConfig {
             assert StringUtils.isNotBlank(parts[0]) : "InputField Collection part is blank: "+collectionAndName;
             assert StringUtils.isNotBlank(parts[1]) : "InputField Name part is blank: "+collectionAndName;
             InputField field = new InputField();
-            field.collection = InputHandlerService.InputCollection.fromString(parts[0]);
+            field.collection = BaseInputHandlerService.InputCollection.fromString(parts[0]);
             field.name = parts[1];
             field.required = required;
             return field;
@@ -341,7 +342,7 @@ public class PipelineConfig {
         /**
          * @return the collection for this field (e.g. PERSONAL from PERSONAL.AGE)
          */
-        public InputHandlerService.InputCollection getCollection() {
+        public SampleCSVInputHandlerService.InputCollection getCollection() {
             return collection;
         }
 

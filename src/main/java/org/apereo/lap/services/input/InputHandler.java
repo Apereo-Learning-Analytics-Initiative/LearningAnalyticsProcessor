@@ -14,7 +14,7 @@
  */
 package org.apereo.lap.services.input;
 
-import org.apereo.lap.services.InputHandlerService;
+import org.apereo.lap.services.SampleCSVInputHandlerService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
@@ -30,12 +30,12 @@ public interface InputHandler {
     /**
      * @return the data type handled by this handler
      */
-    InputHandlerService.InputType getHandledType();
+    SampleCSVInputHandlerService.InputType getHandledType();
 
     /**
      * @return the collection type handled by this handler
      */
-    InputHandlerService.InputCollection getHandledCollection();
+    SampleCSVInputHandlerService.InputCollection getHandledCollection();
 
     /**
      * @return the JdbcTemplate for the temp database (get this from the StorageService)
