@@ -26,6 +26,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
+import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.input.InputHandler;
@@ -39,15 +40,21 @@ import org.springframework.stereotype.Component;
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
-@Component
 public abstract class BaseInputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(SampleCSVInputHandlerService.class);
 
-    @Resource
-    protected ConfigurationService configuration;
+    public BaseInputHandlerService()
+    {
+    	
+    }
+    
+    public BaseInputHandlerService(HierarchicalConfiguration inputConfiguration)
+    {
+    	
+    }
 
-    @Resource
+    protected ConfigurationService configuration;
     protected StorageService storage;
     /**
      * Defines the valid types of input the system can handle
@@ -61,6 +68,17 @@ public abstract class BaseInputHandlerService {
                 throw new IllegalArgumentException("input type ("+str+") does not match the valid types: "+ ArrayUtils.toString(InputType.values()));
             }
         }
+    }
+    
+    public static BaseInputHandlerService getInputHandler(String type, HierarchicalConfiguration sourceConfiguration, ConfigurationService configuration, StorageService storage) {
+    	if (StringUtils.equalsIgnoreCase(type, BaseInputHandlerService.Type.SAMPLECSV.name())) {
+    			return new SampleCSVInputHandlerService(configuration, storage, sourceConfiguration);
+    	}
+    	if (StringUtils.equalsIgnoreCase(type, BaseInputHandlerService.Type.CSV.name())) {
+			return new CSVInputHandlerService(configuration, storage, sourceConfiguration);
+    	}
+    	
+    	 throw new IllegalArgumentException("collection type ("+type+") does not match the valid types: "+ ArrayUtils.toString(Type.values()));
     }
 
     /**
@@ -116,17 +134,11 @@ public abstract class BaseInputHandlerService {
      */
     protected Set<InputType> loadedInputTypes;
 
-    @PostConstruct
     public void init() {
         logger.info("INIT");
         loadedInputCollections = new ConcurrentHashMap<>();
         //noinspection unchecked
         loadedInputTypes = Collections.newSetFromMap(new ConcurrentHashMap());
-    }
-
-    @PreDestroy
-    public void destroy() {
-        logger.info("DESTROY");
     }
 
     /**

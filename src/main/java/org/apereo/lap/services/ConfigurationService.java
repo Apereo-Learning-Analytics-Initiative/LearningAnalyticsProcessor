@@ -51,12 +51,13 @@ public class ConfigurationService {
     // working directories
     File applicationHomeDirectory;
     File pipelinesDirectory;
-    File inputDirectory;
+    public File inputDirectory;
     File outputDirectory;
 
     @javax.annotation.Resource
     ResourceLoader resourceLoader;
-
+    @javax.annotation.Resource
+    StorageService storage;
     /**
      * System defined path separator Windows = "\", Unix = "/"
      */
@@ -112,7 +113,6 @@ public class ConfigurationService {
         Resource pipelineSample = resourceLoader.getResource("classpath:pipelines" + SLASH + "sample.xml");
         PipelineConfig plcfg = processPipelineConfigFile(pipelineSample.getFile());
         if (plcfg != null) {
-            plcfg.setConfiguration(this);
             pipelineConfigs.put(plcfg.getType(), plcfg);
         }
         // then try to load the external ones
@@ -122,7 +122,6 @@ public class ConfigurationService {
                 if (fileEntry.isFile()) {
                     PipelineConfig filePLC = processPipelineConfigFile(pipelineSample.getFile());
                     if (filePLC != null) {
-                        filePLC.setConfiguration(this);
                         pipelineConfigs.put(filePLC.getType(), filePLC);
                     }
                 }
@@ -143,7 +142,7 @@ public class ConfigurationService {
         } catch (ConfigurationException e) {
             logger.error("Invalid XML in pipeline config file ("+pipelineConfigFile.getAbsolutePath()+") (cannot process file): "+e);
         }
-        PipelineConfig plcfg = PipelineConfig.makeConfigFromXML(xmlcfg);
+        PipelineConfig plcfg = PipelineConfig.makeConfigFromXML(this, storage, xmlcfg);
         if (plcfg.isValid()) {
             logger.info("Pipeline config ("+plcfg.getType()+") loaded from: "+pipelineConfigFile.getAbsolutePath());
         } else {

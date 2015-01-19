@@ -56,9 +56,6 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     ConfigurationService configurationService;
 
     @Resource
-    SampleCSVInputHandlerService inputHandler;
-
-    @Resource
     StorageService storage;
 
     @Resource

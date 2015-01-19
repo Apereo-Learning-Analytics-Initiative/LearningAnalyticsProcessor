@@ -26,6 +26,12 @@
     <confidence>0.05</confidence>
   </stats>
 
+  <sources>
+      <source>
+          <type>SAMPLECSV</type>
+      </source>
+  </sources>
+  
   <inputs>
     <!--
     There is currently only 1 type of input allowed (temporary storage)

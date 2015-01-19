@@ -27,7 +27,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
+
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * This is the trigger and general management point for the entire processing of a pipeline.
@@ -53,8 +55,6 @@ public class ProcessingManagerService {
     StorageService storage;
     @Resource
     NotificationService notification;
-    @Resource
-    SampleCSVInputHandlerService inputHandler;
     @Resource
     OutputHandlerService outputHandler;
     @Resource
@@ -124,15 +124,22 @@ public class ProcessingManagerService {
             }
 
             // load in the inputs IF needed
-            Set<SampleCSVInputHandlerService.InputCollection> toLoad = new HashSet<>();
+            Set<BaseInputHandlerService.InputCollection> toLoad = new HashSet<>();
             for (PipelineConfig.InputField input : inputs) {
                 toLoad.add(input.collection);
             }
             if (toLoad.isEmpty()) {
                 toLoad = null; // don't load anything if the model does not indicate it needs it
             }
-            inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
-
+            
+            for(Entry<String, PipelineConfig> pipelineConfigs: configuration.pipelineConfigs.entrySet())
+            {
+            	for(BaseInputHandlerService inputHandler : pipelineConfigs.getValue().getInputHandlers())
+            	{
+            		inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
+            	}
+            }
+            
             // start the pipeline processors
             List<Processor> processors = pipelineConfig.getProcessors();
             logger.info("Pipeline ("+pipelineId+") running "+processors.size()+" processors");

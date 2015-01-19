@@ -14,6 +14,7 @@
  */
 package org.apereo.lap.services;
 
+import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -42,17 +43,28 @@ import java.util.concurrent.ConcurrentHashMap;
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
-@Component
 public class SampleCSVInputHandlerService extends BaseInputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(SampleCSVInputHandlerService.class);
 
+    public SampleCSVInputHandlerService()
+    {
+
+    }
+    
+    public SampleCSVInputHandlerService(ConfigurationService configuration, StorageService storage, HierarchicalConfiguration inputConfiguration)
+    {
+    	super(inputConfiguration);
+    	this.configuration = configuration;
+    	this.storage = storage;
+    	this.init();
+    }
+    
     @Override
 	public Type getType() {
 		return Type.SAMPLECSV;
 	}
 
-    @PostConstruct
     public void init() {
         super.init();
         

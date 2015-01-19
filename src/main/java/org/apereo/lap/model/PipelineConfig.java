@@ -19,6 +19,7 @@ import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.ConfigurationService;
 import org.apereo.lap.services.SampleCSVInputHandlerService;
+import org.apereo.lap.services.StorageService;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import org.apereo.lap.services.BaseInputHandlerService;;
 
 /**
@@ -65,6 +67,7 @@ public class PipelineConfig {
 
     Map<String, Float> stats;
 
+    List<BaseInputHandlerService> inputHandlers;
     List<InputField> inputs;
     List<Processor> processors;
     List<Output> outputs;
@@ -77,7 +80,6 @@ public class PipelineConfig {
     /**
      * The LAP config service
      */
-    ConfigurationService configuration;
 
     private PipelineConfig() {
         stats = new ConcurrentHashMap<>();
@@ -101,6 +103,20 @@ public class PipelineConfig {
         return this.inputs;
     }
 
+    /**
+     * Add an InputField to this config
+     * @param inputField the InputField
+     * @return the list of all current InputField
+     */
+    public List<BaseInputHandlerService> addInputHandlerField(String type, HierarchicalConfiguration sourceConfiguration, ConfigurationService configurationService, StorageService storage) {
+        if (this.inputHandlers == null) {
+            this.inputHandlers = new ArrayList<>();
+        }
+
+        this.inputHandlers.add(BaseInputHandlerService.getInputHandler(type, sourceConfiguration, configurationService, storage));
+        return this.inputHandlers;
+    }
+    
     /**
      * Add a Processor to this config
      * @param processor the Processor
@@ -154,17 +170,13 @@ public class PipelineConfig {
     public List<Processor> getProcessors() {
         return processors;
     }
+    
+    public List<BaseInputHandlerService> getInputHandlers() {
+        return inputHandlers;
+    }
 
     public List<Output> getOutputs() {
         return outputs;
-    }
-
-    public ConfigurationService getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(ConfigurationService configuration) {
-        this.configuration = configuration;
     }
 
     /**
@@ -212,7 +224,7 @@ public class PipelineConfig {
 
     // BUILDER
 
-    public static PipelineConfig makeConfigFromXML(XMLConfiguration xmlConfig) {
+    public static PipelineConfig makeConfigFromXML(ConfigurationService configurationService, StorageService storage, XMLConfiguration xmlConfig) {
         PipelineConfig pc = new PipelineConfig();
         pc.filename = xmlConfig.getFileName();
         pc.name = xmlConfig.getString("name");
@@ -231,6 +243,19 @@ public class PipelineConfig {
                 logger.warn("Unable to get float from "+next+" <stats> field (skipping it): "+e);
             }
         }
+        
+        // load the lists
+        // sources
+        List<HierarchicalConfiguration> sourceFields = xmlConfig.configurationsAt("sources.source");
+        for (HierarchicalConfiguration field : sourceFields) {
+            try {
+                pc.addInputHandlerField(field.getString("type"), field, configurationService, storage);
+            } catch (Exception e) {
+                // skip this input and warn
+                logger.warn("Unable to load input field ("+field.toString()+") (skipping it): "+e);
+            }
+        }
+        
         // load the lists
         // inputs
         List<HierarchicalConfiguration> inputFields = xmlConfig.configurationsAt("inputs.fields.field");
@@ -313,7 +338,7 @@ public class PipelineConfig {
      * A field is specified using a combination of the type and the name, for example: COURSE.COURSE_ID or PERSONAL.AGE
      */
     public static class InputField {
-        public SampleCSVInputHandlerService.InputCollection collection;
+        public BaseInputHandlerService.InputCollection collection;
         public String name;
         public boolean required = false;
 
@@ -342,7 +367,7 @@ public class PipelineConfig {
         /**
          * @return the collection for this field (e.g. PERSONAL from PERSONAL.AGE)
          */
-        public SampleCSVInputHandlerService.InputCollection getCollection() {
+        public BaseInputHandlerService.InputCollection getCollection() {
             return collection;
         }
 

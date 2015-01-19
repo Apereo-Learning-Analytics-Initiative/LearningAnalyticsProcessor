@@ -44,7 +44,7 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
         assert configuration != null;
         this.config = configuration;
     }
-
+    
     /**
      * Make the set of all known CSV handlers (this is expensive so avoid doing it more than once)
      * @param configuration current system config
