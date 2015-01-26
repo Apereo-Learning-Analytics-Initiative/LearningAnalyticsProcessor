@@ -15,14 +15,14 @@
 package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
+
 import org.apereo.lap.services.ConfigurationService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.File;
 import java.sql.Types;
 
 public class CourseCSVInputHandler extends BaseCSVInputHandler {
-
-    public static final String FILENAME = "course.csv";
 
     static final String SQL_INSERT = "INSERT INTO COURSE (COURSE_ID,SUBJECT,ENROLLMENT,ONLINE_FLAG) VALUES (?,?,?,?)";
 
@@ -34,7 +34,12 @@ public class CourseCSVInputHandler extends BaseCSVInputHandler {
     public CourseCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
-
+    
+	@Override
+	public int getOrder() {
+		return 2;
+	}
+	
     @Override
     public String makeInsertSQL() {
         return SQL_INSERT;
@@ -44,17 +49,17 @@ public class CourseCSVInputHandler extends BaseCSVInputHandler {
     public int[] makeInsertSQLParams() {
         return SQL_TYPES;
     }
-
+    
     @Override
-    public String getCSVFilename() {
-        return FILENAME;
+    public String getFileName() {
+    	return "course.csv";
     }
 
     @Override
     public CSVReader readCSV(boolean reRead) {
         return readCSV(4, "COURSE_ID", reRead);
     }
-
+    
     @Override
     public ReadResult readInputIntoDB() {
         CSVReader reader = readCSV(false);

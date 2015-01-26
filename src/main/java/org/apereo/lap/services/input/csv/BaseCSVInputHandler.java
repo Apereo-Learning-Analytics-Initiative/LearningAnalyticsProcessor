@@ -15,6 +15,7 @@
 package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.ConfigurationService;
@@ -31,13 +32,19 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.apereo.lap.services.BaseInputHandlerService;
 
 
 public abstract class BaseCSVInputHandler extends BaseInputHandler implements CSVInputHandler {
 
+	private String externalFilePath = null;
     private static final Logger logger = LoggerFactory.getLogger(BaseCSVInputHandler.class);
 
+    public void setFilePath(String filePath) {
+    	this.externalFilePath = filePath;
+    }
+    
     ConfigurationService config;
     public BaseCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(jdbcTemplate);
@@ -53,18 +60,18 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
      */
     public static Map<String, CSVInputHandler> makeCSVHandlers(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         // build up the handlers
-        CSVInputHandler csvih;
+    	CSVInputHandler csvih;
         Map<String, CSVInputHandler> handlers = new LinkedHashMap<>(); // maintain order
-        csvih = new PersonalCSVInputHandler(configuration, jdbcTemplate);
-        handlers.put(csvih.getCSVFilename(), csvih);
-        csvih = new CourseCSVInputHandler(configuration, jdbcTemplate);
-        handlers.put(csvih.getCSVFilename(), csvih);
-        csvih = new EnrollmentCSVInputHandler(configuration, jdbcTemplate);
-        handlers.put(csvih.getCSVFilename(), csvih);
-        csvih = new GradeCSVInputHandler(configuration, jdbcTemplate);
-        handlers.put(csvih.getCSVFilename(), csvih);
-        csvih = new ActivityCSVInputHandler(configuration, jdbcTemplate);
-        handlers.put(csvih.getCSVFilename(), csvih);
+        csvih = new SamplePersonalCSVInputHandler(configuration, jdbcTemplate);
+        handlers.put(csvih.getFileName(), csvih);
+        csvih = new SampleCourseCSVInputHandler(configuration, jdbcTemplate);
+        handlers.put(csvih.getFileName(), csvih);
+        csvih = new SampleEnrollmentCSVInputHandler(configuration, jdbcTemplate);
+        handlers.put(csvih.getFileName(), csvih);
+        csvih = new SampleGradeCSVInputHandler(configuration, jdbcTemplate);
+        handlers.put(csvih.getFileName(), csvih);
+        csvih = new SampleActivityCSVInputHandler(configuration, jdbcTemplate);
+        handlers.put(csvih.getFileName(), csvih);
         return handlers;
     }
 
@@ -76,12 +83,13 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
     @Override
     public SampleCSVInputHandlerService.InputCollection getHandledCollection() {
         // convert the CSV filename into a standard collection name
-        return BaseInputHandlerService.InputCollection.fromString(StringUtils.stripEnd(getCSVFilename(), ".csv"));
+        return BaseInputHandlerService.InputCollection.fromString(StringUtils.stripEnd(getFileName(), ".csv"));
     }
 
     // general use functions
 
     CSVReader reader;
+    
     /**
      * Reads a CSV file and verifies basic infor about it
      * @param minColumns min number of columns
@@ -91,14 +99,31 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
      * @throws IllegalStateException if we fail to produce the reader
      */
     CSVReader readCSV(int minColumns, String headerStartsWith, boolean reRead) {
+        String fileName = this.getFileName();
+        assert StringUtils.isNotBlank(fileName) : "fileName must not be blank: "+fileName;
+        return readCSV(minColumns, headerStartsWith, reRead, getFile());
+    }
+    
+    public File getFile() {
+        return new File(externalFilePath);
+    }
+
+    /**
+     * Reads a CSV file and verifies basic infor about it
+     * @param minColumns min number of columns
+     * @param headerStartsWith expected header value
+     * @param reRead force reading the file again (otherwise it will use the existing copy)
+     * @return the CSVReader
+     * @throws IllegalStateException if we fail to produce the reader
+     */
+    CSVReader readCSV(int minColumns, String headerStartsWith, boolean reRead, File file) {
         if (this.reader == null || reRead) {
-            String fileName = this.getCSVFilename();
-            assert StringUtils.isNotBlank(fileName) : "fileName must not be blank: "+fileName;
+            assert StringUtils.isNotBlank(file.getAbsolutePath()) : "filePath must not be blank: "+file.getAbsolutePath();
             assert minColumns > 0 : "minColumns must be > 0: "+minColumns;
-            assert StringUtils.isNotBlank(headerStartsWith) : "headerStartsWith must not be blank: "+fileName;
+            assert StringUtils.isNotBlank(headerStartsWith) : "headerStartsWith must not be blank: "+file.getAbsolutePath();
             CSVReader fileCSV;
             try {
-                InputStream fileCSV_IS = FileUtils.openInputStream(new File(config.getInputDirectory(), fileName));
+                InputStream fileCSV_IS = FileUtils.openInputStream(file);
                 fileCSV = new CSVReader(new InputStreamReader(fileCSV_IS));
                 String[] check = fileCSV.readNext();
                 if (check != null
@@ -108,10 +133,10 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
                     //logger.debug(fileName+" file and header appear valid");
                     this.reader = fileCSV;
                 } else {
-                    throw new IllegalStateException(fileName+" file and header do not appear valid (no "+headerStartsWith+" header or less than "+minColumns+" required columns");
+                    throw new IllegalStateException(file.getAbsolutePath()+" file and header do not appear valid (no "+headerStartsWith+" header or less than "+minColumns+" required columns");
                 }
             } catch (Exception e) {
-                throw new IllegalStateException(fileName+" CSV is invalid: "+e);
+                throw new IllegalStateException(file.getAbsolutePath()+" CSV is invalid: "+e);
             }
         }
         return this.reader;
@@ -123,7 +148,7 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
      * @throws IllegalArgumentException if the reader cannot be read
      */
     ReadResult readCSVFileIntoDB(CSVReader csvReader) {
-        ReadResult result = new ReadResult(getCSVFilename());
+        ReadResult result = new ReadResult(getFileName());
         String insertSQL = makeInsertSQL();
         int[] insertTypes = makeInsertSQLParams();
 

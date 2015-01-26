@@ -47,11 +47,6 @@ public class SampleCSVInputHandlerService extends BaseInputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(SampleCSVInputHandlerService.class);
 
-    public SampleCSVInputHandlerService()
-    {
-
-    }
-    
     public SampleCSVInputHandlerService(ConfigurationService configuration, StorageService storage, HierarchicalConfiguration inputConfiguration)
     {
     	super(inputConfiguration);
@@ -124,7 +119,7 @@ public class SampleCSVInputHandlerService extends BaseInputHandlerService {
                     for (CSVInputHandler entry : csvInputHandlers) {
                         if (!ArrayUtils.contains(inputCollections, entry.getHandledCollection())) {
                             // filtering this one out
-                            csvInputHandlerMap.remove(entry.getCSVFilename());
+                            csvInputHandlerMap.remove(entry.getFileName());
                         }
                     }
                     // rebuild it from whatever is left
@@ -135,7 +130,7 @@ public class SampleCSVInputHandlerService extends BaseInputHandlerService {
                 // First we verify the CSV files
                 for (CSVInputHandler csvInputHandler : csvInputHandlers) {
                     csvInputHandler.readCSV(true); // force it true just in case
-                    logger.info(csvInputHandler.getCSVFilename()+" file and header appear valid");
+                    logger.info(csvInputHandler.getFileName()+" file and header appear valid");
                 }
                 // Next we load the data into the temp DB
                 for (CSVInputHandler csvInputHandler : csvInputHandlers) {

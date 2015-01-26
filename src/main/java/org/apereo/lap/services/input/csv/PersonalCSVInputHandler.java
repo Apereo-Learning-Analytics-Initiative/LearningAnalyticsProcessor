@@ -15,14 +15,14 @@
 package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
+
 import org.apereo.lap.services.ConfigurationService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.File;
 import java.sql.Types;
 
 public class PersonalCSVInputHandler extends BaseCSVInputHandler {
-
-    public static final String FILENAME = "personal.csv";
 
     static final String SQL_INSERT = "INSERT INTO PERSONAL (ALTERNATIVE_ID,PERCENTILE,SAT_VERBAL,SAT_MATH,ACT_COMPOSITE,AGE,RACE,GENDER,STATUS,EARNED_CREDIT_HOURS,GPA_CUMULATIVE,GPA_SEMESTER,STANDING,PELL_STATUS,CLASS_CODE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -38,7 +38,16 @@ public class PersonalCSVInputHandler extends BaseCSVInputHandler {
     public PersonalCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
-
+    
+	@Override
+	public int getOrder() {
+		return 1;
+	}
+    @Override
+    public String getFileName() {
+    	return "personal.csv";
+    }
+    
     @Override
     public String makeInsertSQL() {
         return SQL_INSERT;
@@ -50,15 +59,10 @@ public class PersonalCSVInputHandler extends BaseCSVInputHandler {
     }
 
     @Override
-    public String getCSVFilename() {
-        return FILENAME;
-    }
-
-    @Override
     public CSVReader readCSV(boolean reRead) {
         return readCSV(14, "ALTERNATIVE_ID", reRead);
     }
-
+    
     @Override
     public ReadResult readInputIntoDB() {
         CSVReader reader = readCSV(false);
@@ -87,5 +91,4 @@ public class PersonalCSVInputHandler extends BaseCSVInputHandler {
         params[14] = parseString(csvLine[14], new String[]{"FR", "SO", "JR", "SR", "GR"}, true, "CLASS_CODE");
         return params;
     }
-
 }

@@ -28,31 +28,7 @@
 
   <sources>
       <source>
-          <type>CSV</type>
-          <params>
-              <files>
-                   <file>
-                      <type>PERSONAL</type>
-                      <path>F:\Unicon\MaristCollege\OAAIAutomation\LearningAnalyticsProcessor\src\main\resources\extracts\personal.csv</path>
-                  </file>
-                   <file>
-                      <type>COURSE</type>
-                      <path>F:\Unicon\MaristCollege\OAAIAutomation\LearningAnalyticsProcessor\src\main\resources\extracts\course.csv</path>
-                  </file>
-                   <file>
-                      <type>ENROLLMENT</type>
-                      <path>F:\Unicon\MaristCollege\OAAIAutomation\LearningAnalyticsProcessor\src\main\resources\extracts\enrollment.csv</path>
-                  </file>
-                   <file>
-                      <type>GRADE</type>
-                      <path>F:\Unicon\MaristCollege\OAAIAutomation\LearningAnalyticsProcessor\src\main\resources\extracts\grade.csv</path>
-                  </file>
-                  <file>
-                      <type>ACTIVITY</type>
-                      <path>F:\Unicon\MaristCollege\OAAIAutomation\LearningAnalyticsProcessor\src\main\resources\extracts\activity.csv</path>
-                  </file>
-              </files>
-          </params>
+          <type>SAMPLECSV</type>
       </source>
   </sources>
   

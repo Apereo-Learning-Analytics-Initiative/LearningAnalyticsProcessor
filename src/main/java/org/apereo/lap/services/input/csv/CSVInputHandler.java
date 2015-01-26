@@ -14,7 +14,10 @@
  */
 package org.apereo.lap.services.input.csv;
 
+import java.io.File;
+
 import au.com.bytecode.opencsv.CSVReader;
+
 import org.apereo.lap.services.input.InputHandler;
 
 /**
@@ -25,9 +28,19 @@ import org.apereo.lap.services.input.InputHandler;
 public interface CSVInputHandler extends InputHandler {
 
     /**
+     * @return the name of the CSV filePath this handler handles
+     */
+    File getFile();
+    
+    /**
+     * Sets the filePath explicitly
+     */
+    void setFilePath(String filePath);
+    
+    /**
      * @return the name of the CSV file this handler handles
      */
-    String getCSVFilename();
+    String getFileName();
 
     /**
      * Read in the CSV file (does not process it, only the header line)
@@ -37,5 +50,6 @@ public interface CSVInputHandler extends InputHandler {
      * @throws IllegalStateException if we fail to produce the reader
      */
     CSVReader readCSV(boolean reRead);
-
+    
+    int getOrder();
 }

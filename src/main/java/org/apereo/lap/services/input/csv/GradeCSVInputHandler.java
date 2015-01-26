@@ -15,9 +15,11 @@
 package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
+
 import org.apereo.lap.services.ConfigurationService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.File;
 import java.sql.Types;
 
 public class GradeCSVInputHandler extends BaseCSVInputHandler {
@@ -36,7 +38,11 @@ public class GradeCSVInputHandler extends BaseCSVInputHandler {
     public GradeCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
-
+    
+	@Override
+	public int getOrder() {
+		return 4;
+	}
     @Override
     public String makeInsertSQL() {
         return SQL_INSERT;
@@ -46,12 +52,12 @@ public class GradeCSVInputHandler extends BaseCSVInputHandler {
     public int[] makeInsertSQLParams() {
         return SQL_TYPES;
     }
-
+    
     @Override
-    public String getCSVFilename() {
-        return FILENAME;
+    public String getFileName() {
+    	return "grade.csv";
     }
-
+    
     @Override
     public CSVReader readCSV(boolean reRead) {
         return readCSV(8, "ALTERNATIVE_ID", reRead);

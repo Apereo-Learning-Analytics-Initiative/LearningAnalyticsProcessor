@@ -19,8 +19,13 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.services.input.InputHandler;
+import org.apereo.lap.services.input.csv.ActivityCSVInputHandler;
 import org.apereo.lap.services.input.csv.BaseCSVInputHandler;
 import org.apereo.lap.services.input.csv.CSVInputHandler;
+import org.apereo.lap.services.input.csv.CourseCSVInputHandler;
+import org.apereo.lap.services.input.csv.EnrollmentCSVInputHandler;
+import org.apereo.lap.services.input.csv.GradeCSVInputHandler;
+import org.apereo.lap.services.input.csv.PersonalCSVInputHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -33,6 +38,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -45,32 +51,35 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(CSVInputHandlerService.class);
 
-    public CSVInputHandlerService()
+    public CSVInputHandlerService(ConfigurationService configuration, StorageService storage, HierarchicalConfiguration xmlConfig)
     {
-    	
-    }
-    
-    public CSVInputHandlerService(ConfigurationService configuration, StorageService storage, HierarchicalConfiguration inputConfiguration)
-    {
-    	super(inputConfiguration);
+    	super(xmlConfig);
     	this.configuration = configuration;
     	this.storage = storage;
-    	this.init();
+    	this.init(xmlConfig);
     }
 
 	@Override
 	public Type getType() {
 		return Type.CSV;
 	}
+ 
+    private Map<String, String> files = new HashMap<>();
     
-    public void init() {
+    public void init(HierarchicalConfiguration xmlConfig) {
         super.init();
+
         
-        if (configuration.config.getBoolean("input.copy.samples", false)) {
-            copySampleExtractCSVs();
-        }
-        if (configuration.config.getBoolean("input.init.load.csv", false)) {
-        	loadInputCollection();
+     // load the lists
+        // sources
+        List<HierarchicalConfiguration> sourceFields = xmlConfig.configurationsAt("params.files.file");
+        for (HierarchicalConfiguration field : sourceFields) {
+            try {
+            	files.put(field.getString("type"), field.getString("path"));
+            } catch (Exception e) {
+                // skip this input and warn
+                logger.warn("Unable to load input field ("+field.toString()+") (skipping it): "+e);
+            }
         }
     }
 
@@ -83,24 +92,44 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
         assert type != null;
         Map<String, T> handlers = new HashMap<>(); // empty set by default
         if (CSVInputHandler.class.isAssignableFrom(type)) {
-            //noinspection unchecked
-            handlers = (Map<String, T>) BaseCSVInputHandler.makeCSVHandlers(configuration, storage.getTempJdbcTemplate());
+        	for(Entry<String, String> file : files.entrySet()) {
+        		
+        		CSVInputHandler handler = null;
+        		
+        		if(file.getKey().equalsIgnoreCase("PERSONAL"))
+        		{
+        			handler = new PersonalCSVInputHandler(configuration, storage.getTempJdbcTemplate());
+        		}
+        		
+        		if(file.getKey().equalsIgnoreCase("ACTIVITY"))
+        		{
+        			handler = new ActivityCSVInputHandler(configuration, storage.getTempJdbcTemplate());
+        		}
+        		
+        		if(file.getKey().equalsIgnoreCase("COURSE"))
+        		{
+        			handler = new CourseCSVInputHandler(configuration, storage.getTempJdbcTemplate());
+        		}
+        		
+        		if(file.getKey().equalsIgnoreCase("GRADE"))
+        		{
+        			handler = new GradeCSVInputHandler(configuration, storage.getTempJdbcTemplate());
+        		}
+        		
+        		if(file.getKey().equalsIgnoreCase("ENROLLMENT"))
+        		{
+        			handler = new EnrollmentCSVInputHandler(configuration, storage.getTempJdbcTemplate());
+        		}
+        		
+        		if(handler != null)
+        		{
+        			handler.setFilePath(file.getValue());
+        			handlers.put(handler.getFileName(), (T)handler);
+        		}
+        	}
+        	
         } // add other types here
         return handlers;
-    }
-
-    /**
-     * Copies the 5 sample extract CSVs from the classpath to the inputs directory
-     */
-    void copySampleExtractCSVs() {
-        String extractsFolder = "extracts" + ConfigurationService.SLASH;
-        logger.info("copySampleExtractCSVs start");
-        copySampleCSV(extractsFolder, "personal.csv");
-        copySampleCSV(extractsFolder, "course.csv");
-        copySampleCSV(extractsFolder, "enrollment.csv");
-        copySampleCSV(extractsFolder, "grade.csv");
-        copySampleCSV(extractsFolder, "activity.csv");
-        logger.info("copySampleExtractCSVs to "+configuration.inputDirectory.getAbsolutePath()+" complete");
     }
 
     /**
@@ -122,7 +151,7 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
                     for (CSVInputHandler entry : csvInputHandlers) {
                         if (!ArrayUtils.contains(inputCollections, entry.getHandledCollection())) {
                             // filtering this one out
-                            csvInputHandlerMap.remove(entry.getCSVFilename());
+                            csvInputHandlerMap.remove(entry.getFileName());
                         }
                     }
                     // rebuild it from whatever is left
@@ -133,10 +162,21 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
                 // First we verify the CSV files
                 for (CSVInputHandler csvInputHandler : csvInputHandlers) {
                     csvInputHandler.readCSV(true); // force it true just in case
-                    logger.info(csvInputHandler.getCSVFilename()+" file and header appear valid");
+                    logger.info(csvInputHandler.getFileName()+" file and header appear valid");
                 }
+                
+                List<CSVInputHandler> csvInputList = new ArrayList<>(csvInputHandlers);
+                
+                Comparator<CSVInputHandler> comparator = new Comparator<CSVInputHandler>() {
+                    public int compare(CSVInputHandler c1, CSVInputHandler c2) {
+                        return c1.getOrder() < c2.getOrder() ? -1 : 1;
+                    }
+                };
+
+                Collections.sort(csvInputList, comparator); // use the comparator as much as u wan
+           
                 // Next we load the data into the temp DB
-                for (CSVInputHandler csvInputHandler : csvInputHandlers) {
+                for (CSVInputHandler csvInputHandler : csvInputList) {
                     InputHandler.ReadResult result = csvInputHandler.readInputIntoDB();
                     if (!result.failures.isEmpty()) {
                         logger.error(result.failures.size()+" failures while parsing "+result.handledType+":\n"+ StringUtils.join(result.failures, "\n")+"\n");
@@ -154,22 +194,5 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
             }
         }
         return loaded;
-    }
-    
-    /**
-     * Copies a file from a classpath dir to the file inputs dir
-     * @param classpathDir the dir on the classpath with the same file (include trailing slash)
-     * @param filename the csv file to copy from extracts to the inputs location
-     * @throws java.lang.RuntimeException if the file cannot copy
-     */
-    public void copySampleCSV(String classpathDir, String filename) {
-        try {
-            IOUtils.copy(
-                    CSVInputHandlerService.class.getClassLoader().getResourceAsStream(classpathDir + filename),
-                    new FileOutputStream(new File(configuration.inputDirectory, filename))
-            );
-        } catch (IOException e) {
-            throw new RuntimeException("Cannot find the sample file to copy: "+filename);
-        }
     }
 }

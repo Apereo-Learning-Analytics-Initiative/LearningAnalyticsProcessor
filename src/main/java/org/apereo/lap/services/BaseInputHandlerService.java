@@ -44,11 +44,6 @@ public abstract class BaseInputHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(SampleCSVInputHandlerService.class);
 
-    public BaseInputHandlerService()
-    {
-    	
-    }
-    
     public BaseInputHandlerService(HierarchicalConfiguration inputConfiguration)
     {
     	
@@ -85,7 +80,7 @@ public abstract class BaseInputHandlerService {
      * Defines the data collection sets that
      */
     public static enum Type {
-        SAMPLECSV, CSV, DATABASE, REST;
+        SAMPLECSV, CSV, DATABASE, HTTP;
         public static Type fromString(String str) {
             if (StringUtils.equalsIgnoreCase(str, SAMPLECSV.name())) {
                 return SAMPLECSV;
@@ -93,8 +88,8 @@ public abstract class BaseInputHandlerService {
                 return CSV;
             } else if (StringUtils.equalsIgnoreCase(str, DATABASE.name())) {
                 return DATABASE;
-            } else if (StringUtils.equalsIgnoreCase(str, REST.name())) {
-                return REST;
+            } else if (StringUtils.equalsIgnoreCase(str, HTTP.name())) {
+                return HTTP;
             } else {
                 throw new IllegalArgumentException("collection type ("+str+") does not match the valid types: "+ ArrayUtils.toString(InputCollection.values()));
             }

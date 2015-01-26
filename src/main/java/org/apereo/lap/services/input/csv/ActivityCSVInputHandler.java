@@ -15,9 +15,11 @@
 package org.apereo.lap.services.input.csv;
 
 import au.com.bytecode.opencsv.CSVReader;
+
 import org.apereo.lap.services.ConfigurationService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.File;
 import java.sql.Types;
 
 public class ActivityCSVInputHandler extends BaseCSVInputHandler {
@@ -34,6 +36,11 @@ public class ActivityCSVInputHandler extends BaseCSVInputHandler {
     public ActivityCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
+    
+	@Override
+	public int getOrder() {
+		return 5;
+	}
 
     @Override
     public String makeInsertSQL() {
@@ -44,17 +51,17 @@ public class ActivityCSVInputHandler extends BaseCSVInputHandler {
     public int[] makeInsertSQLParams() {
         return SQL_TYPES;
     }
-
+    
     @Override
-    public String getCSVFilename() {
-        return FILENAME;
+    public String getFileName() {
+    	return "activity.csv";
     }
-
+    
     @Override
     public CSVReader readCSV(boolean reRead) {
         return readCSV(4, "ALTERNATIVE_ID", reRead);
     }
-
+    
     @Override
     public ReadResult readInputIntoDB() {
         CSVReader reader = readCSV(false);
@@ -71,5 +78,4 @@ public class ActivityCSVInputHandler extends BaseCSVInputHandler {
         params[3] = parseDateTime(csvLine[3], true, "EVENT_DATE");
         return params;
     }
-
 }
