@@ -14,10 +14,17 @@
  */
 package org.apereo.lap.services;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import javax.annotation.Resource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -25,13 +32,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:test-context.xml" })
-@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 public class ProcessingManagerServiceTest {
-	private static final Logger logger = LoggerFactory.getLogger(ProcessingManagerServiceTest.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(ProcessingManagerServiceTest.class);
+
+	@Autowired
+	ProcessingManagerService processingManagerService;
 	
-	@Test
-	public void testProcess() {
-		logger.warn("Test not yet implemented");
+	@Autowired
+	StorageService storage;
+	
+    @Resource
+    ConfigurationService configuration;
+    
+    @Test
+    public void testProcess() {
+		assertNotNull(processingManagerService);
+		assertNotNull(processingManagerService.getPipelineProcessors());
+		assertNotNull(processingManagerService.getPipelineConfigs());
+		assertTrue(processingManagerService.process("sample", null));
+		logger.info("Test successful in processing 'sample'");
+		
+		assertFalse(processingManagerService.process("sample-fail-test", null));
+		logger.info("Test successful in not being able to process 'sample-fail-test'");
 	}
 }

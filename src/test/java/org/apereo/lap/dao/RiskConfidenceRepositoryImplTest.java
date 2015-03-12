@@ -14,10 +14,18 @@
  */
 package org.apereo.lap.dao;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+
+import org.apereo.lap.dao.model.RiskConfidence;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -27,9 +35,27 @@ public class RiskConfidenceRepositoryImplTest {
 
 	private static final Logger logger = LoggerFactory.getLogger(RiskConfidenceRepositoryImplTest.class);
 
+	@Autowired
+	private RiskConfidenceRepository riskConfidenceRepository;
+	
 	@Test
 	public void testFindByUserCourseDate() {
-		logger.warn("Test not yet implemented");
+		// Test to find of the risk for the user in the course 
+		assertNotNull(riskConfidenceRepository);
+		String user="STUDENT1";
+		String course="MNG_333N_222_08F";
+		List<RiskConfidence> list = riskConfidenceRepository.findByUserCourseDate(user, course);
+		assertNotNull(list);
+		assertTrue(list.size()>0);
+		logger.info("Test successful in getting risk for student:"+user+" in course:"+course);
+
+		// Test to not find risk for the user in the course mentioned		
+		user="STUDENT152";
+		course="MNG_333N_222_08F";
+		list = riskConfidenceRepository.findByUserCourseDate(user, course);
+		assertNotNull(list);
+		assertFalse(list.size()>0);
+		logger.info("Test successful in failing to get any risk for non existent sample student:"+user+" in course:"+course);
 	}
 	
 }
