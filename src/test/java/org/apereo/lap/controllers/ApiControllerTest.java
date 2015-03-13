@@ -14,10 +14,16 @@
  */
 package org.apereo.lap.controllers;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import org.apereo.lap.controllers.model.RiskConfidenceRequest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -26,14 +32,31 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class ApiControllerTest {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ApiControllerTest.class);
-
+	
+	@Autowired
+	private ApiController apiController;
+	
 	@Test
 	public void testRiskConfidence() {
-		logger.warn("Test not yet implemented");
+		assertNotNull(apiController);
+		RiskConfidenceRequest riskConfidenceRequest = new RiskConfidenceRequest();
+		String user="STUDENT1";
+		String course="MNG_333N_222_08F";
+		riskConfidenceRequest.setCourse(course);
+		riskConfidenceRequest.setUser(user);
+		assertTrue(apiController.riskconfidence(riskConfidenceRequest).size()>0);
+        logger.info("Test Successful on fetching risk confidence for existing student:"+user+" in course "+course);
+
 	}
 	
 	@Test
 	public void testRiskConfidenceNotProcessingRunFound() {
-		logger.warn("Test not yet implemented");
+		RiskConfidenceRequest riskConfidenceRequest = new RiskConfidenceRequest();
+		String user="STUDENT2";
+		String course="MNG_333N_222_09F";
+		riskConfidenceRequest.setCourse(course);
+		riskConfidenceRequest.setUser(user);
+		assertFalse(apiController.riskconfidence(riskConfidenceRequest).size()>0);
+		logger.info("Test Successful on not able to fetch risk confidence for student:"+user+" in non existing course "+course);
 	}
 }

@@ -14,42 +14,59 @@
  */
 package org.apereo.lap.controllers;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apereo.lap.model.PipelineConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @ContextConfiguration({ "classpath:test-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class PipelineControllerTest {
-	
-	private static final Logger logger = LoggerFactory.getLogger(PipelineControllerTest.class);
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(PipelineControllerTest.class);
+
+	@Autowired
+	PipelineController pipelineController;
 
 	@Test
 	public void testRootGet() {
-		logger.warn("Test not yet implemented");
+		assertNotNull(pipelineController);
+		Map<String, Object> map = pipelineController.rootGet();
+		assertNotNull(map);
+
+		List<PipelineConfig> processors = (List<PipelineConfig>) map
+				.get("processors");
+		assertTrue(processors.size() > 0);
+		logger.info("Test successful in loading pipeline processors");
 	}
-	
+
 	@Test
 	public void testGetType() {
-		logger.warn("Test not yet implemented");
-	}
-	
-	@Test
-	public void testGetTypeNotFound() {
-		logger.warn("Test not yet implemented");
+		assertNotNull(pipelineController.getType("sample"));
+		logger.info("Test successful in fetching pipeline config for type sample using pipeline controller ");
 	}
 
 	@Test
 	public void testPostType() {
-		logger.warn("Test not yet implemented");
+		assertTrue(pipelineController.postType("sample"));
+		logger.info("Test successful in starting pipeline for type sample using pipeline controller ");
 	}
 
 	@Test
 	public void testPostTypeWithInvalidType() {
-		logger.warn("Test not yet implemented");
+		assertTrue(pipelineController.postJsonType("sample", "{}"));
+		logger.info("Test successful in starting pipeline for type sample with json using pipeline controller ");
 	}
-
+	
 }

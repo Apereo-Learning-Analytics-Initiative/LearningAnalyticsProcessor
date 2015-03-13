@@ -56,7 +56,7 @@ public class StorageServiceTest {
     @Before
     @BeforeTransaction
     public void before() {
-        configuration.config().setProperty("test", true);
+    	configuration.config().setProperty("test", true);
         assertTrue( configuration.is("test") );
     }
 
