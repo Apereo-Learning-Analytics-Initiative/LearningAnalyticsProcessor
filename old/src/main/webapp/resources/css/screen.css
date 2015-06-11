@@ -1,0 +1,46 @@
+/**
+ * Copyright 2013 Unicon (R) Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+/*
+ * Custom CSS for the lap application does in here
+ */
+.odd {
+	background: #f0f0f0;
+}
+
+.even {
+	background: #ffffff;
+}
+
+.dataTable {
+	border-collapse: collapse;;
+	width: 100%;
+}
+
+.dataTable th {
+	background: #204080;
+	color: #f0f0f0;
+	padding: 6px;
+	border: 1px solid #f0f0f0;
+}
+
+.dataTable td {
+	border: 1px solid #d0d0d0;
+	padding: 4px;
+}
+
+.errorMessage {
+	color: #ff0000;
+	font-weight: bold;
+}

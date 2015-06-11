@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><PMML version="4.1" xmlns="http://www.dmg.org/PMML-4_1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.dmg.org/PMML-4_1 pmml-4-1.xsd">
+	<Header copyright="(C) Copyright IBM Corp. 1989, 2013.">
+		<Application name="IBM SPSS Statistics 22.0" version="22.0.0.0"/>
+	</Header>
+	<DataDictionary numberOfFields="13">
+		<DataField dataType="double" displayName="ACADEMIC_RISK" name="ACADEMIC_RISK" optype="categorical">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="8"/>
+			<Extension extender="spss.com" name="decimals" value="0"/>
+			<Value displayValue="1" property="valid" value="1"/>
+			<Value displayValue="2" property="valid" value="2"/>
+		</DataField>
+		<DataField dataType="double" displayName="ONLINE_FLAG" name="ONLINE_FLAG" optype="categorical">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="8"/>
+			<Extension extender="spss.com" name="decimals" value="0"/>
+			<Value displayValue="0" property="valid" value="0"/>
+			<Value displayValue="1" property="valid" value="1"/>
+		</DataField>
+		<DataField dataType="double" displayName="RC_GENDER" name="RC_GENDER" optype="categorical">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="8"/>
+			<Extension extender="spss.com" name="decimals" value="0"/>
+			<Value displayValue="1" property="valid" value="1"/>
+			<Value displayValue="2" property="valid" value="2"/>
+		</DataField>
+		<DataField dataType="double" displayName="RC_ENROLLMENT_STATUS" name="RC_ENROLLMENT_STATUS" optype="categorical">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="8"/>
+			<Extension extender="spss.com" name="decimals" value="0"/>
+			<Value displayValue="1" property="valid" value="1"/>
+			<Value displayValue="2" property="valid" value="2"/>
+		</DataField>
+		<DataField dataType="double" displayName="RC_CLASS_CODE" name="RC_CLASS_CODE" optype="categorical">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="8"/>
+			<Extension extender="spss.com" name="decimals" value="0"/>
+			<Value displayValue="1" property="valid" value="1"/>
+			<Value displayValue="2" property="valid" value="2"/>
+			<Value displayValue="3" property="valid" value="3"/>
+			<Value displayValue="4" property="valid" value="4"/>
+		</DataField>
+		<DataField dataType="double" displayName="STANDING" name="STANDING" optype="categorical">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="8"/>
+			<Extension extender="spss.com" name="decimals" value="0"/>
+			<Value displayValue="0" property="valid" value="0"/>
+			<Value displayValue="1" property="valid" value="1"/>
+			<Value displayValue="2" property="valid" value="2"/>
+		</DataField>
+		<DataField dataType="double" displayName="ENROLLMENT" name="ENROLLMENT" optype="continuous">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="10"/>
+			<Extension extender="spss.com" name="decimals" value="3"/>
+		</DataField>
+		<DataField dataType="double" displayName="APTITUDE_SCORE" name="APTITUDE_SCORE" optype="continuous">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="10"/>
+			<Extension extender="spss.com" name="decimals" value="3"/>
+		</DataField>
+		<DataField dataType="double" displayName="AGE" name="AGE" optype="continuous">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="10"/>
+			<Extension extender="spss.com" name="decimals" value="3"/>
+		</DataField>
+		<DataField dataType="double" displayName="GPA_CUMULATIVE" name="GPA_CUMULATIVE" optype="continuous">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="10"/>
+			<Extension extender="spss.com" name="decimals" value="3"/>
+		</DataField>
+		<DataField dataType="double" displayName="RMN_SCORE_PARTIAL" name="RMN_SCORE_PARTIAL" optype="continuous">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="10"/>
+			<Extension extender="spss.com" name="decimals" value="3"/>
+		</DataField>
+		<DataField dataType="double" displayName="R_CONTENT_READ" name="R_CONTENT_READ" optype="continuous">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="10"/>
+			<Extension extender="spss.com" name="decimals" value="3"/>
+		</DataField>
+		<DataField dataType="double" displayName="R_SESSIONS" name="R_SESSIONS" optype="continuous">
+			<Extension extender="spss.com" name="format" value="5"/>
+			<Extension extender="spss.com" name="width" value="10"/>
+			<Extension extender="spss.com" name="decimals" value="3"/>
+		</DataField>
+	</DataDictionary>
+	<GeneralRegressionModel algorithmName="multinomialLogistic" functionName="classification" modelType="multinomialLogistic" targetVariableName="ACADEMIC_RISK">
+		<Extension extender="spss.com" name="numberParameters" value="16"/>
+		<MiningSchema>
+			<MiningField missingValueTreatment="asIs" name="ACADEMIC_RISK" usageType="predicted"/>
+			<MiningField missingValueReplacement="1" missingValueTreatment="asMean" name="ONLINE_FLAG" usageType="active"/>
+			<MiningField missingValueReplacement="1" missingValueTreatment="asMean" name="RC_ENROLLMENT_STATUS" usageType="active"/>
+			<MiningField missingValueReplacement="3" missingValueTreatment="asMean" name="RC_CLASS_CODE" usageType="active"/>
+			<MiningField missingValueReplacement="0" missingValueTreatment="asMean" name="STANDING" usageType="active"/>
+			<MiningField missingValueReplacement="21" missingValueTreatment="asMean" name="AGE" usageType="active"/>
+			<MiningField missingValueReplacement="1" missingValueTreatment="asMean" name="GPA_CUMULATIVE" usageType="active"/>
+			<MiningField missingValueReplacement="50" missingValueTreatment="asMean" name="RMN_SCORE_PARTIAL" usageType="active"/>
+			<MiningField missingValueReplacement="0.5" missingValueTreatment="asMean" name="R_SESSIONS" usageType="active"/>
+		</MiningSchema>
+		<ParameterList>
+			<Parameter label="Intercept" name="P0000001"/>
+			<Parameter label="[ONLINE_FLAG=0]" name="P0000002"/>
+			<Parameter label="[ONLINE_FLAG=1]" name="P0000003"/>
+			<Parameter label="AGE" name="P0000004"/>
+			<Parameter label="[RC_ENROLLMENT_STATUS=1]" name="P0000005"/>
+			<Parameter label="[RC_ENROLLMENT_STATUS=2]" name="P0000006"/>
+			<Parameter label="[RC_CLASS_CODE=1]" name="P0000007"/>
+			<Parameter label="[RC_CLASS_CODE=2]" name="P0000008"/>
+			<Parameter label="[RC_CLASS_CODE=3]" name="P0000009"/>
+			<Parameter label="[RC_CLASS_CODE=4]" name="P0000010"/>
+			<Parameter label="GPA_CUMULATIVE" name="P0000011"/>
+			<Parameter label="[STANDING=0]" name="P0000012"/>
+			<Parameter label="[STANDING=1]" name="P0000013"/>
+			<Parameter label="[STANDING=2]" name="P0000014"/>
+			<Parameter label="RMN_SCORE_PARTIAL" name="P0000015"/>
+			<Parameter label="R_SESSIONS" name="P0000016"/>
+		</ParameterList>
+		<FactorList>
+			<Predictor name="ONLINE_FLAG"/>
+			<Predictor name="RC_ENROLLMENT_STATUS"/>
+			<Predictor name="RC_CLASS_CODE"/>
+			<Predictor name="STANDING"/>
+		</FactorList>
+		<CovariateList>
+			<Predictor name="AGE"/>
+			<Predictor name="GPA_CUMULATIVE"/>
+			<Predictor name="RMN_SCORE_PARTIAL"/>
+			<Predictor name="R_SESSIONS"/>
+		</CovariateList>
+		<PPMatrix>
+			<PPCell parameterName="P0000002" predictorName="ONLINE_FLAG" value="0"/>
+			<PPCell parameterName="P0000003" predictorName="ONLINE_FLAG" value="1"/>
+			<PPCell parameterName="P0000004" predictorName="AGE" value="1"/>
+			<PPCell parameterName="P0000005" predictorName="RC_ENROLLMENT_STATUS" value="1"/>
+			<PPCell parameterName="P0000006" predictorName="RC_ENROLLMENT_STATUS" value="2"/>
+			<PPCell parameterName="P0000007" predictorName="RC_CLASS_CODE" value="1"/>
+			<PPCell parameterName="P0000008" predictorName="RC_CLASS_CODE" value="2"/>
+			<PPCell parameterName="P0000009" predictorName="RC_CLASS_CODE" value="3"/>
+			<PPCell parameterName="P0000010" predictorName="RC_CLASS_CODE" value="4"/>
+			<PPCell parameterName="P0000011" predictorName="GPA_CUMULATIVE" value="1"/>
+			<PPCell parameterName="P0000012" predictorName="STANDING" value="0"/>
+			<PPCell parameterName="P0000013" predictorName="STANDING" value="1"/>
+			<PPCell parameterName="P0000014" predictorName="STANDING" value="2"/>
+			<PPCell parameterName="P0000015" predictorName="RMN_SCORE_PARTIAL" value="1"/>
+			<PPCell parameterName="P0000016" predictorName="R_SESSIONS" value="1"/>
+		</PPMatrix>
+		<ParamMatrix>
+			<PCell beta="-7.72443903050936" df="1" parameterName="P0000001" targetCategory="2"/>
+			<PCell beta="1.05884914641063" df="1" parameterName="P0000002" targetCategory="2"/>
+			<PCell beta="0" df="0" parameterName="P0000003" targetCategory="2"/>
+			<PCell beta="-0.0963867209777214" df="1" parameterName="P0000004" targetCategory="2"/>
+			<PCell beta="-2.78167775276296" df="1" parameterName="P0000005" targetCategory="2"/>
+			<PCell beta="0" df="0" parameterName="P0000006" targetCategory="2"/>
+			<PCell beta="-0.0800407888757549" df="1" parameterName="P0000007" targetCategory="2"/>
+			<PCell beta="-0.312241591866064" df="1" parameterName="P0000008" targetCategory="2"/>
+			<PCell beta="-0.0344469929847398" df="1" parameterName="P0000009" targetCategory="2"/>
+			<PCell beta="0" df="0" parameterName="P0000010" targetCategory="2"/>
+			<PCell beta="2.1177851356833" df="1" parameterName="P0000011" targetCategory="2"/>
+			<PCell beta="-2.9627717884649" df="1" parameterName="P0000012" targetCategory="2"/>
+			<PCell beta="-1.8091533229605" df="1" parameterName="P0000013" targetCategory="2"/>
+			<PCell beta="0" df="0" parameterName="P0000014" targetCategory="2"/>
+			<PCell beta="0.0790647554062893" df="1" parameterName="P0000015" targetCategory="2"/>
+			<PCell beta="0.0834346137256682" df="1" parameterName="P0000016" targetCategory="2"/>
+		</ParamMatrix>
+	</GeneralRegressionModel>
+</PMML>
