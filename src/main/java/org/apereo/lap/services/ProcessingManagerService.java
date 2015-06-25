@@ -14,22 +14,31 @@
  */
 package org.apereo.lap.services;
 
-import org.apereo.lap.model.Output;
-import org.apereo.lap.model.PipelineConfig;
-import org.apereo.lap.model.Processor;
-import org.apereo.lap.services.output.OutputHandler;
-import org.apereo.lap.services.pipeline.PipelineProcessor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
-import java.util.*;
-import java.util.Map.Entry;
+import org.apereo.lap.model.Output;
+import org.apereo.lap.model.PipelineConfig;
+import org.apereo.lap.model.Processor;
+import org.apereo.lap.services.configuration.ConfigurationService;
+import org.apereo.lap.services.input.BaseInputHandlerService;
+import org.apereo.lap.services.notification.NotificationService;
+import org.apereo.lap.services.output.OutputHandlerService;
+import org.apereo.lap.services.output.handlers.OutputHandler;
+import org.apereo.lap.services.pipelines.PipelineProcessor;
+import org.apereo.lap.services.storage.StorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * This is the trigger and general management point for the entire processing of a pipeline.
@@ -49,16 +58,12 @@ public class ProcessingManagerService {
 
     static final Logger logger = LoggerFactory.getLogger(ProcessingManagerService.class);
 
-    @Resource
-    ConfigurationService configuration;
-    @Resource
-    StorageService storage;
-    @Resource
-    NotificationService notification;
-    @Resource
-    OutputHandlerService outputHandler;
-    @Resource
-    ThresholdTriggerService thresholdTrigger;
+    @Autowired ConfigurationService configuration;
+    @Autowired StorageService storage;
+    @Autowired NotificationService notification;
+    @Autowired OutputHandlerService outputHandler;
+//    @Resource
+//    ThresholdTriggerService thresholdTrigger;
     
     @Autowired
     List<PipelineProcessor> pipelineProcessors;
@@ -66,7 +71,7 @@ public class ProcessingManagerService {
     @PostConstruct
     public void init() {
         logger.info("INIT");
-        if (configuration.config.getBoolean("process.pipeline.sample", false)) {
+        if (configuration.getConfig().getBoolean("process.pipeline.sample", false)) {
             logger.info("Running Sample Pipeline process");
             process("sample", null);
             logger.info("Sample Pipeline process COMPLETE");
@@ -132,7 +137,7 @@ public class ProcessingManagerService {
                 toLoad = null; // don't load anything if the model does not indicate it needs it
             }
             
-            for(Entry<String, PipelineConfig> pipelineConfigs: configuration.pipelineConfigs.entrySet())
+            for(Entry<String, PipelineConfig> pipelineConfigs: configuration.getPipelineConfigs().entrySet())
             {
             	for(BaseInputHandlerService inputHandler : pipelineConfigs.getValue().getInputHandlers())
             	{
@@ -181,7 +186,7 @@ public class ProcessingManagerService {
             }
             
             // Trigger SSP call
-            thresholdTrigger.triggerSSP(outputs);
+            //thresholdTrigger.triggerSSP(outputs);
 
             // send success notification
             notification.sendNotification("Pipeline ("+pipelineId+") Complete", NotificationService.NotificationLevel.INFO);

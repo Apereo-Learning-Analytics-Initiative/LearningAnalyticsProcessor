@@ -19,12 +19,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.services.ProcessingManagerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,18 +35,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Service to retrieve pipeline processor configuration and initiate a processor run
  */
 @Controller
-@RequestMapping("/pipeline")
 public class PipelineController {
 
     private static final Logger logger = LoggerFactory.getLogger(PipelineController.class);
 
-    @Resource
+    @Autowired
     ProcessingManagerService processingManagerService;
 
     /**
      * lists out the pipelines available (keys)
      */
-    @RequestMapping(value = {"/",""}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
+    @RequestMapping(value = {"/api/pipelines","/api/pipelines/"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
     public @ResponseBody Map<String, Object> rootGet() {
     	
     	if (logger.isDebugEnabled()) {

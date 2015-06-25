@@ -14,23 +14,20 @@
  */
 package org.apereo.lap.model;
 
-import org.apache.commons.configuration.HierarchicalConfiguration;
-import org.apache.commons.configuration.XMLConfiguration;
-import org.apache.commons.lang.StringUtils;
-import org.apereo.lap.services.ConfigurationService;
-import org.apereo.lap.services.SampleCSVInputHandlerService;
-import org.apereo.lap.services.StorageService;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apereo.lap.services.BaseInputHandlerService;;
+import org.apache.commons.configuration.HierarchicalConfiguration;
+import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.services.configuration.ConfigurationService;
+import org.apereo.lap.services.input.BaseInputHandlerService;
+import org.apereo.lap.services.storage.StorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This is an object that represents all configuration settings for a specific pipeline
@@ -45,7 +42,7 @@ import org.apereo.lap.services.BaseInputHandlerService;;
  * 
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
-@JsonIgnoreProperties({"configuration"})
+//@JsonIgnoreProperties({"configuration"})
 public class PipelineConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(PipelineConfig.class);
