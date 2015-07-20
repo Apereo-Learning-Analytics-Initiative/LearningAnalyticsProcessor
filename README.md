@@ -32,7 +32,7 @@ after building it using this command (the war will be in the target directory):
 
 Contacts
 --------
-- Sandeep Jayaprakash (sandeep.jayaprakash1 @ marist.edu)
+- Sandeep Jayaprakash (sandeep.jayaprakash1@marist.edu)
 - Gary Gilbert (ggilbert@unicon.net)
 - Aaron Zeckoski (http://tinyurl.com/azprofile)
 
