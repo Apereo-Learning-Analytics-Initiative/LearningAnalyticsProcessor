@@ -69,7 +69,7 @@ public class PipelineController {
     /**
      * Get one pipeline config
      */
-    @RequestMapping(value = {"/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
+    @RequestMapping(value = {"/api/pipelines/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
     public @ResponseBody PipelineConfig getType(@PathVariable("type") String type) {
     	if (logger.isDebugEnabled()) {
     		logger.debug("Get pipeline config for type: "+type);

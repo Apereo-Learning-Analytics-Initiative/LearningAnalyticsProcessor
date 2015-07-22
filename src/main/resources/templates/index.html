@@ -49,15 +49,15 @@
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
           <li ui-sref-active="active"><a ui-sref="overview">Overview <span class="sr-only">(current)</span></a></li>
-          <li ui-sref-active="active"><a ui-sref="tenants">Tenants</a></li>
-          <li ui-sref-active="active"><a href="#">Jobs</a></li>
-          <li ui-sref-active="active"><a href="#">Pipelines</a></li>
-          <li ui-sref-active="active"><a href="#">Rules</a></li>
+<!--           <li ui-sref-active="active"><a ui-sref="tenants">Tenants</a></li> -->
+<!--           <li ui-sref-active="active"><a href="#">Jobs</a></li> -->
+          <li ui-sref-active="active"><a ui-sref="pipelines">Pipelines</a></li>
+<!--           <li ui-sref-active="active"><a href="#">Rules</a></li> -->
         </ul>
       </div>
       <div
-        class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1 class="page-header">{{TEMPLATE_HEADER}}</h1>
+        class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ui-view">
+        <!-- content -->
       </div>
     </div>
   </div>
@@ -71,10 +71,16 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.underscore.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-partial/2.7.2/angular-translate-loader-partial.min.js"></script>
   
   <script type="text/javascript" th:src="@{/assets/js/app.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/master-ctrl.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/overview-ctrl.js}"></script>
+  
+  <!-- Pipelines -->
+  <script type="text/javascript" th:src="@{/assets/js/pipelines/service.js}"></script>
+  <script type="text/javascript" th:src="@{/assets/js/pipelines/controllers.js}"></script>
 </body>
 
 </html>

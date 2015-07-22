@@ -1,10 +1,17 @@
 'use strict';
 
 angular
-.module('LAP', ['ui.bootstrap', 'ui.router']);
+.module('LAP', ['ui.bootstrap', 'ui.router', 'pascalprecht.translate']);
 
 angular
 .module('LAP')
+.config(function($translateProvider, $translatePartialLoaderProvider) {
+    $translateProvider.useLoader('$translatePartialLoader', {
+        urlTemplate: '/assets/translations/{lang}/{part}.json'
+      });
+
+    $translateProvider.preferredLanguage('en_us');
+})
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
 	// For unmatched routes
@@ -27,8 +34,14 @@ angular
 	    })
 	    .state('pipelines', {
 	        url: '/pipelines',
-	        templateUrl: '/assets/templates/pipelines.html'
-	    })
+	        templateUrl: '/assets/templates/pipelines.html',
+		    resolve:{
+	    		pipelines : function ($stateParams, PipelineDataService) {
+	    			return PipelineDataService.getPipelines();
+	    		}	
+	     	},
+	     	controller: 'PipelinesController'	    
+	     })
 	    .state('rules', {
 	        url: '/rules',
 	        templateUrl: '/assets/templates/rules.html'

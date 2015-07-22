@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading" translate="TEXT_HEADER"></div>
+      <div class="panel-body">
+        <p translate="TEXT_INSTRUCTIONS"></p>
+      </div>
+    
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th translate="TABLE_HEADER_TYPE"></th>
+            <th translate="TABLE_HEADER_NAME"></th>
+            <th translate="TABLE_HEADER_DESC"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="pipeline in pipelines.processors">
+            <td>{{pipeline.type}}</td>
+            <td>{{pipeline.name}}</td>
+            <td>{{pipeline.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>  
+  </div>
+</div>
