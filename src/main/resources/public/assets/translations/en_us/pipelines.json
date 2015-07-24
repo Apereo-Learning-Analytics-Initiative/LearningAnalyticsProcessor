@@ -3,5 +3,7 @@
 "TEXT_INSTRUCTIONS":"TBD ... instructions on how to use this",
 "TABLE_HEADER_TYPE": "TYPE",
 "TABLE_HEADER_NAME": "NAME",
-"TABLE_HEADER_DESC": "DESCRIPTION"
+"TABLE_HEADER_DESC": "DESCRIPTION",
+"STATISTICS" : "Statistics",
+"RUN" : "Run"
 }

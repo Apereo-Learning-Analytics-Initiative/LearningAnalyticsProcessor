@@ -82,8 +82,8 @@ public class PipelineController {
      * Post to start one pipeline
      * TODO probably need to add security to this
      */
-    @RequestMapping(value = {"/{type}"}, method = RequestMethod.POST, produces="application/json;charset=utf-8")
-    public @ResponseBody boolean postType(@PathVariable("type") String type) {
+    @RequestMapping(value = {"/api/pipelines/start/{type}"}, method = RequestMethod.POST, produces="application/json;charset=utf-8")
+    public @ResponseBody boolean start(@PathVariable("type") String type) {
     	if (logger.isDebugEnabled()) {
     		logger.debug("Start pipeline for type: "+type);
     	}
