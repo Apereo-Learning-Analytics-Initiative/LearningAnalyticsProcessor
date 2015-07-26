@@ -5,12 +5,15 @@ package org.apereo.lap.dao;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 /**
  * @author ggilbert
@@ -18,13 +21,14 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class H2Config {
+  @Primary
   @Bean(name="tempDataSource")
   @ConfigurationProperties(prefix="datasource.temp")
   public DataSource tempDataSource() {
-      return DataSourceBuilder.create().build();
+     DataSource ds = DataSourceBuilder.create().build();
+     return ds;
   }
   
-  @Primary
   @Bean(name="persistentDataSource")
   @ConfigurationProperties(prefix="datasource.persistent")
   public DataSource persistentDataSource() {

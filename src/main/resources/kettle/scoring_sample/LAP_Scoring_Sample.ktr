@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<transformation>
+<?xml version="1.0" encoding="UTF-8"?><transformation>
   <info>
     <name>LAP_Scoring_Sample</name>
     <description/>
@@ -7,7 +6,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;</directory>
+    <directory>/</directory>
     <parameters>
     </parameters>
     <log>
@@ -68,9 +67,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2014&#x2f;07&#x2f;25 13&#x3a;47&#x3a;41.080</created_date>
+  <created_date>2014/07/25 13:47:41.080</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2014&#x2f;07&#x2f;25 13&#x3a;47&#x3a;41.080</modified_date>
+  <modified_date>2014/07/25 13:47:41.080</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -117,7 +116,38 @@
            <schema_name/>
            </partitioning>
     <connection>LAP_connect</connection>
-    <sql>SELECT&#xd;&#xa;  ALTERNATIVE_ID&#xd;&#xa;, COURSE_ID&#xd;&#xa;, SUBJECT&#xd;&#xa;, ONLINE_FLAG&#xd;&#xa;, ENROLLMENT&#xd;&#xa;, RC_FINAL_GRADE&#xd;&#xa;, PERCENTILE&#xd;&#xa;, SAT_VERBAL&#xd;&#xa;, SAT_MATH&#xd;&#xa;, APTITUDE_SCORE&#xd;&#xa;, AGE&#xd;&#xa;, RC_GENDER&#xd;&#xa;, RC_ENROLLMENT_STATUS&#xd;&#xa;, RC_CLASS_CODE&#xd;&#xa;, GPA_CUMULATIVE&#xd;&#xa;, GPA_SEMESTER&#xd;&#xa;, STANDING&#xd;&#xa;, RMN_SCORE&#xd;&#xa;, RMN_SCORE_PARTIAL&#xd;&#xa;, R_CONTENT_READ&#xd;&#xa;, R_ASN_SUB&#xd;&#xa;, R_FORUM_POST&#xd;&#xa;, R_FORUM_READ&#xd;&#xa;, R_LESSONS_VIEW&#xd;&#xa;, R_ASSMT_TAKE&#xd;&#xa;, R_ASSMT_SUB&#xd;&#xa;, R_ASN_READ&#xd;&#xa;, R_SESSIONS&#xd;&#xa;, ACADEMIC_RISK&#xd;&#xa;FROM PCSM&#xd;&#xa;</sql>
+    <sql>SELECT&#13;
+  ALTERNATIVE_ID&#13;
+, COURSE_ID&#13;
+, SUBJECT&#13;
+, ONLINE_FLAG&#13;
+, ENROLLMENT&#13;
+, RC_FINAL_GRADE&#13;
+, PERCENTILE&#13;
+, SAT_VERBAL&#13;
+, SAT_MATH&#13;
+, APTITUDE_SCORE&#13;
+, AGE&#13;
+, RC_GENDER&#13;
+, RC_ENROLLMENT_STATUS&#13;
+, RC_CLASS_CODE&#13;
+, GPA_CUMULATIVE&#13;
+, GPA_SEMESTER&#13;
+, STANDING&#13;
+, RMN_SCORE&#13;
+, RMN_SCORE_PARTIAL&#13;
+, R_CONTENT_READ&#13;
+, R_ASN_SUB&#13;
+, R_FORUM_POST&#13;
+, R_FORUM_READ&#13;
+, R_LESSONS_VIEW&#13;
+, R_ASSMT_TAKE&#13;
+, R_ASSMT_SUB&#13;
+, R_ASN_READ&#13;
+, R_SESSIONS&#13;
+, ACADEMIC_RISK&#13;
+FROM PCSM&#13;
+</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -278,11 +308,11 @@
         </field>
         <field>
           <column_name>FAIL_PROBABILITY</column_name>
-          <stream_name>ACADEMIC_RISK&#x3a;1_predicted_prob</stream_name>
+          <stream_name>ACADEMIC_RISK:1_predicted_prob</stream_name>
         </field>
         <field>
           <column_name>PASS_PROBABILITY</column_name>
-          <stream_name>ACADEMIC_RISK&#x3a;2_predicted_prob</stream_name>
+          <stream_name>ACADEMIC_RISK:2_predicted_prob</stream_name>
         </field>
     </fields>
      <cluster_schema/>
@@ -309,7 +339,7 @@
 <store_model_in_meta>N</store_model_in_meta>
 <file_name_from_field>N</file_name_from_field>
 <cache_loaded_models>N</cache_loaded_models>
-<model_file_name>file&#x3a;&#x2f;&#x2f;&#x2f;C&#x3a;&#x2f;Users&#x2f;Sandeep.Jayaprakash1&#x2f;Desktop&#x2f;LAP extracts &#x26; sample Kettle&#x2f;scoring_sample&#x2f;U11F_actuals_extracts&#x2f;oaai.lap.logistic.pmml.xml</model_file_name>
+<model_file_name>/home/ggilbert/projects/unicon/marist/LearningAnalyticsProcessor/src/main/resources/kettle/scoring_sample/oaai.lap.logistic.pmml.xml</model_file_name>
 </weka_scoring>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>496</xloc>
