@@ -90,17 +90,4 @@ public class PipelineController {
     	
         return processingManagerService.process(type, null);
     }
-
-    /**
-     * Post to start one pipeline with JSON data
-     * TODO probably need to add security to this
-     */
-    @RequestMapping(value = {"/json/{type}"}, method = RequestMethod.POST, consumes="application/json", produces="application/json;charset=utf-8")
-    public @ResponseBody boolean postJsonType(@PathVariable("type") String type, @RequestBody String json) {
-    	if (logger.isDebugEnabled()) {
-    		logger.debug("Start pipeline for type: "+type+" with json: "+json);
-    	}
-    	
-        return processingManagerService.process(type, json);
-    }
 }

@@ -71,37 +71,16 @@ public class ConfigurationService {
         logger.info("App Home: " + appHome().getAbsolutePath());
 
         CompositeConfiguration config = new CompositeConfiguration();
-        // load internal config defaults first
-        config.setProperty("app.name","LAP");
-        File dbDefaults = resourceLoader.getResource("classpath:db.properties").getFile();
-        try {
-            config.addConfiguration(new PropertiesConfiguration(dbDefaults));
-        } catch (ConfigurationException e) {
-            logger.error("Unable to load default db.properties file");
-        }
-        File appDefaults = resourceLoader.getResource("classpath:app.properties").getFile();
-        try {
-            config.addConfiguration(new PropertiesConfiguration(appDefaults));
-            logger.info("Default app configuration loaded from: "+appDefaults.getAbsolutePath());
-        } catch (ConfigurationException e) {
-            logger.error("Unable to load default app.properties file");
-        }
 
         // now try to load external config settings
         config.addConfiguration(new SystemConfiguration());
-        File lapConfigProps = resourceLoader.getResource("classpath:lap.properties").getFile();
+        File lapConfigProps = resourceLoader.getResource("classpath:application.properties").getFile();
         if (lapConfigProps.exists() && lapConfigProps.canRead()) {
             try {
                 config.addConfiguration(new PropertiesConfiguration(lapConfigProps));
             } catch (ConfigurationException e) {
                 logger.warn("Unable to load lap.properties file");
             }
-        } else {
-            IOUtils.copy(
-                    SampleCSVInputHandlerService.class.getClassLoader().getResourceAsStream("config" + SLASH + "lap.properties"),
-                    new FileOutputStream(new File(appHome(), "lap.properties"))
-            );
-            logger.info("No external LAP config found: "+lapConfigProps.getAbsolutePath()+", copied default sample lap.properties");
         }
         this.config = config;
 
@@ -129,8 +108,6 @@ public class ConfigurationService {
                 }
             }
         }
-
-        logger.info("INIT complete: "+config.getString("app.name")+", home="+applicationHomeDirectory.getAbsolutePath());
     }
 
     /**

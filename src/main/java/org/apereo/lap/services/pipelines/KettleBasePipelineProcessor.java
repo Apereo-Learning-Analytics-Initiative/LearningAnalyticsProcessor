@@ -38,6 +38,7 @@ import org.pentaho.di.shared.SharedObjects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -58,6 +59,18 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
 
     @Resource
     ResourceLoader resourceLoader;
+    
+    @Value("${app.database.connection.names}")
+    private String dbConnectionNames;
+    
+    @Value("${datasource.temp.url}")
+    private String dbUrl;
+    
+    @Value("${datasource.temp.username}")
+    private String dbUsername;
+    
+    @Value("${datasource.temp.password ?: ''}")
+    private String dbPassword;
 
     /**
      * The Kettle root directory
@@ -171,13 +184,12 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
 
     /**
      * Creates shared connections for use in transformations and jobs
-     * Uses connection properties from db.properties with a prefix of "db."
+     * Uses connection properties from application.properties with a prefix of "datasource.temp"
      * Stores the dynamic configuration in a shared.xml file
      * 
      * Currently, only an H2 database is configured
      */
     private void createSharedDatabaseConnections() {
-        Configuration configuration = configurationService.getConfig();
 
         try {
             if (databaseConnectionNames == null) {
@@ -196,13 +208,13 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
                 }
 
                 // remove the prefix from the url property
-                String databaseName = StringUtils.remove(configuration.getString("db.url", ""), "jdbc:h2:");
+                String databaseName = StringUtils.remove(dbUrl, "jdbc:h2:");
 
                 // create a fully-configured H2 database connection
                 H2DatabaseMeta h2DatabaseMeta = new H2DatabaseMeta();
                 h2DatabaseMeta.setName(databaseConnectionName);
-                h2DatabaseMeta.setUsername(configuration.getString("db.username", ""));
-                h2DatabaseMeta.setPassword(configuration.getString("db.password", ""));
+                h2DatabaseMeta.setUsername(dbUsername);
+                h2DatabaseMeta.setPassword(dbPassword);
                 h2DatabaseMeta.setDatabaseName(databaseName);
                 h2DatabaseMeta.setAccessType(DatabaseMeta.TYPE_ACCESS_NATIVE);
                 //h2DatabaseMeta.setDatabasePortNumberString(null);
@@ -243,12 +255,12 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
     }
 
     /**
-     * Get the comma-separated value string of database connection names from app.properties
+     * Get the comma-separated value string of database connection names from application.properties
      * with the key "app.database.connection.names"
      */
     private void setDatabaseConnectionNames() {
         Configuration configuration = configurationService.getConfig();
-        databaseConnectionNames = configuration.getStringArray("app.database.connection.names");
+        databaseConnectionNames = configuration.getStringArray(dbConnectionNames);
     }
 
     /**
@@ -467,5 +479,13 @@ public abstract class KettleBasePipelineProcessor implements PipelineProcessor{
         } catch (Exception e) {
             throw new RuntimeException("Error writing XML file: " + file.getAbsoluteFile(), e);
         }
+    }
+
+    public String getDbConnectionNames() {
+      return dbConnectionNames;
+    }
+
+    public void setDbConnectionNames(String dbConnectionNames) {
+      this.dbConnectionNames = dbConnectionNames;
     }
 }
