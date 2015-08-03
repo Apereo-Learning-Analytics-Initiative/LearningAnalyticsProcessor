@@ -84,8 +84,9 @@ EVENT_DATE              | ISO-8601          | The date when the event occurred
 
 *******************************************************************************
 
-NOTES
-=====
+NOTES (For LAP developers only)
+=============================================
+The recoding is done internally as a part of LAP during ETL internal process. Please do not included recoded values while providing the raw extracts
 
 1. Recoding Required to work with Weka  
    Certain Variables in each of these data sets have to be recoded to replace numeric values as Weka works only with numeric values.
