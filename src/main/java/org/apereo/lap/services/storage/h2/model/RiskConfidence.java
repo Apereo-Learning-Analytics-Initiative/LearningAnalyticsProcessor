@@ -12,7 +12,7 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.lap.dao.model;
+package org.apereo.lap.services.storage.h2.model;
 
 import java.util.Calendar;
 import java.util.Date;

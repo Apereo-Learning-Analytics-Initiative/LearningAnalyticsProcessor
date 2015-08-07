@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @ComponentScan("org.apereo.lap")
 @Configuration
 @EnableAutoConfiguration
+@EnableSpringDataWebSupport
 public class LearningAnalyticsProcessor {
   final static Logger log = LoggerFactory.getLogger(LearningAnalyticsProcessor.class);
   

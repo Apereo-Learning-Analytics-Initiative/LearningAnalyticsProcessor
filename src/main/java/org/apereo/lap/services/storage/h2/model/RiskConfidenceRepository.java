@@ -12,9 +12,10 @@
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-package org.apereo.lap.dao.riskconfidence;
+package org.apereo.lap.services.storage.h2.model;
 
-import org.apereo.lap.dao.model.RiskConfidence;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -22,6 +23,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * The risk confidence table contains a historical record of each processing run.
  *
  */
-public interface RiskConfidenceRepository extends JpaRepository<RiskConfidence, Long>, RiskConfidenceRepositoryExtension  {
-	
+public interface RiskConfidenceRepository extends JpaRepository<RiskConfidence, Long>  {
+	Page<RiskConfidence> findByAlternativeId(String alternativeId, Pageable pageable);
+  Page<RiskConfidence> findByCourseId(String courseId, Pageable pageable);
+  Page<RiskConfidence> findByAlternativeIdAndCourseId(String alternativeId, String courseId, Pageable pageable);
 }

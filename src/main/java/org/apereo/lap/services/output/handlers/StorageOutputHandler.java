@@ -14,14 +14,17 @@
  */
 package org.apereo.lap.services.output.handlers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.apereo.lap.dao.model.RiskConfidence;
-import org.apereo.lap.dao.riskconfidence.RiskConfidenceRepository;
 //import org.apereo.lap.dao.RiskConfidenceRepository;
 //import org.apereo.lap.dao.model.RiskConfidence;
 import org.apereo.lap.model.Output;
+import org.apereo.lap.services.storage.ModelOutput;
+import org.apereo.lap.services.storage.PersistentStorage;
+import org.apereo.lap.services.storage.StorageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -34,54 +37,59 @@ import org.springframework.stereotype.Component;
 @Component
 public class StorageOutputHandler extends BaseOutputHandler implements OutputHandler {
 
-	@Autowired
-	RiskConfidenceRepository riskConfidenceRepository;
-	
-    @Override
-    public Output.OutputType getHandledType() {
-        return Output.OutputType.STORAGE;
+  
+  @Autowired
+  private StorageFactory storageFactory;
+
+  @Override
+  public Output.OutputType getHandledType() {
+    return Output.OutputType.STORAGE;
+  }
+
+  @Override
+  public OutputResult writeOutput(Output output) {
+    
+    PersistentStorage<ModelOutput> persistentStorage = storageFactory.getPersistentStorage();
+    
+    OutputResult result = new OutputResult(output);
+
+    Map<String, String> sourceToHeaderMap = output.makeSourceTargetMap();
+    String selectSQL = output.makeTempDBSelectSQL();
+
+    SqlRowSet rowSet;
+    try {
+      rowSet = storage.getTempJdbcTemplate().queryForRowSet(selectSQL);
+    } catch (Exception e) {
+      throw new RuntimeException("Failure while trying to retrieve the output data set: " + selectSQL);
     }
 
-    @Override
-    public OutputResult writeOutput(Output output) {
-    	OutputResult result = new OutputResult(output);
-    	
-    	Map<String, String> sourceToHeaderMap = output.makeSourceTargetMap();
-    	String selectSQL = output.makeTempDBSelectSQL();
-    	
-    	SqlRowSet rowSet;
-        try {
-            rowSet = storage.getTempJdbcTemplate().queryForRowSet(selectSQL);
-        } catch (Exception e) {
-            throw new RuntimeException("Failure while trying to retrieve the output data set: "+selectSQL);
-        }
-        
-        String groupId = UUID.randomUUID().toString();
-        
-        while (rowSet.next()) {
-        	
-        	RiskConfidence riskConfidence = new RiskConfidence();
+    List<ModelOutput> modelOutputEntities = new ArrayList<ModelOutput>();
+    String groupId = UUID.randomUUID().toString();
 
-        	if(!rowSet.wasNull())
-        	{        	
-        		riskConfidence.setGroupId(groupId);
-        		
-	            String[] rowVals = new String[sourceToHeaderMap.size()];
-	            
-	            if(rowVals.length > 0)
-	            	riskConfidence.setAlternativeId(rowSet.getString(1));
-	            
-	            if(rowVals.length > 1)
-	            	riskConfidence.setCourseId(rowSet.getString(2));
-	            
-	            if(rowVals.length > 2)
-	            	riskConfidence.setModelRiskConfidence(rowSet.getString(3));
-	            
-	            riskConfidenceRepository.save(riskConfidence);
-        	}
-        }
-    	
-    	return result;
+    while (rowSet.next()) {
+      ModelOutput modelOutput = new ModelOutput();
+
+      if (!rowSet.wasNull()) {
+        modelOutput.setModel_run_id(groupId);
+
+        String[] rowVals = new String[sourceToHeaderMap.size()];
+
+        if (rowVals.length > 0)
+          modelOutput.setStudentId(rowSet.getString(1));
+
+        if (rowVals.length > 1)
+          modelOutput.setCourseId(rowSet.getString(2));
+
+        if (rowVals.length > 2)
+          modelOutput.setRisk_score(rowSet.getString(3));
+
+        modelOutputEntities.add(modelOutput);
+      }
     }
+    
+    persistentStorage.saveAll(modelOutputEntities);
+
+    return result;
+  }
 
 }

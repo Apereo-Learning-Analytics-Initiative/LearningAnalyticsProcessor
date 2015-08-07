@@ -3,26 +3,15 @@
  */
 package org.apereo.lap.model.api;
 
-import java.util.Map;
-
-import org.springframework.hateoas.ResourceSupport;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apereo.lap.services.storage.ModelOutput;
+import org.springframework.hateoas.Resource;
 
 /**
  * @author ggilbert
  *
  */
-public class ModelOutputRecord extends ResourceSupport {
-  private Map<String, ?> data;
-  
-  @JsonCreator
-  public ModelOutputRecord (@JsonProperty("data") Map<String, ?> data) {
-    this.data = data;
-  }
-  
-  public Map<String, ?> getData() {
-    return this.data;
+public class ModelOutputRecord extends Resource<ModelOutput> {
+  public ModelOutputRecord (ModelOutput data) {
+    super(data);
   }
 }

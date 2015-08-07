@@ -1,10 +1,21 @@
 'use strict';
 
 angular
-.module('LAP', ['ui.bootstrap', 'ui.router', 'pascalprecht.translate']);
+.module('LAP', ['ui.bootstrap', 'ui.router', 'pascalprecht.translate', 'ui-notification']);
 
 angular
 .module('LAP')
+.config(function(NotificationProvider) {
+	NotificationProvider.setOptions({
+	    delay: 10000,
+	    startTop: 20,
+	    startRight: 10,
+	    verticalSpacing: 20,
+	    horizontalSpacing: 20,
+	    positionX: 'left',
+	    positionY: 'bottom'
+	});
+ })
 .config(function($translateProvider, $translatePartialLoaderProvider) {
     $translateProvider.useLoader('$translatePartialLoader', {
         urlTemplate: '/assets/translations/{lang}/{part}.json'

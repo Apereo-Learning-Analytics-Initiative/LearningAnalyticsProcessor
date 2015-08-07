@@ -4,19 +4,22 @@
 package org.apereo.lap.controllers.api;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import org.apereo.lap.dao.model.RiskConfidence;
-import org.apereo.lap.dao.riskconfidence.RiskConfidenceRepository;
 import org.apereo.lap.model.api.ModelOutputRecord;
+import org.apereo.lap.model.api.ModelOutputResourceAssembler;
+import org.apereo.lap.services.storage.ModelOutput;
+import org.apereo.lap.services.storage.PersistentStorage;
+import org.apereo.lap.services.storage.StorageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,32 +30,57 @@ import org.springframework.web.bind.annotation.RestController;
 public class ModelOutputController {
   
   @Autowired
-  private RiskConfidenceRepository riskConfidenceRepository;
-
+  private StorageFactory storageFactory;
   
-  @RequestMapping("/api/output")
-  @ResponseBody
-  public HttpEntity<List<ModelOutputRecord>> output() {
+  @Autowired
+  private ModelOutputResourceAssembler modelOutputResourceAssembler;
+  
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output")
+  public PagedResources<ModelOutputRecord> output(@PageableDefault(size = 100, page = 0) Pageable pageable, 
+      PagedResourcesAssembler<ModelOutput> assembler) {
     
-    List<RiskConfidence> riskConfidenceRecords = riskConfidenceRepository.findAll();
-    List<ModelOutputRecord> output = null;
-    
-    if (riskConfidenceRecords != null && !riskConfidenceRecords.isEmpty()) {
-      output = new ArrayList<ModelOutputRecord>();
-      for (RiskConfidence riskConfidence : riskConfidenceRecords) {
-        Map<String, Object> data = new HashMap<String,Object>();
-        data.put("id", riskConfidence.getId());
-        data.put("userId", riskConfidence.getAlternativeId());
-        data.put("courseId", riskConfidence.getCourseId());
-        data.put("createdDate", riskConfidence.getDateCreated());
-        data.put("risk", riskConfidence.getModelRiskConfidence());
-        ModelOutputRecord modelOutputRecord = new ModelOutputRecord(data);
-        output.add(modelOutputRecord);
-      }
+    PersistentStorage<ModelOutput> persistentStorage = storageFactory.getPersistentStorage();
+    Page<ModelOutput> output = persistentStorage.findAll(pageable);
+    if (output == null) {
+      output = new PageImpl<ModelOutput>(new ArrayList<ModelOutput>(), pageable, 0);
     }
-
-
-    return new ResponseEntity<List<ModelOutputRecord>>(output, HttpStatus.OK);
+    return assembler.toResource(output, modelOutputResourceAssembler);
+  }
+  
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/student/{id}")
+  public PagedResources<ModelOutputRecord> outputByStudent(@PageableDefault(size = 100, page = 0) Pageable pageable, 
+      PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("id") final String id) {
+    
+    PersistentStorage<ModelOutput> persistentStorage = storageFactory.getPersistentStorage();
+    Page<ModelOutput> output = persistentStorage.findByStudentId(id, pageable);
+    if (output == null) {
+      output = new PageImpl<ModelOutput>(new ArrayList<ModelOutput>(), pageable, 0);
+    }
+    return assembler.toResource(output, modelOutputResourceAssembler);
+  }
+  
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/course/{id}")
+  public PagedResources<ModelOutputRecord> outputByCourse(@PageableDefault(size = 100, page = 0) Pageable pageable, 
+      PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("id") final String id) {
+    
+    PersistentStorage<ModelOutput> persistentStorage = storageFactory.getPersistentStorage();
+    Page<ModelOutput> output = persistentStorage.findByCourseId(id, pageable);
+    if (output == null) {
+      output = new PageImpl<ModelOutput>(new ArrayList<ModelOutput>(), pageable, 0);
+    }
+    return assembler.toResource(output, modelOutputResourceAssembler);
+  }
+  
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/course/{courseId}/student/{studentId}")
+  public PagedResources<ModelOutputRecord> outputByStudentAndCourse(@PageableDefault(size = 100, page = 0) Pageable pageable, 
+      PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("courseId") final String courseId, @PathVariable("studentId") final String studentId) {
+    
+    PersistentStorage<ModelOutput> persistentStorage = storageFactory.getPersistentStorage();
+    Page<ModelOutput> output = persistentStorage.findByStudentIdAndCourseId(studentId, courseId, pageable);
+    if (output == null) {
+      output = new PageImpl<ModelOutput>(new ArrayList<ModelOutput>(), pageable, 0);
+    }
+    return assembler.toResource(output, modelOutputResourceAssembler);
   }
   
 }

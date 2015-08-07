@@ -115,7 +115,7 @@ public class ProcessingManagerService {
             // verify the inputs exist
             boolean missingRequiredInput = false;
             for (PipelineConfig.InputField input : inputs) {
-                if (!storage.checkTableAndColumnExist(input.getCollection().name(), input.getName(), true)) {
+                if (!storage.checkTableAndColumnExist(input.getCollection().name(), input.getName())) {
                     logger.warn("Missing input: "+input);
                     if (input.required) {
                         missingRequiredInput = true;
