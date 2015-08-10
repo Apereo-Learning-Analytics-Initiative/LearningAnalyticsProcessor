@@ -19,14 +19,16 @@ public class StorageFactory {
   private String persistentStorage;
   
   @Autowired private Map<String, PersistentStorage<ModelOutput>> persistentStorageOptions;
+  @Autowired private Map<String, ModelRunPersistentStorage> modelRunPersistentStorageOptions;
   
   public PersistentStorage<ModelOutput> getPersistentStorage() {
     return persistentStorageOptions.get(persistentStorage);
   }
   
-  public PersistentStorage<ModelOutput> getPersistentStorage(final String persistentStorageType) {
-    return persistentStorageOptions.get(persistentStorageType);
+  public ModelRunPersistentStorage getModelRunPersistentStorage() {
+    
+    String key = persistentStorage + "-ModelRunPersistentStorage";
+    
+    return modelRunPersistentStorageOptions.get(key);
   }
-
-
 }

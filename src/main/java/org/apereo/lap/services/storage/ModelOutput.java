@@ -5,6 +5,7 @@ package org.apereo.lap.services.storage;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,7 +26,8 @@ public class ModelOutput implements PersistentLAPEntity {
   @JsonProperty("course_id")
   private String courseId;
   private String risk_score;
-  private Date created_date = new Date();
+  @CreatedDate
+  private Date created_date;
   private String model_run_id;
   
   public String getId() {

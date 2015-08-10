@@ -139,7 +139,7 @@
 		    <version>0.8.1</version>
     		<scope>test</scope>
 		</dependency>
-		
+				
 		<!-- DATABASES -->
 		<!-- H2 instead of HSQLDB -->
 		<dependency>

@@ -82,7 +82,7 @@ public class H2PersistentStorage implements PersistentStorage<ModelOutput> {
     Page<ModelOutput> modelOutputPage = null;
     if (riskConfidenceList != null && !riskConfidenceList.isEmpty()) {
       List<ModelOutput> modelOutputEntites = new ArrayList<ModelOutput>();
-      for (RiskConfidence riskConfidence : riskConfidenceEntities) {
+      for (RiskConfidence riskConfidence : riskConfidenceList) {
         modelOutputEntites.add(fromRiskConfidence(riskConfidence));
       }
       modelOutputPage = new PageImpl<ModelOutput>(modelOutputEntites, pageable, modelOutputEntites.size());

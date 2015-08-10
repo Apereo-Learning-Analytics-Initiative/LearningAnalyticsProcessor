@@ -59,18 +59,19 @@ public class StorageOutputHandler extends BaseOutputHandler implements OutputHan
     SqlRowSet rowSet;
     try {
       rowSet = storage.getTempJdbcTemplate().queryForRowSet(selectSQL);
+      
     } catch (Exception e) {
       throw new RuntimeException("Failure while trying to retrieve the output data set: " + selectSQL);
     }
 
     List<ModelOutput> modelOutputEntities = new ArrayList<ModelOutput>();
-    String groupId = UUID.randomUUID().toString();
+    String modelRunId = UUID.randomUUID().toString();
 
     while (rowSet.next()) {
       ModelOutput modelOutput = new ModelOutput();
 
       if (!rowSet.wasNull()) {
-        modelOutput.setModel_run_id(groupId);
+        modelOutput.setModel_run_id(modelRunId);
 
         String[] rowVals = new String[sourceToHeaderMap.size()];
 
@@ -88,7 +89,8 @@ public class StorageOutputHandler extends BaseOutputHandler implements OutputHan
     }
     
     persistentStorage.saveAll(modelOutputEntities);
-
+    result.done(modelRunId, modelOutputEntities.size());
+    
     return result;
   }
 

@@ -40,6 +40,7 @@ public interface OutputHandler {
     OutputResult writeOutput(Output output);
 
     public static class OutputResult {
+        public String modelRunId;
         public String name;
         public Output.OutputType handledType;
         public Output output;
@@ -66,10 +67,18 @@ public interface OutputHandler {
             this.endTimeMS = System.currentTimeMillis();
             this.totalTimeMS = this.endTimeMS - this.startTimeMS;
         }
+        
+        public void done(String modelRunId, int itemsCount) {
+          this.modelRunId = modelRunId;
+          this.total = itemsCount;
+          this.endTimeMS = System.currentTimeMillis();
+          this.totalTimeMS = this.endTimeMS - this.startTimeMS;
+      }
 
         @Override
         public String toString() {
             return "OutputResult:" + name +
+                    ", modelRunId=" + modelRunId +
                     ", total=" + total +
                     ", loaded=" + loaded +
                     ", failed=" + failed +

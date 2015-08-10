@@ -49,7 +49,7 @@
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li ui-sref-active="active"><a ui-sref="overview">Overview <span class="sr-only">(current)</span></a></li>
+          <li ui-sref-active="active"><a ui-sref="overview">Overview</a></li>
 <!--           <li ui-sref-active="active"><a ui-sref="tenants">Tenants</a></li> -->
 <!--           <li ui-sref-active="active"><a href="#">Jobs</a></li> -->
           <li ui-sref-active="active"><a ui-sref="pipelines">Pipelines</a></li>
@@ -77,9 +77,10 @@
   <script type="text/javascript" th:src="@{/assets/js/lib/angular-notification-min.js}"></script>
   
   <script type="text/javascript" th:src="@{/assets/js/app.js}"></script>
+  <script type="text/javascript" th:src="@{/assets/js/services.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/directives.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/master-ctrl.js}"></script>
-  <script type="text/javascript" th:src="@{/assets/js/overview-ctrl.js}"></script>
+  <script type="text/javascript" th:src="@{/assets/overview/controller.js}"></script>
   
   <!-- Pipelines -->
   <script type="text/javascript" th:src="@{/assets/js/pipelines/service.js}"></script>

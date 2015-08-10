@@ -152,7 +152,12 @@ angular
 	    .state('overview', {
 	        url: '/',
 	        controller: 'OverviewCtrl',
-	        templateUrl: '/assets/templates/overview.html'
+	        templateUrl: '/assets/overview/view.html',
+		    resolve:{
+	    		runs : function ($stateParams, RunDataService) {
+	    			return RunDataService.getRuns();
+	    		}	
+	     	},
 	    })
 	    .state('tenants', {
 	        url: '/tenants',
