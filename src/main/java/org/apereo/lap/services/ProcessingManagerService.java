@@ -109,7 +109,7 @@ public class ProcessingManagerService {
     public boolean process(String pipelineId, String inputJson) {
         logger.info("Pipeline Initialized: "+pipelineId);
         boolean processResult = false;
-        ModelRun modelRun = null;
+        ModelRun modelRun = new ModelRun();
 
         try {
             // load up pipeline config (by id)
@@ -119,7 +119,6 @@ public class ProcessingManagerService {
             }
             
             // capture model run data
-            modelRun = new ModelRun();
             modelRun.setModelName(pipelineConfig.getName());
             modelRun.setModelType(pipelineConfig.getType());
 

@@ -229,7 +229,7 @@ public class ConfigurationService {
     /**
      * @return the full set of configuration data loaded for the application
      */
-    Configuration config() {
+    public Configuration config() {
         return config;
     }
 
@@ -262,7 +262,7 @@ public class ConfigurationService {
      * @param key the config key
      * @return the value for this config OR null if none exists
      */
-    boolean is(String key) {
+    public boolean is(String key) {
         boolean result = false;
         if (StringUtils.isNotBlank(key)) {
             result = config.getBoolean(key);
