@@ -114,13 +114,13 @@
 			<version>5.0.5</version>
 			<scope>compile</scope>
 		</dependency>
-<dependency>
-    <groupId>pentaho.di</groupId>
-    <artifactId>scoring</artifactId>
-    <version>1.0</version>
-    <scope>system</scope>
-    <systemPath>${basedir}/src/main/resources/scoring.jar</systemPath>
-</dependency> 
+		<dependency>
+		    <groupId>pentaho.di</groupId>
+		    <artifactId>scoring</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${basedir}/src/main/resources/scoring.jar</systemPath>
+		</dependency> 
        
 		<dependency>
 			<groupId>net.sf.opencsv</groupId>
@@ -153,7 +153,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
 		</dependency>
-		
    </dependencies>
     <build>
 	    <plugins>
@@ -175,6 +174,21 @@
 		          </includes>
 		        </configuration>				
         	</plugin>
+        	<plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.15</version><!--$NO-MVN-MAN-VER$-->
+                <configuration>
+                  <groups>org.apereo.lap.test.UnitTests</groups><includes>
+                    <include>**/*Tests.java</include>
+                    <include>**/*Test.java</include>
+                  </includes>
+                  <excludes>
+                    <exclude>**/Abstract*.java</exclude>
+                  </excludes>
+                  <reuseForks>false</reuseForks>
+                  <forkCount>1</forkCount>
+                </configuration>
+            </plugin>
 	    </plugins>
 	</build>
 	<repositories>
