@@ -10,7 +10,7 @@
     <parent>
 	    <groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-starter-parent</artifactId>
-    	<version>1.2.0.M2</version>
+    	<version>1.2.5.RELEASE</version>
 	</parent>
 
     <name>Apereo Learning Analytics Processor Project</name>
@@ -114,13 +114,6 @@
 			<version>5.0.5</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-		    <groupId>pentaho.di</groupId>
-		    <artifactId>scoring</artifactId>
-		    <version>1.0</version>
-		    <scope>system</scope>
-		    <systemPath>${basedir}/src/main/resources/scoring.jar</systemPath>
-		</dependency> 
        
 		<dependency>
 			<groupId>net.sf.opencsv</groupId>
@@ -160,18 +153,7 @@
 	            <groupId>org.springframework.boot</groupId>
 	            <artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-		          <excludes>
-		            <exclude>
-		              <groupId>pentaho</groupId>
-		              <artifactId>pdi-wekascoring-plugin</artifactId>
-		            </exclude>
-		          </excludes>
-		          <includes>
-		          	<include>
-					    <groupId>pentaho.di</groupId>
-					    <artifactId>scoring</artifactId>
-		          	</include>
-		          </includes>
+					<folders><folder>${basedir}/src/main/resources/scoring.jar</folder></folders>
 		        </configuration>				
         	</plugin>
         	<plugin>
