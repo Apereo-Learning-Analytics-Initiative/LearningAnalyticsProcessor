@@ -44,6 +44,14 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component("configuration")
 public class ConfigurationService {
+  
+  /**
+   * TODO - Refactor this class to:
+   * 1. Not rely on File objects (so we can run as jar)
+   * 2. Utilize Spring / Spring Boot properties features (specifically see init below directly loading application.properties which won't allow us to use spring profiles)
+   */
+  
+  
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationService.class);
 
@@ -79,7 +87,7 @@ public class ConfigurationService {
             try {
                 config.addConfiguration(new PropertiesConfiguration(lapConfigProps));
             } catch (ConfigurationException e) {
-                logger.warn("Unable to load lap.properties file");
+                logger.warn("Unable to load application.properties file");
             }
         }
         this.config = config;

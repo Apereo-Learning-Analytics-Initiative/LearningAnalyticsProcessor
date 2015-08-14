@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
  * @author ggilbert
  *
  */
-@Repository
 public interface RunRepository extends JpaRepository<Run, Long> {
   Page<Run> findAllByOrderByDateCreatedDesc(Pageable pageable);
 }

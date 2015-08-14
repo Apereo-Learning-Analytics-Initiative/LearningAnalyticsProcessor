@@ -24,7 +24,6 @@ import org.springframework.stereotype.Repository;
  * The risk confidence table contains a historical record of each processing run.
  *
  */
-@Repository
 public interface RiskConfidenceRepository extends JpaRepository<RiskConfidence, Long>  {
 	Page<RiskConfidence> findByAlternativeId(String alternativeId, Pageable pageable);
   Page<RiskConfidence> findByCourseId(String courseId, Pageable pageable);

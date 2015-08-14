@@ -14,7 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author ggilbert
  *
  */
-@Repository
 @Profile("mongo")
 public interface MongoModelOutputRepository extends MongoRepository<ModelOutput, String> {
   Page<ModelOutput> findByStudentId(String student_id, Pageable pageable);
