@@ -84,7 +84,16 @@
 			<artifactId>commons-vfs</artifactId>
 			<version>1.0</version>
 		</dependency>
-        
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
 		<!-- pentaho -->
 		<dependency>
 			<groupId>pentaho-kettle</groupId>
@@ -160,7 +169,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.15</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
-                  <groups>org.apereo.lap.test.UnitTests</groups><includes>
+                  <groups>org.apereo.lap.test.UnitTests,
+                          org.apereo.lap.test.MongoUnitTests
+                  </groups>
+                  <excludedGroups></excludedGroups>
+                  <includes>
                     <include>**/*Tests.java</include>
                     <include>**/*Test.java</include>
                   </includes>

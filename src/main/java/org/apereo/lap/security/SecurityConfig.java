@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.apereo.lap;
+package org.apereo.lap.security;
 
 import java.io.IOException;
 
@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
@@ -25,7 +24,6 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * @author ggilbert
@@ -36,6 +34,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private Logger log = Logger.getLogger(SecurityConfig.class);
+
+  @Autowired
+  LapWebAuthenticationDetailsSource customWebAuthenticationDetailsSource;
 
   @Bean
   public RequestCache requestCache() {
@@ -55,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .csrf()
         .disable()
        .formLogin()
-         .loginPage("/login")
+           .loginPage("/login")
+           .authenticationDetailsSource(customWebAuthenticationDetailsSource)
            .permitAll()
        .and()
          .logout()
@@ -65,8 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
            .antMatchers("/api/**")
              .permitAll()
                      .anyRequest()
-          .authenticated()
-;
+          .authenticated();
   }
 
   @Autowired

@@ -15,7 +15,7 @@
 package org.apereo.lap.test;
 
 import org.apereo.lap.LearningAnalyticsProcessor;
-import org.apereo.lap.SecurityConfig;
+import org.apereo.lap.security.SecurityConfig;
 import org.apereo.lap.services.storage.h2.H2PersistentConfig;
 import org.apereo.lap.services.storage.h2.H2TempConfig;
 import org.junit.experimental.categories.Category;
