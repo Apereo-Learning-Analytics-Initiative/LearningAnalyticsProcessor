@@ -17,6 +17,7 @@ package org.apereo.lap.services.input.handlers.csv;
 import java.sql.Types;
 
 import org.apereo.lap.services.configuration.ConfigurationService;
+import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.apereo.lap.services.input.handlers.InputHandler.ReadResult;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -36,7 +37,7 @@ public class EnrollmentCSVInputHandler extends BaseCSVInputHandler {
     public EnrollmentCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
-    
+
 	@Override
 	public int getOrder() {
 		return 3;
@@ -51,10 +52,10 @@ public class EnrollmentCSVInputHandler extends BaseCSVInputHandler {
     public int[] makeInsertSQLParams() {
         return SQL_TYPES;
     }
-    
+
     @Override
-    public String getFileName() {
-    	return "enrollment.csv";
+    public BaseInputHandlerService.InputCollection getInputCollection() {
+        return BaseInputHandlerService.InputCollection.ENROLLMENT;
     }
 
     @Override

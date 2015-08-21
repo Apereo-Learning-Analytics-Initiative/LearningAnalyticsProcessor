@@ -100,11 +100,6 @@ public class PipelineConfig {
         return this.inputs;
     }
 
-    /**
-     * Add an InputField to this config
-     * @param inputField the InputField
-     * @return the list of all current InputField
-     */
     public List<BaseInputHandlerService> addInputHandlerField(String type, HierarchicalConfiguration sourceConfiguration, ConfigurationService configurationService, StorageService storage) {
         if (this.inputHandlers == null) {
             this.inputHandlers = new ArrayList<>();
