@@ -1,0 +1,79 @@
+<div>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed"
+          data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span> <span
+            class="icon-bar"></span> <span class="icon-bar"></span> <span
+            class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">LAP</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+          <input type="text" class="form-control"
+            placeholder="Search..."></input>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          <li ui-sref-active-eq="active"><a ui-sref="index">Overview</a></li>
+<!--           <li ui-sref-active="active"><a ui-sref="tenants">Tenants</a></li> -->
+<!--           <li ui-sref-active="active"><a href="#">Jobs</a></li> -->
+          <li ui-sref-active-eq="active"><a ui-sref="index.pipelines">Pipelines</a></li>
+<!--           <li ui-sref-active="active"><a href="#">Rules</a></li> -->
+        </ul>
+      </div>
+      <div
+        class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main ui-view">
+        <!-- default content -->
+        
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading" translate="TEXT_HEADER"></div>
+              <div class="panel-body">
+                <p translate="TEXT_INSTRUCTIONS"></p>
+              </div>
+            
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th translate="TABLE_HEADER_DATE"></th>
+                    <th translate="TABLE_HEADER_TYPE"></th>
+                    <th translate="TABLE_HEADER_NAME"></th>
+                    <th translate="TABLE_HEADER_SUCCESS"></th>
+                    <th translate="TABLE_HEADER_COUNT"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="run in runs">
+                    <td>{{run.created_date | date : 'medium'}}</td>
+                    <td>{{run.modelType}}</td>
+                    <td>{{run.modelName}}</td>
+                    <td>{{run.success}}</td>
+                    <td>{{run.modelCount}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>  
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>

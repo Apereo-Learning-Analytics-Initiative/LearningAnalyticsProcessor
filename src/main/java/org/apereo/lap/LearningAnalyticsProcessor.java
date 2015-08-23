@@ -3,6 +3,8 @@
  */
 package org.apereo.lap;
 
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +15,7 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author ggilbert
@@ -35,10 +38,13 @@ public class LearningAnalyticsProcessor {
     public String defaultHandler() {
       return "index";
     }
-    
-    @RequestMapping(value = { "/login"}, method = RequestMethod.GET)
-    public String loginHandler() {
-      return "login";
+  }
+  
+  @RestController
+  public static class AuthenticatedCheckController {
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+      return user;
     }
   }
 

@@ -4,22 +4,18 @@ import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apereo.lap.security.LapWebAuthenticationDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.web.util.CookieGenerator;
+import org.springframework.web.util.WebUtils;
 
 /**
 * @author jbrown
@@ -31,49 +27,50 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
 
     @Value("${lap.defaultDatabaseName:lap_default}")
     private String defaultDatabase;
+    
+    @Value("${lap.useDefaultDatabaseName:true}")
+    private String useDefaultDatabaseName;
 
     @Override
     public void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain fc) throws ServletException, IOException {
         logger.debug("applying MongoMultiTenantFilter");
-
-        String databaseName = defaultDatabase;
-        Object details = null;
-        String principal = null;
-
+        logger.debug("allow defaultDatabase: "+useDefaultDatabaseName);
+        
         MultiTenantMongoDbFactory.clearDatabaseNameForCurrentThread();
-
-        //Spring Security Documentation warns against getting information from the session
-        //However the securityContextHolder is null on redirect.
-        HttpSession session =req.getSession(true);
-        SecurityContext securityContext = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
-        Authentication authentication = securityContext.getAuthentication();
-        logger.debug("securityContext: " + securityContext);
-        logger.debug("authentication: " + authentication);
-        if (authentication != null){
-            details = authentication.getDetails();
-            principal = authentication.getName();
-            logger.debug("details: " + details);
-            logger.debug("principal: " + principal);
-        }else{
-            throw new SecurityException("Unauthenticated access not authorized");
-        }
-
-        if(details != null && details instanceof LapWebAuthenticationDetails && ((LapWebAuthenticationDetails) details).getOauthConsumerKey() != null){
-            databaseName = ((LapWebAuthenticationDetails) details).getOauthConsumerKey();
-        }else if (principal != null && StringUtils.isNotBlank(principal)){
-            databaseName = principal;
-        }else{
-            //TODO oauth 1
-            throw new SecurityException("Authenticated access does not contain correct data (Principal and Oauth Consumer Key)");
-        }
-
-        if (databaseName != null || StringUtils.isNotBlank(databaseName)) {
-            logger.info("setting database name: " + databaseName);
-            MultiTenantMongoDbFactory.setDatabaseNameForCurrentThread(databaseName);
+        String tenant = null;
+        Cookie tenantCookie = WebUtils.getCookie(req, "X-LAP-TENANT");
+        
+        if (tenantCookie != null) {
+          // if we have the cookie that is the tenant authority
+          tenant = tenantCookie.getValue();
+          logger.debug("Tenant value from cookie");
         }
         else {
-            throw new IllegalStateException("Mongo database not set for thread");
+          // if we don't have it, then it is either login or an api call
+          // both of those cases should pass the tenant as a http header
+          tenant = req.getHeader("X-LAP-TENANT");
+          logger.debug("Tenant value from header");
+          
+          if (StringUtils.isNotBlank(tenant)) {
+            tenantCookie = new Cookie("X-LAP-TENANT", tenant);
+            tenantCookie.setPath("/");
+            res.addCookie(tenantCookie);
+          }
+          else {
+            
+            if (Boolean.valueOf(useDefaultDatabaseName)) {
+              logger.warn("No tenant available in request. Using default database.");
+              tenant = defaultDatabase;
+            }
+            else {
+              // TODO - Throw an Exception Here
+              // Probably a new Exception type that denotes Tenant Required
+            }
+          }
         }
+        
+        logger.debug("Tenant: "+tenant);
+        MultiTenantMongoDbFactory.setDatabaseNameForCurrentThread(tenant);
         fc.doFilter(req, res);
     }
 }
