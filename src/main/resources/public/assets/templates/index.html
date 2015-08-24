@@ -1,5 +1,4 @@
 <div>
-
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -16,6 +15,8 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Settings</a></li>
           <li><a href="#">Help</a></li>
+          <li ng-show="authenticated"><a href="" ng-click="logout()">Logout</a></li>
+          <li ng-show="!authenticated"><a href="" ng-click="login()">Login</a></li>
         </ul>
         <form class="navbar-form navbar-right">
           <input type="text" class="form-control"
@@ -24,8 +25,8 @@
       </div>
     </div>
   </nav>
-
-  <div class="container-fluid">
+  <p align="center" ng-show="!authenticated" class="bg-danger" translate="AUTHENTICATION_ERROR"></p>
+  <div ng-show="authenticated" class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">

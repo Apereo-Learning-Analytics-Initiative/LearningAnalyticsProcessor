@@ -11,17 +11,19 @@ function LoginCtrl($rootScope, $scope, $state, $translate, $translatePartialLoad
   $scope.isMultiTenant = isMultiTenant;
   $scope.credentials = {};
   $scope.login = function() {
-    AuthenticationService.authenticated($scope.credentials)
-      .then(
-        function (data) {
-          $rootScope.authenticated = data;
-          $state.go('index');
-          return;
-        },
-        function (error) {
-        	$rootScope.authenticated = false;
-        	$scope.error = true;
-        }
-      );
+        AuthenticationService.authenticated($scope.credentials)
+          .then(
+            function (data) {
+              $rootScope.authenticated = data;
+              $rootScope.validationError = !data;
+              if(data)
+                  $state.go('index');
+              return;
+            },
+            function (error) {
+                $rootScope.authenticated = false;
+                $scope.error = true;
+            }
+          );
   };
 });
