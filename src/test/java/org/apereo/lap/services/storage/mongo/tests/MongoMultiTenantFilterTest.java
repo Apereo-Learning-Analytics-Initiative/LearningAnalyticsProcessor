@@ -5,13 +5,13 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
-import java.util.Collection;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apereo.lap.exception.MissingTenantException;
 import org.apereo.lap.services.storage.mongo.MongoMultiTenantFilter;
 import org.junit.After;
 import org.junit.Before;
@@ -21,176 +21,86 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpSession;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.util.ReflectionTestUtils;
-
 
 public class MongoMultiTenantFilterTest extends MongoTests{
 
-    private static final String DEFAULT_DATABASE = "TEST_DB";
-    
-    @Mock 
-    HttpServletRequest req;
     @Mock
     HttpServletResponse res;
     @Mock
     FilterChain fc;
     @InjectMocks
     MongoMultiTenantFilter mongoMultiTenantFilter;
-    @Mock
-    Authentication authentication;
-    
-    SecurityException securityEx;
-    IllegalArgumentException illegalArgumentEx;
+
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ReflectionTestUtils.setField(mongoMultiTenantFilter, "defaultDatabase", DEFAULT_DATABASE);
+        ReflectionTestUtils.setField(mongoMultiTenantFilter, "useDefaultDatabaseName", "true");
     }
     @After
     public void validate() {
         Mockito.validateMockitoUsage();
     }
 
-//    @Test(expected = SecurityException.class)
-//    public void doInternalFilterWillThrowSecurityExceptionWhenAuthenticationIsNull() throws ServletException, IOException{
-//        
-//        UsernamePasswordAuthenticationToken testAuthentication = null;
-//        MockHttpSession mockSession = new MockHttpSession();
-//        MockHttpServletRequest mockRequest = new MockHttpServletRequest();
-//        MockSecurityContext mockSecurityContext = new MockSecurityContext(testAuthentication);
-//        mockSession.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, mockSecurityContext);
-//        mockRequest.setSession(mockSession);
-//        
-//        mongoMultiTenantFilter.doFilterInternal(mockRequest, res, fc);
-//        
-//    }
+    @Test
+    public void doInternalFilterWillNotChangeResponseRequestWhenRequestWithExpectedCookie() throws ServletException, IOException{
+        MockHttpServletRequest mockRequest = new MockHttpServletRequest();
+        
+        Cookie testCookie = new Cookie("X-LAP-TENANT", "test_tenant");
+        testCookie.setPath("/");
+        mockRequest.setCookies(testCookie);
+        
+        mongoMultiTenantFilter.doFilterInternal(mockRequest, res, fc);
+        
+        verify(fc, times(1)).doFilter(mockRequest, res);
+
+    }
 
     @Test
-    public void doInternalFilterWillNotThrowExceptionWhenAuthenticationIsNotNullAndHasName() throws ServletException, IOException{
+    public void doInternalFilterWillAddCookieToResponseWhenRequestWithoutCookieWithExpecedTenantHeader() throws ServletException, IOException{
         
-        UsernamePasswordAuthenticationToken testAuthentication = new UsernamePasswordAuthenticationToken("principal", "credentials");
-        MockHttpSession mockSession = new MockHttpSession();
         MockHttpServletRequest mockRequest = new MockHttpServletRequest();
-        MockSecurityContext mockSecurityContext = new MockSecurityContext(testAuthentication);
-        mockSession.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, mockSecurityContext);
-        mockRequest.setSession(mockSession);
+        mockRequest.addHeader("X-LAP-TENANT", "test_tenant");
 
-        try{
-            mongoMultiTenantFilter.doFilterInternal(mockRequest, res, fc);
-        }catch (SecurityException e){
-            securityEx = e;
-        }catch (IllegalArgumentException e){
-            illegalArgumentEx = e;
-        }
-
-        assertEquals(null, securityEx);
-        assertEquals(null, illegalArgumentEx);
-        verify(fc, times(1)).doFilter(mockRequest, res);
+        MockHttpServletResponse mockResponse = new MockHttpServletResponse();
+        mongoMultiTenantFilter.doFilterInternal(mockRequest, mockResponse, fc);
+        
+        verify(fc, times(1)).doFilter(mockRequest, mockResponse);
+        assertEquals(mockResponse.getCookie("X-LAP-TENANT").getValue(), "test_tenant");
     }
 
 
     @Test
-    public void doInternalFilterWillThrowNotExceptionWhenAuthenticationIsNotNullAndHasValidLapWebAuthenticationDetails() throws ServletException, IOException{
-        MockHttpServletRequest req = new MockHttpServletRequest();
-        req.setParameter("oauth_consumer_key", "test_database");
-
+    public void doInternalFilterWillUseDefaultDatabaseWhenRequestExpectedHeaderAndCookieAreEmptyStrings() throws ServletException, IOException{
         MockHttpServletRequest mockRequest = new MockHttpServletRequest();
-
-        try{
-            mongoMultiTenantFilter.doFilterInternal(mockRequest, res, fc);
-        }catch (SecurityException e){
-            securityEx = e;
-        }catch (IllegalArgumentException e){
-            illegalArgumentEx = e;
-        }
-
-        assertEquals(null, securityEx);
-        assertEquals(null, illegalArgumentEx);
-        verify(fc, times(1)).doFilter(mockRequest, res);
-    }
-    
-
-    public static class MockSecurityContext implements SecurityContext {
-
-        private static final long serialVersionUID = -1386535243513362694L;
-
-        private Authentication authentication;
+        mockRequest.addHeader("X-LAP-TENANT", "");
+        mockRequest.setCookies(new Cookie("X-LAP-TENANT", ""));
+        MockHttpServletResponse mockResponse = new MockHttpServletResponse();
+        mongoMultiTenantFilter.doFilterInternal(mockRequest, mockResponse, fc);
         
-        public MockSecurityContext(Authentication authentication) {
-            this.authentication = authentication;
-        }
-        @Override
-        public Authentication getAuthentication() {
-            return this.authentication;
-        }
-
-        @Override
-        public void setAuthentication(Authentication authentication) {
-           this.authentication = authentication;
-        }
-        
+        verify(fc, times(1)).doFilter(mockRequest, mockResponse);
+        assertEquals(mockResponse.getCookie("X-LAP-TENANT"), null);
     }
 
-    public static class MockAuthentication implements Authentication {
+    @Test
+    public void doInternalFilterWillUseDefaultDatabaseWhenRequestExpectedHeaderAndCookieAreMissing() throws ServletException, IOException{
+        MockHttpServletRequest mockRequest = new MockHttpServletRequest();
+        MockHttpServletResponse mockResponse = new MockHttpServletResponse();
+        mongoMultiTenantFilter.doFilterInternal(mockRequest, mockResponse, fc);
+        
+        verify(fc, times(1)).doFilter(mockRequest, mockResponse);
+        assertEquals(mockResponse.getCookie("X-LAP-TENANT"), null);
+    }
 
-        private static final long serialVersionUID = -1386535243513362693L;
-
-        private Object principal;
-        private Object details;
-        private String name;
-
-        public MockAuthentication(Object principal, Object details, String name) {
-            super();
-            this.principal = principal;
-            this.details = details;
-            this.name = name;
-        }
-
-        @Override
-        public String getName() {
-            // TODO Auto-generated method stub
-            return name;
-        }
-
-        @Override
-        public Collection<? extends GrantedAuthority> getAuthorities() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public Object getCredentials() {
-            // TODO Auto-generated method stub
-            return null;
-        }
-
-        @Override
-        public Object getDetails() {
-            return details;
-        }
-
-        @Override
-        public Object getPrincipal() {
-            // TODO Auto-generated method stub
-            return principal;
-        }
-
-        @Override
-        public boolean isAuthenticated() {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
-            // TODO Auto-generated method stub
-            
-        }
+    @Test(expected = MissingTenantException.class)
+    public void doInternalFilterWillThrowExceptionWhenRequestExpectedHeaderAndCookieAreMissingAndDefualtDatabaseNotSet() throws ServletException, IOException{
+        ReflectionTestUtils.setField(mongoMultiTenantFilter, "useDefaultDatabaseName", null);
+        MockHttpServletRequest mockRequest = new MockHttpServletRequest();
+        MockHttpServletResponse mockResponse = new MockHttpServletResponse();
+        mongoMultiTenantFilter.doFilterInternal(mockRequest, mockResponse, fc);
+        
+        verify(fc, times(1)).doFilter(mockRequest, mockResponse);
+        assertEquals(mockResponse.getCookie("X-LAP-TENANT").getValue(), "");
     }
 }

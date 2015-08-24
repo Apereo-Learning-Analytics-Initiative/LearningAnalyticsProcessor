@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apereo.lap.exception.MissingTenantException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -63,8 +64,7 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
               tenant = defaultDatabase;
             }
             else {
-              // TODO - Throw an Exception Here
-              // Probably a new Exception type that denotes Tenant Required
+              throw new MissingTenantException("A default database was not set at start up.");
             }
           }
         }
