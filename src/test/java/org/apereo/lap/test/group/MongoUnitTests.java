@@ -1,3 +1,3 @@
-package org.apereo.lap.test;
+package org.apereo.lap.test.group;
 
 public interface MongoUnitTests {}

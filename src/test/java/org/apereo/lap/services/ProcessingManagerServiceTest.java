@@ -22,15 +22,16 @@ import javax.annotation.Resource;
 
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.storage.StorageService;
-import org.apereo.lap.test.AbstractTest;
+import org.apereo.lap.test.AbstractUnitTest;
 import org.junit.Test;
 import org.junit.After;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 
-public class ProcessingManagerServiceTest extends AbstractTest{
+public class ProcessingManagerServiceTest extends AbstractUnitTest{
     private static final Logger logger = LoggerFactory.getLogger(ProcessingManagerServiceTest.class);
 
     @Autowired

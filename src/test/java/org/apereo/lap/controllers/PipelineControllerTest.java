@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apereo.lap.model.PipelineConfig;
-import org.apereo.lap.test.AbstractTest;
+import org.apereo.lap.test.AbstractUnitTest;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,9 +30,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-@RunWith(SpringJUnit4ClassRunner.class) 
-public class PipelineControllerTest extends AbstractTest{
+ 
+public class PipelineControllerTest extends AbstractUnitTest{
 
     private static final Logger logger = LoggerFactory.getLogger(PipelineControllerTest.class);
 

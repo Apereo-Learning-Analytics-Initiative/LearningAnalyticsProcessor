@@ -169,8 +169,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.15</version><!--$NO-MVN-MAN-VER$-->
                 <configuration>
-                  <groups>org.apereo.lap.test.UnitTests,
-                          org.apereo.lap.test.MongoUnitTests
+                  <groups>org.apereo.lap.test.group.UnitTests,
+                          org.apereo.lap.test.group.IntegrationTests,
+                          org.apereo.lap.test.group.MongoUnitTests
                   </groups>
                   <excludedGroups></excludedGroups>
                   <includes>
