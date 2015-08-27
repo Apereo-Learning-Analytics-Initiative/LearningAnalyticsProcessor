@@ -33,29 +33,29 @@
               <files>
                    <file>
                       <type>PERSONAL</type>
-                      <path>/home/ggilbert/projects/unicon/marist/LearningAnalyticsProcessor/src/main/resources/extracts/personal.csv</path>
+                      <path>extracts/personal.csv</path>
                   </file>
                    <file>
                       <type>COURSE</type>
-                      <path>/home/ggilbert/projects/unicon/marist/LearningAnalyticsProcessor/src/main/resources/extracts/course.csv</path>
+                      <path>extracts/course.csv</path>
                   </file>
                    <file>
                       <type>ENROLLMENT</type>
-                      <path>/home/ggilbert/projects/unicon/marist/LearningAnalyticsProcessor/src/main/resources/extracts/enrollment.csv</path>
+                      <path>extracts/enrollment.csv</path>
                   </file>
                    <file>
                       <type>GRADE</type>
-                      <path>/home/ggilbert/projects/unicon/marist/LearningAnalyticsProcessor/src/main/resources/extracts/grade.csv</path>
+                      <path>extracts/grade.csv</path>
                   </file>
                   <file>
                       <type>ACTIVITY</type>
-                      <path>/home/ggilbert/projects/unicon/marist/LearningAnalyticsProcessor/src/main/resources/extracts/activity.csv</path>
+                      <path>extracts/activity.csv</path>
                   </file>
               </files>
           </params>
       </source>
   </sources>
-  
+
   <inputs>
     <!--
     There is currently only 1 type of input allowed (temporary storage)

@@ -339,7 +339,7 @@ FROM PCSM&#13;
 <store_model_in_meta>N</store_model_in_meta>
 <file_name_from_field>N</file_name_from_field>
 <cache_loaded_models>N</cache_loaded_models>
-<model_file_name>/home/ggilbert/projects/unicon/marist/LearningAnalyticsProcessor/src/main/resources/kettle/scoring_sample/oaai.lap.logistic.pmml.xml</model_file_name>
+<model_file_name>${Internal.Job.Filename.Directory}/oaai.lap.logistic.pmml.xml</model_file_name>
 </weka_scoring>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>496</xloc>

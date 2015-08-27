@@ -14,14 +14,6 @@
  */
 package org.apereo.lap.services.input;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -31,10 +23,18 @@ import org.apereo.lap.services.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Handles the inputs by reading the data into the temporary data storage
  * Validates the inputs and ensures the data is available to the pipeline processor
- * 
+ *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
 public abstract class BaseInputHandlerService {
@@ -43,7 +43,7 @@ public abstract class BaseInputHandlerService {
 
     public BaseInputHandlerService(HierarchicalConfiguration inputConfiguration)
     {
-    	
+
     }
 
     protected ConfigurationService configuration;
@@ -61,7 +61,7 @@ public abstract class BaseInputHandlerService {
             }
         }
     }
-    
+
     public static BaseInputHandlerService getInputHandler(String type, HierarchicalConfiguration sourceConfiguration, ConfigurationService configuration, StorageService storage) {
     	if (StringUtils.equalsIgnoreCase(type, BaseInputHandlerService.Type.SAMPLECSV.name())) {
     			return new SampleCSVInputHandlerService(configuration, storage, sourceConfiguration);
@@ -69,7 +69,7 @@ public abstract class BaseInputHandlerService {
     	if (StringUtils.equalsIgnoreCase(type, BaseInputHandlerService.Type.CSV.name())) {
 			return new CSVInputHandlerService(configuration, storage, sourceConfiguration);
     	}
-    	
+
     	 throw new IllegalArgumentException("collection type ("+type+") does not match the valid types: "+ ArrayUtils.toString(Type.values()));
     }
 
@@ -77,41 +77,16 @@ public abstract class BaseInputHandlerService {
      * Defines the data collection sets that
      */
     public static enum Type {
-        SAMPLECSV, CSV, DATABASE, HTTP;
-        public static Type fromString(String str) {
-            if (StringUtils.equalsIgnoreCase(str, SAMPLECSV.name())) {
-                return SAMPLECSV;
-            } else if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
-                return CSV;
-            } else if (StringUtils.equalsIgnoreCase(str, DATABASE.name())) {
-                return DATABASE;
-            } else if (StringUtils.equalsIgnoreCase(str, HTTP.name())) {
-                return HTTP;
-            } else {
-                throw new IllegalArgumentException("collection type ("+str+") does not match the valid types: "+ ArrayUtils.toString(InputCollection.values()));
-            }
-        }
+        SAMPLECSV, CSV, DATABASE, HTTP
     }
-    
+
     /**
      * Defines the data collection sets that
      */
-    public static enum InputCollection {
+    public enum InputCollection {
         PERSONAL, COURSE, ENROLLMENT, GRADE, ACTIVITY;
         public static InputCollection fromString(String str) {
-            if (StringUtils.equalsIgnoreCase(str, PERSONAL.name())) {
-                return PERSONAL;
-            } else if (StringUtils.equalsIgnoreCase(str, COURSE.name())) {
-                return COURSE;
-            } else if (StringUtils.equalsIgnoreCase(str, ENROLLMENT.name())) {
-                return ENROLLMENT;
-            } else if (StringUtils.equalsIgnoreCase(str, GRADE.name())) {
-                return GRADE;
-            } else if (StringUtils.equalsIgnoreCase(str, ACTIVITY.name())) {
-                return ACTIVITY;
-            } else {
-                throw new IllegalArgumentException("collection type ("+str+") does not match the valid types: "+ ArrayUtils.toString(InputCollection.values()));
-            }
+            return Enum.valueOf(InputCollection.class, str.toUpperCase());
         }
     }
 
@@ -120,7 +95,7 @@ public abstract class BaseInputHandlerService {
      * NOTE: these are the things that were already loaded and exist in the temp data stores
      */
     protected Map<InputCollection, InputHandler> loadedInputCollections;
-    
+
     /**
      * Stored the set of all loaded input types
      */
@@ -134,11 +109,10 @@ public abstract class BaseInputHandlerService {
     }
 
     /**
-     * @param the type of the input handler
-     * @return input type for implemenation
+     * @return input type for implementation
      */
     public abstract Type getType();
-    
+
     /**
      * @param type the class of input handlers we are looking for
      * @param <T> InputHandler type (e.g. CSVInputHandler)

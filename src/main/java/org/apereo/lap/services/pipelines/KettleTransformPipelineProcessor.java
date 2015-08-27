@@ -3,9 +3,9 @@
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
- *
+ * <p/>
  * http://www.osedu.org/licenses/ECL-2.0
- *
+ * <p/>
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an "AS IS"
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
@@ -14,28 +14,12 @@
  */
 package org.apereo.lap.services.pipelines;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.apereo.lap.services.configuration.ConfigurationService;
-import org.apereo.lap.services.input.SampleCSVInputHandlerService;
 import org.pentaho.di.core.Result;
-import org.pentaho.di.scoring.WekaScoringMeta;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
-import org.pentaho.di.trans.step.StepMeta;
-import org.pentaho.di.trans.steps.jsoninput.JsonInputMeta;
-import org.pentaho.di.trans.steps.jsonoutput.JsonOutputMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -48,20 +32,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class KettleTransformPipelineProcessor extends KettleBasePipelineProcessor {
 
-    // TODO these JSON files no longer needed?
-    private String jsonInputFilename = "sample1_input.json";
-    private String jsonOutputFilename = "sample1_output.json";
 
     @Autowired
     protected ConfigurationService configuration;
-    
-    /**
-     * Service-level initialization, will not be run every time
-     */
-    @PostConstruct
-    public void init() {
-        configureKettle();
-    }
+
 
     @Override
     public Processor.ProcessorType getProcessorType() {
@@ -71,60 +45,11 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
     @Override
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig, String inputJson) {
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_TRANSFORM);
-        File kettleXMLFile = getFile(processorConfig.filename);
-        File inputFile = null;
-
         try {
-            TransMeta transMeta = new TransMeta(kettleXMLFile.getAbsolutePath());
+            TransMeta transMeta = new TransMeta(processorConfig.filename);
 
             // update the shared objects to use the pre-configured shared objects
-            transMeta.setSharedObjects(getSharedObjects());
-
-            List<StepMeta> stepMetaList = transMeta.getSteps();
-            for (StepMeta stepMeta : stepMetaList) {
-                logger.info("Processing step: '" + stepMeta.getName() + "' in file: " + kettleXMLFile.getAbsolutePath());
-
-                // set the file path to the one necessary, based on step type
-                // TODO these JSON type checks no longer needed?
-                if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonInput")){
-                    String filePath = "";
-                    // if no JSON input is given, use the hard-coded JSON input file from the classpath
-                    if (StringUtils.isEmpty(inputJson)) {
-                        // copy JSON input file from classpath:extracts/ to inputs/
-                        copySampleCSV("extracts" + ConfigurationService.SLASH, jsonInputFilename);
-                        filePath = configurationService.getInputDirectory().getAbsolutePath() + ConfigurationService.SLASH + jsonInputFilename;
-                    } else {
-                        // get input file contents from JSON string
-                        inputFile = createTempInputFile(UUID.randomUUID().toString(), ".json");
-                        filePath = inputFile.getAbsolutePath();
-
-                        writeStringToFile(inputFile, inputJson);
-                    }
-
-                    JsonInputMeta jsonInputMeta = (JsonInputMeta) stepMeta.getStepMetaInterface();
-                    jsonInputMeta.setFileName(new String[]{filePath});
-                    logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' JSON input filename to " + filePath);
-                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "JsonOutput")) {
-                    // set output file to output/<FILENAME>
-                    String filePath = configurationService.getOutputDirectory().getAbsolutePath() + ConfigurationService.SLASH + jsonOutputFilename;
-                    JsonOutputMeta jsonOutputMeta = (JsonOutputMeta) stepMeta.getStepMetaInterface();
-                    jsonOutputMeta.setFileName(filePath);
-                    jsonOutputMeta.setExtension("");
-                    logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' JSON output filename to " + filePath);
-                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "WekaScoring")) {
-                    // set Weka serialized scoring model
-                    File file = getFile(makeFilePath(SCORING_MODEL_FILE_NAME));
-                    WekaScoringMeta wekaScoringMeta = (WekaScoringMeta) stepMeta.getStepMetaInterface();
-                    wekaScoringMeta.setSerializedModelFileName(file.getAbsolutePath());
-                    logger.info("Setting StepMeta '" + kettleXMLFile.getName() + " : " + stepMeta.getName() + "' Weka scoring model filename to " + file.getAbsolutePath());
-                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "TableInput")) {
-                    // do stuff for table input
-                } else if (StringUtils.equalsIgnoreCase(stepMeta.getTypeId(), "TableOutput")) {
-                    // do stuff for table output
-                } else {
-                    // do stuff for unknown step type IDs
-                }
-            }
+            transMeta.setSharedObjects(kettleConfiguration.getSharedObjects());
 
             // run the transformation
             Trans trans = new Trans(transMeta);
@@ -138,24 +63,7 @@ public class KettleTransformPipelineProcessor extends KettleBasePipelineProcesso
             result.done((int) transResult.getNrErrors(), null);
         } catch (Exception e) {
             logger.error("An error occurred processing the transformation file: " + processorConfig.filename + ". Error: " + e, e);
-        } finally {
-            // delete the temporary JSON input file, if it exists
-            if (inputFile != null) {
-                deleteTempInputFile(inputFile);
-            }
         }
-
         return result;
-    }
-
-    public void copySampleCSV(String classpathDir, String filename) {
-        try {
-            IOUtils.copy(
-                    SampleCSVInputHandlerService.class.getClassLoader().getResourceAsStream(classpathDir + filename),
-                    new FileOutputStream(new File(configuration.inputDirectory, filename))
-            );
-        } catch (IOException e) {
-            throw new RuntimeException("Cannot find the sample file to copy: "+filename);
-        }
     }
 }

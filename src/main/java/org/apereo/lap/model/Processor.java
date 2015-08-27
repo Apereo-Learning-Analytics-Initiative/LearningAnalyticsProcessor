@@ -88,18 +88,9 @@ public class Processor {
          * This processor just produces Fake data in a "FAKE_DATA" table
          */
         FAKE_DATA;
+
         static ProcessorType fromString(String str) {
-            if (StringUtils.equalsIgnoreCase(str, FAKE_DATA.name())) {
-                return FAKE_DATA;
-            } else if (StringUtils.equalsIgnoreCase(str, KETTLE_JOB.name())) {
-                    return KETTLE_JOB;
-            } else if (StringUtils.equalsIgnoreCase(str, KETTLE_TRANSFORM.name())) {
-                return KETTLE_TRANSFORM;
-            } else if (StringUtils.equalsIgnoreCase(str, KETTLE_DATA.name())) {
-                return KETTLE_DATA;
-            }else {
-                throw new IllegalArgumentException("processor type ("+str+") does not match the valid types: "+ ArrayUtils.toString(values()));
-            }
+             return Enum.valueOf(ProcessorType.class, str.toUpperCase());
         }
     }
 }

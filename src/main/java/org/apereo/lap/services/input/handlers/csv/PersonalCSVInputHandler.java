@@ -17,6 +17,7 @@ package org.apereo.lap.services.input.handlers.csv;
 import java.sql.Types;
 
 import org.apereo.lap.services.configuration.ConfigurationService;
+import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.apereo.lap.services.input.handlers.InputHandler.ReadResult;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -38,16 +39,17 @@ public class PersonalCSVInputHandler extends BaseCSVInputHandler {
     public PersonalCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
-    
+
 	@Override
 	public int getOrder() {
 		return 1;
 	}
+
     @Override
-    public String getFileName() {
-    	return "personal.csv";
+    public BaseInputHandlerService.InputCollection getInputCollection() {
+        return BaseInputHandlerService.InputCollection.PERSONAL;
     }
-    
+
     @Override
     public String makeInsertSQL() {
         return SQL_INSERT;
@@ -62,7 +64,7 @@ public class PersonalCSVInputHandler extends BaseCSVInputHandler {
     public CSVReader readCSV(boolean reRead) {
         return readCSV(14, "ALTERNATIVE_ID", reRead);
     }
-    
+
     @Override
     public ReadResult readInputIntoDB() {
         CSVReader reader = readCSV(false);

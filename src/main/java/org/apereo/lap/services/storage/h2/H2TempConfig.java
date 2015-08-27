@@ -1,10 +1,12 @@
 /**
- * 
+ *
  */
 package org.apereo.lap.services.storage.h2;
 
 import javax.sql.DataSource;
 
+import org.apereo.lap.services.storage.DatasourceProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,45 +20,51 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * @author ggilbert
- *
  */
 @Configuration
 public class H2TempConfig {
-  
-  @Primary
-  @Bean(name="tempJdbcTemplate")
-  public JdbcTemplate jdbcTemplate() {
-    return new JdbcTemplate(tempDataSource());
-  }
+    @Autowired
+    private DatasourceProperties datasourceProperties;
 
-  @Primary
-  @Bean(name="tempDataSource")
-  @ConfigurationProperties(prefix="datasource.temp")
-  public DataSource tempDataSource() {
-     DataSource ds = DataSourceBuilder.create().build();
-     return ds;
-  }
-  
-  @Bean(name="transactionManager")
-  @Primary
-  PlatformTransactionManager transactionManager() {
-    return new JpaTransactionManager(entityManagerFactory().getObject());
-  }
+    @Primary
+    @Bean(name = "tempJdbcTemplate")
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(tempDataSource());
+    }
 
-  @Primary
-  @Bean(name="entityManagerFactory")
-  LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    @Primary
+    @Bean(name = "tempDataSource")
+    public DataSource tempDataSource() {
+        DatasourceProperties.JdbcInfo p = datasourceProperties.getTemp();
+        return DataSourceBuilder
+                .create()
+                .url(p.getUrl())
+                .username(p.getUsername())
+                .password(p.getPassword())
+                .driverClassName(p.getDriverClassName())
+                .build();
+    }
 
-    HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-    jpaVendorAdapter.setGenerateDdl(true);
+    @Bean(name = "transactionManager")
+    @Primary
+    PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager(entityManagerFactory().getObject());
+    }
 
-    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    @Primary
+    @Bean(name = "entityManagerFactory")
+    LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 
-    factoryBean.setDataSource(tempDataSource());
-    factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-    factoryBean.setPackagesToScan("");
- 
-    return factoryBean;
-  }
+        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        jpaVendorAdapter.setGenerateDdl(true);
+
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+
+        factoryBean.setDataSource(tempDataSource());
+        factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+        factoryBean.setPackagesToScan("");
+
+        return factoryBean;
+    }
 
 }

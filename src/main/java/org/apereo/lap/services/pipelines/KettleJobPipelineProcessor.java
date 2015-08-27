@@ -14,20 +14,12 @@
  */
 package org.apereo.lap.services.pipelines;
 
-import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.Processor;
 import org.pentaho.di.core.Result;
 import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
-import org.pentaho.di.job.entries.job.JobEntryJob;
-import org.pentaho.di.job.entry.JobEntryCopy;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-
-import java.io.File;
-import java.util.Iterator;
 
 /**
  * Handles the pipeline processing for Kettle Job processors
@@ -38,14 +30,6 @@ import java.util.Iterator;
 @Component
 public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
 
-    /**
-     * Service-level initialization, will not be run every time
-     */
-    @PostConstruct
-    public void init() {
-        configureKettle();
-    }
-
     @Override
     public Processor.ProcessorType getProcessorType() {
         return Processor.ProcessorType.KETTLE_JOB;
@@ -54,29 +38,12 @@ public class KettleJobPipelineProcessor extends KettleBasePipelineProcessor {
     @Override
     public ProcessorResult process(PipelineConfig pipelineConfig, Processor processorConfig, String inputJson) {
         ProcessorResult result = new ProcessorResult(Processor.ProcessorType.KETTLE_JOB);
-        File kettleXMLFile = getFile(processorConfig.filename);
 
         try {
-            // update the Weka Scoring model file path
-            updateWekaScoringModel(getFile(makeFilePath(SCORING_TRANSFORM_FILE)));
-
-            JobMeta jobMeta = new JobMeta(kettleXMLFile.getAbsolutePath(), null, null);
+            JobMeta jobMeta = new JobMeta(configurationService.getApplicationHomeDirectory().resolve(processorConfig.filename).toString(), null, null);
 
             // update the shared objects to use the pre-configured shared objects
-            jobMeta.setSharedObjects(getSharedObjects());
-
-            Iterator<JobEntryCopy> iterator = jobMeta.getJobCopies().iterator();
-            while (iterator.hasNext()) {
-                JobEntryCopy jobEntryCopy = iterator.next();
-                // set the AssignWeights_Grades entry file name to the one on the classpath
-                if (StringUtils.equalsIgnoreCase(jobEntryCopy.getName(), ASSIGN_WEIGHTS_ENTRY_NAME)) {
-                    JobEntryJob jobEntryJob = (JobEntryJob) jobEntryCopy.getEntry();
-                    File file = getFile(makeFilePath(ASSIGN_WEIGHTS_FILE_NAME));
-                    jobEntryJob.setFileName(file.getAbsolutePath());
-
-                    logger.info("Setting job entry '" + kettleXMLFile.getName() + " : " + ASSIGN_WEIGHTS_ENTRY_NAME + "' filename to " + file.getAbsolutePath());
-                }
-            }
+            jobMeta.setSharedObjects(kettleConfiguration.getSharedObjects());
 
             // run the job
             Job job = new Job(null, jobMeta);

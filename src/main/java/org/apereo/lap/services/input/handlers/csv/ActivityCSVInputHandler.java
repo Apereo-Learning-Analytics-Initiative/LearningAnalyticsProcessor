@@ -14,18 +14,14 @@
  */
 package org.apereo.lap.services.input.handlers.csv;
 
-import java.sql.Types;
-
+import au.com.bytecode.opencsv.CSVReader;
 import org.apereo.lap.services.configuration.ConfigurationService;
-import org.apereo.lap.services.input.handlers.InputHandler.ReadResult;
+import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import au.com.bytecode.opencsv.CSVReader;
+import java.sql.Types;
 
 public class ActivityCSVInputHandler extends BaseCSVInputHandler {
-
-    public static final String FILENAME = "activity.csv";
-
     static final String SQL_INSERT = "INSERT INTO ACTIVITY (ALTERNATIVE_ID,COURSE_ID,EVENT,EVENT_DATE) VALUES (?,?,?,?)";
 
     static final int[] SQL_TYPES = new int[] {
@@ -36,7 +32,7 @@ public class ActivityCSVInputHandler extends BaseCSVInputHandler {
     public ActivityCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
     }
-    
+
 	@Override
 	public int getOrder() {
 		return 5;
@@ -51,17 +47,17 @@ public class ActivityCSVInputHandler extends BaseCSVInputHandler {
     public int[] makeInsertSQLParams() {
         return SQL_TYPES;
     }
-    
+
     @Override
-    public String getFileName() {
-    	return "activity.csv";
+    public BaseInputHandlerService.InputCollection getInputCollection() {
+        return BaseInputHandlerService.InputCollection.ACTIVITY;
     }
-    
+
     @Override
     public CSVReader readCSV(boolean reRead) {
         return readCSV(4, "ALTERNATIVE_ID", reRead);
     }
-    
+
     @Override
     public ReadResult readInputIntoDB() {
         CSVReader reader = readCSV(false);
