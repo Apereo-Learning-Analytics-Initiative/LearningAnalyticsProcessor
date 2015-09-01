@@ -8,6 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.exception.MissingTenantException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,37 +38,38 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
         logger.debug("allow defaultDatabase: "+useDefaultDatabaseName);
         
         MultiTenantMongoDbFactory.clearDatabaseNameForCurrentThread();
-        String tenant = null;
+        String tenant = req.getHeader("X-LAP-TENANT");
         Cookie tenantCookie = WebUtils.getCookie(req, "X-LAP-TENANT");
         
-        if (tenantCookie != null) {
-          // if we have the cookie that is the tenant authority
+        if (StringUtils.isBlank(tenant) && tenantCookie == null) {
+          // Don't know who the tenant is
+          if (Boolean.valueOf(useDefaultDatabaseName)) {
+            logger.warn("No tenant available in request. Using default database.");
+            tenant = defaultDatabase;
+          }
+          else {
+            throw new MissingTenantException("No tenant available in request and default database disabled.");
+          }
+        }
+        else if (StringUtils.isBlank(tenant) && tenantCookie != null) {
           tenant = tenantCookie.getValue();
           logger.debug("Tenant value from cookie");
         }
-        else {
-          // if we don't have it, then it is either login or an api call
-          // both of those cases should pass the tenant as a http header
-          tenant = req.getHeader("X-LAP-TENANT");
+        else if (StringUtils.isNotBlank(tenant) && tenantCookie == null) {
+          tenantCookie = new Cookie("X-LAP-TENANT", tenant);
+          tenantCookie.setPath("/");
+          res.addCookie(tenantCookie);
           logger.debug("Tenant value from header");
-          
-          if (org.apache.commons.lang.StringUtils.isNotBlank(tenant)) {
+        }
+        else {
+          // header and cookie
+          String tenantValueFromCookie = tenantCookie.getValue();
+          if (!tenant.equals(tenantValueFromCookie)) {
             tenantCookie = new Cookie("X-LAP-TENANT", tenant);
             tenantCookie.setPath("/");
             res.addCookie(tenantCookie);
           }
-          else {
-            
-            if (Boolean.valueOf(useDefaultDatabaseName)) {
-              logger.warn("No tenant available in request. Using default database.");
-              tenant = defaultDatabase;
-            }
-            else {
-              throw new MissingTenantException("A default database was not set at start up.");
-            }
-          }
         }
-        
         logger.debug("Tenant: "+tenant);
         MultiTenantMongoDbFactory.setDatabaseNameForCurrentThread(tenant);
         fc.doFilter(req, res);
