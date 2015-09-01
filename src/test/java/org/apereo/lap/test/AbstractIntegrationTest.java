@@ -15,19 +15,19 @@
 package org.apereo.lap.test;
 
 import org.apereo.lap.LearningAnalyticsProcessor;
-import org.apereo.lap.SecurityConfig;
-import org.apereo.lap.services.storage.h2.H2PersistentConfig;
-import org.apereo.lap.services.storage.h2.H2TempConfig;
+import org.apereo.lap.test.group.IntegrationTests;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {LearningAnalyticsProcessor.class, SecurityConfig.class, H2PersistentConfig.class, H2TempConfig.class} )
-@Category(UnitTests.class)
-public abstract class AbstractTest {
+@SpringApplicationConfiguration(classes = LearningAnalyticsProcessor.class)
+@Category(IntegrationTests.class)
+public abstract class AbstractIntegrationTest {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 }

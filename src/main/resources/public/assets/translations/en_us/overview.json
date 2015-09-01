@@ -1,4 +1,5 @@
 {
+"AUTHENTICATION_ERROR": "You are currently not logged in, please login to continue.",
 "TEXT_HEADER": "History",
 "TEXT_INSTRUCTIONS":"TBD ... instructions on how to use this",
 "TABLE_HEADER_DATE": "DATE",

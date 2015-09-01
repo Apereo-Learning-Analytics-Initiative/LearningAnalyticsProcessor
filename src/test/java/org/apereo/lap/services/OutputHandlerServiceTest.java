@@ -23,16 +23,17 @@ import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.output.OutputHandlerService;
 import org.apereo.lap.services.output.handlers.OutputHandler.OutputResult;
-import org.apereo.lap.test.AbstractTest;
+import org.apereo.lap.test.AbstractUnitTest;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 
-
-public class OutputHandlerServiceTest extends AbstractTest{
+@ActiveProfiles("test")
+public class OutputHandlerServiceTest extends AbstractUnitTest{
     private static final Logger logger = LoggerFactory.getLogger(OutputHandlerServiceTest.class);
 
     @Autowired

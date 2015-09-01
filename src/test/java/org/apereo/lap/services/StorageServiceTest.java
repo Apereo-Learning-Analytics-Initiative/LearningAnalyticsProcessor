@@ -23,7 +23,7 @@ import java.util.Map;
 
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.storage.StorageService;
-import org.apereo.lap.test.AbstractTest;
+import org.apereo.lap.test.AbstractUnitTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -31,13 +31,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.test.jdbc.JdbcTestUtils;
 
 /**
  * Integration services test for Storage
  */
-public class StorageServiceTest extends AbstractTest{
+@ActiveProfiles("test")
+public class StorageServiceTest extends AbstractUnitTest{
     private static final Logger logger = LoggerFactory.getLogger(StorageService.class);
     @Autowired
     ConfigurationService configuration;

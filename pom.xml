@@ -184,16 +184,20 @@
                 <version>2.15</version>
                 <!--$NO-MVN-MAN-VER$-->
                 <configuration>
-                    <groups>org.apereo.lap.test.UnitTests</groups>
-                    <includes>
-                        <include>**/*Tests.java</include>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <excludes>
-                        <exclude>**/Abstract*.java</exclude>
-                    </excludes>
-                    <reuseForks>false</reuseForks>
-                    <forkCount>1</forkCount>
+                  <groups>org.apereo.lap.test.group.UnitTests,
+                          org.apereo.lap.test.group.IntegrationTests,
+                          org.apereo.lap.test.group.MongoUnitTests
+                  </groups>
+                  <excludedGroups></excludedGroups>
+                  <includes>
+                    <include>**/*Tests.java</include>
+                    <include>**/*Test.java</include>
+                  </includes>
+                  <excludes>
+                    <exclude>**/Abstract*.java</exclude>
+                  </excludes>
+                  <reuseForks>false</reuseForks>
+                  <forkCount>1</forkCount>
                 </configuration>
             </plugin>
         </plugins>
