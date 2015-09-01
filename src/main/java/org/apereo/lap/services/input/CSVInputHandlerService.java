@@ -14,15 +14,6 @@
  */
 package org.apereo.lap.services.input;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -38,10 +29,19 @@ import org.apereo.lap.services.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  * Handles the inputs by reading the data into the temporary data storage
  * Validates the inputs and ensures the data is available to the pipeline processor
- * 
+ *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
 public class CSVInputHandlerService extends BaseInputHandlerService {
@@ -60,13 +60,13 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
 	public Type getType() {
 		return Type.CSV;
 	}
- 
+
     private Map<String, String> files = new HashMap<>();
-    
+
     public void init(HierarchicalConfiguration xmlConfig) {
         super.init();
 
-        
+
      // load the lists
         // sources
         List<HierarchicalConfiguration> sourceFields = xmlConfig.configurationsAt("params.files.file");
@@ -90,41 +90,41 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
         Map<String, T> handlers = new HashMap<>(); // empty set by default
         if (CSVInputHandler.class.isAssignableFrom(type)) {
         	for(Entry<String, String> file : files.entrySet()) {
-        		
         		CSVInputHandler handler = null;
-        		
         		if(file.getKey().equalsIgnoreCase("PERSONAL"))
         		{
         			handler = new PersonalCSVInputHandler(configuration, storage.getTempJdbcTemplate());
         		}
-        		
+
         		if(file.getKey().equalsIgnoreCase("ACTIVITY"))
         		{
         			handler = new ActivityCSVInputHandler(configuration, storage.getTempJdbcTemplate());
         		}
-        		
+
         		if(file.getKey().equalsIgnoreCase("COURSE"))
         		{
         			handler = new CourseCSVInputHandler(configuration, storage.getTempJdbcTemplate());
         		}
-        		
+
         		if(file.getKey().equalsIgnoreCase("GRADE"))
         		{
         			handler = new GradeCSVInputHandler(configuration, storage.getTempJdbcTemplate());
         		}
-        		
+
         		if(file.getKey().equalsIgnoreCase("ENROLLMENT"))
         		{
         			handler = new EnrollmentCSVInputHandler(configuration, storage.getTempJdbcTemplate());
         		}
-        		
+
+
         		if(handler != null)
         		{
-        			handler.setFilePath(file.getValue());
-        			handlers.put(handler.getFileName(), (T)handler);
+                    handler.setPath(file.getValue());
+        			handlers.put(file.getValue(), (T)handler);
         		}
+
         	}
-        	
+
         } // add other types here
         return handlers;
     }
@@ -139,16 +139,16 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
         if (inputCollections == null) {
             logger.info("Not loading any CSV files (empty inputCollections param)");
         } else {
-            logger.info("load CSV files from: "+configuration.inputDirectory.getAbsolutePath());
+            logger.info("load CSV files from: "+configuration.getInputDirectory());
             try {
                 // Initialize the CSV handlers
                 Map<String, CSVInputHandler> csvInputHandlerMap = findHandlers(CSVInputHandler.class);
                 Collection<CSVInputHandler> csvInputHandlers = new ArrayList<>(csvInputHandlerMap.values());
                 if (inputCollections.length > 0) { // null or empty means include them all
                     for (CSVInputHandler entry : csvInputHandlers) {
-                        if (!ArrayUtils.contains(inputCollections, entry.getHandledCollection())) {
+                        if (!ArrayUtils.contains(inputCollections, entry.getInputCollection())) {
                             // filtering this one out
-                            csvInputHandlerMap.remove(entry.getFileName());
+                            csvInputHandlerMap.remove(entry.getPath());
                         }
                     }
                     // rebuild it from whatever is left
@@ -159,11 +159,11 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
                 // First we verify the CSV files
                 for (CSVInputHandler csvInputHandler : csvInputHandlers) {
                     csvInputHandler.readCSV(true); // force it true just in case
-                    logger.info(csvInputHandler.getFileName()+" file and header appear valid");
+                    logger.info(csvInputHandler.getPath()+" file and header appear valid");
                 }
-                
+
                 List<CSVInputHandler> csvInputList = new ArrayList<>(csvInputHandlers);
-                
+
                 Comparator<CSVInputHandler> comparator = new Comparator<CSVInputHandler>() {
                     public int compare(CSVInputHandler c1, CSVInputHandler c2) {
                         return c1.getOrder() < c2.getOrder() ? -1 : 1;
@@ -171,7 +171,7 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
                 };
 
                 Collections.sort(csvInputList, comparator); // use the comparator as much as u wan
-           
+
                 // Next we load the data into the temp DB
                 for (CSVInputHandler csvInputHandler : csvInputList) {
                     InputHandler.ReadResult result = csvInputHandler.readInputIntoDB();
@@ -179,8 +179,8 @@ public class CSVInputHandlerService extends BaseInputHandlerService {
                         logger.error(result.failures.size()+" failures while parsing "+result.handledType+":\n"+ StringUtils.join(result.failures, "\n")+"\n");
                     }
                     logger.info(result.loaded+" lines from "+result.handledType+" (out of "+result.total+" lines) inserted into temp DB (with "+result.failed+" failures): "+result);
-                    loaded.put(csvInputHandler.getHandledCollection(), result);
-                    loadedInputCollections.put(csvInputHandler.getHandledCollection(), csvInputHandler);
+                    loaded.put(csvInputHandler.getInputCollection(), result);
+                    loadedInputCollections.put(csvInputHandler.getInputCollection(), csvInputHandler);
                 }
 
                 logger.info("Loaded CSV files: "+loadedInputCollections.keySet());

@@ -14,8 +14,7 @@
  */
 package org.apereo.lap.services.input.handlers;
 
-import org.apereo.lap.services.input.CSVInputHandlerService;
-import org.apereo.lap.services.input.SampleCSVInputHandlerService;
+import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.ArrayList;
@@ -31,12 +30,7 @@ public interface InputHandler {
     /**
      * @return the data type handled by this handler
      */
-    CSVInputHandlerService.InputType getHandledType();
-
-    /**
-     * @return the collection type handled by this handler
-     */
-    CSVInputHandlerService.InputCollection getHandledCollection();
+    BaseInputHandlerService.InputType getHandledType();
 
     /**
      * @return the JdbcTemplate for the temp database (get this from the StorageService)
@@ -66,6 +60,8 @@ public interface InputHandler {
      * @return the results of the processing with details of how many items loaded etc. (item failures are recorded but will not stop the processing)
      */
     ReadResult readInputIntoDB();
+
+    BaseInputHandlerService.InputCollection getInputCollection();
 
     public static class ReadResult {
         public String handledType;

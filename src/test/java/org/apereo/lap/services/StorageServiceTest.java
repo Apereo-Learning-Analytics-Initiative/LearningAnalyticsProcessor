@@ -50,12 +50,6 @@ public class StorageServiceTest extends AbstractUnitTest{
     @javax.annotation.Resource
     ResourceLoader resourceLoader;
 
-    @Before
-    @BeforeTransaction
-    public void before() {
-    	configuration.config().setProperty("test", true);
-        assertTrue( configuration.is("test") );
-    }
 
     @Test
     public void testServiceLoad() {

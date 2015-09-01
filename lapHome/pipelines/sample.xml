@@ -28,10 +28,34 @@
 
   <sources>
       <source>
-          <type>SAMPLECSV</type>
+          <type>CSV</type>
+          <params>
+              <files>
+                   <file>
+                      <type>PERSONAL</type>
+                      <path>extracts/personal.csv</path>
+                  </file>
+                   <file>
+                      <type>COURSE</type>
+                      <path>extracts/course.csv</path>
+                  </file>
+                   <file>
+                      <type>ENROLLMENT</type>
+                      <path>extracts/enrollment.csv</path>
+                  </file>
+                   <file>
+                      <type>GRADE</type>
+                      <path>extracts/grade.csv</path>
+                  </file>
+                  <file>
+                      <type>ACTIVITY</type>
+                      <path>extracts/activity.csv</path>
+                  </file>
+              </files>
+          </params>
       </source>
   </sources>
-  
+
   <inputs>
     <!--
     There is currently only 1 type of input allowed (temporary storage)

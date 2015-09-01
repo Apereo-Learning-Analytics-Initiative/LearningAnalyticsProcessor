@@ -8,7 +8,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apereo.lap.exception.MissingTenantException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +51,7 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
           tenant = req.getHeader("X-LAP-TENANT");
           logger.debug("Tenant value from header");
           
-          if (StringUtils.isNotBlank(tenant)) {
+          if (org.apache.commons.lang.StringUtils.isNotBlank(tenant)) {
             tenantCookie = new Cookie("X-LAP-TENANT", tenant);
             tenantCookie.setPath("/");
             res.addCookie(tenantCookie);

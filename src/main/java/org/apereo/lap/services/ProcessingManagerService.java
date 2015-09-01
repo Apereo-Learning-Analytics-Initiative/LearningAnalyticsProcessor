@@ -54,7 +54,7 @@ import org.springframework.stereotype.Component;
  * - Starts the pipeline processor
  * - Handles the outputs
  * - Sends the notifications
- * 
+ *
  * @author Aaron Zeckoski (azeckoski @ unicon.net) (azeckoski @ vt.edu)
  */
 @Component
@@ -67,21 +67,15 @@ public class ProcessingManagerService {
     @Autowired NotificationService notification;
     @Autowired OutputHandlerService outputHandler;
     @Autowired private StorageFactory storageFactory;
-    
+
     @Autowired
     List<PipelineProcessor> pipelineProcessors;
-    
+
     private ModelRunPersistentStorage modelRunPersistentStorage = null;
 
     @PostConstruct
     public void init() {
         logger.info("INIT");
-        if (configuration.getConfig().getBoolean("process.pipeline.sample", false)) {
-            logger.info("Running Sample Pipeline process");
-            process("sample", null);
-            logger.info("Sample Pipeline process COMPLETE");
-        }
-        
         modelRunPersistentStorage = storageFactory.getModelRunPersistentStorage();
     }
 
@@ -117,7 +111,7 @@ public class ProcessingManagerService {
             if (pipelineConfig == null) {
                 throw new IllegalArgumentException("No PipelineConfig found for id/type: "+pipelineId);
             }
-            
+
             // capture model run data
             modelRun.setModelName(pipelineConfig.getName());
             modelRun.setModelType(pipelineConfig.getType());
@@ -149,7 +143,7 @@ public class ProcessingManagerService {
             if (toLoad.isEmpty()) {
                 toLoad = null; // don't load anything if the model does not indicate it needs it
             }
-            
+
             for(Entry<String, PipelineConfig> pipelineConfigs: configuration.getPipelineConfigs().entrySet())
             {
             	for(BaseInputHandlerService inputHandler : pipelineConfigs.getValue().getInputHandlers())
@@ -157,7 +151,7 @@ public class ProcessingManagerService {
             		inputHandler.loadInputCollections(false, false, toLoad); // load on-demand, do not reset
             	}
             }
-            
+
             // start the pipeline processors
             List<Processor> processors = pipelineConfig.getProcessors();
             logger.info("Pipeline ("+pipelineId+") running "+processors.size()+" processors");
@@ -188,10 +182,10 @@ public class ProcessingManagerService {
                     OutputHandler.OutputResult result = outputHandler.doOutput(output);
                     logger.info("Output complete: "+result);
                     outputSuccess = true;
-                    
+
                     modelRun.setModel_run_id(result.modelRunId);
                     modelRun.setModelCount(result.total);
-                    
+
                 } catch (Exception e) {
                     logger.error("Output processor for pipeline (" + pipelineId + ") failure: "+e);
                 }
@@ -201,16 +195,16 @@ public class ProcessingManagerService {
                 // if no outputs succeeded then the pipeline has failed
                 throw new RuntimeException("All outputs failed, pipeline failure in outputs");
             }
-            
+
             // Trigger SSP call
             //thresholdTrigger.triggerSSP(outputs);
 
             // send success notification
             notification.sendNotification("Pipeline ("+pipelineId+") Complete", NotificationService.NotificationLevel.INFO);
             processResult = true;
-            
+
             modelRun.setSuccess(true);
-            
+
         } catch (RuntimeException e) {
             // send failure notification
             String msg = "Pipeline ("+pipelineId+") FAILED: "+e;
@@ -218,10 +212,10 @@ public class ProcessingManagerService {
             modelRun.setSuccess(false);
             notification.sendNotification(msg, NotificationService.NotificationLevel.CRITICAL);
         }
-        
+
         ModelRun savedModelRun = modelRunPersistentStorage.save(modelRun);
         logger.debug(savedModelRun.toString());
-        
+
         return processResult;
     }
 

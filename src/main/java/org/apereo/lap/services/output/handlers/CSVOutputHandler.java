@@ -44,7 +44,7 @@ public class CSVOutputHandler extends BaseOutputHandler implements OutputHandler
     public OutputResult writeOutput(Output output) {
         OutputResult result = new OutputResult(output);
         // make sure we can write the CSV
-        File csv = new File(configuration.getOutputDirectory(), output.filename);
+        File csv = configuration.getOutputDirectory().resolve(output.filename).toFile();
         boolean created;
         try {
             created = csv.createNewFile();

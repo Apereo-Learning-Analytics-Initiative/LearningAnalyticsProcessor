@@ -14,8 +14,6 @@
  */
 package org.apereo.lap.services.input.handlers.csv;
 
-import java.io.File;
-
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -23,10 +21,5 @@ public class SampleEnrollmentCSVInputHandler extends EnrollmentCSVInputHandler {
 
     public SampleEnrollmentCSVInputHandler(ConfigurationService configuration, JdbcTemplate jdbcTemplate) {
         super(configuration, jdbcTemplate);
-    }
-
-    @Override
-    public File getFile() {
-    	return new File(this.config.inputDirectory, getFileName());
     }
 }
