@@ -13,20 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.context.annotation.Primary;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
@@ -43,8 +42,7 @@ import org.springframework.web.util.WebUtils;
  */
 @Configuration
 @EnableWebSecurity
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
   private Logger log = Logger.getLogger(SecurityConfig.class);
 
@@ -53,66 +51,86 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     return new HttpSessionRequestCache();
   }
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder(11);
-  }
-  
-  @Override
-  public void configure(WebSecurity web) throws Exception {
-      web.ignoring()
-        .antMatchers("/assets/**");
-  }
+  @Configuration
+  public static class HttpBasicConfigurationAdapter extends WebSecurityConfigurerAdapter {
+    
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+          .antMatchers("/assets/**", "/favicon.ico");
+    }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http
-    .httpBasic()
-    .and()
-    .authorizeRequests()
-      .antMatchers("/assets/**", "/features/**", "/", "/login").permitAll()
-      .anyRequest().authenticated()
-      .and().csrf().csrfTokenRepository(csrfTokenRepository())
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+      http
+      .httpBasic()
+        .authenticationEntryPoint(new NoWWWAuthenticate401ResponseEntryPoint("lap"))
       .and()
-      .addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);;
-  }
+      .authorizeRequests()
+        .antMatchers("/features/**", "/", "/login").permitAll()
+        .anyRequest().authenticated()
+      .and().csrf().csrfTokenRepository(csrfTokenRepository())
+      .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+    }
+    
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+      auth
+        .inMemoryAuthentication()
+          .withUser("admin").password("admin").roles("ADMIN");
+    }
+    
+    @Primary
+    @Bean
+    public AuthenticationManager authManager() throws Exception {
+      return super.authenticationManagerBean();
+    }
+    
+    private Filter csrfHeaderFilter() {
+      return new OncePerRequestFilter() {      
+        @Override
+        protected void doFilterInternal(HttpServletRequest request,
+            HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+          CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+          
+          if (csrf != null) {
+            Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
+            String token = csrf.getToken();
+            if (cookie == null || token != null
+                && !token.equals(cookie.getValue())) {
+              cookie = new Cookie("XSRF-TOKEN", token);
+              cookie.setPath("/");
+              response.addCookie(cookie);
+            }
+          }
+          filterChain.doFilter(request, response);
+        }
+      };
+    }
 
-  @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-  auth
-  .inMemoryAuthentication()
-      .withUser("user").password("password").roles("USER");
+    private CsrfTokenRepository csrfTokenRepository() {
+      HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+      repository.setHeaderName("X-XSRF-TOKEN");
+      return repository;
+    }
+    
+    class NoWWWAuthenticate401ResponseEntryPoint extends BasicAuthenticationEntryPoint {
+      
+      public NoWWWAuthenticate401ResponseEntryPoint(String realm) {
+        setRealmName(realm);
+      }
+      
+      @Override
+      public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
+          throws IOException, ServletException {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.sendRedirect("/login");
+      }
+    }
+
   }
   
-  private Filter csrfHeaderFilter() {
-    return new OncePerRequestFilter() {      
-      @Override
-      protected void doFilterInternal(HttpServletRequest request,
-          HttpServletResponse response, FilterChain filterChain)
-          throws ServletException, IOException {
-        CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-        
-        if (csrf != null) {
-          Cookie cookie = WebUtils.getCookie(request, "XSRF-TOKEN");
-          String token = csrf.getToken();
-          if (cookie == null || token != null
-              && !token.equals(cookie.getValue())) {
-            cookie = new Cookie("XSRF-TOKEN", token);
-            cookie.setPath("/");
-            response.addCookie(cookie);
-          }
-        }
-        filterChain.doFilter(request, response);
-      }
-    };
-  }
-
-  private CsrfTokenRepository csrfTokenRepository() {
-    HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
-    repository.setHeaderName("X-XSRF-TOKEN");
-    return repository;
-  }
-
   class RequestAwareAuthenticationHander extends
       SavedRequestAwareAuthenticationSuccessHandler {
 

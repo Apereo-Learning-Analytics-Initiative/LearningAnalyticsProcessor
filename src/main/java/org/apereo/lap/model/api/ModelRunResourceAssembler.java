@@ -6,7 +6,7 @@ package org.apereo.lap.model.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apereo.lap.controllers.api.ModelRunController;
+import org.apereo.lap.controllers.ModelRunController;
 import org.apereo.lap.services.storage.ModelRun;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;

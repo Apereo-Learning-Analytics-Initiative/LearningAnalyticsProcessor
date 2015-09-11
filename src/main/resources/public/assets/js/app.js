@@ -139,10 +139,10 @@ angular
 	    		return RunDataService.getRuns();
 	    	  }	
 	     	},
-	        controller: 'MasterCtrl'
+	        controller: 'IndexCtrl'
 	    })
 	    .state('index.pipelines', {
-	        url: 'pipelines',
+	        url: 'admin/pipelines',
 	        templateUrl: '/assets/templates/pipelines.html',
 		    resolve:{
 	    		pipelines : function ($stateParams, PipelineDataService) {
@@ -152,7 +152,7 @@ angular
 	     	controller: 'PipelinesController'	    
 	     })
 	    .state('rules', {
-	        url: '/rules',
+	        url: 'admin/rules',
 	        templateUrl: '/assets/templates/rules.html'
 	    });	    
 	$locationProvider.html5Mode(true);

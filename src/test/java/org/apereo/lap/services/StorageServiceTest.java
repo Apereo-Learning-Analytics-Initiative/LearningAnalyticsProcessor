@@ -14,7 +14,6 @@
  */
 package org.apereo.lap.services;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -24,16 +23,12 @@ import java.util.Map;
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.storage.StorageService;
 import org.apereo.lap.test.AbstractUnitTest;
-import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.transaction.BeforeTransaction;
-import org.springframework.test.jdbc.JdbcTestUtils;
 
 /**
  * Integration services test for Storage
@@ -71,20 +66,6 @@ public class StorageServiceTest extends AbstractUnitTest{
         results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM COURSE");
         assertNotNull(results);
         assertTrue(results.isEmpty() );
-
-        Resource sample = resourceLoader.getResource("sample.sql");
-        JdbcTestUtils.executeSqlScript(storage.getTempJdbcTemplate(), sample, true);
-        logger.info("Loaded sample SQL script: "+sample.getFilename());
-
-        results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM PERSONAL");
-        assertNotNull(results);
-        assertTrue(!results.isEmpty());
-        assertEquals(2,results.size());
-
-        results = storage.getTempJdbcTemplate().queryForList("SELECT * FROM COURSE");
-        assertNotNull(results);
-        assertTrue(!results.isEmpty());
-        assertEquals(3, results.size());
     }
 
 }

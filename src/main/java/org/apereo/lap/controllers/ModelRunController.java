@@ -1,17 +1,14 @@
 /**
  * 
  */
-package org.apereo.lap.controllers.api;
+package org.apereo.lap.controllers;
 
 import java.util.ArrayList;
 
-import org.apereo.lap.model.api.ModelOutputRecord;
 import org.apereo.lap.model.api.ModelRunRecord;
 import org.apereo.lap.model.api.ModelRunResourceAssembler;
-import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.ModelRun;
 import org.apereo.lap.services.storage.ModelRunPersistentStorage;
-import org.apereo.lap.services.storage.PersistentStorage;
 import org.apereo.lap.services.storage.StorageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,7 +30,7 @@ public class ModelRunController {
   @Autowired private StorageFactory storageFactory;
   @Autowired private ModelRunResourceAssembler modelRunResourceAssembler;
   
-  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/runs")
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/history")
   public PagedResources<ModelRunRecord> runs(@PageableDefault(size = 10, page = 0) Pageable pageable, 
       PagedResourcesAssembler<ModelRun> assembler) {
     
