@@ -29,4 +29,4 @@ EXPOSE 8080
 # INFO: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [5172] milliseconds.
 
 WORKDIR /opt/lap/
-CMD java -server -jar -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=/opt/lap/local.properties lap-1.0-SNAPSHOT.jar 
+CMD java -server -jar -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=/opt/lap/dev.properties lap-1.0-SNAPSHOT.jar 
