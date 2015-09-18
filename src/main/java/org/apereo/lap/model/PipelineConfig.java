@@ -23,11 +23,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.model.Output.OutputField;
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.apereo.lap.services.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.mongodb.AggregationOptions.OutputMode;
 
 /**
  * This is an object that represents all configuration settings for a specific pipeline
@@ -292,6 +295,9 @@ public class PipelineConfig {
         // outputs
         List<HierarchicalConfiguration> outputs = xmlConfig.configurationsAt("outputs.output");
         for (HierarchicalConfiguration output : outputs) {
+          
+          // TODO - we need to rethink output handling
+          // don't want to add code every time we need to support a new output type
             try {
                 String oType = output.getString("type");
                 Output.OutputType ot =  Output.OutputType.fromString(oType); // IllegalArgumentException if invalid
@@ -311,7 +317,21 @@ public class PipelineConfig {
                         o.addFieldStorage(outputField.getString("source"), outputField.getString("target"));
                     }
                     pc.addOutput(o);
-                } // Add other types here as needed
+                } 
+                else if (ot == Output.OutputType.SSPEARLYALERT) {
+                  Output o = new Output();
+                  o.type = Output.OutputType.SSPEARLYALERT;
+                  o.from = output.getString("from");
+                  o.to = output.getString("to");
+
+                  List<HierarchicalConfiguration> outputFields = output.configurationsAt("fields.field");
+                  for (HierarchicalConfiguration outputField : outputFields) {
+                      OutputField field = new OutputField(o.type, outputField.getString("source"), outputField.getString("target"), null);
+                      o.fields.add(field);
+                  }
+                  pc.addOutput(o);
+                }
+                // Add other types here as needed
             } catch (Exception e) {
                 // skip this processor and warn
                 logger.warn("Unable to load output ("+output.toString()+") (skipping it): "+e);

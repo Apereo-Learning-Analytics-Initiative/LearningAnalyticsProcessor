@@ -31,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+@ActiveProfiles("test")
 public class ProcessingManagerServiceTest extends AbstractUnitTest{
     private static final Logger logger = LoggerFactory.getLogger(ProcessingManagerServiceTest.class);
 
@@ -50,14 +51,21 @@ public class ProcessingManagerServiceTest extends AbstractUnitTest{
         logger.warn("this executed");
     }
 
-    @Test
+    /*
+     * TODO - fix so it is not working on live data
+     */
+    //@Test
     public void testProcess() {
         assertNotNull(processingManagerService.getPipelineProcessors());
         assertNotNull(processingManagerService.getPipelineConfigs());
         assertTrue(processingManagerService.process("sample", null));
         logger.info("Test successful in processing 'sample'");
 
-        assertFalse(processingManagerService.process("sample-fail-test", null));
-        logger.info("Test successful in not being able to process 'sample-fail-test'");
+    }
+    
+    @Test
+    public void testMissingProcess() {
+      assertFalse(processingManagerService.process("sample-fail-test", null));
+      logger.info("Test successful in not being able to process 'sample-fail-test'");
     }
 }

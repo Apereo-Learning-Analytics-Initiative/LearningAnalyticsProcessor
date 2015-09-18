@@ -4,26 +4,29 @@ angular
 .module('LAP')
 .controller('LoginCtrl',
 
-function LoginCtrl($rootScope, $scope, $state, $translate, $translatePartialLoader, AuthenticationService, isMultiTenant) {
+function LoginCtrl($log, $scope, $state, $translate, $translatePartialLoader, SessionService, isMultiTenant) {
   $translatePartialLoader.addPart('login');
   $translate.refresh();
     
   $scope.isMultiTenant = isMultiTenant;
   $scope.credentials = {};
   $scope.login = function() {
-        AuthenticationService.authenticated($scope.credentials)
-          .then(
-            function (data) {
-              $rootScope.authenticated = data;
-              $rootScope.validationError = !data;
-              if(data)
-                  $state.go('index');
-              return;
-            },
-            function (error) {
-                $rootScope.authenticated = false;
-                $scope.error = true;
-            }
-          );
+	  SessionService.authenticate($scope.credentials)
+      .then(
+        function (data) {
+          $log.debug(data);
+          // TODO fix this validate message
+          $scope.validationError = !data;
+          if(data) {
+        	$state.go('index');
+        	return;
+          }
+          return;
+        },
+        function (error) {
+          $log.error(error);
+          $scope.error = true;
+        }
+      );
   };
 });

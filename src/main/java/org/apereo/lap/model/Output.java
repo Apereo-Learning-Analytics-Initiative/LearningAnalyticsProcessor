@@ -166,6 +166,7 @@ public class Output {
      * Represents the possible output types
      */
     public static enum OutputType {
+        SSPEARLYALERT,
         /**
          * Output into the persistent storage
          * (tables/collections must already be defined)
@@ -178,9 +179,14 @@ public class Output {
         static OutputType fromString(String str) {
             if (StringUtils.equalsIgnoreCase(str, STORAGE.name())) {
                 return STORAGE;
-            } else if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
+            } 
+            else if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
                 return CSV;
-            } else {
+            } 
+            else if (StringUtils.equalsIgnoreCase(str, SSPEARLYALERT.name())) {
+              return SSPEARLYALERT;
+            }
+            else {
                 throw new IllegalArgumentException("Output type ("+str+") does not match the valid types: CSV,STORAGE");
             }
         }

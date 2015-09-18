@@ -2,9 +2,9 @@
 
 angular
 .module('LAP')
-.controller('MasterCtrl',
+.controller('IndexCtrl',
 
-function MasterCtrl($scope, $state, $translate, $translatePartialLoader, $http, $rootScope, runs) {
+function MasterCtrl($scope, $state, $translate, $translatePartialLoader, $http, runs, SessionService) {
     
   $translatePartialLoader.addPart('overview');
   $translate.refresh();
@@ -12,8 +12,9 @@ function MasterCtrl($scope, $state, $translate, $translatePartialLoader, $http, 
   $scope.runs = runs;
 
   $scope.logout = function() {
+	  // TODO move to SessionService
           $http.post('logout', {}).success(function() {
-            $rootScope.authenticated = false;
+            $SessionService.invalidate();
             $state.go('login');
           }).error(function(data) {
             $rootScope.authenticated = false;
@@ -21,7 +22,7 @@ function MasterCtrl($scope, $state, $translate, $translatePartialLoader, $http, 
       };
       
   $scope.login = function() {
-      $rootScope.authenticated = false;
+	  $SessionService.invalidate();
       $state.go("login");
   }
 });

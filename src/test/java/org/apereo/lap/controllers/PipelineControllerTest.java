@@ -28,9 +28,11 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
- 
+
 public class PipelineControllerTest extends AbstractUnitTest{
 
     private static final Logger logger = LoggerFactory.getLogger(PipelineControllerTest.class);
@@ -65,7 +67,11 @@ public class PipelineControllerTest extends AbstractUnitTest{
         logger.info("Test successful in fetching pipeline config for type sample using pipeline controller ");
     }
 
-    @Test
+    /*
+     * TODO - this test must be fixed so that it is not writing to the live database
+     */
+    
+    //@Test
     public void testStart() {
         assertTrue(pipelineController.start("sample"));
         logger.info("Test successful in starting pipeline for type sample using pipeline controller ");

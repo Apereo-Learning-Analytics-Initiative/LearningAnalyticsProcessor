@@ -196,9 +196,6 @@ public class ProcessingManagerService {
                 throw new RuntimeException("All outputs failed, pipeline failure in outputs");
             }
 
-            // Trigger SSP call
-            //thresholdTrigger.triggerSSP(outputs);
-
             // send success notification
             notification.sendNotification("Pipeline ("+pipelineId+") Complete", NotificationService.NotificationLevel.INFO);
             processResult = true;
