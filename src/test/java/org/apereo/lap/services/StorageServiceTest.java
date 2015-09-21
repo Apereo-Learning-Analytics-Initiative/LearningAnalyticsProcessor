@@ -28,12 +28,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Integration services test for Storage
  */
-@ActiveProfiles("test")
 public class StorageServiceTest extends AbstractUnitTest{
     private static final Logger logger = LoggerFactory.getLogger(StorageService.class);
     @Autowired
@@ -53,7 +51,6 @@ public class StorageServiceTest extends AbstractUnitTest{
         assertNotNull(storage.getTempJdbcTemplate());
     }
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testServiceSQL() {
         List<Map<String, Object>> results;
