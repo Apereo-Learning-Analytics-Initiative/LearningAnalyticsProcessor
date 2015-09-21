@@ -36,7 +36,7 @@ public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   @Value("${lap.defaultDatabaseName:lap_default}")
   private String dbName;
   
-  @Value("${spring.data.mongodb.uri:mongodb://localhost}")
+  @Value("${spring.data.mongodb.uri:mongodb://localhost/lap}")
   private String dbUri;
   
   @Override
