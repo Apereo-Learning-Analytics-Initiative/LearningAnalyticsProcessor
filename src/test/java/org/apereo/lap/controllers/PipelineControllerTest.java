@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apereo.lap.exception.MissingPipelineException;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.model.PipelineConfig.InputField;
 import org.apereo.lap.services.ProcessingManagerService;
@@ -99,15 +100,15 @@ public class PipelineControllerTest extends AbstractUnitTest{
     }
 
     @Test
-    public void getTypeWillReturnPipelineConfigWhenGivenKnownType(){
+    public void getTypeWillReturnPipelineConfigWhenGivenKnownType() throws MissingPipelineException{
         when(processingManagerService.findPipelineConfig("knownType")).thenReturn(pipelineConfig);
         PipelineConfig actualValue = pipelineController.getType("knownType");
 
         assertNotNull(actualValue);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void getTypeWillThrowIllegalArgumentExceptionWhenGivenAnUnknownType(){
+    @Test(expected = MissingPipelineException.class)
+    public void getTypeWillThrowIllegalArgumentExceptionWhenGivenAnUnknownType() throws MissingPipelineException{
         assertEquals(null, pipelineController.getType("unknown"));
     }
 

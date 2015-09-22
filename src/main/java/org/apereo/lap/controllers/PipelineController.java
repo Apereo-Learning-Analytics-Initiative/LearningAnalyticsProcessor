@@ -19,6 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apereo.lap.exception.MissingPipelineException;
 import org.apereo.lap.model.PipelineConfig;
 import org.apereo.lap.services.ProcessingManagerService;
 import org.slf4j.Logger;
@@ -68,14 +69,19 @@ public class PipelineController {
 
     /**
      * Get one pipeline config
+     * @throws MissingPipelineException 
      */
     @RequestMapping(value = {"/api/pipelines/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
-    public @ResponseBody PipelineConfig getType(@PathVariable("type") String type) {
+    public @ResponseBody PipelineConfig getType(@PathVariable("type") String type) throws MissingPipelineException {
     	if (logger.isDebugEnabled()) {
     		logger.debug("Get pipeline config for type: "+type);
     	}
-    	
-        return processingManagerService.findPipelineConfig(type);
+    	PipelineConfig cfg = processingManagerService.findPipelineConfig(type);
+    	if(cfg == null){
+    	    throw new MissingPipelineException(String.format("Unable to find pipeline config of type: %s", type));
+    	}
+    	logger.info("Pipleline of type " + type);
+        return cfg;
     }
 
     /**
