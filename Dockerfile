@@ -18,6 +18,28 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer
 
+# Add $HOME/.kettle/shared.xml
+RUN mkdir $HOME/.kettle/
+RUN echo '<?xml version="1.0" encoding="UTF-8"?>\
+<sharedobjects>\
+  <connection>\
+    <name>LAP_connect</name>\
+    <server/>\
+    <type>H2</type>\
+    <access>Native</access>\
+    <database>mem&#x3a;temp-db&#x3b;MODE&#x3d;MYSQL&#x3b;DB_CLOSE_DELAY&#x3d;-1</database>\
+    <port>-1</port>\
+    <username>sa</username>\
+    <password>Encrypted </password>\
+    <servername/>\
+    <data_tablespace/>\
+    <index_tablespace/>\
+    <attributes>\
+      <attribute><code>PORT_NUMBER</code><attribute>-1</attribute></attribute>\
+    </attributes>\
+  </connection>\
+</sharedobjects>' >> $HOME/.kettle/shared.xml
+
 RUN mkdir opt/lap/
 ADD target/lap-1.0-SNAPSHOT.jar /opt/lap/
 ADD dev.properties /opt/lap/
