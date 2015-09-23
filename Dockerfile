@@ -19,9 +19,10 @@ RUN \
   rm -rf /var/cache/oracle-jdk8-installer
 
 RUN mkdir opt/lap/
-ADD target/lap-1.0-SNAPSHOT.jar /opt/lap/
-ADD dev.properties /opt/lap/
+COPY dev.properties /opt/lap/
+# ADD will unzip file however COPY should be use in all other instances see DOCKER documentation
 ADD lapHome.tar.gz /opt/lap/
+COPY target/lap-1.0-SNAPSHOT.jar /opt/lap/
 
 EXPOSE 8080
 
