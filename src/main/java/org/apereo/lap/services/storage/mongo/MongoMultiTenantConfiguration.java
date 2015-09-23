@@ -27,7 +27,7 @@ import com.mongodb.MongoClientURI;
 @Profile("mongo-multitenant")
 @Configuration
 @EnableMongoAuditing
-@EnableMongoRepositories({"org.apereo.lap.services.storage.mongo"})
+@EnableMongoRepositories({"org.apereo.lap.services.storage.mongo.model"})
 public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   private static final Logger logger = LoggerFactory.getLogger(MongoMultiTenantConfiguration.class);
   
@@ -36,7 +36,7 @@ public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   @Value("${lap.defaultDatabaseName:lap_default}")
   private String dbName;
   
-  @Value("${spring.data.mongodb.uri:mongodb://localhost/lap}")
+  @Value("${spring.data.mongodb.uri:mongodb://localhost/lap_default}")
   private String dbUri;
   
   @Override
@@ -66,8 +66,17 @@ public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   public FilterRegistrationBean mongoFilterBean() {
     FilterRegistrationBean registrationBean = new FilterRegistrationBean();
     registrationBean.setFilter(mongoFilter);
-    List<String> urls = new ArrayList<String>(1);
-    urls.add("/*");  //authenticated
+    List<String> urls = new ArrayList<String>();
+    
+    urls.add("/");
+    urls.add("/user");
+    urls.add("/login");
+    urls.add("/history/*");
+    urls.add("/features/*");
+    urls.add("/admin/*");
+    urls.add("/pipelines/*");
+    urls.add("/api/output/*");
+    
     registrationBean.setUrlPatterns(urls);
     return registrationBean;
   }

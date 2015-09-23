@@ -17,7 +17,6 @@ package org.apereo.lap.services.storage.h2.model;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  * Provides data access via JPA to the RiskConfidence table.
@@ -28,4 +27,7 @@ public interface RiskConfidenceRepository extends JpaRepository<RiskConfidence, 
 	Page<RiskConfidence> findByAlternativeId(String alternativeId, Pageable pageable);
   Page<RiskConfidence> findByCourseId(String courseId, Pageable pageable);
   Page<RiskConfidence> findByAlternativeIdAndCourseId(String alternativeId, String courseId, Pageable pageable);
+  RiskConfidence findTopByCourseIdOrderByDateCreatedDesc(String courseId);
+  Page<RiskConfidence> findByGroupIdAndCourseId(String groupId, String courseId, Pageable pageable);
+  Page<RiskConfidence> findTopByCourseIdAndAlternativeIdOrderByDateCreatedDesc(String courseId, String alternativeId, Pageable pageable);
 }

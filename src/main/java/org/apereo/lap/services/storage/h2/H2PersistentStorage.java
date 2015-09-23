@@ -68,13 +68,37 @@ public class H2PersistentStorage implements PersistentStorage<ModelOutput> {
   }
   
   @Override
-  public Page<ModelOutput> findByCourseId(String courseId, Pageable pageable) {
-    return convert(riskConfidenceRepository.findByCourseId(courseId, pageable), pageable);
+  public Page<ModelOutput> findByCourseId(String courseId, boolean onlyLastRun, Pageable pageable) {
+    
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      RiskConfidence riskConfidence = riskConfidenceRepository.findTopByCourseIdOrderByDateCreatedDesc(courseId);
+      if (riskConfidence != null) {
+        page = convert(riskConfidenceRepository.findByGroupIdAndCourseId(riskConfidence.getGroupId(), courseId, pageable),pageable);
+      }
+    }
+    else {
+      page = convert(riskConfidenceRepository.findByCourseId(courseId, pageable), pageable);
+    }
+    
+    return page;
   }
   
   @Override
-  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, Pageable pageable) {
-    return convert(riskConfidenceRepository.findByAlternativeIdAndCourseId(studentId, courseId, pageable), pageable);
+  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, boolean onlyLastRun, Pageable pageable) {
+    
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      RiskConfidence riskConfidence = riskConfidenceRepository.findTopByCourseIdOrderByDateCreatedDesc(courseId);
+      if (riskConfidence != null) {
+        page = convert(riskConfidenceRepository.findTopByCourseIdAndAlternativeIdOrderByDateCreatedDesc(courseId, studentId, pageable),pageable);
+      }
+    }
+    else {
+      page = convert(riskConfidenceRepository.findByAlternativeIdAndCourseId(studentId, courseId, pageable), pageable);
+    }
+    
+    return page;
   }
   
   private Page<ModelOutput> convert(Page<RiskConfidence> riskConfidenceEntities, Pageable pageable) {
@@ -94,7 +118,7 @@ public class H2PersistentStorage implements PersistentStorage<ModelOutput> {
     RiskConfidence riskConfidence = new RiskConfidence();
     riskConfidence.setAlternativeId(modelOutput.getStudentId());
     riskConfidence.setCourseId(modelOutput.getCourseId());
-    riskConfidence.setGroupId(modelOutput.getModel_run_id());
+    riskConfidence.setGroupId(modelOutput.getModelRunId());
     riskConfidence.setModelRiskConfidence(modelOutput.getRisk_score());
     riskConfidence.setDateCreated(new Date());
     
@@ -105,8 +129,8 @@ public class H2PersistentStorage implements PersistentStorage<ModelOutput> {
     ModelOutput modelOutput = new ModelOutput();
     modelOutput.setId(String.valueOf(riskConfidence.getId()));
     modelOutput.setCourseId(riskConfidence.getCourseId());
-    modelOutput.setCreated_date(riskConfidence.getDateCreated());
-    modelOutput.setModel_run_id(riskConfidence.getGroupId());
+    modelOutput.setCreatedDate(riskConfidence.getDateCreated());
+    modelOutput.setModelRunId(riskConfidence.getGroupId());
     modelOutput.setRisk_score(riskConfidence.getModelRiskConfidence());
     modelOutput.setStudentId(riskConfidence.getAlternativeId());
     return modelOutput;

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("MongoDB-ModelRunPersistentStorage")
-@Profile("mongo")
+@Profile({"mongo", "mongo-multitenant"})
 public class MongoModelRunPersistentStorage implements ModelRunPersistentStorage {
   
   @Autowired private MongoModelRunRepository mongoModelRunRepository;

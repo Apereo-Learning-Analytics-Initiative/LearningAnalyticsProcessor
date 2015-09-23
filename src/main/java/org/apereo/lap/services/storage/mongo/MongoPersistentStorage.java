@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("MongoDB")
-@Profile("mongo")
+@Profile({"mongo", "mongo-multitenant"})
 public class MongoPersistentStorage implements PersistentStorage<ModelOutput> {
   
   @Autowired
@@ -49,13 +49,35 @@ public class MongoPersistentStorage implements PersistentStorage<ModelOutput> {
   }
 
   @Override
-  public Page<ModelOutput> findByCourseId(String courseId, Pageable pageable) {
-    return mongoModelOutputRepository.findByCourseId(courseId, pageable);
+  public Page<ModelOutput> findByCourseId(String courseId, boolean onlyLastRun, Pageable pageable) {
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      ModelOutput modelOutput = mongoModelOutputRepository.findTopByCourseIdOrderByCreatedDateDesc(courseId);
+      if (modelOutput != null) {
+        page = mongoModelOutputRepository.findByModelRunIdAndCourseId(modelOutput.getModelRunId(), courseId, pageable);
+      }
+    }
+    else {
+      page = mongoModelOutputRepository.findByCourseId(courseId, pageable);
+    }
+    
+    return page;
   }
 
   @Override
-  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, Pageable pageable) {
-    return mongoModelOutputRepository.findByStudentIdAndCourseId(studentId, courseId, pageable);
+  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, boolean onlyLastRun, Pageable pageable) {
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      ModelOutput modelOutput = mongoModelOutputRepository.findTopByCourseIdOrderByCreatedDateDesc(courseId);
+      if (modelOutput != null) {
+        page = mongoModelOutputRepository.findTopByCourseIdAndStudentIdOrderByCreatedDateDesc(courseId, studentId, pageable);
+      }
+    }
+    else {
+      page = mongoModelOutputRepository.findByStudentIdAndCourseId(studentId, courseId, pageable);
+    }
+    
+    return page;
   }
 
 }

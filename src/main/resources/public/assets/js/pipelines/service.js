@@ -5,7 +5,7 @@
 				return {
 					getPipelines : function() {
 
-						var url = '/api/pipelines';
+						var url = '/pipelines';
 						var promise = $http({
 							method : 'GET',
 							url : url,
@@ -26,7 +26,7 @@
 					},
 					
 					runPipeline : function (type) {
-					  var url = '/api/pipelines/start/' + type;
+					  var url = '/pipelines/start/' + type;
 					  var promise = $http({
 						  method: 'POST',
 						  url : url,

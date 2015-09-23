@@ -20,6 +20,7 @@ import org.springframework.hateoas.PagedResources;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -35,7 +36,7 @@ public class ModelOutputController {
   @Autowired
   private ModelOutputResourceAssembler modelOutputResourceAssembler;
   
-  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output")
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/{tenant}")
   public PagedResources<ModelOutputRecord> output(@PageableDefault(size = 100, page = 0) Pageable pageable, 
       PagedResourcesAssembler<ModelOutput> assembler) {
     
@@ -47,7 +48,7 @@ public class ModelOutputController {
     return assembler.toResource(output, modelOutputResourceAssembler);
   }
   
-  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/student/{id}")
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/{tenant}/student/{id}")
   public PagedResources<ModelOutputRecord> outputByStudent(@PageableDefault(size = 100, page = 0) Pageable pageable, 
       PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("id") final String id) {
     
@@ -59,24 +60,24 @@ public class ModelOutputController {
     return assembler.toResource(output, modelOutputResourceAssembler);
   }
   
-  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/course/{id}")
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/{tenant}/course/{id}")
   public PagedResources<ModelOutputRecord> outputByCourse(@PageableDefault(size = 100, page = 0) Pageable pageable, 
-      PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("id") final String id) {
+      PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("id") final String id, @RequestParam(required=false,value="lastRunOnly") boolean lastRunOnly) {
     
     PersistentStorage<ModelOutput> persistentStorage = storageFactory.getPersistentStorage();
-    Page<ModelOutput> output = persistentStorage.findByCourseId(id, pageable);
+    Page<ModelOutput> output = persistentStorage.findByCourseId(id, lastRunOnly, pageable);
     if (output == null) {
       output = new PageImpl<ModelOutput>(new ArrayList<ModelOutput>(), pageable, 0);
     }
     return assembler.toResource(output, modelOutputResourceAssembler);
   }
   
-  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/course/{courseId}/student/{studentId}")
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/output/{tenant}/course/{courseId}/student/{studentId}")
   public PagedResources<ModelOutputRecord> outputByStudentAndCourse(@PageableDefault(size = 100, page = 0) Pageable pageable, 
-      PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("courseId") final String courseId, @PathVariable("studentId") final String studentId) {
+      PagedResourcesAssembler<ModelOutput> assembler, @PathVariable("courseId") final String courseId, @PathVariable("studentId") final String studentId, @RequestParam(required=false,value="lastRunOnly") boolean lastRunOnly) {
     
     PersistentStorage<ModelOutput> persistentStorage = storageFactory.getPersistentStorage();
-    Page<ModelOutput> output = persistentStorage.findByStudentIdAndCourseId(studentId, courseId, pageable);
+    Page<ModelOutput> output = persistentStorage.findByStudentIdAndCourseId(studentId, courseId, lastRunOnly, pageable);
     if (output == null) {
       output = new PageImpl<ModelOutput>(new ArrayList<ModelOutput>(), pageable, 0);
     }

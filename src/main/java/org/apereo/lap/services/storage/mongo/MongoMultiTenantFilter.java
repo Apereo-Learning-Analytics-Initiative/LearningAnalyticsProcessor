@@ -1,6 +1,7 @@
 package org.apereo.lap.services.storage.mongo;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.util.WebUtils;
 
 /**
@@ -39,6 +41,13 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
         
         MultiTenantMongoDbFactory.clearDatabaseNameForCurrentThread();
         String tenant = req.getHeader("X-LAP-TENANT");
+        
+        String requestURI = req.getRequestURI();
+        if (StringUtils.isBlank(tenant) && 
+            StringUtils.isNotBlank(requestURI) && StringUtils.startsWith(requestURI, "/api/output/")) {
+          tenant = StringUtils.substringBetween(requestURI, "/api/output/", "/");
+        }
+        
         Cookie tenantCookie = WebUtils.getCookie(req, "X-LAP-TENANT");
         
         if (StringUtils.isBlank(tenant) && tenantCookie == null) {
@@ -59,7 +68,7 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
           tenantCookie = new Cookie("X-LAP-TENANT", tenant);
           tenantCookie.setPath("/");
           res.addCookie(tenantCookie);
-          logger.debug("Tenant value from header");
+          logger.debug("Tenant value from header or path");
         }
         else {
           // header and cookie

@@ -9,12 +9,14 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 /**
  * @author ggilbert
  *
  */
+@JsonPropertyOrder({"id","risk_score","created_date","model_run_id","student_id","course_id"})
 public class ModelOutput implements PersistentLAPEntity {
 
   private static final long serialVersionUID = 1L;
@@ -27,8 +29,10 @@ public class ModelOutput implements PersistentLAPEntity {
   private String courseId;
   private String risk_score;
   @CreatedDate
-  private Date created_date;
-  private String model_run_id;
+  @JsonProperty("created_date")
+  private Date createdDate;
+  @JsonProperty("model_run_id")
+  private String modelRunId;
   
   public String getId() {
     return id;
@@ -54,22 +58,22 @@ public class ModelOutput implements PersistentLAPEntity {
   public void setRisk_score(String risk_score) {
     this.risk_score = risk_score;
   }
-  public Date getCreated_date() {
-    return created_date;
+  public Date getCreatedDate() {
+    return createdDate;
   }
-  public void setCreated_date(Date created_date) {
-    this.created_date = created_date;
+  public void setCreatedDate(Date created_date) {
+    this.createdDate = created_date;
   }
-  public String getModel_run_id() {
-    return model_run_id;
+  public String getModelRunId() {
+    return modelRunId;
   }
-  public void setModel_run_id(String model_run_id) {
-    this.model_run_id = model_run_id;
+  public void setModelRunId(String modelRunId) {
+    this.modelRunId = modelRunId;
   }
   @Override
   public String toString() {
     return "ModelOutput [id=" + id + ", studentId=" + studentId + ", courseId=" + courseId + ", risk_score=" + risk_score + ", created_date="
-        + created_date + ", model_run_id=" + model_run_id + "]";
+        + createdDate + ", modelRunId=" + modelRunId + "]";
   }
 
 }

@@ -15,7 +15,7 @@ public interface PersistentStorage<ModelOutput> {
   List<ModelOutput> saveAll(Collection<ModelOutput> persistentLAPentities);
   Page<ModelOutput> findAll(Pageable pageable);
   Page<ModelOutput> findByStudentId(String studentId, Pageable pageable);
-  Page<ModelOutput> findByCourseId(String courseId, Pageable pageable);
-  Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, Pageable pageable);
+  Page<ModelOutput> findByCourseId(String courseId, boolean onlyLastRun, Pageable pageable);
+  Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, boolean onlyLastRun, Pageable pageable);
 
 }

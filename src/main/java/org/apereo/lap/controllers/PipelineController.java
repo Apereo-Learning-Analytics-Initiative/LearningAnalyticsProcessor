@@ -45,7 +45,7 @@ public class PipelineController {
     /**
      * lists out the pipelines available (keys)
      */
-    @RequestMapping(value = {"/api/pipelines","/api/pipelines/"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
+    @RequestMapping(value = {"/pipelines","/pipelines/"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
     public @ResponseBody Map<String, Object> rootGet() {
     	
     	if (logger.isDebugEnabled()) {
@@ -69,7 +69,7 @@ public class PipelineController {
     /**
      * Get one pipeline config
      */
-    @RequestMapping(value = {"/api/pipelines/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
+    @RequestMapping(value = {"/pipelines/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
     public @ResponseBody PipelineConfig getType(@PathVariable("type") String type) {
     	if (logger.isDebugEnabled()) {
     		logger.debug("Get pipeline config for type: "+type);
@@ -82,7 +82,7 @@ public class PipelineController {
      * Post to start one pipeline
      * TODO probably need to add security to this
      */
-    @RequestMapping(value = {"/api/pipelines/start/{type}"}, method = RequestMethod.POST, produces="application/json;charset=utf-8")
+    @RequestMapping(value = {"/pipelines/start/{type}"}, method = RequestMethod.POST, produces="application/json;charset=utf-8")
     public @ResponseBody boolean start(@PathVariable("type") String type) {
     	if (logger.isDebugEnabled()) {
     		logger.debug("Start pipeline for type: "+type);

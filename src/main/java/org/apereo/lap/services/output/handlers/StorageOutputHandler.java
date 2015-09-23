@@ -71,7 +71,7 @@ public class StorageOutputHandler extends BaseOutputHandler implements OutputHan
       ModelOutput modelOutput = new ModelOutput();
 
       if (!rowSet.wasNull()) {
-        modelOutput.setModel_run_id(modelRunId);
+        modelOutput.setModelRunId(modelRunId);
 
         String[] rowVals = new String[sourceToHeaderMap.size()];
 

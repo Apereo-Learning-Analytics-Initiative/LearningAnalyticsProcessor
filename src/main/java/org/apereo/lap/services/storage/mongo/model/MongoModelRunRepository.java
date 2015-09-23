@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @author ggilbert
  *
  */
-@Profile("mongo")
+@Profile({"mongo", "mongo-multitenant"})
 public interface MongoModelRunRepository extends MongoRepository<ModelRun, String> {
   Page<ModelRun> findAllByOrderByCreatedDateDesc(Pageable pageable);
 }
