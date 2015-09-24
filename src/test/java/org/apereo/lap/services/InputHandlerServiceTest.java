@@ -14,6 +14,13 @@
  */
 package org.apereo.lap.services;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.nio.file.Paths;
+import java.util.List;
+
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apereo.lap.model.PipelineConfig;
@@ -28,13 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.test.context.ActiveProfiles;
-import java.nio.file.Paths;
-import java.util.List;
 
-import static org.junit.Assert.*;
-
-@ActiveProfiles("test")
 public class InputHandlerServiceTest extends AbstractUnitTest {
     private static final Logger logger = LoggerFactory.getLogger(InputHandlerServiceTest.class);
 

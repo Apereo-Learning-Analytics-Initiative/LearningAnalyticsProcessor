@@ -1,7 +1,6 @@
-package org.apereo.lap.services.storage.mongo.tests;
+package org.apereo.lap.test;
 
 import org.apereo.lap.LearningAnalyticsProcessor;
-import org.apereo.lap.test.group.MongoUnitTests;
 import org.junit.Before;
 import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
@@ -13,9 +12,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ActiveProfiles("mongo-multitenant")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LearningAnalyticsProcessor.class)
-@Category(MongoUnitTests.class)
+@Category(MongoUnitTests.class) //Want to be able to remove mongo tests with out affecting other Unit/Integration tests
 @WebAppConfiguration
-public abstract class MongoTests {
+public abstract class MongoUnitTests {
 
     @Before
     public void setup() {

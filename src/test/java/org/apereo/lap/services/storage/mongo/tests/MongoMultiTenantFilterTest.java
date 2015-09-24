@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apereo.lap.exception.MissingTenantException;
 import org.apereo.lap.services.storage.mongo.MongoMultiTenantFilter;
+import org.apereo.lap.test.MongoUnitTests;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.util.ReflectionTestUtils;
 
-public class MongoMultiTenantFilterTest extends MongoTests{
+public class MongoMultiTenantFilterTest extends MongoUnitTests{
 
     @Mock
     HttpServletResponse res;
@@ -69,7 +70,6 @@ public class MongoMultiTenantFilterTest extends MongoTests{
         verify(fc, times(1)).doFilter(mockRequest, mockResponse);
         assertEquals(mockResponse.getCookie("X-LAP-TENANT").getValue(), "test_tenant");
     }
-
 
     @Test
     public void doInternalFilterWillUseDefaultDatabaseWhenRequestExpectedHeaderAndCookieAreEmptyStrings() throws ServletException, IOException{

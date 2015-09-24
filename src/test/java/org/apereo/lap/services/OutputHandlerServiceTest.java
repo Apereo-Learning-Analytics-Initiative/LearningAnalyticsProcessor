@@ -30,9 +30,8 @@ import org.junit.rules.ExpectedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 
-@ActiveProfiles("test")
+
 public class OutputHandlerServiceTest extends AbstractUnitTest{
     private static final Logger logger = LoggerFactory.getLogger(OutputHandlerServiceTest.class);
 
