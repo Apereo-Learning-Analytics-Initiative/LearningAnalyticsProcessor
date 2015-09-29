@@ -71,7 +71,7 @@ public class ProcessingManagerService {
     @Autowired
     List<PipelineProcessor> pipelineProcessors;
 
-    @Autowired private ModelRunPersistentStorage modelRunPersistentStorage = null;
+    private ModelRunPersistentStorage modelRunPersistentStorage = null;
 
     @PostConstruct
     public void init() {

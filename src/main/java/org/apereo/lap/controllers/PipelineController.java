@@ -71,16 +71,16 @@ public class PipelineController {
      * Get one pipeline config
      * @throws MissingPipelineException 
      */
-    @RequestMapping(value = {"/api/pipelines/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
+    @RequestMapping(value = {"/pipelines/{type}"}, method = RequestMethod.GET, produces="application/json;charset=utf-8")
     public @ResponseBody PipelineConfig getType(@PathVariable("type") String type) throws MissingPipelineException {
     	if (logger.isDebugEnabled()) {
     		logger.debug("Get pipeline config for type: "+type);
     	}
-    	PipelineConfig cfg = processingManagerService.findPipelineConfig(type);
-    	if(cfg == null){
-    	    throw new MissingPipelineException(String.format("Unable to find pipeline config of type: %s", type));
-    	}
-    	logger.info("Pipleline of type " + type);
+    	
+        PipelineConfig cfg = processingManagerService.findPipelineConfig(type);
+        if(cfg == null){
+           throw new MissingPipelineException(String.format("Unable to find pipeline config of type: %s", type));
+        }
         return cfg;
     }
 
