@@ -41,10 +41,6 @@ RUN echo '<?xml version="1.0" encoding="UTF-8"?>\
 </sharedobjects>' >> $HOME/.kettle/shared.xml
 
 RUN mkdir opt/lap/
-COPY dev.properties /opt/lap/
-# ADD will unzip file however COPY should be use in all other instances see DOCKER documentation
-ADD lapHome.tar.gz /opt/lap/
-COPY target/lap-1.0-SNAPSHOT.jar /opt/lap/
 
 EXPOSE 8080
 
