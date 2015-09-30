@@ -42,6 +42,7 @@ public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   @Override
   @Bean
   public Mongo mongo() throws Exception {
+      logger.warn("Mongo Db URI is set to: {}", dbUri);
       return new MongoClient(new MongoClientURI(dbUri));
   }
 
