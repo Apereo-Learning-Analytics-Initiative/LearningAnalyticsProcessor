@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.exception.MissingTenantException;
+import org.apereo.lap.services.TenantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -33,13 +35,14 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
     
     @Value("${lap.useDefaultDatabaseName:true}")
     private String useDefaultDatabaseName;
+    
+    @Autowired private TenantService tenantService;
 
     @Override
     public void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain fc) throws ServletException, IOException {
         logger.debug("applying MongoMultiTenantFilter");
         logger.debug("allow defaultDatabase: "+useDefaultDatabaseName);
         
-        MultiTenantMongoDbFactory.clearDatabaseNameForCurrentThread();
         String tenant = req.getHeader("X-LAP-TENANT");
         
         String requestURI = req.getRequestURI();
@@ -80,7 +83,7 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
           }
         }
         logger.debug("Tenant: "+tenant);
-        MultiTenantMongoDbFactory.setDatabaseNameForCurrentThread(tenant);
+        tenantService.setTenant(tenant);
         fc.doFilter(req, res);
     }
 }

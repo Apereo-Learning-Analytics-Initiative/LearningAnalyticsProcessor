@@ -1,4 +1,4 @@
-package org.apereo.lap.services;
+package org.apereo.lap.controllers;
 
 import java.io.IOException;
 import java.util.Calendar;

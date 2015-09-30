@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apereo.lap.controllers.LapControllerAdvice;
 import org.apereo.lap.exception.MissingPipelineException;
 import org.apereo.lap.exception.MissingTenantException;
 import org.apereo.lap.model.ExceptionResponseDto;

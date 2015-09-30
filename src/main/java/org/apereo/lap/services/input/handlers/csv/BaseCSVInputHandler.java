@@ -57,15 +57,15 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
         // build up the handlers
     	CSVInputHandler csvih;
         Map<String, CSVInputHandler> handlers = new LinkedHashMap<>(); // maintain order
-        csvih = new SamplePersonalCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new PersonalCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleCourseCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new CourseCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleEnrollmentCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new EnrollmentCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleGradeCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new GradeCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleActivityCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new ActivityCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
         return handlers;
     }
