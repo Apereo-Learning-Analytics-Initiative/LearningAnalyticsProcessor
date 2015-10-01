@@ -143,7 +143,7 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
         String course = rowSet.getString(2);
         String risk = rowSet.getString(3);
         
-        if (StringUtils.isNotBlank(risk) && "HIGH RISK".equals(risk)) {
+        if (StringUtils.isNotBlank(risk) && ("HIGH RISK".equals(risk) || "MEDIUM RISK".equals(risk))) {
           EarlyAlert earlyAlert = new EarlyAlert(course, student, "Automated early alert due to risk score above acceptable limit", risk);
           earlyAlertList.add(earlyAlert);
         }
