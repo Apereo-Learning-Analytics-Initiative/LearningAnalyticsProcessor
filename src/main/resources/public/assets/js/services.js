@@ -95,6 +95,22 @@ angular
 			    return false;
 			});
 			return promise;
+		  },
+		  logout : function () {
+			  var promise = $http({
+				  method : 'POST',
+				  url : '/logout',
+				  headers : { 'Content-Type': 'application/json' }
+				})
+				.then(function(response) {
+				  authenticated = false;
+				  authorities = null;
+				  return response.data;
+				}, 
+				function(error) {
+				  return false;
+				});
+				return promise;
 		  }
 		}
 	})

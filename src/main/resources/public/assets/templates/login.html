@@ -5,8 +5,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <p ng-show="validationError" class="text-danger" translate="USERNAME_PASSWORD_MISMATCH_ERROR"></p>
             <form name="loginForm" class="form col-md-12 center-block" ng-submit="login()" novalidate>
+              <p ng-show="validationError" class="alert alert-danger" translate="ALERT_DANGER_USERNAME_PASSWORD_MISMATCH"></p>
+              <p ng-show="hasLoggedOut && !validationError" class="alert alert-success" translate="ALERT_SUCCESS_LOGOUT_{{hasLoggedOut}}"></p>
               <div class="form-group" ng-class="{ 'has-error' : loginForm.username.$invalid && !loginForm.username.$pristine }">
                 <input type="text" class="form-control input-lg"
                   placeholder="Username" name="username" ng-model="credentials.username" required></input>

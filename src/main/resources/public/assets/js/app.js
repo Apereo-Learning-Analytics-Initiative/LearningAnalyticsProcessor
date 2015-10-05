@@ -124,6 +124,7 @@ angular
 	    .state('login', {
 	        url: '/login',
 	        templateUrl: '/assets/templates/login.html',
+	        params: { loggedOutMessage : null},
 	        resolve:{
 	    	  isMultiTenant : function (FeatureFlagService) {
 	    		return FeatureFlagService.isFeatureActive('multitenant');

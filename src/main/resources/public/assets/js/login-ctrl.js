@@ -9,6 +9,7 @@ function LoginCtrl($log, $scope, $state, $translate, $translatePartialLoader, Se
   $translate.refresh();
     
   $scope.isMultiTenant = isMultiTenant;
+  $scope.hasLoggedOut = $state.params.loggedOutMessage;
   $scope.credentials = {};
   $scope.login = function() {
 	  SessionService.authenticate($scope.credentials)

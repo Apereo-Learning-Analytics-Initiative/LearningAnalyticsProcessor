@@ -5,24 +5,27 @@ angular
 .controller('IndexCtrl',
 
 function MasterCtrl($scope, $state, $translate, $translatePartialLoader, $http, runs, SessionService) {
-    
+  
+  if(!SessionService.isAuthenticated()){
+    $state.go("login");
+  }
+
   $translatePartialLoader.addPart('overview');
   $translate.refresh();
     
   $scope.runs = runs;
-
+  $scope.isAuthenticated = SessionService.isAuthenticated();
   $scope.logout = function() {
-	  // TODO move to SessionService
-          $http.post('logout', {}).success(function() {
-            $SessionService.invalidate();
-            $state.go('login');
-          }).error(function(data) {
-            $rootScope.authenticated = false;
-          });
-      };
-      
-  $scope.login = function() {
-	  $SessionService.invalidate();
-      $state.go("login");
+	  SessionService.logout()
+	    .then( function(data) {
+	        $state.go('login', {loggedOutMessage:'USER_INITIATED'});
+	        return;
+	    },
+	    function (error) {
+	        $state.go('login', {loggedOutMessage:'USER_INITIATED'});
+	        return;
+	    }
+	  );
   }
+
 });

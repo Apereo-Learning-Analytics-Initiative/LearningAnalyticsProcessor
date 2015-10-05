@@ -1,10 +1,14 @@
 {
-"AUTHENTICATION_ERROR": "You are currently not logged in, please login to continue.",
 "TEXT_HEADER": "History",
 "TEXT_INSTRUCTIONS":"TBD ... instructions on how to use this",
 "TABLE_HEADER_DATE": "DATE",
 "TABLE_HEADER_TYPE": "TYPE",
 "TABLE_HEADER_NAME": "NAME",
 "TABLE_HEADER_SUCCESS": "SUCCESS",
-"TABLE_HEADER_COUNT": "COUNT"
+"TABLE_HEADER_COUNT": "COUNT",
+
+"LINK_INDEX_LOGIN": "Login",
+"LINK_INDEX_LOGOUT": "Logout",
+"LINK_INDEX_SETTINGS":"Settings",
+"LINK_INDEX_HELP":"Help"
 }
