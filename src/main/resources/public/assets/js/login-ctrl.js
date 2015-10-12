@@ -18,10 +18,7 @@ angular
 .module('LAP')
 .controller('LoginCtrl',
 
-function LoginCtrl($log, $scope, $state, $translate, $translatePartialLoader, SessionService, isMultiTenant) {
-  $translatePartialLoader.addPart('login');
-  $translate.refresh();
-    
+function LoginCtrl($log, $scope, $state, SessionService, isMultiTenant) {
   $scope.isMultiTenant = isMultiTenant;
   $scope.hasLoggedOut = $state.params.loggedOutMessage;
   $scope.credentials = {};

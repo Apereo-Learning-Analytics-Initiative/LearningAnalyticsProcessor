@@ -15,7 +15,7 @@
 'use strict';
 
 angular
-.module('LAP', ['ui.bootstrap', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ui-notification']);
+.module('LAP', ['ui.bootstrap', 'ui.router', 'ngCookies', 'ngSanitize', 'pascalprecht.translate', 'ui-notification']);
 
 angular
 .module('LAP')
@@ -36,6 +36,8 @@ angular
       });
 
     $translateProvider.preferredLanguage('en_us');
+    $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translatePartialLoaderProvider.addPart('overview');
 })
 .config(function ($httpProvider, requestNotificationProvider) {
     $httpProvider.interceptors.push(function ($q) {

@@ -18,15 +18,12 @@ angular
 .module('LAP')
 .controller('IndexCtrl',
 
-function MasterCtrl($scope, $state, $translate, $translatePartialLoader, $http, runs, SessionService) {
+function MasterCtrl($scope, $state, $http, runs, SessionService) {
   
   if(!SessionService.isAuthenticated()){
     $state.go("login");
   }
 
-  $translatePartialLoader.addPart('overview');
-  $translate.refresh();
-    
   $scope.runs = runs;
   $scope.isAuthenticated = SessionService.isAuthenticated();
   $scope.logout = function() {

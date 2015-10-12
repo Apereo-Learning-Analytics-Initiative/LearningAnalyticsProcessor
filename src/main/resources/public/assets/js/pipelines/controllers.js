@@ -18,10 +18,7 @@
 	.module('LAP')
 	.controller('PipelinesController',
 
-		function PipelinesController($scope, $state, $translate, $translatePartialLoader, pipelines, PipelineDataService, Notification) {
-		    $translatePartialLoader.addPart('pipelines');
-		    $translate.refresh();
-		    
+		function PipelinesController($scope, $state, pipelines, PipelineDataService, Notification) {
 			$scope.pipelines = pipelines;
 			$scope.submitted = false;
 
