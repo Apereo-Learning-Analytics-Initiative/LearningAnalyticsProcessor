@@ -14,9 +14,13 @@
  *******************************************************************************/
 package org.apereo.lap.model;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Represents a type of output from a pipeline
@@ -92,6 +96,10 @@ public class Output {
         String columnsSQL = StringUtils.join(columns, ",");
         return "SELECT "+columnsSQL+" FROM "+this.from;
     }
+    
+    public String makeTempDBSelectStarSQL() {
+      return "SELECT * FROM "+this.from;
+  }
 
     /**
      * @return the list of source columns from the temp DB (in defined order)

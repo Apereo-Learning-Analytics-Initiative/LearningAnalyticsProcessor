@@ -18,7 +18,6 @@ import java.sql.Types;
 
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.input.BaseInputHandlerService;
-import org.apereo.lap.services.input.handlers.InputHandler.ReadResult;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import au.com.bytecode.opencsv.CSVReader;

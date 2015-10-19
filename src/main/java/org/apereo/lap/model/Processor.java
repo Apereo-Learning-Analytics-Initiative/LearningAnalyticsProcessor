@@ -14,7 +14,6 @@
  *******************************************************************************/
 package org.apereo.lap.model;
 
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -83,11 +82,7 @@ public class Processor {
         /**
          * Pentaho Kettle output
          */
-        KETTLE_DATA,
-        /**
-         * This processor just produces Fake data in a "FAKE_DATA" table
-         */
-        FAKE_DATA;
+        KETTLE_DATA;
 
         static ProcessorType fromString(String str) {
              return Enum.valueOf(ProcessorType.class, str.toUpperCase());

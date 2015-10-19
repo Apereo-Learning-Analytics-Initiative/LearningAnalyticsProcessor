@@ -15,11 +15,9 @@
 package org.apereo.lap.services.storage.mongo;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,8 +31,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.web.servlet.HandlerMapping;
-import org.springframework.web.util.WebUtils;
 
 /**
 * @author jbrown
@@ -57,47 +53,37 @@ public class MongoMultiTenantFilter extends OncePerRequestFilter {
         logger.debug("applying MongoMultiTenantFilter");
         logger.debug("allow defaultDatabase: "+useDefaultDatabaseName);
         
+        // For now header trumps all sources        
         String tenant = req.getHeader("X-LAP-TENANT");
         
-        String requestURI = req.getRequestURI();
-        if (StringUtils.isBlank(tenant) && 
-            StringUtils.isNotBlank(requestURI) && StringUtils.startsWith(requestURI, "/api/output/")) {
-          tenant = StringUtils.substringBetween(requestURI, "/api/output/", "/");
+        if (StringUtils.isBlank(tenant)) {
+          // Next try path
+          String requestURI = req.getRequestURI();
+          if (StringUtils.isBlank(tenant) && 
+              StringUtils.isNotBlank(requestURI) && StringUtils.startsWith(requestURI, "/api/output/")) {
+            tenant = StringUtils.substringBetween(requestURI, "/api/output/", "/");
+          }
+          
+          if (StringUtils.isBlank(tenant)) {
+            // Next try session
+            tenant = tenantService.getTenant();
+            
+            // If still blank and a default db is allowed
+            if (StringUtils.isBlank(tenant)) {
+              if (Boolean.valueOf(useDefaultDatabaseName)) {
+                logger.warn("No tenant available in request. Using default database.");
+                tenant = defaultDatabase;
+              }
+              else {
+                throw new MissingTenantException("No tenant available in request and default database disabled.");
+              }
+            }
+          }          
         }
         
-        Cookie tenantCookie = WebUtils.getCookie(req, "X-LAP-TENANT");
-        
-        if (StringUtils.isBlank(tenant) && tenantCookie == null) {
-          // Don't know who the tenant is
-          if (Boolean.valueOf(useDefaultDatabaseName)) {
-            logger.warn("No tenant available in request. Using default database.");
-            tenant = defaultDatabase;
-          }
-          else {
-            throw new MissingTenantException("No tenant available in request and default database disabled.");
-          }
-        }
-        else if (StringUtils.isBlank(tenant) && tenantCookie != null) {
-          tenant = tenantCookie.getValue();
-          logger.debug("Tenant value from cookie");
-        }
-        else if (StringUtils.isNotBlank(tenant) && tenantCookie == null) {
-          tenantCookie = new Cookie("X-LAP-TENANT", tenant);
-          tenantCookie.setPath("/");
-          res.addCookie(tenantCookie);
-          logger.debug("Tenant value from header or path");
-        }
-        else {
-          // header and cookie
-          String tenantValueFromCookie = tenantCookie.getValue();
-          if (!tenant.equals(tenantValueFromCookie)) {
-            tenantCookie = new Cookie("X-LAP-TENANT", tenant);
-            tenantCookie.setPath("/");
-            res.addCookie(tenantCookie);
-          }
-        }
-        logger.debug("Tenant: "+tenant);
         tenantService.setTenant(tenant);
+        logger.debug("Using tenant {}",tenantService.getTenant());
+        
         fc.doFilter(req, res);
     }
 }

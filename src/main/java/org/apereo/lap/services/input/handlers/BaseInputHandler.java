@@ -14,14 +14,14 @@
  *******************************************************************************/
 package org.apereo.lap.services.input.handlers;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.Date;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.util.Date;
 
 /**
  * Handles the input processing for a single input data source

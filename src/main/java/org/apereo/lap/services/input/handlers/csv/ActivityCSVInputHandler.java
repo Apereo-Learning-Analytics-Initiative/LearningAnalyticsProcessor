@@ -14,12 +14,13 @@
  *******************************************************************************/
 package org.apereo.lap.services.input.handlers.csv;
 
-import au.com.bytecode.opencsv.CSVReader;
+import java.sql.Types;
+
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.Types;
+import au.com.bytecode.opencsv.CSVReader;
 
 public class ActivityCSVInputHandler extends BaseCSVInputHandler {
     static final String SQL_INSERT = "INSERT INTO ACTIVITY (ALTERNATIVE_ID,COURSE_ID,EVENT,EVENT_DATE) VALUES (?,?,?,?)";

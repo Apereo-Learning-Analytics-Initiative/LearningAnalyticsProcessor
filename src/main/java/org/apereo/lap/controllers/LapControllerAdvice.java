@@ -17,16 +17,19 @@ package org.apereo.lap.controllers;
 import java.io.IOException;
 import java.util.Calendar;
 
+import javassist.NotFoundException;
+
 import javax.servlet.http.HttpServletRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.apereo.lap.exception.MissingPipelineException;
 import org.apereo.lap.exception.MissingTenantException;
 import org.apereo.lap.model.ExceptionResponseDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
 
 @ControllerAdvice
 public class LapControllerAdvice {
@@ -38,7 +41,9 @@ public class LapControllerAdvice {
     
     @ExceptionHandler({Exception.class})
     public Object handleAppException(HttpServletRequest request, Exception ex) throws IOException {
-        if (ex instanceof MissingPipelineException || ex instanceof MissingTenantException) {
+        if (ex instanceof MissingPipelineException 
+            || ex instanceof MissingTenantException 
+            || ex instanceof NotFoundException) {
             return handleExceptionWithMessageAndStatusCode(request, ex, 404);
         } 
         // Everything else gets a generic 500 exception

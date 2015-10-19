@@ -14,11 +14,11 @@
  *******************************************************************************/
 package org.apereo.lap.services.pipelines;
 
-import org.apereo.lap.model.PipelineConfig;
-import org.apereo.lap.model.Processor;
-
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.apereo.lap.model.PipelineConfig;
+import org.apereo.lap.model.Processor;
 
 /**
  * Handles the pipeline processing for a specific type of processor (e.g. Kettle)

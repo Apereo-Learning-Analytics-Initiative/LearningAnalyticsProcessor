@@ -14,9 +14,9 @@
  *******************************************************************************/
 package org.apereo.lap.services.input.handlers.csv;
 
-import au.com.bytecode.opencsv.CSVReader;
-import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.apereo.lap.services.input.handlers.InputHandler;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 /**
  * Handles the CSV input processing for a single CSV file

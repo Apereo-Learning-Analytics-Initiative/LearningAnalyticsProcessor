@@ -18,13 +18,10 @@
 package org.apereo.lap.services.storage.h2;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.ModelRun;
 import org.apereo.lap.services.storage.ModelRunPersistentStorage;
-import org.apereo.lap.services.storage.h2.model.RiskConfidence;
 import org.apereo.lap.services.storage.h2.model.Run;
 import org.apereo.lap.services.storage.h2.model.RunRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 /**
  * @author ggilbert
@@ -29,10 +30,22 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 @Profile({"mongo", "mongo-multitenant"})
 public interface MongoModelOutputRepository extends MongoRepository<ModelOutput, String> {
+  
+  @Query("{ 'output.ALTERNATIVE_ID' : ?0 }")
   Page<ModelOutput> findByStudentId(String student_id, Pageable pageable);
+  
+  @Query("{ 'output.COURSE_ID' : ?0 }")
   Page<ModelOutput> findByCourseId(String course_id, Pageable pageable);
+  
+  @Query("{ 'output.ALTERNATIVE_ID' : ?0, 'output.COURSE_ID' : ?1 }")
   Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, Pageable pageable);
+  
+  @Query("{ 'output.COURSE_ID' : ?0 }")
   ModelOutput findTopByCourseIdOrderByCreatedDateDesc(String courseId);
+  
+  @Query("{ 'modelRunId' : ?0, 'output.COURSE_ID' : ?1 }")
   Page<ModelOutput> findByModelRunIdAndCourseId(String modelRunId, String courseId, Pageable pageable);
+  
+  @Query("{ 'output.COURSE_ID' : ?0, 'output.ALTERNATIVE_ID' : ?1 }")
   Page<ModelOutput> findTopByCourseIdAndStudentIdOrderByCreatedDateDesc(String courseId, String studentId, Pageable pageable);
 }

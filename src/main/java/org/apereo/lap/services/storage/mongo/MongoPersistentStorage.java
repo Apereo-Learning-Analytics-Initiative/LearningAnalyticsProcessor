@@ -27,7 +27,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
 
 /**
  * @author ggilbert
@@ -39,6 +43,9 @@ public class MongoPersistentStorage implements PersistentStorage<ModelOutput> {
   
   @Autowired
   private MongoModelOutputRepository mongoModelOutputRepository;
+  
+  @Autowired
+  private MongoTemplate mongoTemplate;
 
   @Override
   public ModelOutput save(ModelOutput persistentLAPEntity) {
@@ -59,6 +66,7 @@ public class MongoPersistentStorage implements PersistentStorage<ModelOutput> {
 
   @Override
   public Page<ModelOutput> findByStudentId(String studentId, Pageable pageable) {
+    
     return mongoModelOutputRepository.findByStudentId(studentId, pageable);
   }
 

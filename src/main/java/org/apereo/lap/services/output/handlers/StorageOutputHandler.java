@@ -15,9 +15,12 @@
 package org.apereo.lap.services.output.handlers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+
 
 //import org.apereo.lap.dao.RiskConfidenceRepository;
 //import org.apereo.lap.dao.model.RiskConfidence;
@@ -26,7 +29,9 @@ import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.PersistentStorage;
 import org.apereo.lap.services.storage.StorageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.InvalidResultSetAccessException;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.jdbc.support.rowset.SqlRowSetMetaData;
 import org.springframework.stereotype.Component;
 
 /**
@@ -53,39 +58,28 @@ public class StorageOutputHandler extends BaseOutputHandler implements OutputHan
     
     OutputResult result = new OutputResult(output);
 
-    Map<String, String> sourceToHeaderMap = output.makeSourceTargetMap();
-    String selectSQL = output.makeTempDBSelectSQL();
+    String selectSQL = output.makeTempDBSelectStarSQL();
 
-    SqlRowSet rowSet;
+    SqlRowSet rowSet = null;
+    SqlRowSetMetaData metadata = null;
     try {
       rowSet = storage.getTempJdbcTemplate().queryForRowSet(selectSQL);
-      
+      metadata = rowSet.getMetaData();
     } catch (Exception e) {
       throw new RuntimeException("Failure while trying to retrieve the output data set: " + selectSQL);
     }
 
     List<ModelOutput> modelOutputEntities = new ArrayList<ModelOutput>();
     String modelRunId = UUID.randomUUID().toString();
-
-    while (rowSet.next()) {
+    while (rowSet.next()) {      
       ModelOutput modelOutput = new ModelOutput();
-
-      if (!rowSet.wasNull()) {
-        modelOutput.setModelRunId(modelRunId);
-
-        String[] rowVals = new String[sourceToHeaderMap.size()];
-
-        if (rowVals.length > 0)
-          modelOutput.setStudentId(rowSet.getString(1));
-
-        if (rowVals.length > 1)
-          modelOutput.setCourseId(rowSet.getString(2));
-
-        if (rowVals.length > 2)
-          modelOutput.setRisk_score(rowSet.getString(3));
-
-        modelOutputEntities.add(modelOutput);
+      Map<String, Object> data = new HashMap<String, Object>();
+      for (String column : metadata.getColumnNames()) {
+        data.put(column, rowSet.getObject(column));
       }
+      modelOutput.setOutput(data);
+      modelOutput.setModelRunId(modelRunId);
+      modelOutputEntities.add(modelOutput);
     }
     
     persistentStorage.saveAll(modelOutputEntities);

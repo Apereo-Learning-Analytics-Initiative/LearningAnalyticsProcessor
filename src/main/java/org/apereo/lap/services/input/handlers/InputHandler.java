@@ -14,11 +14,11 @@
  *******************************************************************************/
 package org.apereo.lap.services.input.handlers;
 
-import org.apereo.lap.services.input.BaseInputHandlerService;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.apereo.lap.services.input.BaseInputHandlerService;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * Handles the input processing for a single input data source

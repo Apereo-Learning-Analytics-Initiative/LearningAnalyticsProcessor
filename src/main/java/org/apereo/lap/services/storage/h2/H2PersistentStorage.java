@@ -20,7 +20,9 @@ package org.apereo.lap.services.storage.h2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.PersistentLAPEntity;
@@ -130,23 +132,29 @@ public class H2PersistentStorage implements PersistentStorage<ModelOutput> {
   
   private RiskConfidence toRiskConfidence(ModelOutput modelOutput) {
     RiskConfidence riskConfidence = new RiskConfidence();
-    riskConfidence.setAlternativeId(modelOutput.getStudentId());
-    riskConfidence.setCourseId(modelOutput.getCourseId());
-    riskConfidence.setGroupId(modelOutput.getModelRunId());
-    riskConfidence.setModelRiskConfidence(modelOutput.getRisk_score());
+    if (modelOutput.getOutput() != null) {
+      riskConfidence.setAlternativeId((String)modelOutput.getOutput().get("ALTERNATIVE_ID"));
+      riskConfidence.setCourseId((String)modelOutput.getOutput().get("COURSE_ID"));
+      riskConfidence.setModelRiskConfidence((String)modelOutput.getOutput().get("MODEL_RISK_CONFIDENCE"));
+    }
     riskConfidence.setDateCreated(new Date());
-    
+    riskConfidence.setGroupId(modelOutput.getModelRunId());
+
     return riskConfidence;
   }
   
   private ModelOutput fromRiskConfidence(RiskConfidence riskConfidence) {
     ModelOutput modelOutput = new ModelOutput();
     modelOutput.setId(String.valueOf(riskConfidence.getId()));
-    modelOutput.setCourseId(riskConfidence.getCourseId());
     modelOutput.setCreatedDate(riskConfidence.getDateCreated());
     modelOutput.setModelRunId(riskConfidence.getGroupId());
-    modelOutput.setRisk_score(riskConfidence.getModelRiskConfidence());
-    modelOutput.setStudentId(riskConfidence.getAlternativeId());
+    
+    Map<String, Object> output = new HashMap<String, Object>();
+    output.put("ALTERNATIVE_ID", riskConfidence.getAlternativeId());
+    output.put("COURSE_ID", riskConfidence.getCourseId());
+    output.put("MODEL_RISK_CONFIDENCE", riskConfidence.getModelRiskConfidence());
+    
+    modelOutput.setOutput(output);
     return modelOutput;
   }
 }

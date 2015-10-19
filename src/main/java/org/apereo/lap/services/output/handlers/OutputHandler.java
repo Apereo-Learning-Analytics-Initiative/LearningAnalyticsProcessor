@@ -14,10 +14,10 @@
  *******************************************************************************/
 package org.apereo.lap.services.output.handlers;
 
-import org.apereo.lap.model.Output;
-
 import java.util.ArrayList;
 import java.util.Date;
+
+import org.apereo.lap.model.Output;
 
 /**
  * Handles the output processing for a single target output type

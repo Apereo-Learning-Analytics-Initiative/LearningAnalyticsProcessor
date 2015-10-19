@@ -14,6 +14,11 @@
  *******************************************************************************/
 package org.apereo.lap.services.input;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -24,11 +29,6 @@ import org.apereo.lap.services.input.handlers.csv.CSVInputHandler;
 import org.apereo.lap.services.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Handles the inputs by reading the data into the temporary data storage

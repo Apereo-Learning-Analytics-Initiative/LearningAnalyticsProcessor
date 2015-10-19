@@ -25,8 +25,10 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apereo.lap.model.Output;
 import org.apereo.lap.model.Output.OutputType;
+import org.apereo.lap.services.storage.StorageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -35,7 +37,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
-import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 import org.springframework.stereotype.Component;
 
 /**
@@ -55,6 +56,9 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
   private String accessTokenUri;
   @Value("${ssp.earlyAlertUrl:@null}")
   private String earlyAlertUrl;
+  
+  @Autowired
+  private StorageFactory storageFactory;
 
   @Override
   public OutputType getHandledType() {
@@ -67,13 +71,15 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
     private String externalStudentId;
     private String comment;
     private String riskCategory;
+    private String jobId;
     
-    public EarlyAlert(String externalCourseId, String externalStudentId, String comment, String riskCategory) {
+    public EarlyAlert(String externalCourseId, String externalStudentId, String comment, String riskCategory, String jobId) {
       super();
       this.externalCourseId = externalCourseId;
       this.externalStudentId = externalStudentId;
       this.comment = comment;
       this.riskCategory = riskCategory;
+      this.jobId = jobId;
     }
 
     public String getExternalCourseId() {
@@ -90,6 +96,10 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
 
     public String getRiskCategory() {
       return riskCategory;
+    }
+    
+    public String getJobId() {
+      return jobId;
     }
   }
   
@@ -139,7 +149,7 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
 
     OutputResult result = new OutputResult(output);
 
-    String selectSQL = output.makeTempDBSelectSQL();
+    String selectSQL = output.makeTempDBSelectStarSQL();
 
     SqlRowSet rowSet;
     try {
@@ -148,7 +158,7 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
     } catch (Exception e) {
       throw new RuntimeException("Failure while trying to retrieve the output data set: " + selectSQL);
     }
-
+    
     List<EarlyAlert> earlyAlertList = new ArrayList<SSPEarlyAlertOutputHandler.EarlyAlert>();
     while (rowSet.next()) {
       if (!rowSet.wasNull()) {
@@ -158,7 +168,7 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
         String risk = rowSet.getString(3);
         
         if (StringUtils.isNotBlank(risk) && ("HIGH RISK".equals(risk) || "MEDIUM RISK".equals(risk))) {
-          EarlyAlert earlyAlert = new EarlyAlert(course, student, "Automated early alert due to risk score above acceptable limit", risk);
+          EarlyAlert earlyAlert = new EarlyAlert(course, student, "Automated early alert due to risk score above acceptable limit", risk, null);
           earlyAlertList.add(earlyAlert);
         }
                 

@@ -14,8 +14,6 @@
  *******************************************************************************/
 package org.apereo.lap.services.output.handlers;
 
-import javax.annotation.Resource;
-
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;

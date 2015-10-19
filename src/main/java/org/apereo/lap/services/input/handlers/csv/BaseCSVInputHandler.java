@@ -14,16 +14,6 @@
  *******************************************************************************/
 package org.apereo.lap.services.input.handlers.csv;
 
-import au.com.bytecode.opencsv.CSVReader;
-import org.apache.commons.lang.StringUtils;
-import org.apereo.lap.services.configuration.ConfigurationService;
-import org.apereo.lap.services.input.BaseInputHandlerService;
-import org.apereo.lap.services.input.SampleCSVInputHandlerService;
-import org.apereo.lap.services.input.handlers.BaseInputHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,6 +23,17 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.services.configuration.ConfigurationService;
+import org.apereo.lap.services.input.BaseInputHandlerService;
+import org.apereo.lap.services.input.SampleCSVInputHandlerService;
+import org.apereo.lap.services.input.handlers.BaseInputHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 
 public abstract class BaseCSVInputHandler extends BaseInputHandler implements CSVInputHandler {

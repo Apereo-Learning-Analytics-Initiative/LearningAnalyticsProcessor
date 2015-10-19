@@ -14,7 +14,13 @@
  *******************************************************************************/
 package org.apereo.lap.services.output.handlers;
 
-import au.com.bytecode.opencsv.CSVWriter;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
+
 import org.apache.commons.io.IOUtils;
 import org.apereo.lap.model.Output;
 import org.slf4j.Logger;
@@ -22,8 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
-import java.util.Map;
+import au.com.bytecode.opencsv.CSVWriter;
 
 /**
  * Handles the output processing for a single target output type

@@ -30,8 +30,6 @@ import org.apereo.lap.services.storage.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mongodb.AggregationOptions.OutputMode;
-
 /**
  * This is an object that represents all configuration settings for a specific pipeline
  *
@@ -279,14 +277,7 @@ public class PipelineConfig {
                     p.count = processor.getInt("count");
                     pc.addProcessor(p);
                     logger.warn("KETTLE DATA processor loaded ("+p.toString()+")");
-                } else if (pt == Processor.ProcessorType.FAKE_DATA) {
-                    Processor p = new Processor();
-                    p.type = Processor.ProcessorType.FAKE_DATA;
-                    p.name = processor.getString("name");
-                    p.count = processor.getInt("count");
-                    pc.addProcessor(p);
-                    logger.warn("FAKE DATA processor loaded ("+p.toString()+")");
-                } // Add other types here as needed
+                }  // Add other types here as needed
             } catch (Exception e) {
                 // skip this processor and warn
                 logger.warn("Unable to load processor ("+processor.toString()+") (skipping it): "+e);

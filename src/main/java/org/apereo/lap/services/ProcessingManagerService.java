@@ -23,7 +23,6 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 
 import org.apereo.lap.model.Output;
 import org.apereo.lap.model.PipelineConfig;
@@ -34,7 +33,6 @@ import org.apereo.lap.services.notification.NotificationService;
 import org.apereo.lap.services.output.OutputHandlerService;
 import org.apereo.lap.services.output.handlers.OutputHandler;
 import org.apereo.lap.services.pipelines.PipelineProcessor;
-import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.ModelRun;
 import org.apereo.lap.services.storage.ModelRunPersistentStorage;
 import org.apereo.lap.services.storage.StorageFactory;
