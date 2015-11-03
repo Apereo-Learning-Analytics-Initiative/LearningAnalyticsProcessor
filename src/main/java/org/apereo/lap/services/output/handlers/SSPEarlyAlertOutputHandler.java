@@ -149,7 +149,7 @@ public class SSPEarlyAlertOutputHandler extends BaseOutputHandler {
 
     OutputResult result = new OutputResult(output);
 
-    String selectSQL = output.makeTempDBSelectStarSQL();
+    String selectSQL = output.makeTempDBSelectSQL();
 
     SqlRowSet rowSet;
     try {
