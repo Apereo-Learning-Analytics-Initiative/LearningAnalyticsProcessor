@@ -1,0 +1,32 @@
+{
+"TEXT_HEADER": "History",
+"TEXT_INSTRUCTIONS":"TBD ... instructions on how to use this",
+"TABLE_HEADER_DATE": "DATE",
+"TABLE_HEADER_TYPE": "TYPE",
+"TABLE_HEADER_NAME": "NAME",
+"TABLE_HEADER_SUCCESS": "SUCCESS",
+"TABLE_HEADER_COUNT": "COUNT",
+
+"LINK_INDEX_LOGIN": "Login",
+"LINK_INDEX_LOGOUT": "Logout",
+"LINK_INDEX_SETTINGS":"Settings",
+"LINK_INDEX_HELP":"Help",
+
+"PIPELINE_TEXT_HEADER": "Welsh Pipelines",
+"PIPELINE_TEXT_INSTRUCTIONS":"TBD ... instructions on how to use this",
+"PIPELINE_TABLE_HEADER_TYPE": "TYPE",
+"PIPELINE_TABLE_HEADER_NAME": "NAME",
+"PIPELINE_TABLE_HEADER_DESC": "DESCRIPTION",
+"STATISTICS" : "Statistics",
+"RUN" : "Run",
+
+"SELECT_INSTITUTION": "Select your institution",
+"SIGN_IN": "Sign In",
+"USERNAME_REQUIRED_ERROR": "Username is required.",
+"PASSWORD_REQUIRED_ERROR": "Password is required.",
+"USERNAME": "Username",
+"PASSWORD": "Password",
+
+"ALERT_DANGER_USERNAME_PASSWORD_MISMATCH": "The username and password do not match our records, please try again.",
+"ALERT_SUCCESS_LOGOUT_USER_INITIATED":"You have been logged out."
+}

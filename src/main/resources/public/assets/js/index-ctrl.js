@@ -18,11 +18,39 @@ angular
 .module('LAP')
 .controller('IndexCtrl',
 
-function MasterCtrl($scope, $state, $http, runs, SessionService) {
+function MasterCtrl($scope, $state, $http, $translate, runs, SessionService, LocaleService) {
   
   if(!SessionService.isAuthenticated()){
     $state.go("login");
   }
+  
+  $scope.localesDisplayNames = LocaleService.getLocalesDisplayNames();
+
+  $scope.changeLanguage = function (locale) {
+    LocaleService.setLocaleByDisplayName(locale);
+  };
+  
+  $scope.getLocaleImgPath = function (locale) {	
+	var path = '/assets/img/locales/'  
+  
+	if (locale) {
+	  var code = LocaleService.getLocaleForDisplayName(locale);
+	  path = path + code +'.png';
+	}
+	else {
+	  var code = LocaleService.getLocaleForDisplayName(LocaleService.getLocaleDisplayName());
+	  
+	  if (!code) {
+		code = $translate.use();  
+		if (!code) {
+		  code = 'en_US';
+		}
+	  }
+
+	  path = path + code +'.png';
+	}
+	return path;
+  };
 
   $scope.runs = runs;
   $scope.isAuthenticated = SessionService.isAuthenticated();

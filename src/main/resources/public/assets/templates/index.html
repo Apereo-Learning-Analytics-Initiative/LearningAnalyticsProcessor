@@ -29,12 +29,14 @@ permissions and limitations under the License.
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#" translate="LINK_INDEX_SETTINGS"></a></li>
           <li><a href="#" translate="LINK_INDEX_HELP"></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="LINK_INDEX_LANGUAGE_DROPDOWN"><img style="max-height: 25px;" ng-src="{{getLocaleImgPath()}}"></img> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li ng-repeat="ldn in localesDisplayNames | orderBy"><a ng-click="changeLanguage(ldn)" id="LINK_INDEX_LANGUAGE_SELECT" class=""><img ng-src="{{getLocaleImgPath(ldn)}}"></img> {{ldn}}</a></li>
+            </ul>
+          </li>
           <li ng-show="isAuthenticated"><a href="" ng-click="logout()" id="LINK_INDEX_LOGOUT" translate="LINK_INDEX_LOGOUT"></a></li>
         </ul>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control"
-            placeholder="Search..."></input>
-        </form>
       </div>
     </div>
   </nav>
