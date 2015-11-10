@@ -177,9 +177,15 @@ angular
 	     	},
 	     	controller: 'PipelinesController'	    
 	     })
-	    .state('rules', {
-	        url: 'admin/rules',
-	        templateUrl: '/assets/templates/rules.html'
+	    .state('index.settings', {
+	        url: 'admin/settings',
+	        templateUrl: '/assets/templates/settings.html',
+		    resolve:{
+	    		sspConfig : function ($stateParams, SettingsService) {
+	    			return SettingsService.getSSPConfig();
+	    		}	
+	     	},
+	     	controller: 'SettingsController'	    
 	    });	    
 	$locationProvider.html5Mode(true);
 });

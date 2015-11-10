@@ -34,6 +34,7 @@ public class StorageFactory {
   
   @Autowired private Map<String, PersistentStorage<ModelOutput>> persistentStorageOptions;
   @Autowired private Map<String, ModelRunPersistentStorage> modelRunPersistentStorageOptions;
+  @Autowired private Map<String, SSPConfigPersistentStorage> sspConfigPersistentStorageOptions;
   
   public PersistentStorage<ModelOutput> getPersistentStorage() {
     return persistentStorageOptions.get(persistentStorage);
@@ -45,4 +46,12 @@ public class StorageFactory {
     
     return modelRunPersistentStorageOptions.get(key);
   }
+  
+  public SSPConfigPersistentStorage getSSPConfigPersistentStorage() {
+    
+    String key = persistentStorage + "-SSPConfigPersistentStorage";
+    
+    return sspConfigPersistentStorageOptions.get(key);
+  }
+
 }

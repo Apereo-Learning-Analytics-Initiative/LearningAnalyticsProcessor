@@ -44,6 +44,40 @@ angular
       }
 	}
 })
+.service('SettingsService', function($log, $http) {
+    return {
+      saveSSPConfig : function(sspConfig) {
+		var promise =
+		$http({
+	        method  : 'POST',
+	        url     : '/sspconfig',
+	        data    : JSON.stringify(sspConfig),
+	        headers : { 'Content-Type': 'application/json' }
+		})
+		.then(function (response) {
+			return response.data;
+		});
+		return promise;
+      },
+      getSSPConfig : function () {
+			var promise =
+			$http({
+		        method  : 'GET',
+		        url     : '/sspconfig',
+		        headers : { 'Content-Type': 'application/json' }
+			})
+			.then(function (response) {
+				if (response.data) {
+					return response.data;
+				}
+				else {
+					return {};
+				}
+			});
+			return promise;
+      }
+	}
+})
 
   .service('LocaleService', function ($translate, LOCALES, $rootScope) {
     'use strict';
