@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <title>Learninganalyticsprocessor by Apereo-Learning-Analytics-Initiative</title>
+    <title>Learning Analytics Processor by Apereo-Learning-Analytics-Initiative</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,11 +64,9 @@
   <section id="promo" class="promo section offset-header">
     <div class="container text-center">
 	<h2 class="title">Learning Analytics Processor</h2>
-      <p class="intro">An Open source Java based Learning Analytics Processor which initially automates the Marist OAAI Student Risk Assessment model.</p>
+      <p class="intro">An open source, Java-based analytics workflow manager</p>
       <div class="btns">
         <a class="btn btn-cta-primary" href="https://github.com/Apereo-Learning-Analytics-Initiative/LearningAnalyticsProcessor" target="_blank">View on Github</a>
-        <a class="btn btn-cta-secondary" href="https://github.com/Apereo-Learning-Analytics-Initiative/LearningAnalyticsProcessor/zipball/master" target="_blank">Download .zip</a>
-		<a class="btn btn-cta-secondary" href="https://github.com/Apereo-Learning-Analytics-Initiative/LearningAnalyticsProcessor/tarball/master" target="_blank">Download .tar.gz</a>
       </div>
       <ul class="meta list-inline">
       </ul>
@@ -79,9 +77,13 @@
   <!-- ******ABOUT****** -->
   <section id="about" class="about section">
     <div class="container">
-      <h2 class="title text-center">What is Learning Analytics Processor?</h2>
+      <h2 class="title text-center">What is the Learning Analytics Processor?</h2>
       <p class="intro text-center">
-     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.       </p>
+      The Apereo Learning Analytics Processor application can be considered the manager of an analytics workflow. Typically, this type of workflow is referred to as a 
+      pipeline and consists of three distinct phases: input, model execution, and output. 
+      The Apereo Learning Analytics Processor supports this type of pipeline construct. Additionally, the Apereo Learning Analytics Processor 
+      exposes output from the pipeline via a collection of web service APIs.
+      </p>
     </div>
   </section>
   <!--//about-->
@@ -91,10 +93,8 @@
     <div class="container text-center">
       <h2 class="title">Features</h2>
       <ul class="feature-list list-unstyled">
-        <li><i class="fa fa-check"></i> Lorem Ipsum</li>
-        <li><i class="fa fa-check"></i> Lorem Ipsum</li>
-        <li><i class="fa fa-check"></i> Lorem Ipsum</li>
-
+        <li><i class="fa fa-check"></i> Automates Marist OAAI Early Alert Model</li>
+        <li><i class="fa fa-check"></i> Integrates with Student Success Plan for triggering of early alerts</li>
       </ul>
     </div>
   </section>
@@ -108,19 +108,21 @@
         <div class="block">
           <h3 class="sub-title text-center">Technical Overview</h3>
           <p>
-            Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. 
+            Learning Analytic Processor (LAP) is a Java web application built with Spring Boot. 
+            LAP manages configuration using Spring Profiles. A complete listing of the supported profiles is available below. 
           </p>
           <h4 class="sub-title text-center">Requirements</h4>
           <p>
-            Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh:
+            To build and run LAP you will need, at a minimum, the following:
           </p>
           <ul class="">
             <li>Java 7 or higher (either JDK)</li>
             <li>Maven 3 or higher</li>
           </ul>
-          <h4 class="sub-title text-center">Building and Running OpenLRS</h4>
+          <h4 class="sub-title text-center">Building and Running LAP</h4>
           <p>
-             Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. 
+          To get started quickly for testing or demo purposes you can run LAP with the default profile. 
+          This will start the application using an H2 in-memory datastore.    
 
           </p>
           
@@ -149,32 +151,68 @@
               // as an alternative to using spring-boot:run
               // you can build the jar file using mvn clean package
               // and then run
-              java -jar target/test.jar
+              java -jar target/lap.jar
               // this starts the application on port 8080
               </code>
             </pre>
           </div>
           <p>
-            Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. 
 
           </p>
+          <p>
+          On some operating systems we have encountered errors with Kettle accessing shared kettle properties. This error may manifest itself as 
+          "org.apereo.lap.services.ProcessingManagerService - Pipeline (sample) FAILED" or errors that complain about connecting to mysql. If you run into this problem follow the instructions below:
+          </p>
+          <div class="code-block">
+             <pre>
+              <code class="language-markup">
+// Kettle uses a file $HOME/.kettle/shared.xml. 
+// This is supposed to be automatically created by kettle but 
+// I've run into some environments where this doesn't always happen. 
+// The following should get you running.
+
+mkdir $HOME/.kettle/
+
+echo '&lt;?xml version="1.0" encoding="UTF-8"?>\
+  &lt;sharedobjects>\
+    &lt;connection>\
+    &lt;name>LAP_connect&lt;/name>\
+    &lt;server/>\
+    &lt;type>H2&lt;/type>\
+    &lt;access>Native&lt;/access>\
+    &lt;database>mem&#x3a;temp-db&#x3b;MODE&#x3d;MYSQL&#x3b;DB_CLOSE_DELAY&#x3d;-1&lt;/database>\
+    &lt;port>-1&lt;/port>\
+    &lt;username>sa&lt;/username>\
+    &lt;password>Encrypted &lt;/password>\
+    &lt;servername/>\
+    &lt;data_tablespace/>\
+    &lt;index_tablespace/>\
+    &lt;attributes>\
+      &lt;attribute>&lt;code>PORT_NUMBER&lt;/code>&lt;attribute>-1&lt;/attribute>&lt;/attribute>\
+    &lt;/attributes>\
+  &lt;/connection>\    
+&lt;/sharedobjects> >> $HOME/.kettle/shared.xml 
+
+                </code>
+            </pre>
+          </div>
         </div>
         <h2 class="title text-center">Branches</h2>
         <div class="block">
           <h3 class="sub-title text-center">Master Branch</h3>
           <p>
-            Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. 
-
-          </p>
+          The LAP master branch will always contain the most stable version of the code base. 
+          If you are just starting out with LAP we recommend that you start with the master branch and, of course, if you plan to deploy LAP in a pilot or production environment use the master branch.          </p>
           <h3 class="sub-title text-center">Development Branch</h3>
           <p>
-             Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. 
-
-          </p>
+          The LAP development branch contains that latest code changes and any experimental features that have not yet been deemed production ready.          </p>
           <h3 class="sub-title text-center">GH Pages Branch</h3>
           <p>
-            Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. 
-
+          The LAP gh-pages branch contains the HTML and supporting assets for this web page.
+          </p>
+          <h3 class="sub-title text-center">POC Branch</h3>
+          <p>
+          The LAP poc branch contains work done in the orginial proof of concept. This branch is maintained for historical purposes. No new development should occur in the poc branch.
           </p>
         </div>
       </div>
@@ -207,10 +245,10 @@
         <div class="container text-center">
           <ul class="list-unstyled">
             <li ><a
-              href="mailto:openlrs-user@apereo.org"><i
+              href="mailto:lap-user@apereo.org"><i
                 class="fa fa-envelope"></i> User List</a></li>
             <li class="last"><a
-              href="mailto:openlrs-dev@apereo.org"><i
+              href="mailto:lap-dev@apereo.org"><i
                 class="fa fa-envelope"></i> Developer List</a></li>
           </ul>
         </div>
