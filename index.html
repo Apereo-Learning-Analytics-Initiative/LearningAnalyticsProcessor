@@ -228,12 +228,50 @@ echo '&lt;?xml version="1.0" encoding="UTF-8"?>\
           </p>
           <h3 class="sub-title text-center">Mongo</h3>
           <p>
-          
+          This profile will start the application with H2 as the temporary data store and MongoDB as the persistent data store. You will need to specify the relevant MongoDB properties 
+          in your properties file to overide the defaults.
           </p>
+          <div class="code-block">
+             <pre>
+              <code class="language-markup">
+// Example of using the mongo profile
+
+// Start with mongo profile for dev purposes
+mvn -Drun.jvmArguments="-Dspring.profiles.active=mongo" 
+  -Dspring.profiles.active=mongo clean package spring-boot:run
+
+// Run with mongo profile
+java -jar -Dspring.profiles.active=mongo lap*.jar
+
+// Active from a properties file
+spring.profiles.active=mongo
+              </code>
+            </pre>
+          </div>
+          
           <h3 class="sub-title text-center">Mongo Multi-tenant</h3>
           <p>
-          
+          This profile will start the application with H2 as the temporary data store and MongoDB as the persistent data store. You will need to specify the relevant MongoDB properties 
+          in your properties file to overide the defaults. The difference between this profile and the mongo profile is that each tenant (identified by the organization that the current user belongs to)
+          will use a separate MongoDB database. Unless you're deploying a multi-tenant LAP cluster you probably don't want to use this profile.
           </p>
+          <div class="code-block">
+             <pre>
+              <code class="language-markup">
+// Example of using the mongo profile
+
+// Start with mongo profile for dev purposes
+mvn -Drun.jvmArguments="-Dspring.profiles.active=mongo-multitenant" 
+  -Dspring.profiles.active=mongo-multitenant clean package spring-boot:run
+
+// Run with mongo profile
+java -jar -Dspring.profiles.active=mongo-multitenant lap*.jar
+
+// Active from a properties file
+spring.profiles.active=mongo-multitenant
+              </code>
+            </pre>
+          </div>
         </div>
       </div>
     </div>
