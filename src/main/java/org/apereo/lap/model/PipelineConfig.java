@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 Unicon (R) Licensed under the
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
@@ -11,7 +11,7 @@
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- */
+ *******************************************************************************/
 package org.apereo.lap.model;
 
 import java.util.ArrayList;
@@ -23,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.configuration.HierarchicalConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.model.Output.OutputField;
 import org.apereo.lap.services.configuration.ConfigurationService;
 import org.apereo.lap.services.input.BaseInputHandlerService;
 import org.apereo.lap.services.storage.StorageService;
@@ -276,14 +277,7 @@ public class PipelineConfig {
                     p.count = processor.getInt("count");
                     pc.addProcessor(p);
                     logger.warn("KETTLE DATA processor loaded ("+p.toString()+")");
-                } else if (pt == Processor.ProcessorType.FAKE_DATA) {
-                    Processor p = new Processor();
-                    p.type = Processor.ProcessorType.FAKE_DATA;
-                    p.name = processor.getString("name");
-                    p.count = processor.getInt("count");
-                    pc.addProcessor(p);
-                    logger.warn("FAKE DATA processor loaded ("+p.toString()+")");
-                } // Add other types here as needed
+                }  // Add other types here as needed
             } catch (Exception e) {
                 // skip this processor and warn
                 logger.warn("Unable to load processor ("+processor.toString()+") (skipping it): "+e);
@@ -292,6 +286,9 @@ public class PipelineConfig {
         // outputs
         List<HierarchicalConfiguration> outputs = xmlConfig.configurationsAt("outputs.output");
         for (HierarchicalConfiguration output : outputs) {
+          
+          // TODO - we need to rethink output handling
+          // don't want to add code every time we need to support a new output type
             try {
                 String oType = output.getString("type");
                 Output.OutputType ot =  Output.OutputType.fromString(oType); // IllegalArgumentException if invalid
@@ -311,7 +308,21 @@ public class PipelineConfig {
                         o.addFieldStorage(outputField.getString("source"), outputField.getString("target"));
                     }
                     pc.addOutput(o);
-                } // Add other types here as needed
+                } 
+                else if (ot == Output.OutputType.SSPEARLYALERT) {
+                  Output o = new Output();
+                  o.type = Output.OutputType.SSPEARLYALERT;
+                  o.from = output.getString("from");
+                  o.to = output.getString("to");
+
+                  List<HierarchicalConfiguration> outputFields = output.configurationsAt("fields.field");
+                  for (HierarchicalConfiguration outputField : outputFields) {
+                      OutputField field = new OutputField(o.type, outputField.getString("source"), outputField.getString("target"), null);
+                      o.fields.add(field);
+                  }
+                  pc.addOutput(o);
+                }
+                // Add other types here as needed
             } catch (Exception e) {
                 // skip this processor and warn
                 logger.warn("Unable to load output ("+output.toString()+") (skipping it): "+e);

@@ -1,10 +1,32 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ *******************************************************************************/
 'use strict';
 
 angular
-.module('LAP', ['ui.bootstrap', 'ui.router', 'ngCookies', 'pascalprecht.translate', 'ui-notification']);
+.module('LAP', ['ui.bootstrap', 'ui.router', 'ngCookies', 'ngSanitize', 'pascalprecht.translate', 'ui-notification']);
 
 angular
 .module('LAP')
+  .constant('LOCALES', {
+    'locales': {
+      'cy_GB': 'Welsh',
+      'en_US': 'English (US)',
+      'en_GB': 'English (UK)'
+    },
+    'preferredLocale': 'en_US'
+  })
 .config(function(NotificationProvider) {
 	NotificationProvider.setOptions({
 	    delay: 10000,
@@ -16,12 +38,15 @@ angular
 	    positionY: 'bottom'
 	});
  })
-.config(function($translateProvider, $translatePartialLoaderProvider) {
+.config(function($translateProvider, $translatePartialLoaderProvider, LOCALES) {
     $translateProvider.useLoader('$translatePartialLoader', {
         urlTemplate: '/assets/translations/{lang}/{part}.json'
       });
 
-    $translateProvider.preferredLanguage('en_us');
+    $translateProvider.preferredLanguage(LOCALES.preferredLocale);
+    $translateProvider.useLocalStorage();
+    $translateProvider.useSanitizeValueStrategy('sanitize');
+    $translatePartialLoaderProvider.addPart('overview');
 })
 .config(function ($httpProvider, requestNotificationProvider) {
     $httpProvider.interceptors.push(function ($q) {
@@ -124,6 +149,7 @@ angular
 	    .state('login', {
 	        url: '/login',
 	        templateUrl: '/assets/templates/login.html',
+	        params: { loggedOutMessage : null},
 	        resolve:{
 	    	  isMultiTenant : function (FeatureFlagService) {
 	    		return FeatureFlagService.isFeatureActive('multitenant');
@@ -139,10 +165,10 @@ angular
 	    		return RunDataService.getRuns();
 	    	  }	
 	     	},
-	        controller: 'MasterCtrl'
+	        controller: 'IndexCtrl'
 	    })
 	    .state('index.pipelines', {
-	        url: 'pipelines',
+	        url: 'admin/pipelines',
 	        templateUrl: '/assets/templates/pipelines.html',
 		    resolve:{
 	    		pipelines : function ($stateParams, PipelineDataService) {
@@ -151,9 +177,15 @@ angular
 	     	},
 	     	controller: 'PipelinesController'	    
 	     })
-	    .state('rules', {
-	        url: '/rules',
-	        templateUrl: '/assets/templates/rules.html'
+	    .state('index.settings', {
+	        url: 'admin/settings',
+	        templateUrl: '/assets/templates/settings.html',
+		    resolve:{
+	    		sspConfig : function ($stateParams, SettingsService) {
+	    			return SettingsService.getSSPConfig();
+	    		}	
+	     	},
+	     	controller: 'SettingsController'	    
 	    });	    
 	$locationProvider.html5Mode(true);
 });

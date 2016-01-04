@@ -1,3 +1,17 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ *******************************************************************************/
 package org.apereo.lap.services.storage.mongo;
 
 import java.util.ArrayList;
@@ -18,6 +32,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
 /**
  * @author jbrown
@@ -26,7 +41,7 @@ import com.mongodb.MongoClient;
 @Profile("mongo-multitenant")
 @Configuration
 @EnableMongoAuditing
-@EnableMongoRepositories({"org.apereo.lap.services.storage.mongo"})
+@EnableMongoRepositories({"org.apereo.lap.services.storage.mongo.model"})
 public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   private static final Logger logger = LoggerFactory.getLogger(MongoMultiTenantConfiguration.class);
   
@@ -35,13 +50,14 @@ public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   @Value("${lap.defaultDatabaseName:lap_default}")
   private String dbName;
   
-  @Value("${lap.mongoHost:localhost}")
-  private String host;
+  @Value("${spring.data.mongodb.uri:mongodb://localhost/lap_default}")
+  private String dbUri;
   
   @Override
   @Bean
   public Mongo mongo() throws Exception {
-      return new MongoClient(host);
+      logger.warn("Mongo Db URI is set to: {}", dbUri);
+      return new MongoClient(new MongoClientURI(dbUri));
   }
 
   @Override
@@ -65,8 +81,17 @@ public class MongoMultiTenantConfiguration extends AbstractMongoConfiguration {
   public FilterRegistrationBean mongoFilterBean() {
     FilterRegistrationBean registrationBean = new FilterRegistrationBean();
     registrationBean.setFilter(mongoFilter);
-    List<String> urls = new ArrayList<String>(1);
-    urls.add("/*");  //authenticated
+    List<String> urls = new ArrayList<String>();
+    
+    urls.add("/");
+    urls.add("/user");
+    urls.add("/login");
+    urls.add("/history/*");
+    urls.add("/features/*");
+    urls.add("/admin/*");
+    urls.add("/pipelines/*");
+    urls.add("/api/output/*");
+    
     registrationBean.setUrlPatterns(urls);
     return registrationBean;
   }

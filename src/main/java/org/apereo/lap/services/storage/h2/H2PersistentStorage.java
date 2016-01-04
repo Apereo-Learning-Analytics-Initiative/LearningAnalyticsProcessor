@@ -1,3 +1,17 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ *******************************************************************************/
 /**
  * 
  */
@@ -6,7 +20,9 @@ package org.apereo.lap.services.storage.h2;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.PersistentLAPEntity;
@@ -68,13 +84,37 @@ public class H2PersistentStorage implements PersistentStorage<ModelOutput> {
   }
   
   @Override
-  public Page<ModelOutput> findByCourseId(String courseId, Pageable pageable) {
-    return convert(riskConfidenceRepository.findByCourseId(courseId, pageable), pageable);
+  public Page<ModelOutput> findByCourseId(String courseId, boolean onlyLastRun, Pageable pageable) {
+    
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      RiskConfidence riskConfidence = riskConfidenceRepository.findTopByCourseIdOrderByDateCreatedDesc(courseId);
+      if (riskConfidence != null) {
+        page = convert(riskConfidenceRepository.findByGroupIdAndCourseId(riskConfidence.getGroupId(), courseId, pageable),pageable);
+      }
+    }
+    else {
+      page = convert(riskConfidenceRepository.findByCourseId(courseId, pageable), pageable);
+    }
+    
+    return page;
   }
   
   @Override
-  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, Pageable pageable) {
-    return convert(riskConfidenceRepository.findByAlternativeIdAndCourseId(studentId, courseId, pageable), pageable);
+  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, boolean onlyLastRun, Pageable pageable) {
+    
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      RiskConfidence riskConfidence = riskConfidenceRepository.findTopByCourseIdOrderByDateCreatedDesc(courseId);
+      if (riskConfidence != null) {
+        page = convert(riskConfidenceRepository.findTopByCourseIdAndAlternativeIdOrderByDateCreatedDesc(courseId, studentId, pageable),pageable);
+      }
+    }
+    else {
+      page = convert(riskConfidenceRepository.findByAlternativeIdAndCourseId(studentId, courseId, pageable), pageable);
+    }
+    
+    return page;
   }
   
   private Page<ModelOutput> convert(Page<RiskConfidence> riskConfidenceEntities, Pageable pageable) {
@@ -92,23 +132,29 @@ public class H2PersistentStorage implements PersistentStorage<ModelOutput> {
   
   private RiskConfidence toRiskConfidence(ModelOutput modelOutput) {
     RiskConfidence riskConfidence = new RiskConfidence();
-    riskConfidence.setAlternativeId(modelOutput.getStudentId());
-    riskConfidence.setCourseId(modelOutput.getCourseId());
-    riskConfidence.setGroupId(modelOutput.getModel_run_id());
-    riskConfidence.setModelRiskConfidence(modelOutput.getRisk_score());
+    if (modelOutput.getOutput() != null) {
+      riskConfidence.setAlternativeId((String)modelOutput.getOutput().get("ALTERNATIVE_ID"));
+      riskConfidence.setCourseId((String)modelOutput.getOutput().get("COURSE_ID"));
+      riskConfidence.setModelRiskConfidence((String)modelOutput.getOutput().get("MODEL_RISK_CONFIDENCE"));
+    }
     riskConfidence.setDateCreated(new Date());
-    
+    riskConfidence.setGroupId(modelOutput.getModelRunId());
+
     return riskConfidence;
   }
   
   private ModelOutput fromRiskConfidence(RiskConfidence riskConfidence) {
     ModelOutput modelOutput = new ModelOutput();
     modelOutput.setId(String.valueOf(riskConfidence.getId()));
-    modelOutput.setCourseId(riskConfidence.getCourseId());
-    modelOutput.setCreated_date(riskConfidence.getDateCreated());
-    modelOutput.setModel_run_id(riskConfidence.getGroupId());
-    modelOutput.setRisk_score(riskConfidence.getModelRiskConfidence());
-    modelOutput.setStudentId(riskConfidence.getAlternativeId());
+    modelOutput.setCreatedDate(riskConfidence.getDateCreated());
+    modelOutput.setModelRunId(riskConfidence.getGroupId());
+    
+    Map<String, Object> output = new HashMap<String, Object>();
+    output.put("ALTERNATIVE_ID", riskConfidence.getAlternativeId());
+    output.put("COURSE_ID", riskConfidence.getCourseId());
+    output.put("MODEL_RISK_CONFIDENCE", riskConfidence.getModelRiskConfidence());
+    
+    modelOutput.setOutput(output);
     return modelOutput;
   }
 }

@@ -1,3 +1,17 @@
+<!-- 
+Copyright (c) Unicon (R) 2015 Licensed under the
+Educational Community License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License. You may
+obtain a copy of the License at
+
+http://www.osedu.org/licenses/ECL-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an "AS IS"
+BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+or implied. See the License for the specific language governing
+permissions and limitations under the License.
+ -->
 <div class="container">
   <div class="row">
     <div id="loginModal" class="modal show" tabindex="-1" role="dialog"
@@ -5,8 +19,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
-            <p ng-show="validationError" class="text-danger" translate="USERNAME_PASSWORD_MISMATCH_ERROR"></p>
             <form name="loginForm" class="form col-md-12 center-block" ng-submit="login()" novalidate>
+              <p ng-show="validationError" class="alert alert-danger" translate="ALERT_DANGER_USERNAME_PASSWORD_MISMATCH"></p>
+              <p ng-show="hasLoggedOut && !validationError" class="alert alert-success" translate="ALERT_SUCCESS_LOGOUT_{{hasLoggedOut}}"></p>
               <div class="form-group" ng-class="{ 'has-error' : loginForm.username.$invalid && !loginForm.username.$pristine }">
                 <input type="text" class="form-control input-lg"
                   placeholder="Username" name="username" ng-model="credentials.username" required></input>

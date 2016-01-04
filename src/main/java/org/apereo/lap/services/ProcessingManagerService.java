@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 Unicon (R) Licensed under the
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
@@ -11,7 +11,7 @@
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- */
+ *******************************************************************************/
 package org.apereo.lap.services;
 
 import java.util.HashMap;
@@ -23,7 +23,6 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 
 import org.apereo.lap.model.Output;
 import org.apereo.lap.model.PipelineConfig;
@@ -34,7 +33,6 @@ import org.apereo.lap.services.notification.NotificationService;
 import org.apereo.lap.services.output.OutputHandlerService;
 import org.apereo.lap.services.output.handlers.OutputHandler;
 import org.apereo.lap.services.pipelines.PipelineProcessor;
-import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.ModelRun;
 import org.apereo.lap.services.storage.ModelRunPersistentStorage;
 import org.apereo.lap.services.storage.StorageFactory;
@@ -195,9 +193,6 @@ public class ProcessingManagerService {
                 // if no outputs succeeded then the pipeline has failed
                 throw new RuntimeException("All outputs failed, pipeline failure in outputs");
             }
-
-            // Trigger SSP call
-            //thresholdTrigger.triggerSSP(outputs);
 
             // send success notification
             notification.sendNotification("Pipeline ("+pipelineId+") Complete", NotificationService.NotificationLevel.INFO);

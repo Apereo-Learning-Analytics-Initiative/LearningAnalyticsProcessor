@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 Unicon (R) Licensed under the
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
@@ -11,18 +11,8 @@
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- */
+ *******************************************************************************/
 package org.apereo.lap.services.input.handlers.csv;
-
-import au.com.bytecode.opencsv.CSVReader;
-import org.apache.commons.lang.StringUtils;
-import org.apereo.lap.services.configuration.ConfigurationService;
-import org.apereo.lap.services.input.BaseInputHandlerService;
-import org.apereo.lap.services.input.SampleCSVInputHandlerService;
-import org.apereo.lap.services.input.handlers.BaseInputHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +23,17 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apereo.lap.services.configuration.ConfigurationService;
+import org.apereo.lap.services.input.BaseInputHandlerService;
+import org.apereo.lap.services.input.SampleCSVInputHandlerService;
+import org.apereo.lap.services.input.handlers.BaseInputHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import au.com.bytecode.opencsv.CSVReader;
 
 
 public abstract class BaseCSVInputHandler extends BaseInputHandler implements CSVInputHandler {
@@ -57,15 +58,15 @@ public abstract class BaseCSVInputHandler extends BaseInputHandler implements CS
         // build up the handlers
     	CSVInputHandler csvih;
         Map<String, CSVInputHandler> handlers = new LinkedHashMap<>(); // maintain order
-        csvih = new SamplePersonalCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new PersonalCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleCourseCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new CourseCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleEnrollmentCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new EnrollmentCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleGradeCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new GradeCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
-        csvih = new SampleActivityCSVInputHandler(configuration, jdbcTemplate);
+        csvih = new ActivityCSVInputHandler(configuration, jdbcTemplate);
         handlers.put(csvih.getPath(), csvih);
         return handlers;
     }

@@ -1,0 +1,63 @@
+<!-- 
+Copyright (c) Unicon (R) 2015 Licensed under the
+Educational Community License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License. You may
+obtain a copy of the License at
+
+http://www.osedu.org/licenses/ECL-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an "AS IS"
+BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+or implied. See the License for the specific language governing
+permissions and limitations under the License.
+ -->
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading" translate="SSP_CONFIG_HEADER"></div>
+      <div class="panel-body">
+        <p translate="SSP_CONFIG_INSTRUCTIONS"></p>
+        
+        <form id="SSP_CONFIG_FORM" name="SSP_CONFIG_FORM" novalidate="novalidate">
+          
+          <div class="form-group col-xs-12 col-md-6" ng-class="{'has-error' : (SSP_CONFIG_FORM.SSP_CONFIG_FORM_KEY.$dirty && SSP_CONFIG_FORM.SSP_CONFIG_FORM_KEY.$error.required)}">
+            <label class="control-label" translate="SSP_CONFIG_FORM_KEY_LABEL" for="SSP_CONFIG_FORM_KEY"></label>
+            <input type="text" class="form-control" id="SSP_CONFIG_FORM_KEY" name="SSP_CONFIG_FORM_KEY" ng-required="true" ng-model="sspConfig.key">
+          </div>
+          
+          <div class="form-group col-xs-12 col-md-6" ng-class="{'has-error' : (SSP_CONFIG_FORM.SSP_CONFIG_FORM_SECRET.$dirty && SSP_CONFIG_FORM.SSP_CONFIG_FORM_SECRET.$error.required)}">
+            <label class="control-label" translate="SSP_CONFIG_FORM_SECRET_LABEL" for="SSP_CONFIG_FORM_SECRET"></label>
+            <input type="password" class="form-control" id="SSP_CONFIG_FORM_SECRET" name="SSP_CONFIG_FORM_SECRET" ng-required="true" ng-model="sspConfig.secret">
+          </div>
+          
+          <div class="form-group col-xs-12"
+            ng-class="{ 'has-error' : (SSP_CONFIG_FORM.SSP_CONFIG_FORM_URL.$dirty && SSP_CONFIG_FORM.SSP_CONFIG_FORM_URL.$error.required)
+                  || (SSP_CONFIG_FORM.SSP_CONFIG_FORM_URL.$error.url) }">
+            <label class="control-label" translate="SSP_CONFIG_FORM_URL_LABEL" for="SSP_CONFIG_FORM_URL"></label>
+            <input type="url" class="form-control" id="SSP_CONFIG_FORM_URL" name="SSP_CONFIG_FORM_URL" ng-required="true" ng-model="sspConfig.url">
+            <span id="helpBlock" class="help-block" translate="SSP_CONFIG_FORM_URL_HELP"></span>
+          </div>
+          
+          <div class="form-group col-xs-12 col-md-6" ng-class="{'has-error' : (SSP_CONFIG_FORM.SSP_CONFIG_FORM_RISKRULE.$dirty && SSP_CONFIG_FORM.SSP_CONFIG_FORM_RISKRULE.$error.required)}">
+            <label class="control-label" translate="SSP_CONFIG_FORM_RISKRULE_LABEL" for="SSP_CONFIG_FORM_RISKRULE"></label>
+            <select class="form-control" id="SSP_CONFIG_FORM_RISKRULE" name="SSP_CONFIG_FORM_RISKRULE" ng-required="true" ng-model="sspConfig.riskRule">
+              <option value="HIGH RISK">High Risk</option>
+              <option value="MEDIUM RISK">Medium Risk</option>
+              <option value="LOW RISK">Low Risk</option>
+              <option value="NO RISK">No Risk</option>
+            </select>
+            <span id="helpBlock" class="help-block" translate="SSP_CONFIG_FORM_RISKRULE_HELP"></span>
+          </div>
+          <div class="form-group col-xs-12">
+            <button ng-disabled="!SSP_CONFIG_FORM.$valid" class="btn btn-primary" ng-click="saveSSPConfig()" translate="BUTTON_SAVE" id="BUTTON_SAVE_SSP_CONFIG"></button>
+            <button class="btn btn-link" href="#" onclick="javascript:history.back();" translate="BUTTON_CANCEL" id="BUTTON_CANCEL_SSP_CONFIG"></button>
+          </div>
+        </form>
+        
+      </div>
+    
+    </div>  
+  </div>
+</div>
+ 

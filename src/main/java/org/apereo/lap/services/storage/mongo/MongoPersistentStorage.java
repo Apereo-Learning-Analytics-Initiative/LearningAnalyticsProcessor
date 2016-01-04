@@ -1,3 +1,17 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ *******************************************************************************/
 /**
  * 
  */
@@ -13,18 +27,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
 
 /**
  * @author ggilbert
  *
  */
 @Component("MongoDB")
-@Profile("mongo")
+@Profile({"mongo", "mongo-multitenant"})
 public class MongoPersistentStorage implements PersistentStorage<ModelOutput> {
   
   @Autowired
   private MongoModelOutputRepository mongoModelOutputRepository;
+  
+  @Autowired
+  private MongoTemplate mongoTemplate;
 
   @Override
   public ModelOutput save(ModelOutput persistentLAPEntity) {
@@ -45,17 +66,40 @@ public class MongoPersistentStorage implements PersistentStorage<ModelOutput> {
 
   @Override
   public Page<ModelOutput> findByStudentId(String studentId, Pageable pageable) {
+    
     return mongoModelOutputRepository.findByStudentId(studentId, pageable);
   }
 
   @Override
-  public Page<ModelOutput> findByCourseId(String courseId, Pageable pageable) {
-    return mongoModelOutputRepository.findByCourseId(courseId, pageable);
+  public Page<ModelOutput> findByCourseId(String courseId, boolean onlyLastRun, Pageable pageable) {
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      ModelOutput modelOutput = mongoModelOutputRepository.findTopByCourseIdOrderByCreatedDateDesc(courseId);
+      if (modelOutput != null) {
+        page = mongoModelOutputRepository.findByModelRunIdAndCourseId(modelOutput.getModelRunId(), courseId, pageable);
+      }
+    }
+    else {
+      page = mongoModelOutputRepository.findByCourseId(courseId, pageable);
+    }
+    
+    return page;
   }
 
   @Override
-  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, Pageable pageable) {
-    return mongoModelOutputRepository.findByStudentIdAndCourseId(studentId, courseId, pageable);
+  public Page<ModelOutput> findByStudentIdAndCourseId(String studentId, String courseId, boolean onlyLastRun, Pageable pageable) {
+    Page<ModelOutput> page = null;
+    if (onlyLastRun) {
+      ModelOutput modelOutput = mongoModelOutputRepository.findTopByCourseIdOrderByCreatedDateDesc(courseId);
+      if (modelOutput != null) {
+        page = mongoModelOutputRepository.findTopByCourseIdAndStudentIdOrderByCreatedDateDesc(courseId, studentId, pageable);
+      }
+    }
+    else {
+      page = mongoModelOutputRepository.findByStudentIdAndCourseId(studentId, courseId, pageable);
+    }
+    
+    return page;
   }
 
 }

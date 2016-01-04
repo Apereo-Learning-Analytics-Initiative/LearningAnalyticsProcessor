@@ -1,17 +1,28 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
+ * Educational Community License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may
+ * obtain a copy of the License at
+ *
+ * http://www.osedu.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ *******************************************************************************/
 /**
  * 
  */
-package org.apereo.lap.controllers.api;
+package org.apereo.lap.controllers;
 
 import java.util.ArrayList;
 
-import org.apereo.lap.model.api.ModelOutputRecord;
 import org.apereo.lap.model.api.ModelRunRecord;
 import org.apereo.lap.model.api.ModelRunResourceAssembler;
-import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.ModelRun;
 import org.apereo.lap.services.storage.ModelRunPersistentStorage;
-import org.apereo.lap.services.storage.PersistentStorage;
 import org.apereo.lap.services.storage.StorageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,7 +44,7 @@ public class ModelRunController {
   @Autowired private StorageFactory storageFactory;
   @Autowired private ModelRunResourceAssembler modelRunResourceAssembler;
   
-  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/api/runs")
+  @RequestMapping(method = RequestMethod.GET, produces = {"application/json"}, value="/history")
   public PagedResources<ModelRunRecord> runs(@PageableDefault(size = 10, page = 0) Pageable pageable, 
       PagedResourcesAssembler<ModelRun> assembler) {
     

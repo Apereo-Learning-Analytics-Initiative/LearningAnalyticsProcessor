@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 Unicon (R) Licensed under the
+/*******************************************************************************
+ * Copyright (c) 2015 Unicon (R) Licensed under the
  * Educational Community License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may
  * obtain a copy of the License at
@@ -11,12 +11,16 @@
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- */
+ *******************************************************************************/
 package org.apereo.lap.model;
 
-import org.apache.commons.lang.StringUtils;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-import java.util.*;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Represents a type of output from a pipeline
@@ -92,6 +96,10 @@ public class Output {
         String columnsSQL = StringUtils.join(columns, ",");
         return "SELECT "+columnsSQL+" FROM "+this.from;
     }
+    
+    public String makeTempDBSelectStarSQL() {
+      return "SELECT * FROM "+this.from;
+  }
 
     /**
      * @return the list of source columns from the temp DB (in defined order)
@@ -166,6 +174,7 @@ public class Output {
      * Represents the possible output types
      */
     public static enum OutputType {
+        SSPEARLYALERT,
         /**
          * Output into the persistent storage
          * (tables/collections must already be defined)
@@ -178,9 +187,14 @@ public class Output {
         static OutputType fromString(String str) {
             if (StringUtils.equalsIgnoreCase(str, STORAGE.name())) {
                 return STORAGE;
-            } else if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
+            } 
+            else if (StringUtils.equalsIgnoreCase(str, CSV.name())) {
                 return CSV;
-            } else {
+            } 
+            else if (StringUtils.equalsIgnoreCase(str, SSPEARLYALERT.name())) {
+              return SSPEARLYALERT;
+            }
+            else {
                 throw new IllegalArgumentException("Output type ("+str+") does not match the valid types: CSV,STORAGE");
             }
         }

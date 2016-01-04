@@ -1,3 +1,17 @@
+<!-- 
+Copyright (c) Unicon (R) 2015 Licensed under the
+Educational Community License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License. You may
+obtain a copy of the License at
+
+http://www.osedu.org/licenses/ECL-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an "AS IS"
+BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+or implied. See the License for the specific language governing
+permissions and limitations under the License.
+ -->
 <!DOCTYPE html>
 
 <html ng-app="LAP">
@@ -31,8 +45,10 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.underscore.min.js"></script>
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-partial/2.7.2/angular-translate-loader-partial.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.8.1/angular-translate.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-storage-local/2.8.1/angular-translate-storage-local.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-storage-cookie/2.8.1/angular-translate-storage-cookie.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-partial/2.8.1/angular-translate-loader-partial.min.js"></script>
   <script type="text/javascript" th:src="@{/assets/js/lib/angular-notification-min.js}"></script>
   
   <script type="text/javascript" th:src="@{/assets/js/app.js}"></script>
@@ -40,11 +56,14 @@
   <script type="text/javascript" th:src="@{/assets/js/directives.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/auth-ctrl.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/login-ctrl.js}"></script>
-  <script type="text/javascript" th:src="@{/assets/js/master-ctrl.js}"></script>
+  <script type="text/javascript" th:src="@{/assets/js/index-ctrl.js}"></script>
   
   <!-- Pipelines -->
   <script type="text/javascript" th:src="@{/assets/js/pipelines/service.js}"></script>
   <script type="text/javascript" th:src="@{/assets/js/pipelines/controllers.js}"></script>
+  
+  <!-- Settings -->
+  <script type="text/javascript" th:src="@{/assets/js/settings/controllers.js}"></script>
 </body>
 
 </html>
