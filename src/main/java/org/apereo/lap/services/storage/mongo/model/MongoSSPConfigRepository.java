@@ -15,6 +15,7 @@
 package org.apereo.lap.services.storage.mongo.model;
 
 import org.apereo.lap.model.SSPConfig;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -22,7 +23,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author ggilbert
  *
  */
-@Profile({"mongo", "mongo-multitenant"})
+@ConditionalOnProperty(name="lap.persistentStorage", havingValue="MongoDB")
 public interface MongoSSPConfigRepository extends MongoRepository<SSPConfig, String> {
 
 }

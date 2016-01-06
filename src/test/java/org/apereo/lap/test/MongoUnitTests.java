@@ -23,7 +23,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-@ActiveProfiles("mongo-multitenant")
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = LearningAnalyticsProcessor.class)
 @Category(MongoUnitTests.class) //Want to be able to remove mongo tests with out affecting other Unit/Integration tests

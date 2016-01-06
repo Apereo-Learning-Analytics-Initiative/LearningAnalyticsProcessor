@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.5.RELEASE</version>
+        <version>1.2.6.RELEASE</version>
     </parent>
 
     <name>Apereo Learning Analytics Processor Project</name>
@@ -21,6 +21,18 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <pentaho.version>4.4.1.2</pentaho.version>
     </properties>
+    
+	<dependencyManagement>
+	    <dependencies>
+	        <dependency>
+	            <groupId>org.springframework.cloud</groupId>
+	            <artifactId>spring-cloud-starter-parent</artifactId>
+	            <version>Angel.SR4</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	    </dependencies>
+	</dependencyManagement>
 
     <dependencies>
         <!-- Spring Boot -->
@@ -43,6 +55,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+	        <groupId>org.springframework.cloud</groupId>
+	        <artifactId>spring-cloud-starter-config</artifactId>
+    	</dependency>		
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

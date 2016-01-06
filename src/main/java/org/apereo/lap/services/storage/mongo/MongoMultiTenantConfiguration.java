@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +39,7 @@ import com.mongodb.MongoClientURI;
  * @author jbrown
  *
  */
-@Profile("mongo-multitenant")
+@ConditionalOnProperty(name="features.multitenant", havingValue="true")
 @Configuration
 @EnableMongoAuditing
 @EnableMongoRepositories({"org.apereo.lap.services.storage.mongo.model"})

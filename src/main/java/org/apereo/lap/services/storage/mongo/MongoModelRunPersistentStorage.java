@@ -21,6 +21,7 @@ import org.apereo.lap.services.storage.ModelRun;
 import org.apereo.lap.services.storage.ModelRunPersistentStorage;
 import org.apereo.lap.services.storage.mongo.model.MongoModelRunRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,7 +32,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("MongoDB-ModelRunPersistentStorage")
-@Profile({"mongo", "mongo-multitenant"})
+@ConditionalOnProperty(name="lap.persistentStorage", havingValue="MongoDB")
 public class MongoModelRunPersistentStorage implements ModelRunPersistentStorage {
   
   @Autowired private MongoModelRunRepository mongoModelRunRepository;

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: lap
+  cloud:
+    config:
+      uri: http://localhost:8083
+      username: apereo
+      password: openanalytics

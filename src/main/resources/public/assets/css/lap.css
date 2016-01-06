@@ -130,3 +130,46 @@ body {
 	opacity: .5; 
 	z-index: 500;
 }
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .login-page { 
+    background: url(/assets/img/backgrounds/library.jpeg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  
+  .login-panel-default {
+    opacity: 1;
+    margin-top:30px;
+  }
+  
+  .login-margins {
+    margin-top: 100px;
+    margin-bottom: 200px;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .login-page { 
+    background: url(/assets/img/backgrounds/library.jpeg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  
+  .login-panel-default {
+    opacity: 1;
+    margin-top:30px;
+  }
+  
+  .login-margins {
+    margin-top: 100px;
+    margin-bottom: 200px;
+  }
+} 
+

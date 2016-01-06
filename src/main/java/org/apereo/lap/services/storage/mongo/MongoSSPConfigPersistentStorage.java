@@ -20,7 +20,7 @@ import org.apereo.lap.model.SSPConfig;
 import org.apereo.lap.services.storage.SSPConfigPersistentStorage;
 import org.apereo.lap.services.storage.mongo.model.MongoSSPConfigRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 /**
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component("MongoDB-SSPConfigPersistentStorage")
-@Profile({"mongo", "mongo-multitenant"})
+@ConditionalOnProperty(name="lap.persistentStorage", havingValue="MongoDB")
 public class MongoSSPConfigPersistentStorage implements SSPConfigPersistentStorage {
   
   @Autowired private MongoSSPConfigRepository mongoSSPConfigRepository;

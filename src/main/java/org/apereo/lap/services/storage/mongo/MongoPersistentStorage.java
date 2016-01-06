@@ -24,6 +24,7 @@ import org.apereo.lap.services.storage.ModelOutput;
 import org.apereo.lap.services.storage.PersistentStorage;
 import org.apereo.lap.services.storage.mongo.model.MongoModelOutputRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,7 +39,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
  *
  */
 @Component("MongoDB")
-@Profile({"mongo", "mongo-multitenant"})
+@ConditionalOnProperty(name="lap.persistentStorage", havingValue="MongoDB")
 public class MongoPersistentStorage implements PersistentStorage<ModelOutput> {
   
   @Autowired
