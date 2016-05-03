@@ -19,8 +19,8 @@
 <!-- This file defines an analytics model (or more technically a series of models) including the inputs and outputs -->
 <pipeline>
   <type>sample</type><!-- the unique id of the pipeline, should be lowercase alphanum -->
-  <name>Sample</name><!-- display/print friendly name -->
-  <description>This is a sample pipeline</description>
+  <name>Early Alert Sample</name><!-- display/print friendly name -->
+  <description>This is a sample pipeline that sends early alert model output to a compliant learning record store in xAPI format.</description>
   <stats>
     <accuracy>0.85</accuracy>
     <confidence>0.05</confidence>
@@ -157,6 +157,145 @@
     </output>
     <output>
       <type>STORAGE</type>
+      <from>KETTLE_DATA</from><!-- the temporary storage collection/table -->
+      <filename>kettle_data_output.csv</filename>
+      <fields>
+        <field>
+          <header>ALTERNATIVE_ID</header>
+          <source>ALTERNATIVE_ID</source>
+        </field>
+        <field>
+          <header>COURSE_ID</header>
+          <source>COURSE_ID</source>
+        </field>
+        <field>
+          <header>MODEL_RISK_CONFIDENCE</header>
+          <source>MODEL_RISK_CONFIDENCE</source>
+        </field>
+        <field>
+          <header>SUBJECT</header>
+          <source>SUBJECT</source>
+        </field>
+         <field>
+          <header>ONLINE_FLAG</header>
+          <source>ONLINE_FLAG</source>
+        </field>
+        
+         <field>
+          <header>ENROLLMENT</header>
+          <source>ENROLLMENT</source>
+        </field>
+         <field>
+          <header>RC_FINAL_GRADE</header>
+          <source>RC_FINAL_GRADE</source>
+        </field>
+         <field>
+          <header>PERCENTILE</header>
+          <source>PERCENTILE</source>
+        </field>
+        <field>
+          <header>SAT_VERBAL</header>
+          <source>SAT_VERBAL</source>
+        </field>
+         <field>
+          <header>SAT_MATH</header>
+          <source>SAT_MATH</source>
+        </field>
+         <field>
+          <header>APTITUDE_SCORE</header>
+          <source>APTITUDE_SCORE</source>
+        </field>
+         <field>
+          <header>AGE</header>
+          <source>AGE</source>
+        </field>
+         <field>
+          <header>RC_GENDER</header>
+          <source>RC_GENDER</source>
+        </field>
+         <field>
+          <header>RC_ENROLLMENT_STATUS</header>
+          <source>RC_ENROLLMENT_STATUS</source>
+        </field>
+         <field>
+          <header>RC_CLASS_CODE</header>
+          <source>RC_CLASS_CODE</source>
+        </field>
+        <field>
+          <header>GPA_CUMULATIVE</header>
+          <source>GPA_CUMULATIVE</source>
+        </field>
+        
+        <field>
+          <header>GPA_SEMESTER</header>
+          <source>GPA_SEMESTER</source>
+        </field>
+        <field>
+          <header>STANDING</header>
+          <source>STANDING</source>
+        </field>
+        <field>
+          <header>RMN_SCORE</header>
+          <source>RMN_SCORE</source>
+        </field>
+        <field>
+          <header>RMN_SCORE_PARTIAL</header>
+          <source>RMN_SCORE_PARTIAL</source>
+        </field>
+        <field>
+          <header>R_CONTENT_READ</header>
+          <source>R_CONTENT_READ</source>
+        </field>
+        <field>
+          <header>R_ASSMT_SUB</header>
+          <source>R_ASSMT_SUB</source>
+        </field>
+        <field>
+          <header>R_FORUM_POST</header>
+          <source>R_FORUM_POST</source>
+        </field>
+        
+        <field>
+          <header>R_FORUM_READ</header>
+          <source>R_FORUM_READ</source>
+        </field>
+        <field>
+          <header>R_LESSONS_VIEW</header>
+          <source>R_LESSONS_VIEW</source>
+        </field>
+        <field>
+          <header>R_ASSMT_TAKE</header>
+          <source>R_ASSMT_TAKE</source>
+        </field>
+        <field>
+          <header>R_ASN_SUB</header>
+          <source>R_ASN_SUB</source>
+        </field>
+        <field>
+          <header>R_ASN_READ</header>
+          <source>R_ASN_READ</source>
+        </field>
+        <field>
+          <header>R_SESSIONS</header>
+          <source>R_SESSIONS</source>
+        </field>
+        <field>
+          <header>ACADEMIC_RISK</header>
+          <source>ACADEMIC_RISK</source>
+        </field>
+        <field>
+          <header>FAIL_PROBABILITY</header>
+          <source>FAIL_PROBABILITY</source>
+        </field>
+        <field>
+          <header>PASS_PROBABILITY</header>
+          <source>PASS_PROBABILITY</source>
+        </field>
+        
+       </fields>
+    </output>
+    <output>
+      <type>XAPIEARLYALERT</type>
       <from>KETTLE_DATA</from><!-- the temporary storage collection/table -->
       <filename>kettle_data_output.csv</filename>
       <fields>

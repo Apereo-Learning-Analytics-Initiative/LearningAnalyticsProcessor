@@ -174,6 +174,7 @@ public class Output {
      * Represents the possible output types
      */
     public static enum OutputType {
+        XAPIEARLYALERT,
         SSPEARLYALERT,
         /**
          * Output into the persistent storage
@@ -193,6 +194,9 @@ public class Output {
             } 
             else if (StringUtils.equalsIgnoreCase(str, SSPEARLYALERT.name())) {
               return SSPEARLYALERT;
+            }
+            else if (StringUtils.equalsIgnoreCase(str, XAPIEARLYALERT.name())) {
+              return XAPIEARLYALERT;
             }
             else {
                 throw new IllegalArgumentException("Output type ("+str+") does not match the valid types: CSV,STORAGE");

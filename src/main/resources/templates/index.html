@@ -14,7 +14,7 @@ permissions and limitations under the License.
  -->
 <!DOCTYPE html>
 
-<html ng-app="LAP">
+<html ng-app="LAP" ng-controller="AuthCtrl" ng-class="{full:isLogin()}">
 
 <head>
 <base href="/"></base>
@@ -32,7 +32,7 @@ permissions and limitations under the License.
 <![endif]-->
 </head>
 
-<body ng-controller="AuthCtrl">
+<body id="ng-app" ng-class="{application:!isLogin(), none:isLogin()}">
   <div loading-widget="" class="spinner"></div>
   <div class="ui-view"></div>
 

@@ -322,6 +322,19 @@ public class PipelineConfig {
                   }
                   pc.addOutput(o);
                 }
+                else if (ot == Output.OutputType.XAPIEARLYALERT) {
+                  Output o = new Output();
+                  o.type = Output.OutputType.XAPIEARLYALERT;
+                  o.from = output.getString("from");
+                  o.to = output.getString("to");
+
+                  List<HierarchicalConfiguration> outputFields = output.configurationsAt("fields.field");
+                  for (HierarchicalConfiguration outputField : outputFields) {
+                      OutputField field = new OutputField(o.type, outputField.getString("source"), outputField.getString("target"), null);
+                      o.fields.add(field);
+                  }
+                  pc.addOutput(o);
+                }
                 // Add other types here as needed
             } catch (Exception e) {
                 // skip this processor and warn
