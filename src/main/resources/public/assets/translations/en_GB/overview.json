@@ -1,4 +1,7 @@
 {
+"BUTTON_SAVE":"Save",
+"BUTTON_CANCEL":"Cancel",
+
 "TEXT_HEADER": "History",
 "TABLE_HEADER_DATE": "DATE",
 "TABLE_HEADER_TYPE": "TYPE",
