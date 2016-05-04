@@ -6,7 +6,7 @@ An open source, Java-based analytics workflow manager. Find detailed documentati
 
 License
 -------
-ECL (a slightly less permissive Apache2)
+ECL  - a slightly less permissive Apache2
 http://opensource.org/licenses/ECL-2.0
 
 Contact
