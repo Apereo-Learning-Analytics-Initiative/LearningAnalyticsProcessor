@@ -2,6 +2,8 @@ Learning Analytics Processor
 =======
 An open source, Java-based analytics workflow manager. Find detailed documentation on our [github.io site](http://apereo-learning-analytics-initiative.github.io/LearningAnalyticsProcessor/).
 
+[![Apereo Incubating badge](https://img.shields.io/badge/apereo-incubating-blue.svg)](https://www.apereo.org/content/projects-currently-incubation)
+
 *************************************************************************************
 
 License
